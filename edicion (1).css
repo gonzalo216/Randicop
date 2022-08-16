@@ -1,0 +1,29 @@
+
+
+.f1{
+    background-color: #DBD8E3;
+    height: 268px;
+    width: 1358px; 
+}
+.f2{
+    background-color: #16131d;
+    height: 500px;
+    width: 1366px;
+    }
+img {
+float: left;
+border-color:#16131d ;
+} 
+
+
+p2{
+    color:red;
+    font-family:Times New Roman;
+    font-size:xx-large; 
+    
+}
+p1{
+    font-family:COCHIN;
+    color: violet;
+    font-size: 70px;
+    }
