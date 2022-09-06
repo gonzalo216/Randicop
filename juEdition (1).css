@@ -1,33 +1,49 @@
+body{
+    margin: 0;
+    background: #DBD8E3;
+}
 
-.f1{
-    background-color:#16131d ;
-    height: 90px;
-    width: 1358px; 
-    margin: 0px;
-    padding: 0px;
+.header{
+    background: #16131d ;
+    padding: 5rem 0;
+    position: relative;
 }
-.f2{
-   
-    }
-img {
-float: left;
 
+
+.container{
+    position: relative;
 }
-.l{
-    color:blue;
-    font-family:Times New Roman;
-    font-size:xx-large; 
-    
+
+.mineimg{
+    position: absolute;
+    right:100px;
+    top:50px;
+    display: flex;
 }
+
+.logo {
+position: absolute;
+top:0;
+align-items: center ;
+display: flex;
+}
+
 p1{
     font-family:COCHIN;
     color: violet;
     font-size: 70px;
+    letter-spacing: 5px;
     }
-.mine{
+
+
+h1{
+    font-size:3rem;
     
-
 }
-p3{
 
+p{
+    display: inline-block;
 }
+
+
+
