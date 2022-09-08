@@ -8,11 +8,11 @@ class Jugador{
     }
 }
 const jug = [
-    Jugador("Juli"),
-    Jugador("Tiago"),
-    Jugador("Nati"),
-    Jugador("Troche"),
-    Jugador("Gonza"),
+    new Jugador("Juli"),
+    new Jugador("Tiago"),
+    new Jugador("Nati"),
+    new Jugador("Troche"),
+    new Jugador("Gonza"),
 ]
 export function Hola(){
     jug.forEach(el => console.log(el.nombre, el.vida))
