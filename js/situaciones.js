@@ -17,23 +17,24 @@ const lista = [
     new Jugador("Gonza"),
 ]
 const jugs = desordenar(lista);
-jugs.forEach(el =>{
-    let nrand = getRandomIntInclusive(1,20)
-    switch(nrand){
-        case 1:
-            break;
+let nrand = getRandomIntInclusive(1,3),
+    evento,
+    cant = Object.keys(jugs).length,
+    dia = Math.floor(cant /2),
+    noche = cant - dia;
+switch(nrand){
+    case 1:
+        evento = "normal"
+        break;
         case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
+            evento = "normal"
+        break;
+    case 3:
+        evento = "aleatorio"
+        break;
     }
-})
+    
 export function Hola(){
     jugs.forEach(el => console.log(el.nombre, el.vida))
 }
+console.log(dia, noche, nrand, evento);
