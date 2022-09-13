@@ -1,0 +1,78 @@
+body{
+    margin: 0;
+    background: #DBD8E3;
+}
+
+.header{
+    background: #16131d ;
+    padding: 5rem 0;
+    position: relative;
+}
+h1{
+    margin-left: 50px;
+}
+section{
+    margin: 20px;
+    border: #16131d 10px solid;
+}
+.mDescription{
+    border: 5px orange solid;
+    width: 40%;
+    margin: auto;
+    margin-left: 10px;
+    float: left;
+    padding: 25px;
+}
+.mImg{
+    border: 5px green inset;
+    padding: 10px;
+    margin: auto;
+    float:right;
+    width: 20%;
+    margin-right: 10px;
+    
+}
+main{
+    border: 5px red solid;
+
+    margin: 50px;
+
+}
+
+.container{
+    position: relative;
+}
+
+.mineimg{
+    position: absolute;
+    right:100px;
+    top:50px;
+    display: flex;
+}
+
+.logo {
+position: absolute;
+top:0;
+align-items: center ;
+display: flex;
+}
+
+p1{
+    font-family:COCHIN;
+    color: violet;
+    font-size: 70px;
+    letter-spacing: 5px;
+    }
+
+
+h1{
+    font-size:3rem;
+    
+}
+
+p{
+    display: inline-block;
+}
+
+
+
