@@ -1,11 +1,11 @@
 body{
     margin: 0;
-    background: #DBD8E3;
+    background: #CCFFBD;
     height: 1000px;
 }
 
 .header{
-    background: #16131d ;
+    background: #100F0F ;
     padding: 4rem 0;
     position: relative;
 }
@@ -56,7 +56,7 @@ display: flex;
 
 p1{
     font-family:COCHIN;
-    color: violet;
+    color: #76BA99;
     font-size: 70px;
     letter-spacing: 5px;
     }
@@ -74,8 +74,23 @@ p{
 button{
     width: 20rem;
     color:#16131d;
+
 }
 
 aside{
-    border: red solid;
+    border: black solid;
+    border-radius: 5%;
+    text-align: center;
+    background-color: #3CCF4E;
+}
+#imgdmine
+{
+    border-top-left-radius: 4.5%;
+    border-top-right-radius:4.5%;
+}
+#b1{
+   width: 320px;
+    background-color: white;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
