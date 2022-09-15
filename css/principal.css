@@ -23,7 +23,38 @@ body{
         letter-spacing: 5px;
         }
 
+#mImg{
+margin-right: 150px;
+width: 25%; 
+float:right;    
+}
 
 
+#nImg{
+    width: 25%;
+    margin-left :150px;
+    float :left;
+}
 
+.sec{
+    margin-top: 100px;
+}
 
+#mImg p{
+    text-align: center;
+    color:#574B90;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#t1{
+    font-size: 2em;
+}
+#t2{
+    font-size: 2em;
+}
+
+#nImg p{
+    text-align: center;
+    color:#574B90;
+    font-family: 'Times New Roman', Times, serif;
+}
