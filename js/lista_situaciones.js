@@ -1,25 +1,27 @@
+import { imprimir } from "./imprimir.js";
 import { getRandomIntInclusive } from "./random.js";
 const danoGlobal = {
         caida: function(nombre){
-            console.log(`${nombre} se cayó`);
+            imprimir(`${nombre} se cayó`);
         }
 
     },
     danoDiaNoche = {
         lava: function(nombre){
-            console.log(`${nombre} se cayó a un charco de lava`);
+            imprimir(`${nombre} se cayó a un charco de lava`);
         }
 
     };
 export const danoDia = {
         sol: function(nombre){
-            console.log(`${nombre} se quemó con el Sol`);
+            imprimir(`${nombre} se quemó con el Sol`);
         }
 
     },
     danoNoche = {
         zombie: function(nombre){
-            console.log(`${nombre} se enfrento contra un zombie`);
+            imprimir(`${nombre} se enfrento contra un zombie`);
+
         }
     
     };
@@ -29,33 +31,63 @@ Object.assign(danoNoche, danoDiaNoche);
 
 const vidaGlobal = {
         pocion: function(nombre){
-            console.log(`${nombre} uso una pocion de curacion`);
+            imprimir(`${nombre} uso una pocion de curacion`);
         },
         manzana: function(nombre){
-            console.log(`${nombre} comió una manzana dorada`);
+            imprimir(`${nombre} comió una manzana dorada`);
         }
     },
     vidaDiaNoche = {
         bruja: function(nombre){
-            console.log(`Una bruja le tiro una pocion de curación instantánea a ${nombre}`);
+            imprimir(`Una bruja le tiro una pocion de curación instantánea a ${nombre}`);
         }
 
     };
 export const vidaDia = {
         angel: function(nombre){
-            console.log(`Un angel bajo del cielo y curó a ${nombre}`);
+            imprimir(`Un angel bajo del cielo y curó a ${nombre}`);
         }
 
     },
     vidaNoche = {
         zombie: function(nombre){
-            console.log(`${nombre} se enfrento contra un zombie`);
+            imprimir(`${nombre} se enfrento contra un zombie`);
         }
 
     };
 Object.assign(vidaDiaNoche, vidaGlobal);
 Object.assign(vidaDia, vidaDiaNoche);
 Object.assign(vidaNoche, vidaDiaNoche);
+
+const randomGlobal = {
+        pocion: function(nombre){
+            imprimir(`${nombre} uso una pocion de curacion`);
+        },
+        manzana: function(nombre){
+            imprimir(`${nombre} comió una manzana dorada`);
+        }
+    },
+    randomDiaNoche = {
+        bruja: function(nombre){
+            imprimir(`Una bruja le tiro una pocion de curación instantánea a ${nombre}`);
+        }
+
+    };
+export const randomDia = {
+        angel: function(nombre){
+            imprimir(`Un angel bajo del cielo y curó a ${nombre}`);
+        }
+
+    },
+    randomNoche = {
+        zombie: function(nombre){
+            imprimir(`${nombre} se enfrento contra un zombie`);
+        }
+
+    };
+Object.assign(randomDiaNoche, randomGlobal);
+Object.assign(randomDia, randomDiaNoche);
+Object.assign(randomNoche, randomDiaNoche);
 
 
 

@@ -1,3 +1,4 @@
+import { imprimir } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, getRandomInt, getRandomIntInclusive } from "./random.js";
 
@@ -22,10 +23,10 @@ const lista = {
     jugs = Object.keys(lista);
 desordenar(jugs);
 let nrand = getRandomIntInclusive(3),
-    evento,
     cant = Object.keys(jugs).length,
     mitad = Math.floor(cant /2);
 if (nrand <= 3){ //Eventos Normales
+    imprimir("<h2>Dia</h2>")
     for (let i = 0; i < mitad; i++) { //DIA
         nrand = getRandomIntInclusive(2, 1);
         const el = jugs[i];
@@ -57,6 +58,7 @@ if (nrand <= 3){ //Eventos Normales
                 break;
         }  
     }
+    imprimir("<h2>NOCHE</h2>")
     for (let i = mitad; i < cant; i++) { //NOCHE
         nrand = getRandomIntInclusive(2, 1);
         const el = jugs[i];
@@ -89,8 +91,8 @@ if (nrand <= 3){ //Eventos Normales
         }  
     }
 }
-else
-    evento = "aleatorio";
+//else
+
 
 
 export function Hola(){

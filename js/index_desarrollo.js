@@ -1,2 +1,2 @@
-import { Hola } from "./situaciones.js";
+import "./situaciones.js";
 //Hola();
