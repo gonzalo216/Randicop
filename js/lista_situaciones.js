@@ -1,20 +1,39 @@
 import { imprimir } from "./imprimir.js";
-import { getRandomIntInclusive } from "./random.js";
-const danoGlobal = {
-        caida: function(nombre){
-            imprimir(`${nombre} se cayó`);
-        }
+import { repetir } from "./funciones.js";
 
+
+
+const danoGlobal = {
+        papa: function(nombre){
+            imprimir(`${nombre} se vió forzado a comer una papa envenenada`);
+        },
+        enderman: function(nombre){
+            imprimir(`${nombre} intentó seducir a un enderman`);
+        },
+        nocomer: function(nombre){
+            imprimir(`${nombre} se quedó sin comida`);
+        },
+        conexion: function(nombre){
+            imprimir(`${nombre} perdió la conexión, al volver le aparece un <strong>Game Over</strong>`);
+        },
+        tropezon: function(nombre){
+            imprimir(`${nombre} se tropezó`);
+        },
     },
     danoDiaNoche = {
-        lava: function(nombre){
-            imprimir(`${nombre} se cayó a un charco de lava`);
-        }
-
+        lobo: function(nombre){
+            imprimir(`${nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`);
+        },
+        creeper: function(nombre){
+            imprimir(`Un creeper sorpende a ${nombre} por la espalda`);
+        },
     };
 export const danoDia = {
         sol: function(nombre){
             imprimir(`${nombre} se quemó con el Sol`);
+        },
+        charco: function(nombre){
+            imprimir(`${nombre} vió el charco de lava cuando ya era muy tarde`);
         }
 
     },
@@ -25,6 +44,9 @@ export const danoDia = {
         }
     
     };
+repetir(danoDiaNoche,1);
+repetir(danoDia,2);
+repetir(danoNoche,2);
 Object.assign(danoDiaNoche, danoGlobal);
 Object.assign(danoDia, danoDiaNoche);
 Object.assign(danoNoche, danoDiaNoche);
@@ -55,6 +77,9 @@ export const vidaDia = {
         }
 
     };
+repetir(vidaDiaNoche,1);
+repetir(vidaDia,2);
+repetir(vidaNoche,2);
 Object.assign(vidaDiaNoche, vidaGlobal);
 Object.assign(vidaDia, vidaDiaNoche);
 Object.assign(vidaNoche, vidaDiaNoche);
@@ -85,6 +110,9 @@ export const randomDia = {
         }
 
     };
+repetir(randomDiaNoche,1);
+repetir(randomDia,2);
+repetir(randomNoche,2);
 Object.assign(randomDiaNoche, randomGlobal);
 Object.assign(randomDia, randomDiaNoche);
 Object.assign(randomNoche, randomDiaNoche);

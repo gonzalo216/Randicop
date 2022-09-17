@@ -1,6 +1,6 @@
 import { imprimir } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
-import { desordenar, getRandomInt, getRandomIntInclusive } from "./random.js";
+import { desordenar, getRandomIntInclusive } from "./funciones.js";
 
 class Jugador{
     constructor(nombre){
@@ -42,6 +42,7 @@ if (nrand <= 3){ //Eventos Normales
             case 2: {//vida
                 const accion = Object.keys(vidaDia);
                 nrand = getRandomIntInclusive(accion.length-1)
+                console.info(accion[nrand]);
                 vidaDia[accion[nrand]](nombre);
                 break;}
             case 3 :
@@ -74,6 +75,7 @@ if (nrand <= 3){ //Eventos Normales
             case 2: {//vida
                 const accion = Object.keys(vidaNoche);
                 nrand = getRandomIntInclusive(accion.length-1)
+                console.info(accion[nrand]);
                 vidaNoche[accion[nrand]](nombre);
                 break;}
             case 3 :
