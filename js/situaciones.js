@@ -1,6 +1,6 @@
-import { crearDiv, imprimir } from "./imprimir.js";
+import { completo, crearDiv, imprimir } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
-import { desordenar, getRandomIntInclusive } from "./funciones.js";
+import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 
 class Jugador{
     constructor(nombre){
@@ -13,6 +13,7 @@ class Jugador{
 }
 
 //progreso = ["Overworld", "Nether", "Overworld", "End"],
+
 const lista = {
         jug1: new Jugador("Juli"),
         jug2: new Jugador("Tiago"),
@@ -21,8 +22,12 @@ const lista = {
         jug5: new Jugador("Gonza"),
     },
     jugs = Object.keys(lista);
-var cont = 0;
-export default function evento(){
+let cont = 0,
+    t= 1;
+export function apurar(){t = 0}
+export default async function evento(){
+    try {
+    
     desordenar(jugs);
     let nrand = getRandomIntInclusive(3),
         cant = Object.keys(jugs).length,
@@ -30,9 +35,13 @@ export default function evento(){
     crearDiv();
     imprimir(`<h3>Transcurrieron ${cont} dias</h3>`);
     cont++;
+
+
     if (nrand <= 3){ //Eventos Normales
+        await esperar(t)
         imprimir("<h2>DIA</h2>");
-        for (let i = 0; i < mitad; i++) { //DIA
+        await esperar(t)
+        for (let i = 0; i < mitad; i+= await esperar(t)) { //DIA
             nrand = getRandomIntInclusive(2, 1);
             const el = jugs[i];
             let nombre = lista[el].nombre,
@@ -62,10 +71,11 @@ export default function evento(){
                 case 6:
                     console.log("descubrimiento");
                     break;
-            }  
+            }
         }
         imprimir("<h2>NOCHE</h2>")
-        for (let i = mitad; i < cant; i++) { //NOCHE
+        await esperar(t)
+        for (let i = mitad; i < cant; i+= await esperar(t)) { //NOCHE
             nrand = getRandomIntInclusive(2, 1);
             const el = jugs[i];
             let nombre = lista[el].nombre,
@@ -99,6 +109,15 @@ export default function evento(){
         }
     }
     //else
+        
+    } catch (error) {
+        console.error(error);
+    }
+    t = 1;
+    document.getElementById("sig").textContent = "SIGUIENTE";
+    document.getElementById("ant").textContent = "ANTERIOR";
+    completo(true);
+
 }
 
 

@@ -16,4 +16,11 @@ export function repetir(obj, cant){
           obj[propiedad] = function(nombre){obj[el](nombre)};
       });
   }
-};
+}
+export function esperar(num){
+  return new Promise((resolve, reject) => {
+    setTimeout(()=>{
+      resolve(1)
+    },num * 1000)
+  })
+}

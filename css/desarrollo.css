@@ -27,17 +27,32 @@ p1{
     font-size: 70px;
     letter-spacing: 5px;
     }
-.anterior{
-    position: fixed;
-    transform: translate(0, -100%);
-    z-index: 1;
-}
-.actual{
+.cont{
     position: absolute;
-    width: 100%;
+    transition: transform 1s ease, opacity 1s ease;
+    transform: translate(0,0);
 }
-#botones{
+.cont.anterior{
+    transform: translate(0, -150%);
+    opacity: 0;
+}
+.cont.sig{
+    transform: translate(0, 100%);
+    opacity: 0;
+}
+.botones{
     position: fixed;
     z-index: 998;
     bottom: 10px;
+}
+.parrafo{
+    animation: aparecer 0.5s;
+}
+@keyframes aparecer {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
