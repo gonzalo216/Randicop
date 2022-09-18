@@ -30,7 +30,9 @@ export function desHabi(){
 }
 export function completo(bol = fin){
     fin = bol;
-    (!hayValor("cont sig") && fin)
+    (hayValor("cont sig"))
+    ? d.getElementById("sig").textContent ="SIGUIENTE"
+    : (fin)
             ? d.getElementById("sig").textContent ="SIGUIENTE"
             : d.getElementById("sig").textContent ="Completar";
 }
