@@ -27,6 +27,9 @@ const danoGlobal = {
         creeper: function(nombre){
             imprimir(`Un creeper sorpende a ${nombre} por la espalda`);
         },
+        grava: function(nombre){
+            imprimir(`Mientras picaba, a ${nombre} le cayó grava encima`);
+        },
     };
 export const danoDia = {
         sol: function(nombre){

@@ -1,3 +1,6 @@
+html{
+    box-sizing: border-box;
+}
 body{
     margin: 0;
     background: #DBD8E3;
@@ -8,7 +11,9 @@ body{
     padding: 4rem 0;
     position: relative;
 }
-
+main{
+    min-height: 100vh;
+}
 .logo {
     position: absolute;
     top:18px;
@@ -16,9 +21,23 @@ body{
     display: flex;
     }
 
-    p1{
-        font-family:COCHIN;
-        color: violet;
-        font-size: 70px;
-        letter-spacing: 5px;
-        }
+p1{
+    font-family:COCHIN;
+    color: violet;
+    font-size: 70px;
+    letter-spacing: 5px;
+    }
+.anterior{
+    position: fixed;
+    transform: translate(0, -100%);
+    z-index: 1;
+}
+.actual{
+    position: absolute;
+    width: 100%;
+}
+#botones{
+    position: fixed;
+    z-index: 998;
+    bottom: 10px;
+}
