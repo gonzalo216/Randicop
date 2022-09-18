@@ -14,12 +14,32 @@ export function crearDiv(){
     $transcurso.at(-1).className="cont actual";
     $divPadre.appendChild($transcurso.at(-1));
 }
-export function imprimir(text){
+export function imprimir(text, vida = null){
     const $contenedor = d.createElement("p")
     $contenedor.innerHTML = text;
     $contenedor.className = "parrafo";
+    if (vida !== null){
+        const $vidaJugador = d.createElement("span"),
+            $vidaTotal =d.createElement("span"),
+            $vidaAnterior = d.createElement("span")
+        $vidaJugador.className = "vida jugador";
+        $vidaTotal.className = "vida total";
+        $vidaAnterior.className = "vida anterior";
+        $vidaTotal.textContent = "🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​";
+        text = new String("");
+        for (let i = 0; i < vida-1; i+=2)
+            text += "❤️​";
+        if (vida % 2 === 1) text += "💔​";
+        $vidaJugador.textContent = text;
+        $contenedor.appendChild($vidaTotal);
+        $contenedor.appendChild($vidaJugador);
+    }  
     $transcurso.at(-1).appendChild($contenedor);
 }
+
+
+
+
 
 let fin = false;
 let hayValor = (valor) =>($transcurso.findIndex(el=>el.className===valor) !== -1) ? true : false;

@@ -5,7 +5,7 @@ import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 class Jugador{
     constructor(nombre){
         this.nombre = nombre;
-        this.vida = 20;
+        this.vida = 11;
     }
     sumar(num){
         vida += num;
@@ -51,13 +51,12 @@ export default async function evento(){
                 case 1: {//daño
                     const accion = Object.keys(danoDia);
                     nrand = getRandomIntInclusive(accion.length-1)
-                    danoDia[accion[nrand]](nombre);
+                    danoDia[accion[nrand]](nombre, vida);
                     break;}
                 case 2: {//vida
                     const accion = Object.keys(vidaDia);
                     nrand = getRandomIntInclusive(accion.length-1)
-                    console.info(accion[nrand]);
-                    vidaDia[accion[nrand]](nombre);
+                    vidaDia[accion[nrand]](nombre, vida);
                     break;}
                 case 3 :
                     console.log("relación");
@@ -85,13 +84,12 @@ export default async function evento(){
                 case 1: {//daño
                     const accion = Object.keys(danoNoche);
                     nrand = getRandomIntInclusive(accion.length-1)
-                    danoNoche[accion[nrand]](nombre);
+                    danoNoche[accion[nrand]](nombre, vida);
                     break;}
                 case 2: {//vida
                     const accion = Object.keys(vidaNoche);
                     nrand = getRandomIntInclusive(accion.length-1)
-                    console.info(accion[nrand]);
-                    vidaNoche[accion[nrand]](nombre);
+                    vidaNoche[accion[nrand]](nombre, vida);
                     break;}
                 case 3 :
                     console.log("relación");
@@ -124,6 +122,6 @@ export default async function evento(){
 export function Hola(){
     for (let i = 0; i < jugs.length; i++) {
         const el = jugs[i];
-        console.log(lista[el].nombre, );
+        console.log(lista[el].nombre, lista[el].vida);
     }
 }

@@ -29,6 +29,7 @@ p1{
     }
 .cont{
     position: absolute;
+    width: 100%;
     transition: transform 1s ease, opacity 1s ease;
     transform: translate(0,0);
 }
@@ -46,6 +47,7 @@ p1{
     bottom: 10px;
 }
 .parrafo{
+    width: 100%;
     animation: aparecer 0.5s;
 }
 @keyframes aparecer {
@@ -55,4 +57,17 @@ p1{
     to{
         opacity: 1;
     }
+}
+.vida{
+    position: absolute;
+    transform: translate(10px,-4px);
+}
+.vida.total{
+    z-index: 1;
+}
+.vida.anterior{
+    z-index: 2;
+}
+.vida.jugador{
+    z-index: 3;
 }
