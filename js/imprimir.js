@@ -2,9 +2,8 @@ import evento, { apurar } from "./situaciones.js";
 
 const d = document,
     $divPadre = d.getElementById("imprimir"),
-    $transcurso = [],
-    $texto = d.createElement("p");
-$texto.className = "texto";
+    $transcurso = [];
+    
 let primero = true;
 export function crearDiv(){
     
@@ -28,45 +27,49 @@ export function titulo(text){
     $p.innerHTML = text
     $transcurso.at(-1).appendChild($p);
 }
-export function vidaDefault(vida){
-    const $corazones = d.createElement("div");
-    $corazones.className = "vida jugador";
-    $corazones.innerHTML = agregarC(vida, "cRojo", "midRojo");
-    $texto.appendChild($corazones);
+export function vidaDefault(vida, bol = false){
+    vidaTotal();
+    imprimir(agregarC(vida, "cRojo", "midRojo"), "vida jugador", "div", bol);
 }
 export function vidaTotal(){
-    const $corazones = d.createElement("div");
-    $corazones.className = "vida total";
-    $corazones.innerHTML = agregarC(20, "cBlanco");
-    $texto.appendChild($corazones);
+    imprimir(agregarC(20, "cBlanco"), "vida total", "div");
 }
 export function vidaExtra(extra){
-    const $corazones = d.createElement("div");
-    $corazones.className = "vida extra";
-    $corazones.innerHTML = agregarC(extra, "cAmari");
-    $texto.appendChild($corazones);
+    imprimir(agregarC(extra, "cAmari"), "vida extra", "div");
 }
-export function danoInsta(dano){
-    const $corazones = d.createElement("div");
-    $corazones.className = "vida anterior";
-    $corazones.innerHTML = agregarC(dano, "cVerde", "midVerde");
-    $texto.appendChild($corazones);
+export function danoInsta(dano, bol = true){
+    imprimir(agregarC(dano, "cVerde", "midVerde"), "vida anterior", "div", bol);
 }
-export function curar(cura){
-    const $corazones = d.createElement("div");
-    $corazones.className = "vida anterior";
-    $corazones.innerHTML = agregarC(cura, "cRojoOpaco", "midRojoOpaco");
-    $texto.appendChild($corazones);
+export function curar(cura, bol = true){
+    imprimir(agregarC(cura, "cRojoOpaco", "midRojoOpaco"), "vida anterior", "div", bol);
 }
-
-
-export function imprimir(text){
+export function texto(text, bol = false){
+    imprimir(text, "texto", "p", bol, true);
+}
+const $text = d.createElement(`p`);
+export function imprimir(text, clas, el, fin = false, texto = false){
     const $contenedor = d.createElement("div");
     $contenedor.className = "linea";
-    $texto.innerHTML = text;
-    vidaTotal();
-    $contenedor.appendChild($texto);
-    $transcurso.at(-1).lastElementChild.appendChild($contenedor);
+
+    const $el = d.createElement(`${el}`);
+        
+    if (texto){
+        $text.className = `${clas}`;
+        $text.innerHTML = text;
+    }
+    else
+    {
+        $el.className = `${clas}`;
+        $el.innerHTML = text;
+        $text.appendChild($el);
+    }
+    const $linea = d.createElement("div")
+    $linea.innerHTML = $text.innerHTML;
+    $linea.className = $text.className;
+    if (fin){
+        $contenedor.appendChild($linea);
+        $transcurso.at(-1).lastElementChild.appendChild($contenedor);
+    }
 }
 
 
