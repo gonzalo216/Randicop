@@ -81,7 +81,7 @@ aside{
     border: black solid;
     border-radius: 5%;
     text-align: center;
-    background-color: #3CCF4E;
+    background-color: #22b132;
 }
 #imgdmine
 {
@@ -91,6 +91,9 @@ aside{
 #b1{
    width: 320px;
     background-color: white;
-    border-bottom-left-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+#in{
+ background-color: white;
 }

@@ -26,14 +26,14 @@ body{
 #mImg{
 margin-right: 150px;
 width: 25%; 
-float:right;    
+padding-left: 510px;
 }
 
 
 #nImg{
     width: 25%;
     margin-left :150px;
-    float :left;
+  padding-left: 370px;
 }
 
 .sec{
@@ -57,4 +57,25 @@ float:right;
     text-align: center;
     color:#574B90;
     font-family: 'Times New Roman', Times, serif;
+}
+.parent {
+    width: 300px;
+    height: 300px;
+    background-color: #cccccc;
+    text-align: center;
+  }
+  .zoom{
+    /* Aumentamos la anchura y altura durante 2 segundos */
+    transition: width 2s, height 2s, transform 2s;
+    display: inline-block;
+}
+
+.zoom:hover{
+    /* tranformamos el elemento al pasar el mouse por encima al doble de
+       su tamaño con scale(2). */
+    transform : scale(1.4);
+    backface-visibility: hidden;    
+}
+#lilo{
+    color: red;
 }
