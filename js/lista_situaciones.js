@@ -1,4 +1,4 @@
-import { imprimir } from "./imprimir.js";
+import { curar, danoInsta, texto, vidaDefault, vidaExtra, vidaTotal } from "./imprimir.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
 
 let nrand, dano, cura, adicional;
@@ -9,23 +9,31 @@ const danoGlobal = {
             (nrand <= 5) ? dano = 2 : dano = 0;
             vida -= dano;
             dano += vida;
-            imprimir(`${nombre} se vió forzado a comer una papa envenenada`, vida, dano);
+            texto(`${nombre} se vió forzado a comer una papa envenenada`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },  
         enderman: function(nombre, vida){
             dano = getRandomIntInclusive(10);
             vida -= dano;
             dano += vida;
-            imprimir(`${nombre} intentó seducir a un enderman`, vida, dano);
+            texto(`${nombre} intentó seducir a un enderman`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         nocomer: function(nombre, vida){
             dano = vida
             vida = 1;
-            imprimir(`${nombre} se quedó sin comida`, vida, dano);
+            texto(`${nombre} se quedó sin comida`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         conexion: function(nombre, vida){
             dano = vida;
             vida = 0;
-            imprimir(`${nombre} perdió la conexión, al volver le aparece un <strong>Game Over</strong>`, vida, dano);
+            texto(`${nombre} perdió la conexión, al volver le aparece un <strong>Game Over</strong>`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         tropezon: function(nombre, vida){
             nrand = getRandomIntInclusive(9);
@@ -38,7 +46,9 @@ const danoGlobal = {
             vida -= dano;
             dano += vida;
 
-            imprimir(`${nombre} se tropezó ${adicional}`, vida, dano);
+            texto(`${nombre} se tropezó ${adicional}`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
     },
     danoDiaNoche = {
@@ -46,19 +56,25 @@ const danoGlobal = {
             dano = getRandomIntInclusive(20);
             vida -= dano;
             dano += vida;
-            imprimir(`${nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`, vida, dano);
+            texto(`${nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         creeper: function(nombre, vida){
             dano = getRandomIntInclusive(20, 2);
             vida -= dano;
             dano += vida;
-            imprimir(`Un creeper sorpende a ${nombre} por la espalda`, vida, dano);
+            texto(`Un creeper sorpende a ${nombre} por la espalda`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         grava: function(nombre, vida){
             dano = getRandomIntInclusive(5, 1);
             vida -= dano;
             dano += vida;
-            imprimir(`Mientras picaba, a ${nombre} le cayó grava encima`, vida, dano);
+            texto(`Mientras picaba, a ${nombre} le cayó grava encima`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
     };
 export const danoDia = {
@@ -66,21 +82,29 @@ export const danoDia = {
             dano = getRandomIntInclusive(3,1);
             vida -= dano;
             dano += vida;
-            imprimir(`${nombre} se quemó con el Sol`, vida, dano);
+            texto(`${nombre} se quemó con el Sol`);
+            vidaDefault(vida)
+            danoInsta(dano)
         },
         charco: function(nombre, vida){
             dano = getRandomIntInclusive(15, 3);
             vida -= dano;
             dano += vida;
-            imprimir(`${nombre} vió el charco de lava cuando ya era muy tarde`, vida, dano);
+            texto(`${nombre} vió el charco de lava cuando ya era muy tarde`);
+            vidaDefault(vida)
+            danoInsta(dano)
         }
 
     },
     danoNoche = {
         
         zombie: function(nombre, vida){
-            imprimir(`${nombre} se enfrento contra un zombie`, vida);
-
+            dano = getRandomIntInclusive(10);
+            vida -= dano;
+            dano += vida;
+            texto(`${nombre} se enfrento contra un zombie`);
+            vidaDefault(vida);
+            danoInsta(dano);
         }
     
     };
@@ -92,7 +116,8 @@ Object.assign(danoDia, danoDiaNoche);
 Object.assign(danoNoche, danoDiaNoche);
 
 
-const pocionIns = (vida)=>{
+const ctrl = ()=> {if(cura > 20) cura = 20},
+    pocionIns = (vida)=>{
     nrand = getRandomIntInclusive(1)
     if (nrand === 0){
         adicional = "I";
@@ -105,34 +130,43 @@ const pocionIns = (vida)=>{
 const vidaGlobal = {
         pocionCura: function(nombre, vida){
             pocionIns(vida);
-            imprimir(`${nombre} usó una pocion de <i>curación instantánea ${adicional}</i>`, vida, null ,cura);
+            texto(`${nombre} usó una pocion de <i>curación instantánea ${adicional}</i>`);
+            vidaDefault(vida);
+            ctrl();
+            curar(cura);
             vida = cura;
         },
         manzana: function(nombre, vida){
             cura = 20
-            imprimir(`${nombre} comió una manzana dorada`, vida, null, cura, 4);
+            texto(`${nombre} comió una manzana dorada`);
+            vidaExtra(4);
+            vidaDefault(vida);
+            ctrl();
+            curar(cura);
             vida = cura;
         }
     },
     vidaDiaNoche = {
         bruja: function(nombre, vida){
             pocionIns(vida)
-            imprimir(`Una bruja le tiro una pocion splash de <i>curación instantánea ${adicional}</i> a ${nombre}`, vida, null, cura);
+            texto(`Una bruja le tiro una pocion splash de <i>curación instantánea ${adicional}</i> a ${nombre}`);
+            vidaDefault(vida);
+            ctrl();
+            curar(cura);
             vida = cura;
         }
     };
 export const vidaDia = {
         angel: function(nombre, vida){
-            imprimir(`Un angel bajo del cielo y curó a ${nombre}`, vida);
+            texto(`Un angel bajo del cielo y curó a ${nombre}`);
+            vidaDefault(vida, true);
         }
 
     },
     vidaNoche = {
         zombie: function(nombre, vida){
-            dano = getRandomIntInclusive(10);
-            vida -= dano;
-            dano += vida;
-            imprimir(`${nombre} se enfrento contra un zombie`, vida, dano);
+            
+            texto(`${nombre} nose`, true);
         }
 
     };

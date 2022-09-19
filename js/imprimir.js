@@ -3,6 +3,7 @@ import evento, { apurar } from "./situaciones.js";
 const d = document,
     $divPadre = d.getElementById("imprimir"),
     $transcurso = [];
+    
 let primero = true;
 export function crearDiv(){
     
@@ -26,42 +27,49 @@ export function titulo(text){
     $p.innerHTML = text
     $transcurso.at(-1).appendChild($p);
 }
-export function imprimir(text, vida = null, dano = null, cura = null, extra = null){
-    const $contenedor = d.createElement("div"),
-        $texto = d.createElement("p");
+export function vidaDefault(vida, bol = false){
+    vidaTotal();
+    imprimir(agregarC(vida, "cRojo", "midRojo"), "vida jugador", "div", bol);
+}
+export function vidaTotal(){
+    imprimir(agregarC(20, "cBlanco"), "vida total", "div");
+}
+export function vidaExtra(extra){
+    imprimir(agregarC(extra, "cAmari"), "vida extra", "div");
+}
+export function danoInsta(dano, bol = true){
+    imprimir(agregarC(dano, "cVerde", "midVerde"), "vida anterior", "div", bol);
+}
+export function curar(cura, bol = true){
+    imprimir(agregarC(cura, "cRojoOpaco", "midRojoOpaco"), "vida anterior", "div", bol);
+}
+export function texto(text, bol = false){
+    imprimir(text, "texto", "p", bol, true);
+}
+const $text = d.createElement(`p`);
+export function imprimir(text, clas, el, fin = false, texto = false){
+    const $contenedor = d.createElement("div");
     $contenedor.className = "linea";
-    $texto.className = "texto";
-    $texto.innerHTML = text;
-    if (vida !== null){
-        const $vidaJugador = d.createElement("div"),
-        $vidaTotal =d.createElement("div"),
-        $vidaAnterior = d.createElement("div"),
-        $vidaExtra = d.createElement("div");
-        $vidaJugador.className = "vida jugador";
-        $vidaTotal.className = "vida total";
-        $vidaAnterior.className = "vida anterior";
-        $vidaExtra.className = "vida extra";
-        if(extra){
-            $vidaExtra.innerHTML = agregarC(extra, "cAmari");
-            $texto.appendChild($vidaExtra);
-        }
+
+    const $el = d.createElement(`${el}`);
         
-        $vidaTotal.innerHTML = agregarC(20, "cBlanco");
-        $vidaJugador.innerHTML = agregarC(vida, "cRojoOpaco", "midRojoOpaco");
-        $texto.appendChild($vidaTotal);
-        $texto.appendChild($vidaJugador);
-        if (dano){
-            $vidaAnterior.innerHTML = agregarC(dano, "cVerde", "midVerde");
-            $texto.appendChild($vidaAnterior);
-        }
-        if (cura){
-            if (cura > 20) cura = 20;
-            $vidaAnterior.innerHTML = agregarC(cura, "cRojo", "midRojo");
-            $texto.appendChild($vidaAnterior);
-        }
-    } 
-    $contenedor.appendChild($texto);
-    $transcurso.at(-1).lastElementChild.appendChild($contenedor);
+    if (texto){
+        $text.className = `${clas}`;
+        $text.innerHTML = text;
+    }
+    else
+    {
+        $el.className = `${clas}`;
+        $el.innerHTML = text;
+        $text.appendChild($el);
+    }
+    const $linea = d.createElement("div")
+    $linea.innerHTML = $text.innerHTML;
+    $linea.className = $text.className;
+    if (fin){
+        $contenedor.appendChild($linea);
+        $transcurso.at(-1).lastElementChild.appendChild($contenedor);
+    }
 }
 
 
