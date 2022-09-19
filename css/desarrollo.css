@@ -32,6 +32,9 @@ p1{
     width: 100%;
     transition: transform 1s ease, opacity 1s ease;
     transform: translate(0,0);
+    text-align: center;
+    align-content: center;
+    align-items: center;
 }
 .cont.anterior{
     transform: translate(0, -150%);
@@ -46,7 +49,10 @@ p1{
     z-index: 998;
     bottom: 10px;
 }
-.parrafo{
+.texto{
+    padding-bottom: 25px;
+}
+.linea{
     width: 100%;
     animation: aparecer 0.5s;
 }
@@ -60,7 +66,15 @@ p1{
 }
 .vida{
     position: absolute;
-    transform: translate(10px,-4px);
+    
+    height: 23px;
+    left: 38%;
+    right: 50%;
+    width: max-content;
+}
+.vida img{
+    max-height: 100%;
+
 }
 .vida.total{
     z-index: 1;
@@ -70,4 +84,7 @@ p1{
 }
 .vida.jugador{
     z-index: 3;
+}
+.vida.extra{
+    position: relative;
 }

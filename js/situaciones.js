@@ -1,11 +1,11 @@
-import { completo, crearDiv, imprimir } from "./imprimir.js";
+import { completo, crearDiv, imprimir, titulo } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 
 class Jugador{
     constructor(nombre){
         this.nombre = nombre;
-        this.vida = 11;
+        this.vida = 15;
     }
     sumar(num){
         vida += num;
@@ -33,13 +33,13 @@ export default async function evento(){
         cant = Object.keys(jugs).length,
         mitad = Math.floor(cant /2);
     crearDiv();
-    imprimir(`<h3>Transcurrieron ${cont} dias</h3>`);
+    titulo(`<h3>Transcurrieron ${cont} dias</h3>`);
     cont++;
 
 
     if (nrand <= 3){ //Eventos Normales
         await esperar(t)
-        imprimir("<h2>DIA</h2>");
+        titulo("<h2>DIA</h2>");
         await esperar(t)
         for (let i = 0; i < mitad; i+= await esperar(t)) { //DIA
             nrand = getRandomIntInclusive(2, 1);
@@ -72,7 +72,7 @@ export default async function evento(){
                     break;
             }
         }
-        imprimir("<h2>NOCHE</h2>")
+        titulo("<h2>NOCHE</h2>")
         await esperar(t)
         for (let i = mitad; i < cant; i+= await esperar(t)) { //NOCHE
             nrand = getRandomIntInclusive(2, 1);

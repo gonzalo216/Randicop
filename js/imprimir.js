@@ -14,27 +14,54 @@ export function crearDiv(){
     $transcurso.at(-1).className="cont actual";
     $divPadre.appendChild($transcurso.at(-1));
 }
-export function imprimir(text, vida = null){
-    const $contenedor = d.createElement("p")
-    $contenedor.innerHTML = text;
-    $contenedor.className = "parrafo";
+const agregarC = (corazones, img, midImg = null) =>{
+    let text = new String("");
+    for (let i = 0; i < corazones-1; i+=2)
+        text += `<img src="./../assets/${img}.png">​`;
+    if (corazones % 2 === 1) text += `<img src="./../assets/${midImg}.png">​`;
+    return text;
+}
+export function titulo(text){ 
+    const $p = d.createElement("p");
+    $p.innerHTML = text
+    $transcurso.at(-1).appendChild($p);
+}
+export function imprimir(text, vida = null, dano = null, cura = null, extra = null){
+    const $contenedor = d.createElement("div"),
+        $texto = d.createElement("p");
+    $contenedor.className = "linea";
+    $texto.className = "texto";
+    $texto.innerHTML = text;
     if (vida !== null){
-        const $vidaJugador = d.createElement("span"),
-            $vidaTotal =d.createElement("span"),
-            $vidaAnterior = d.createElement("span")
+        const $vidaJugador = d.createElement("div"),
+        $vidaTotal =d.createElement("div"),
+        $vidaAnterior = d.createElement("div"),
+        $vidaExtra = d.createElement("div");
         $vidaJugador.className = "vida jugador";
         $vidaTotal.className = "vida total";
         $vidaAnterior.className = "vida anterior";
-        $vidaTotal.textContent = "🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​🤍​";
-        text = new String("");
-        for (let i = 0; i < vida-1; i+=2)
-            text += "❤️​";
-        if (vida % 2 === 1) text += "💔​";
-        $vidaJugador.textContent = text;
-        $contenedor.appendChild($vidaTotal);
-        $contenedor.appendChild($vidaJugador);
-    }  
-    $transcurso.at(-1).appendChild($contenedor);
+        $vidaExtra.className = "vida extra";
+        if(extra){
+            $vidaExtra.innerHTML = agregarC(extra, "cAmari");
+            $texto.appendChild($vidaExtra);
+        }
+        
+        $vidaTotal.innerHTML = agregarC(20, "cBlanco");
+        $vidaJugador.innerHTML = agregarC(vida, "cRojoOpaco", "midRojoOpaco");
+        $texto.appendChild($vidaTotal);
+        $texto.appendChild($vidaJugador);
+        if (dano){
+            $vidaAnterior.innerHTML = agregarC(dano, "cVerde", "midVerde");
+            $texto.appendChild($vidaAnterior);
+        }
+        if (cura){
+            if (cura > 20) cura = 20;
+            $vidaAnterior.innerHTML = agregarC(cura, "cRojo", "midRojo");
+            $texto.appendChild($vidaAnterior);
+        }
+    } 
+    $contenedor.appendChild($texto);
+    $transcurso.at(-1).lastElementChild.appendChild($contenedor);
 }
 
 
