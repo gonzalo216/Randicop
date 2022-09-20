@@ -49,9 +49,12 @@ p1{
 .texto{
     padding-bottom: 25px;
 }
-.linea{
-    width: 100%;
-    animation: aparecer 0.5s;
+.vacio{
+    position: relative;
+    top: -14px;
+}
+p{
+    animation: aparecer 1s;
 }
 @keyframes aparecer {
     from{

@@ -72,7 +72,11 @@ export function imprimir(text, clas, el, fin = false, texto = false){
         $transcurso.at(-1).lastElementChild.appendChild($contenedor);
     }
 }
-
+export async function hayEvent(){
+    if($transcurso.at(-1).lastElementChild.lastElementChild.tagName !== "DIV"){
+        imprimir("<h1>...</h1>", "vacio", "p", true, true);
+    }
+}
 
 
 

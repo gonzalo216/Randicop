@@ -1,4 +1,4 @@
-import { completo, crearDiv, texto, titulo } from "./imprimir.js";
+import { completo, crearDiv, hayEvent, texto, titulo } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 
@@ -79,6 +79,9 @@ export default async function evento(){
                 if(lista[el].vida <=0)muertos.add(el);
                 i += await esperar(t);
             }
+            hayEvent();
+            await esperar(t)
+
             titulo("<h2>NOCHE</h2>")
             await esperar(t)
             while(i<cant){
@@ -120,6 +123,8 @@ export default async function evento(){
                 if(lista[el].vida <=0)muertos.add(el);
                 i += await esperar(t);
             }
+            hayEvent();
+            await esperar(t);
         }
     //else
         if(muertos.size) {
