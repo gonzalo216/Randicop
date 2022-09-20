@@ -1,3 +1,4 @@
+import { esperar } from "./funciones.js";
 import evento, { apurar } from "./situaciones.js";
 
 const d = document,
@@ -16,11 +17,11 @@ export function crearDiv(){
     $divPadre.appendChild($transcurso.at(-1));
 }
 const agregarC = (corazones, img, midImg = null) =>{
-    let text = new String("");
+    const text = [];
     for (let i = 0; i < corazones-1; i+=2)
-        text += `<img src="./../assets/${img}.png">​`;
-    if (corazones % 2 === 1) text += `<img src="./../assets/${midImg}.png">​`;
-    return text;
+        text.push(`<img src="./../assets/${img}.png">​`);
+    if (corazones % 2 === 1) text.push(`<img src="./../assets/${midImg}.png">​`);
+    return text.join('');
 }
 export function titulo(text){ 
     const $p = d.createElement("p");

@@ -1,4 +1,4 @@
-import { completo, crearDiv, imprimir, titulo } from "./imprimir.js";
+import { completo, crearDiv, texto, titulo } from "./imprimir.js";
 import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 
@@ -7,12 +7,10 @@ class Jugador{
         this.nombre = nombre;
         this.vida = 15;
     }
-    sumar(num){
-        vida += num;
-    }
 }
 
 //progreso = ["Overworld", "Nether", "Overworld", "End"],
+
 
 const lista = {
         jug1: new Jugador("Juli"),
@@ -20,102 +18,115 @@ const lista = {
         jug3: new Jugador("Nati"),
         jug4: new Jugador("Troche"),
         jug5: new Jugador("Gonza"),
-    },
-    jugs = Object.keys(lista);
+    };
 let cont = 0,
-    t= 1;
+    t= 0.5;
 export function apurar(){t = 0}
 export default async function evento(){
     try {
-    
-    desordenar(jugs);
-    let nrand = getRandomIntInclusive(3),
-        cant = Object.keys(jugs).length,
-        mitad = Math.floor(cant /2);
-    crearDiv();
-    titulo(`<h3>Transcurrieron ${cont} dias</h3>`);
-    cont++;
+        const jugs = Object.keys(lista),
+            muertos = new Set();
+        desordenar(jugs);
+        let nrand = getRandomIntInclusive(3),
+            cant = Object.keys(jugs).length,
+            mitad = Math.floor(cant /2);
+        crearDiv();
+        titulo(`<h3>Transcurrieron ${cont} dias</h3>`);
+        cont++;
 
 
-    if (nrand <= 3){ //Eventos Normales
-        await esperar(t)
-        titulo("<h2>DIA</h2>");
-        await esperar(t)
-        for (let i = 0; i < mitad; i+= await esperar(t)) { //DIA
-            nrand = getRandomIntInclusive(2, 1);
-            const el = jugs[i];
-            let nombre = lista[el].nombre,
-                vida = lista[el].vida;
-            switch(nrand)
-            {
-                case 1: {//daño
-                    const accion = Object.keys(danoDia);
-                    nrand = getRandomIntInclusive(accion.length-1)
-                    danoDia[accion[nrand]](nombre, vida);
-                    break;}
-                case 2: {//vida
-                    const accion = Object.keys(vidaDia);
-                    nrand = getRandomIntInclusive(accion.length-1)
-                    vidaDia[accion[nrand]](nombre, vida);
-                    break;}
-                case 3 :
-                    console.log("relación");
-                    break;
-                case 4:
-                    console.log("decisivas");
-                    break;
-                case 5:
-                    console.log("random");
-                    break;
-                case 6:
-                    console.log("descubrimiento");
-                    break;
+        if (nrand <= 3){ //Eventos Normales
+            await esperar(t)
+            titulo("<h2>DIA</h2>");
+            await esperar(t)
+            for (let i = 0; i < mitad; i+= await esperar(t)) { //DIA
+                
+                const el = jugs[i];
+                let nombre = lista[el].nombre,
+                    vida = lista[el].vida;
+                if(vida <=0)continue;
+                (vida === 20)
+                    ? nrand = getRandomIntInclusive(1, 1)
+                    : nrand = getRandomIntInclusive(1);
+                switch(nrand)
+                {
+                    case 0: {//vida
+                        const accion = Object.keys(vidaDia);
+                        nrand = getRandomIntInclusive(accion.length-1)
+                        lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
+                        break;}
+                    case 1: {//daño
+                        const accion = Object.keys(danoDia);
+                        nrand = getRandomIntInclusive(accion.length-1)
+                        lista[el].vida = danoDia[accion[nrand]](nombre, vida);
+                        break;}
+                    case 2:
+                        console.log("relación");
+                        break;
+                    case 3:
+                        console.log("decisivas");
+                        break;
+                    case 4:
+                        console.log("random");
+                        break;
+                    case 5:
+                        console.log("descubrimiento");
+                        break;
+                }
+                if(lista[el].vida <=0)muertos.add(el);
+            }
+            titulo("<h2>NOCHE</h2>")
+            await esperar(t)
+            for (let i = mitad; i < cant; i+= await esperar(t)) { //NOCHE
+                const el = jugs[i];
+                let nombre = lista[el].nombre,
+                    vida = lista[el].vida;
+                if(vida <=0)continue;
+                (vida === 20)
+                    ? nrand = getRandomIntInclusive(1, 1)
+                    : nrand = getRandomIntInclusive(1);
+                switch(nrand)
+                {
+                    case 0: {//vida
+                        const accion = Object.keys(vidaNoche);
+                        nrand = getRandomIntInclusive(accion.length-1)
+                        lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
+                        break;}
+                    case 1: {//daño
+                        const accion = Object.keys(danoNoche);
+                        nrand = getRandomIntInclusive(accion.length-1)
+                        lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
+                        break;}
+                    case 2:
+                        console.log("relación");
+                        break;
+                    case 3:
+                        console.log("decisivas");
+                        break;
+                    case 4:
+                        console.log("random");
+                        break;
+                    case 5:
+                        console.log("descubrimiento");
+                        break;
+                }
+                if(lista[el].vida <=0)muertos.add(el);
             }
         }
-        titulo("<h2>NOCHE</h2>")
-        await esperar(t)
-        for (let i = mitad; i < cant; i+= await esperar(t)) { //NOCHE
-            nrand = getRandomIntInclusive(2, 1);
-            const el = jugs[i];
-            let nombre = lista[el].nombre,
-                vida = lista[el].vida;
-            switch(nrand)
-            {
-                case 1: {//daño
-                    const accion = Object.keys(danoNoche);
-                    nrand = getRandomIntInclusive(accion.length-1)
-                    danoNoche[accion[nrand]](nombre, vida);
-                    break;}
-                case 2: {//vida
-                    const accion = Object.keys(vidaNoche);
-                    nrand = getRandomIntInclusive(accion.length-1)
-                    vidaNoche[accion[nrand]](nombre, vida);
-                    break;}
-                case 3 :
-                    console.log("relación");
-                    break;
-                case 4:
-                    console.log("decisivas");
-                    break;
-                case 5:
-                    console.log("random");
-                    break;
-                case 6:
-                    console.log("descubrimiento");
-                    break;
-            }  
-        }
-    }
     //else
-        
+        if(muertos.size) {
+            titulo("<h3>Murieron</h3>");
+            muertos.forEach(el=>{
+                texto(`${lista[el].nombre}`, true);
+            })
+        }
+        t = 0.5;
+        document.getElementById("sig").textContent = "SIGUIENTE";
+        document.getElementById("ant").textContent = "ANTERIOR";
+        completo(true);
     } catch (error) {
         console.error(error);
     }
-    t = 1;
-    document.getElementById("sig").textContent = "SIGUIENTE";
-    document.getElementById("ant").textContent = "ANTERIOR";
-    completo(true);
-
 }
 
 
