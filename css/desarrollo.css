@@ -56,6 +56,9 @@ p1{
 p{
     animation: aparecer 1s;
 }
+div{
+    animation: aparecer 1s;
+}
 @keyframes aparecer {
     from{
         opacity: 0;
