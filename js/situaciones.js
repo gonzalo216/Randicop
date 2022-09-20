@@ -39,12 +39,15 @@ export default async function evento(){
             await esperar(t)
             titulo("<h2>DIA</h2>");
             await esperar(t)
-            for (let i = 0; i < mitad; i+= await esperar(t)) { //DIA
-                
+            let i = 0;
+            while(i<mitad){                
                 const el = jugs[i];
                 let nombre = lista[el].nombre,
                     vida = lista[el].vida;
-                if(vida <=0)continue;
+                if(vida <=0){
+                    i++;
+                    continue;
+                }
                 (vida === 20)
                     ? nrand = getRandomIntInclusive(1, 1)
                     : nrand = getRandomIntInclusive(1);
@@ -74,14 +77,18 @@ export default async function evento(){
                         break;
                 }
                 if(lista[el].vida <=0)muertos.add(el);
+                i += await esperar(t);
             }
             titulo("<h2>NOCHE</h2>")
             await esperar(t)
-            for (let i = mitad; i < cant; i+= await esperar(t)) { //NOCHE
+            while(i<cant){
                 const el = jugs[i];
                 let nombre = lista[el].nombre,
                     vida = lista[el].vida;
-                if(vida <=0)continue;
+                if(vida <=0){
+                    i++;
+                    continue;
+                }
                 (vida === 20)
                     ? nrand = getRandomIntInclusive(1, 1)
                     : nrand = getRandomIntInclusive(1);
@@ -111,6 +118,7 @@ export default async function evento(){
                         break;
                 }
                 if(lista[el].vida <=0)muertos.add(el);
+                i += await esperar(t);
             }
         }
     //else
