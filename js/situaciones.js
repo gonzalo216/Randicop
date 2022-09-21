@@ -133,7 +133,7 @@ export default async function evento(){
         }
     //else
         if(muertos.length) {
-            titulo("<h3>Murieron</h3>");
+            titulo("<hr><h3>Murieron</h3>");
             muertos.forEach(el=>{
                 texto(`${lista[el].nombre}`, true);
             })
