@@ -20,17 +20,22 @@ const lista = {
         jug5: new Jugador("Gonza"),
     };
 let cont = 0,
-    t= 0.5;
+    t= 0.5,
+    finalista;
 export function apurar(){t = 0}
 export default async function evento(){
     try {
         const jugs = Object.keys(lista),
-            muertos = new Set();
+        muertos = [];
+        
+        
+        crearDiv();
+
+        
         desordenar(jugs);
         let nrand = getRandomIntInclusive(3),
             cant = Object.keys(jugs).length,
             mitad = Math.floor(cant /2);
-        crearDiv();
         titulo(`<h3>Transcurrieron ${cont} dias</h3>`);
         cont++;
 
@@ -76,7 +81,7 @@ export default async function evento(){
                         console.log("descubrimiento");
                         break;
                 }
-                if(lista[el].vida <=0)muertos.add(el);
+                if(lista[el].vida <=0)muertos.push(el);
                 i += await esperar(t);
             }
             hayEvent();
@@ -120,28 +125,35 @@ export default async function evento(){
                         console.log("descubrimiento");
                         break;
                 }
-                if(lista[el].vida <=0)muertos.add(el);
+                if(lista[el].vida <=0)muertos.push(el);
                 i += await esperar(t);
             }
             hayEvent();
             await esperar(t);
         }
     //else
-        if(muertos.size) {
+        if(muertos.length) {
             titulo("<h3>Murieron</h3>");
             muertos.forEach(el=>{
                 texto(`${lista[el].nombre}`, true);
             })
+            finalista = lista[muertos.at(-1)].nombre;
         }
         t = 0.5;
-        document.getElementById("sig").textContent = "SIGUIENTE";
-        document.getElementById("ant").textContent = "ANTERIOR";
+        if (jugs.every(el=>lista[el].vida <= 0)){
+            t = 0.5;
+            completo(true, true);
+            return;
+        }
         completo(true);
     } catch (error) {
         console.error(error);
     }
 }
-
+export function final(){
+    crearDiv();
+    titulo(`<h1>El ultimo jugador sobreviviente fue ${finalista}</h1>`, "finalista");
+}
 
 export function Hola(){
     for (let i = 0; i < jugs.length; i++) {

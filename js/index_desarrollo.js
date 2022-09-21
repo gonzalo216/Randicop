@@ -1,8 +1,11 @@
-import { anterior, desHabi, siguiente } from "./imprimir.js";
-import evento, { apurar } from "./situaciones.js";
-const d = document;
-evento();
-desHabi();
+import { anterior, siguiente } from "./imprimir.js";
+import evento from "./situaciones.js";
+const d = document,
+    btnAnt = d.getElementById("ant");
+d.addEventListener("DOMContentLoaded",e => {
+    evento();
+    btnAnt.disabled = true;
+});
 d.addEventListener("click", e =>{
     if(e.target.matches("#sig")) {
         siguiente()

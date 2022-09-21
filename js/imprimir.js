@@ -1,5 +1,5 @@
 import { esperar } from "./funciones.js";
-import evento, { apurar } from "./situaciones.js";
+import evento, { apurar, final } from "./situaciones.js";
 
 const d = document,
     $divPadre = d.getElementById("imprimir"),
@@ -23,8 +23,9 @@ const agregarC = (corazones, img, midImg = null) =>{
     if (corazones % 2 === 1) text.push(`<img src="./../assets/${midImg}.png">​`);
     return text.join('');
 }
-export function titulo(text){ 
+export function titulo(text, clas = null){ 
     const $p = d.createElement("p");
+    if(clas) $p.className = clas;
     $p.innerHTML = text
     $transcurso.at(-1).appendChild($p);
 }
@@ -79,43 +80,59 @@ export async function hayEvent(){
 }
 
 
-
-
-let fin = false;
-let hayValor = (valor) =>($transcurso.findIndex(el=>el.className===valor) !== -1) ? true : false;
-export function desHabi(){
+const btnSig = d.getElementById("sig"),
+    btnAnt = d.getElementById("ant"),
+hayValor = (valor) =>($transcurso.findIndex(el=>el.className===valor) !== -1) ? true : false,
+contenido = (valor) => $transcurso.at($transcurso.findIndex(el=>el.className===valor)),
+desHabi=()=>{
     (hayValor("cont anterior"))
-        ? d.getElementById("ant").disabled = false
-        : d.getElementById("ant").disabled = true; 
-}
-export function completo(bol = fin){
-    fin = bol;
+    ? btnAnt.disabled = false
+    : btnAnt.disabled = true; 
+};
+
+let escrito = false;
+export function completo(bol = escrito, fin = false){
+    escrito = bol;
     (hayValor("cont sig"))
-    ? d.getElementById("sig").textContent ="SIGUIENTE"
-    : (fin)
-            ? d.getElementById("sig").textContent ="SIGUIENTE"
-            : d.getElementById("sig").textContent ="Completar";
+        ? btnSig.textContent ="SIGUIENTE"
+        : (escrito)
+            ? (fin)
+                ? btnSig.textContent ="FINALIZAR"
+                : btnSig.textContent ="SIGUIENTE"
+            : btnSig.textContent ="Completar";
 }
 export function siguiente(){
     if (hayValor("cont sig")){
-    $transcurso.at($transcurso.findIndex(el=>el.className==="cont actual")).className="cont anterior";
-    $transcurso.at($transcurso.findIndex(el=>el.className==="cont sig")).className="cont actual";
-    completo();
+        contenido("cont actual").className = "cont anterior";
+        contenido("cont sig").className="cont actual";
+        completo();
+        if(contenido("cont sig").id === "fin") btnSig.textContent = "FINALIZAR";
+        if(contenido("cont actual").id === "fin") btnSig.disabled = true
+
     }
-    else {
-        if (d.getElementById("sig").textContent === "SIGUIENTE") evento();
+    else { 
+        if (btnSig.textContent === "FINALIZAR") {
+            final();
+            $transcurso.at(-1).id="fin";
+            btnSig.disabled = true;
+            return;
+        }
+        if (btnSig.textContent === "SIGUIENTE") evento();
         else apurar();
         completo(false)
-        d.getElementById("sig").textContent ="Completar";
+        btnSig.textContent ="Completar";
     }
     desHabi();
 }
 export function anterior(){
     if (hayValor("cont anterior")){
-    $transcurso.at($transcurso.findIndex(el=>el.className==="cont actual")).className="cont sig";
-    $transcurso.at($transcurso.findLastIndex(el=>el.className==="cont anterior")).className="cont actual";
-    d.getElementById("sig").textContent ="SIGUIENTE";
+    contenido("cont actual").className="cont sig";
+    contenido("cont anterior").className="cont actual";
+    (contenido("cont sig").id === "fin")
+    ? btnSig.textContent = "FINALIZAR"
+    : btnSig.textContent ="SIGUIENTE";
     } 
     desHabi();
+    btnSig.disabled = false;
 }
 

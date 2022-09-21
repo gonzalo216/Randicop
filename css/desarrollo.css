@@ -12,7 +12,9 @@ body{
     position: relative;
 }
 main{
-    min-height: 100vh;
+    width: 100%;
+    min-height: 80vh;
+    
 }
 .logo {
     position: absolute;
@@ -38,8 +40,10 @@ p1{
     opacity: 0;
 }
 .cont.sig{
-    transform: translate(0, 100%);
-    opacity: 0;
+
+    
+    transform: translate(0, 150%);
+    opacity: 1;
 }
 .botones{
     position: fixed;
@@ -62,9 +66,11 @@ div{
 @keyframes aparecer {
     from{
         opacity: 0;
+        visibility: hidden;
     }
     to{
         opacity: 1;
+        visibility: visible;
     }
 }
 .vida{
@@ -87,4 +93,12 @@ div{
 }
 .vida.extra{
     position: relative;
+}
+.finalista{
+    position: absolute;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 15%;
+    text-align: center;
+    font-size: 30px;
 }
