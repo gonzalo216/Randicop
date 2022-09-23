@@ -3,11 +3,11 @@ html{
 }
 body{
     margin: 0;
-    background: #DBD8E3;
+    background: #CCFFBD;
 }
 
 .header{
-    background: #16131d ;
+    background: #100F0F ;
     padding: 4rem 0;
     position: relative;
 }
@@ -25,7 +25,7 @@ main{
 
 p1{
     font-family:COCHIN;
-    color: violet;
+    color: #76BA99;
     font-size: 70px;
     letter-spacing: 5px;
     }
