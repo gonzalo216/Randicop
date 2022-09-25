@@ -1,104 +1,101 @@
-html{
-    box-sizing: border-box;
+body {
+  margin: 0;
+  background: #ccffbd;
 }
-body{
-    margin: 0;
-    background: #CCFFBD;
+.header {
+  background: #100f0f;
+  padding: 4rem 0;
+  position: relative;
 }
-
-.header{
-    background: #100F0F ;
-    padding: 4rem 0;
-    position: relative;
-}
-main{
-    width: 100%;
-    min-height: 80vh;
-    
+main {
+  width: 100%;
+  min-height: 80vh;
 }
 .logo {
-    position: absolute;
-    top:18px;
-    align-items: center ;
-    display: flex;
-    }
+  position: absolute;
+  top: 18px;
+  align-items: center;
+  display: flex;
+}
 
-p1{
-    font-family:COCHIN;
-    color: #76BA99;
-    font-size: 70px;
-    letter-spacing: 5px;
-    }
-.cont{
-    position: absolute;
-    width: 100%;
-    transition: transform 1s ease, opacity 1s ease;
-    transform: translate(0,0);
+p1 {
+  font-family: COCHIN;
+  color: #76ba99;
+  font-size: 70px;
+  letter-spacing: 5px;
 }
-.cont.anterior{
-    transform: translate(0, -150%);
-    opacity: 0;
-}
-.cont.sig{
 
-    
-    transform: translate(0, 150%);
-    opacity: 1;
+.cont {
+  position: absolute;
+  width: 100%;
+  transition: transform 1s ease, opacity 1s ease;
+  transform: translate(0, 0);
 }
-.botones{
-    position: fixed;
-    z-index: 998;
-    bottom: 10px;
+.cont.anterior {
+  transform: translate(0, -150%);
+  opacity: 0;
 }
-.texto{
-    padding-bottom: 25px;
+.cont.sig {
+  transform: translate(0, 150%);
+  opacity: 1;
 }
-.vacio{
-    position: relative;
-    top: -14px;
+
+.botones {
+  position: fixed;
+  z-index: 998;
+  bottom: 10px;
 }
-p{
-    animation: aparecer 1s;
+.vacio {
+  position: relative;
+  top: -14px;
 }
-div{
-    animation: aparecer 1s;
+p,
+div {
+  animation: aparecer 1s;
 }
 @keyframes aparecer {
-    from{
-        opacity: 0;
-        visibility: hidden;
-    }
-    to{
-        opacity: 1;
-        visibility: visible;
-    }
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
 }
-.vida{
-    position: absolute;
-    
-    height: 23px;
+.linea {
+  position: relative;
 }
-.vida img{
-    max-height: 100%;
-
+.texto {
+  margin-bottom: 0;
 }
-.vida.total{
-    z-index: 1;
+.vida {
+  height: 23px;
 }
-.vida.anterior{
-    z-index: 2;
+.vida img {
+  max-height: 100%;
 }
-.vida.jugador{
-    z-index: 3;
+.vida.total {
+  position: relative;
 }
-.vida.extra{
-    position: relative;
+.vida.anterior {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
 }
-.finalista{
-    position: absolute;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 15%;
-    text-align: center;
-    font-size: 30px;
+.vida.jugador {
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+}
+.vida.extra {
+  position: relative;
+}
+.finalista {
+  position: absolute;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 15%;
+  text-align: center;
+  font-size: 30px;
 }
