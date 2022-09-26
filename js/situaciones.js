@@ -40,13 +40,13 @@ export default async function evento() {
     let nrand = getRandomIntInclusive(3),
       cant = Object.keys(jugs).length,
       mitad = Math.floor(cant / 2);
-    titulo(`<h3>Transcurrieron ${cont} dias</h3>`);
+    titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
     cont++;
 
     if (nrand <= 3) {
       //Eventos Normales
       await esperar(t);
-      titulo("<h2>DIA</h2>");
+      titulo("<h2>DIA</h2>", "evento dia");
       await esperar(t);
       let i = 0;
       while (i < mitad) {
@@ -94,7 +94,7 @@ export default async function evento() {
       hayEvent();
       await esperar(t);
 
-      titulo("<h2>NOCHE</h2>");
+      titulo("<h2>NOCHE</h2>", "evento noche");
       await esperar(t);
       while (i < cant) {
         const el = jugs[i];
@@ -143,7 +143,7 @@ export default async function evento() {
     }
     //else
     if (muertos.length) {
-      titulo("<hr><h3>Murieron</h3>");
+      titulo("<hr><h3>Murieron</h3>", "muertes");
       muertos.forEach((el) => {
         texto(`${lista[el].nombre}`, true);
       });

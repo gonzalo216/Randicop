@@ -1,15 +1,11 @@
 body {
-  margin: 0;
   background: #ccffbd;
+  min-height: 100vh;
 }
 .header {
   background: #100f0f;
   padding: 4rem 0;
   position: relative;
-}
-main {
-  width: 100%;
-  min-height: 80vh;
 }
 .logo {
   position: absolute;
@@ -24,20 +20,26 @@ p1 {
   font-size: 70px;
   letter-spacing: 5px;
 }
-
+#imprimir {
+  position: relative;
+}
 .cont {
-  position: absolute;
-  width: 100%;
+  top: -19px;
   transition: transform 1s ease, opacity 1s ease;
   transform: translate(0, 0);
 }
 .cont.anterior {
+  position: absolute;
   transform: translate(0, -150%);
   opacity: 0;
 }
+.cont.actual {
+  position: static;
+}
 .cont.sig {
+  position: absolute;
   transform: translate(0, 150%);
-  opacity: 1;
+  opacity: 0;
 }
 
 .botones {
@@ -92,10 +94,5 @@ div {
   position: relative;
 }
 .finalista {
-  position: absolute;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-top: 15%;
-  text-align: center;
   font-size: 30px;
 }

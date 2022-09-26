@@ -11,7 +11,7 @@ export function crearDiv() {
   else {
     $transcurso.at(-1).className = "cont anterior";
   }
-  $transcurso.push(d.createElement("div"));
+  $transcurso.push(d.createElement("article"));
   $transcurso.at(-1).className = "cont actual";
   $divPadre.appendChild($transcurso.at(-1));
 }
@@ -23,7 +23,7 @@ const agregarC = (corazones, img, midImg = null) => {
   return text.join("");
 };
 export function titulo(text, clas = null) {
-  const $p = d.createElement("article");
+  const $p = d.createElement("section");
   if (clas) $p.className = clas;
   $p.innerHTML = text;
   $transcurso.at(-1).appendChild($p);
@@ -52,7 +52,10 @@ export function curar(cura, bol = true) {
 export function texto(text, bol = false) {
   imprimir(text, "texto", "p", bol, true);
 }
-const $text = d.createElement(`div`);
+const $text = d.createElement(`div`),
+  $corazones = d.createElement("div");
+$corazones.className = "corazones";
+let first = true;
 export function imprimir(text, clas, el, fin = false) {
   const $contenedor = d.createElement("div"),
     $el = d.createElement(el);
@@ -61,11 +64,19 @@ export function imprimir(text, clas, el, fin = false) {
 
   $el.className = clas;
   $el.innerHTML = text;
-  $text.appendChild($el);
+  if (first) {
+    $text.appendChild($el);
+    first = false;
+  } else {
+    $corazones.appendChild($el);
+  }
 
   if (fin) {
+    $text.appendChild($corazones);
     $contenedor.innerHTML = $text.innerHTML;
     $transcurso.at(-1).lastElementChild.appendChild($contenedor);
+    first = true;
+    $corazones.innerHTML = "";
     $text.innerHTML = "";
   }
 }
@@ -79,8 +90,10 @@ const btnSig = d.getElementById("sig"),
   btnAnt = d.getElementById("ant"),
   hayValor = (valor) =>
     $transcurso.findIndex((el) => el.className === valor) !== -1 ? true : false,
-  contenido = (valor) =>
+  contenidoSig = (valor) =>
     $transcurso.at($transcurso.findIndex((el) => el.className === valor)),
+  contenidoAnt = (valor) =>
+    $transcurso.at($transcurso.findLastIndex((el) => el.className === valor)),
   desHabi = () => {
     hayValor("cont anterior")
       ? (btnAnt.disabled = false)
@@ -100,11 +113,11 @@ export function completo(bol = escrito, fin = false) {
 }
 export function siguiente() {
   if (hayValor("cont sig")) {
-    contenido("cont actual").className = "cont anterior";
-    contenido("cont sig").className = "cont actual";
+    contenidoSig("cont actual").className = "cont anterior";
+    contenidoSig("cont sig").className = "cont actual";
     completo();
-    if (contenido("cont sig").id === "fin") btnSig.textContent = "FINALIZAR";
-    if (contenido("cont actual").id === "fin") btnSig.disabled = true;
+    if (contenidoSig("cont sig").id === "fin") btnSig.textContent = "FINALIZAR";
+    if (contenidoSig("cont actual").id === "fin") btnSig.disabled = true;
   } else {
     if (btnSig.textContent === "FINALIZAR") {
       final();
@@ -121,9 +134,9 @@ export function siguiente() {
 }
 export function anterior() {
   if (hayValor("cont anterior")) {
-    contenido("cont actual").className = "cont sig";
-    contenido("cont anterior").className = "cont actual";
-    contenido("cont sig").id === "fin"
+    contenidoAnt("cont actual").className = "cont sig";
+    contenidoAnt("cont anterior").className = "cont actual";
+    contenidoAnt("cont sig").id === "fin"
       ? (btnSig.textContent = "FINALIZAR")
       : (btnSig.textContent = "SIGUIENTE");
   }
