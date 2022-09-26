@@ -5,7 +5,8 @@ body {
 .header {
   background: #100f0f;
   padding: 4rem 0;
-  position: relative;
+  position: sticky;
+  z-index: 999;
 }
 .logo {
   position: absolute;
@@ -19,37 +20,6 @@ p1 {
   color: #76ba99;
   font-size: 70px;
   letter-spacing: 5px;
-}
-#imprimir {
-  position: relative;
-}
-.cont {
-  top: -19px;
-  transition: transform 1s ease, opacity 1s ease;
-  transform: translate(0, 0);
-}
-.cont.anterior {
-  position: absolute;
-  transform: translate(0, -150%);
-  opacity: 0;
-}
-.cont.actual {
-  position: static;
-}
-.cont.sig {
-  position: absolute;
-  transform: translate(0, 150%);
-  opacity: 0;
-}
-
-.botones {
-  position: fixed;
-  z-index: 998;
-  bottom: 10px;
-}
-.vacio {
-  position: relative;
-  top: -14px;
 }
 p,
 div {
@@ -65,11 +35,52 @@ div {
     visibility: visible;
   }
 }
+.imprimir {
+  position: relative;
+  width: 100%;
+  /* width: fit-content;
+  min-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; */
+}
+.cont {
+  width: fit-content;
+  min-width: 250px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  top: -19px;
+  left: 0;
+  right: 0;
+
+  text-align: center;
+  transition: transform 1s ease, opacity 1s ease;
+  transform: translate(0, 0);
+}
+.cont.anterior {
+  position: absolute;
+  transform: translate(0, -100%);
+  opacity: 0;
+}
+.cont.actual {
+  position: static;
+}
+.cont.sig {
+  position: absolute;
+  transform: translate(0, 125%);
+  opacity: 0;
+}
 .linea {
   position: relative;
 }
 .texto {
   margin-bottom: 0;
+}
+.corazones {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .vida {
   height: 23px;
@@ -93,6 +104,15 @@ div {
 .vida.extra {
   position: relative;
 }
+.vacio {
+  position: relative;
+  top: -14px;
+}
 .finalista {
   font-size: 30px;
+}
+.botones {
+  position: fixed;
+  z-index: 998;
+  bottom: 10px;
 }

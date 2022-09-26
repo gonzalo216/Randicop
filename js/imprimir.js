@@ -136,7 +136,7 @@ export function anterior() {
   if (hayValor("cont anterior")) {
     contenidoAnt("cont actual").className = "cont sig";
     contenidoAnt("cont anterior").className = "cont actual";
-    contenidoAnt("cont sig").id === "fin"
+    contenidoSig("cont sig").id === "fin"
       ? (btnSig.textContent = "FINALIZAR")
       : (btnSig.textContent = "SIGUIENTE");
   }
