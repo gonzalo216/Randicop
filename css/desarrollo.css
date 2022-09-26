@@ -6,6 +6,7 @@ body {
   background: #100f0f;
   padding: 4rem 0;
   position: sticky;
+  top:0;
   z-index: 999;
 }
 .logo {
@@ -43,34 +44,45 @@ div {
   margin-left: auto;
   margin-right: auto;
   text-align: center; */
+  min-height: 75vh;
+}
+.muertes {
+  padding-bottom: 2rem;
+}
+.noche {
+  padding-bottom: 2rem;
 }
 .cont {
   width: fit-content;
+  position: absolute;
   min-width: 250px;
   max-width: 80%;
   margin-left: auto;
   margin-right: auto;
-  top: -19px;
+  /* top: -19px; */
   left: 0;
   right: 0;
 
   text-align: center;
-  transition: transform 1s ease, opacity 1s ease;
-  transform: translate(0, 0);
+  transition: transform 1s ease, opacity 1s ease, top 1s ease, bottom 1s ease;
+  /* transform: translate(0, 0); */
 }
 .cont.anterior {
-  position: absolute;
   transform: translate(0, -100%);
   opacity: 0;
+  z-index: 1;
 }
 .cont.actual {
-  position: static;
+  top: 0;
+  bottom: 0;
 }
 .cont.sig {
-  position: absolute;
-  transform: translate(0, 125%);
+  top: 100%;
+  bottom: 0;
+  overflow-y: hidden;
   opacity: 0;
 }
+
 .linea {
   position: relative;
 }

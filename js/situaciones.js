@@ -12,7 +12,7 @@ import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 class Jugador {
   constructor(nombre) {
     this.nombre = nombre;
-    this.vida = 15;
+    this.vida = 20;
   }
 }
 
