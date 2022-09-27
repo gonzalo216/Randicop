@@ -6,7 +6,7 @@ import {
   texto,
   titulo,
 } from "./imprimir.js";
-import { danoDia, danoNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
+import { danoDia, danoNoche, randomDia, randomNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 
 class Jugador {
@@ -57,32 +57,33 @@ export default async function evento() {
           i++;
           continue;
         }
-        vida === 20
-          ? (nrand = getRandomIntInclusive(1, 1))
-          : (nrand = getRandomIntInclusive(1));
+        (vida === 20) 
+          ? (nrand = getRandomIntInclusive(2, 1)) //saltea cura
+          : (nrand = getRandomIntInclusive(2));
         switch (nrand) {
-          case 0: {
-            //vida
+          case 0: { // cura
             const accion = Object.keys(vidaDia);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 1: {
-            //daño
+          case 1: { // daño
             const accion = Object.keys(danoDia);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = danoDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 2:
-            console.log("relación");
+          case 2: { // random
+            const accion = Object.keys(randomDia);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            randomDia[accion[nrand]](nombre, vida);
             break;
+          }
           case 3:
             console.log("decisivas");
             break;
           case 4:
-            console.log("random");
+            console.log("relacion");
             break;
           case 5:
             console.log("descubrimiento");
@@ -104,32 +105,33 @@ export default async function evento() {
           i++;
           continue;
         }
-        vida === 20
-          ? (nrand = getRandomIntInclusive(1, 1))
-          : (nrand = getRandomIntInclusive(1));
+        (vida === 20)
+          ? (nrand = getRandomIntInclusive(2, 1))
+          : (nrand = getRandomIntInclusive(2));
         switch (nrand) {
-          case 0: {
-            //vida
+          case 0: { // cura
             const accion = Object.keys(vidaNoche);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 1: {
-            //daño
+          case 1: { // daño
             const accion = Object.keys(danoNoche);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 2:
-            console.log("relación");
+          case 2: { // random
+            const accion = Object.keys(randomNoche);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            randomNoche[accion[nrand]](nombre, vida);
             break;
+          }
           case 3:
             console.log("decisivas");
             break;
           case 4:
-            console.log("random");
+            console.log("relaciones");
             break;
           case 5:
             console.log("descubrimiento");
