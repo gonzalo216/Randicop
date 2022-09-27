@@ -83,6 +83,24 @@ const danoGlobal = {
             danoInsta(dano);
             return vida;
         },
+        speedrun: function(nombre, vida){
+            dano = getRandomIntInclusive(20, 1);
+            vida -= dano;
+            dano += vida;
+            texto(`${nombre} cayó en lava al cavar en linea recta hacia abajo`);
+            vidaDefault(vida);
+            danoInsta(dano);
+            return vida;
+        },
+        bedrock: function(nombre, vida){
+            dano = 20;
+            vida -= dano;
+            dano += vida;
+            texto(`${nombre} intenta romper bedrock, lo consigue y cae al vacío`);
+            vidaDefault(vida);
+            danoInsta(dano);
+            return vida;
+        },
     };
 export const danoDia = {
         sol: function(nombre, vida){
@@ -102,15 +120,24 @@ export const danoDia = {
             vidaDefault(vida);
             danoInsta(dano);
             return vida;
+        },
+        golem: function(nombre, vida){
+            dano = getRandomIntInclusive(20)
+            vida -= dano;
+            dano += vida;
+            texto(`El golem de la aldea defendió a un aldeano al enfrentarse a ${nombre}`);
+            vidaDefault(vida);
+            danoInsta(dano);
+            return vida;
         }
 
     },
     danoNoche = {
-        zombie: function(nombre, vida){
-            dano = getRandomIntInclusive(10);
+        phantoms: function(nombre, vida){
+            dano = getRandomIntInclusive(15);
             vida -= dano;
             dano += vida;
-            texto(`${nombre} se enfrento contra un zombie`);
+            texto(`Tras no dormir por tres noches seguidas, ${nombre} sufre daño de los phantoms`);
             vidaDefault(vida);
             danoInsta(dano);
             return vida;
@@ -173,7 +200,6 @@ export const vidaDia = {
             ctrl();
             curar(cura);
             return cura;
-
         }
 
     },
@@ -185,7 +211,6 @@ export const vidaDia = {
             ctrl();
             curar(cura);
             return cura;
-
         }
 
     };
@@ -195,32 +220,55 @@ repetir(vidaNoche,2);
 Object.assign(vidaDiaNoche, vidaGlobal);
 Object.assign(vidaDia, vidaDiaNoche);
 Object.assign(vidaNoche, vidaDiaNoche);
-/*
+
 const randomGlobal = {
-        pocion: function(nombre){
-            imprimir(`${nombre} uso una pocion de curacion`);
-        },
-        manzana: function(nombre){
-            imprimir(`${nombre} comió una manzana dorada`);
+        locura: function(nombre, vida){
+            texto(`${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`);
+            vidaDefault(vida)
         }
     },
     randomDiaNoche = {
-        bruja: function(nombre){
-            imprimir(`Una bruja le tiro una pocion de curación instantánea a ${nombre}`);
-        }
+        armadura: function(nombre, vida){
+            texto(`${nombre} encanta su armadura de cuero`);
+            vidaDefault(vida)
+        },
+        bedrock: function(nombre, vida){
+            texto(`${nombre} pierde el dia intentando romper bedrock`);
+            vidaDefault(vida)
+        },
 
     };
 export const randomDia = {
-        angel: function(nombre){
-            imprimir(`Un angel bajo del cielo y curó a ${nombre}`);
-        }
-
+        oveja: function(nombre, vida){
+            texto(`${nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`);
+            vidaDefault(vida)
+        },
+        golem: function(nombre, vida){
+            texto(`${nombre} golpeó a un aldeano por accidente y huyó del golem que le venía encima`);
+            vidaDefault(vida)
+        },
+        semillas: function(nombre, vida){
+            texto(`${nombre} cada vez tiene mas semillas`);
+            vidaDefault(vida)
+        },
+        frasco: function(nombre, vida){
+            texto(`${nombre} fabrica un frasco para toma agua`);
+            vidaDefault(vida)
+        },
+        pala: function(nombre, vida){
+            texto(`${nombre} NN fabricó una pala y se puso a trabajar`);
+            vidaDefault(vida)
+        },
+        esclavos: function(nombre, vida){
+            texto(`${nombre} NN ya está esclavizando aldeanos`);
+            vidaDefault(vida)
+        },
     },
     randomNoche = {
-        zombie: function(nombre){
-            imprimir(`${nombre} se enfrento contra un zombie`);
-        }
-
+        aldeanozombie: function(nombre, vida){
+            texto(`${nombre} deja que un aldeano muera por un zombie para curarlo`);
+            vidaDefault(vida)
+        },
     };
 repetir(randomDiaNoche,1);
 repetir(randomDia,2);
@@ -229,5 +277,4 @@ Object.assign(randomDiaNoche, randomGlobal);
 Object.assign(randomDia, randomDiaNoche);
 Object.assign(randomNoche, randomDiaNoche);
 
-*/
 

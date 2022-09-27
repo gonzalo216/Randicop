@@ -118,6 +118,7 @@ div {
 }
 .vida.extra {
   position: relative;
+  text-align: left;
 }
 .vacio {
   position: relative;
@@ -132,6 +133,4 @@ div {
   bottom: 10px;
   padding-left: 20px;
 
-}
-#ant {
 }
