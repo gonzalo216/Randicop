@@ -102,7 +102,6 @@ const btnSig = d.getElementById("sig"),
       : (btnAnt.disabled = true);
   };
 async function copySize() {
-    await esperar(1);
     $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
   }
 
@@ -121,6 +120,7 @@ export function siguiente() {
   if (hayValor("cont sig")) {
     contenidoSig("cont actual").className = "cont anterior";
     contenidoSig("cont sig").className = "cont actual";
+    copySize();
     completo();
     if (contenidoSig("cont sig").id === "fin") btnSig.textContent = "FINALIZAR";
     if (contenidoSig("cont actual").id === "fin") btnSig.disabled = true;
@@ -137,7 +137,6 @@ export function siguiente() {
     btnSig.textContent = "Completar";
   }
   desHabi();
-  copySize();
 }
 export function anterior() {
   if (hayValor("cont anterior")) {
