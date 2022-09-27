@@ -44,7 +44,7 @@ div {
   margin-left: auto;
   margin-right: auto;
   text-align: center; */
-  min-height: 75vh;
+  /* min-height: 75vh; */
 }
 .muertes {
   padding-bottom: 2rem;
@@ -62,13 +62,15 @@ div {
   /* top: -19px; */
   left: 0;
   right: 0;
-
+  overflow-y: hidden;
   text-align: center;
   transition: transform 1s ease, opacity 1s ease, top 1s ease, bottom 1s ease;
   /* transform: translate(0, 0); */
 }
 .cont.anterior {
-  transform: translate(0, -100%);
+  /* transform: translate(0, -100%); */
+  top: -100%;
+  bottom: 100%;
   opacity: 0;
   z-index: 1;
 }
@@ -79,10 +81,17 @@ div {
 .cont.sig {
   top: 100%;
   bottom: 0;
-  overflow-y: hidden;
   opacity: 0;
 }
-
+#tamanio {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  opacity: 0;
+  /* outline: thick solid black;
+  outline-offset: -2rem; */
+}
 .linea {
   position: relative;
 }

@@ -3,7 +3,8 @@ import evento, { apurar, final } from "./situaciones.js";
 
 const d = document,
   $divPadre = d.getElementById("imprimir"),
-  $transcurso = [];
+  $transcurso = [],
+  $tamanio = d.getElementById("tamanio");
 
 let primero = true;
 export function crearDiv() {
@@ -78,6 +79,7 @@ export function imprimir(text, clas, el, fin = false) {
     first = true;
     $corazones.innerHTML = "";
     $text.innerHTML = "";
+    copySize();
   }
 }
 export async function hayEvent() {
@@ -99,6 +101,10 @@ const btnSig = d.getElementById("sig"),
       ? (btnAnt.disabled = false)
       : (btnAnt.disabled = true);
   };
+async function copySize() {
+    await esperar(1);
+    $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
+  }
 
 let escrito = false;
 export function completo(bol = escrito, fin = false) {
@@ -131,15 +137,17 @@ export function siguiente() {
     btnSig.textContent = "Completar";
   }
   desHabi();
+  copySize();
 }
 export function anterior() {
   if (hayValor("cont anterior")) {
     contenidoAnt("cont actual").className = "cont sig";
     contenidoAnt("cont anterior").className = "cont actual";
     contenidoSig("cont sig").id === "fin"
-      ? (btnSig.textContent = "FINALIZAR")
-      : (btnSig.textContent = "SIGUIENTE");
+    ? (btnSig.textContent = "FINALIZAR")
+    : (btnSig.textContent = "SIGUIENTE");
   }
   desHabi();
   btnSig.disabled = false;
+  copySize();
 }
