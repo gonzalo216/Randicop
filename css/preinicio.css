@@ -103,37 +103,45 @@ aside{
     font-size: 20px;
 }
 .grid2{
-    display: grid;
-    grid-template-columns: repeat(5,210px);
+    display: inline-flex;
     gap:1em;
+    flex-wrap: wrap;
+
 }
 
 .grid2 div {
-     background: lightgreen;
-     padding: 1em;
+    width: 195px;
+    height: 130px;
+    background: lightgreen;
+     padding: 10px;
      margin: 0px;
-     border-color: black solid;
+     border: 1px black solid;
      border-radius: 30px;
 }
 
 .container{
     float:right;
     margin-bottom:10px;
+    width: auto;
+    height: auto;
+    display: inline-flex;
 }
 
 .grid{
     display: grid;
-    grid-template-columns: 200px;
-    grid-template-rows: auto;
-    height:410px;
+    background: lightgreen;
+    padding: 1em;
+    margin: 1em;
+    text-align: center;
+    height:450px;
+    width: 300PX;
+    border: 1px black solid;
+    border-radius: 20px ;
+    font-size: 20PX;
+    font-family: 'Franklin Gothic Medium';
 }
 
-.grid div{
-    background: lightslategrey;
-    padding: 1em;
-    text-align: center;
-    border-radius: 20px ;
-}
+
 
 
 .container2{
