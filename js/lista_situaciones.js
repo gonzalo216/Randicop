@@ -224,50 +224,50 @@ Object.assign(vidaNoche, vidaDiaNoche);
 const randomGlobal = {
         locura: function(nombre, vida){
             texto(`${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         }
     },
     randomDiaNoche = {
         armadura: function(nombre, vida){
             texto(`${nombre} encanta su armadura de cuero`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         bedrock: function(nombre, vida){
             texto(`${nombre} pierde el dia intentando romper bedrock`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
 
     };
 export const randomDia = {
         oveja: function(nombre, vida){
             texto(`${nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         golem: function(nombre, vida){
             texto(`${nombre} golpeó a un aldeano por accidente y huyó del golem que le venía encima`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         semillas: function(nombre, vida){
             texto(`${nombre} cada vez tiene mas semillas`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         frasco: function(nombre, vida){
             texto(`${nombre} fabrica un frasco para toma agua`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         pala: function(nombre, vida){
             texto(`${nombre} NN fabricó una pala y se puso a trabajar`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
         esclavos: function(nombre, vida){
             texto(`${nombre} NN ya está esclavizando aldeanos`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
     },
     randomNoche = {
         aldeanozombie: function(nombre, vida){
             texto(`${nombre} deja que un aldeano muera por un zombie para curarlo`);
-            vidaDefault(vida)
+            vidaDefault(vida, true)
         },
     };
 repetir(randomDiaNoche,1);
