@@ -5,16 +5,25 @@ body{
 }
 
 .header{
-    background: #100F0F ;
-    padding: 4rem 0;
-    position: relative;
+    background: #100f0f;
+  padding: 4rem 0;
+  position: sticky;
+  top:0;
+  z-index: 999;
 }
-h1{
-    margin-left: 50px;
-    border: #16131d inset;
-    max-width: 300px;
-}
-
+div {
+    animation: aparecer 2s;
+  }
+  @keyframes aparecer {
+    from {
+      opacity: 0;
+      visibility: hidden;
+    }
+    to {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 #section2{
     margin:0;
 }
@@ -23,7 +32,9 @@ section{
     margin: 20px;
 }
 .mDescription{
-    border: 5px orange solid;
+    border: 1.5px rgb(0, 0, 0) solid;
+    border-radius: 15px;
+    background-color:lightgreen ;
     width: 65%;
     margin: auto;
     margin-left: 10px;
@@ -65,11 +76,6 @@ p1{
     }
 
 
-h1{
-    font-size:3rem;
-    
-}
-
 p{
     display: inline-block;
 }
@@ -92,8 +98,8 @@ aside{
     border-top-right-radius:4.5%;
 }
 #b1{
-   width: 320.5px;
-   height: 30px;
+    width: 320.5px;
+    height: 30px;
     background-color: white;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -101,6 +107,7 @@ aside{
     text-align: center;
     padding-top: 5px;
     font-size: 20px;
+    font-family: 'Franklin Gothic Medium';
 }
 .grid2{
     display: inline-flex;
@@ -108,7 +115,22 @@ aside{
     flex-wrap: wrap;
 
 }
-
+#M{
+    color: white;
+    background-color: rgb(96, 194, 96);
+    margin-left: 50px;
+    border: #16131d inset;
+    max-height: 120px;
+    max-width: 280px;
+    font-size:24px;
+    margin-bottom: 28px;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(100, 62, 26);
+}
+h1{
+    margin: 0px;
+}
 .grid2 div {
     width: 195px;
     height: 110px;
