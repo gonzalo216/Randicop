@@ -111,19 +111,24 @@ aside{
 
 .grid2 div {
     width: 195px;
-    height: 130px;
+    height: 110px;
     background: lightgreen;
      padding: 10px;
      margin: 0px;
      border: 1px black solid;
      border-radius: 30px;
+     font-family: 'Gill Sans';
+}
+.grid2 input{
+    width: 100%;
+    border-radius: 30px;
 }
 
 .container{
     float:right;
     margin-bottom:10px;
     width: auto;
-    height: auto;
+    bottom: 100%;
     display: inline-flex;
 }
 
@@ -133,7 +138,7 @@ aside{
     padding: 1em;
     margin: 1em;
     text-align: center;
-    height:450px;
+    height:;
     width: 300PX;
     border: 1px black solid;
     border-radius: 20px ;
