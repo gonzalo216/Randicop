@@ -6,24 +6,18 @@ body{
 
 .header{
     background: #100f0f;
-  padding: 4rem 0;
+  padding: 1rem 0;
   position: sticky;
   top:0;
   z-index: 999;
+  transition: padding 0.5s ease;
 }
-div {
-    animation: aparecer 2s;
-  }
-  @keyframes aparecer {
-    from {
-      opacity: 0;
-      visibility: hidden;
-    }
-    to {
-      opacity: 1;
-      visibility: visible;
-    }
-  }
+.sticky
+{
+    padding: 0px;
+}
+
+
 #section2{
     margin:0;
 }
@@ -61,8 +55,7 @@ main{
 
 
 .logo {
-position: absolute;
-top:18px;
+height:100% ;
 align-items: center ;
 display: flex;
 
