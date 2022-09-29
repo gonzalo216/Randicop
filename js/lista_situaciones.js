@@ -1,8 +1,14 @@
-import { curar, danoInsta, texto, vidaDefault, vidaExtra, vidaTotal } from "./imprimir.js";
+import { curar, danoInsta, texto, vidaDefault, vidaExtra } from "./imprimir.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
-
+import { jugs, lista } from "./variables.js";
+const nJugRand = (i) => {
+    let num;
+    do{
+    num = getRandomIntInclusive(Object.keys(lista).length - 1);
+    }while(lista[jugs[num]].vida <= 0 && lista[jugs[num]] !== lista[jugs[i]])
+    return jugs[num];
+}
 let nrand, dano, cura, adicional;
-
 const danoGlobal = {
         papa: function(nombre, vida){
             nrand = getRandomIntInclusive(9);
@@ -256,11 +262,11 @@ export const randomDia = {
             vidaDefault(vida, true)
         },
         pala: function(nombre, vida){
-            texto(`${nombre} NN fabricó una pala y se puso a trabajar`);
+            texto(`${nombre} fabricó una pala y se puso a trabajar`);
             vidaDefault(vida, true)
         },
         esclavos: function(nombre, vida){
-            texto(`${nombre} NN ya está esclavizando aldeanos`);
+            texto(`${nombre} ya está esclavizando aldeanos`);
             vidaDefault(vida, true)
         },
     },
@@ -277,4 +283,9 @@ Object.assign(randomDiaNoche, randomGlobal);
 Object.assign(randomDia, randomDiaNoche);
 Object.assign(randomNoche, randomDiaNoche);
 
-
+export const relGlobal = {
+    mirarfeo: function(nombre, vida, i){
+        texto(`${nombre} miro feo a ${lista[nJugRand(i)].nombre}`);
+        vidaDefault(vida, true)
+    },
+};

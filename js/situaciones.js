@@ -2,38 +2,23 @@ import {
   completo,
   crearDiv,
   hayEvent,
-  imprimir,
   texto,
   titulo,
 } from "./imprimir.js";
-import { danoDia, danoNoche, randomDia, randomNoche, vidaDia, vidaNoche } from "./lista_situaciones.js";
+import { danoDia, danoNoche, randomDia, randomNoche, relGlobal, vidaDia, vidaNoche } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
+import { jugs, lista } from "./variables.js";
 
-class Jugador {
-  constructor(nombre) {
-    this.nombre = nombre;
-    this.vida = 20;
-  }
-}
-
-//progreso = ["Overworld", "Nether", "Overworld", "End"],
-const lista = {
-  jug1: new Jugador("Juli"),
-  jug2: new Jugador("Tiago"),
-  jug3: new Jugador("Nati"),
-  jug4: new Jugador("Troche"),
-  jug5: new Jugador("Gonza"),
-};
 let cont = 0,
   t = 0.5,
   finalista;
+
 export function apurar() {
   t = 0;
 }
 export default async function evento() {
   try {
-    const jugs = Object.keys(lista),
-      muertos = [];
+    const muertos = [];
     crearDiv();
 
     desordenar(jugs);
@@ -58,8 +43,8 @@ export default async function evento() {
           continue;
         }
         (vida === 20) 
-          ? (nrand = getRandomIntInclusive(2, 1)) //saltea cura
-          : (nrand = getRandomIntInclusive(2));
+          ? (nrand = getRandomIntInclusive(3, 1)) //saltea cura
+          : (nrand = getRandomIntInclusive(3));
         switch (nrand) {
           case 0: { // cura
             const accion = Object.keys(vidaDia);
@@ -79,11 +64,14 @@ export default async function evento() {
             randomDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 3:
-            console.log("decisivas");
+          case 3:{
+            const accion = Object.keys(relGlobal);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            relGlobal[accion[nrand]](nombre, vida, i)
             break;
+          }
           case 4:
-            console.log("relacion");
+            console.log("decisivas");
             break;
           case 5:
             console.log("descubrimiento");
@@ -106,8 +94,8 @@ export default async function evento() {
           continue;
         }
         (vida === 20)
-          ? (nrand = getRandomIntInclusive(2, 1))
-          : (nrand = getRandomIntInclusive(2));
+          ? (nrand = getRandomIntInclusive(3, 1))
+          : (nrand = getRandomIntInclusive(3));
         switch (nrand) {
           case 0: { // cura
             const accion = Object.keys(vidaNoche);
@@ -127,11 +115,14 @@ export default async function evento() {
             randomNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 3:
-            console.log("decisivas");
+          case 3:{
+            const accion = Object.keys(relGlobal);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            relGlobal[accion[nrand]](nombre, vida, i)
             break;
+          }
           case 4:
-            console.log("relaciones");
+            console.log("decisivas");
             break;
           case 5:
             console.log("descubrimiento");
