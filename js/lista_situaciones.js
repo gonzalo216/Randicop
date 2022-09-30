@@ -226,14 +226,7 @@ export const vidaDia = {
     },
   },
   vidaNoche = {
-    zombie: function (nombre, vida) {
-      cura = getRandomIntInclusive(1) + vida;
-      texto(`${nombre} nose`);
-      vidaDefault(vida);
-      ctrl();
-      curar(cura);
-      return cura;
-    },
+    
   };
 repetir(vidaDiaNoche, 1);
 repetir(vidaDia, 2);
@@ -305,7 +298,9 @@ Object.assign(randomNoche, randomDiaNoche);
 
 export const relGlobal = {
   mirarfeo: function (nombre, vida, i) {
-    texto(`${nombre} miro feo a ${lista[nJugRand(i)].nombre}`);
+    const n2 = nJugRand(i)
+    texto(`${nombre} miro feo a ${lista[n2].nombre}`);
     vidaDefault(vida, true);
+    lista[n2].setFunction(()=>texto(`${this.nombre} odia a ${lista[jugs[i]].nombre}`))
   },
 };
