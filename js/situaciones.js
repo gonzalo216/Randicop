@@ -39,14 +39,18 @@ export default async function evento() {
       while (i < mitad) {
         const el = jugs[i];
         let nombre = lista[el].nombre,
-          vida = lista[el].vida;
+          vida = lista[el].vida,
+          vivos; 
         if (vida <= 0) {
           i++;
           continue;
         }
+        jugs.forEach(n=> {if(lista[n].vida > 0) vivos++})
         vida === 20
           ? (nrand = getRandomIntInclusive(3, 1)) //saltea cura
-          : (nrand = getRandomIntInclusive(3));
+          : vivos > 1 
+            ? (nrand = getRandomIntInclusive(3))
+            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
         switch (nrand) {
           case 0: {
             // cura
@@ -71,10 +75,10 @@ export default async function evento() {
           }
           case 3:
             console.log("descubrimiento");
-            break;
+            //break;
           case 4:
             console.log("decisivas");
-            break;
+            //break;
           case 5: {
             const accion = Object.keys(relGlobal);
             nrand = getRandomIntInclusive(accion.length - 1);
@@ -93,14 +97,18 @@ export default async function evento() {
       while (i < cant) {
         const el = jugs[i];
         let nombre = lista[el].nombre,
-          vida = lista[el].vida;
+          vida = lista[el].vida,
+          vivos; 
         if (vida <= 0) {
           i++;
           continue;
         }
+        jugs.forEach(n=> {if(lista[n].vida > 0) vivos++})
         vida === 20
           ? (nrand = getRandomIntInclusive(3, 1))
-          : (nrand = getRandomIntInclusive(3));
+          : vivos > 1 
+            ? (nrand = getRandomIntInclusive(3))
+            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
         switch (nrand) {
           case 0: {
             // cura
@@ -125,14 +133,18 @@ export default async function evento() {
           }
           case 3:
             console.log("descubrimiento");
-            break;
+            //break;
           case 4:
             console.log("decisivas");
-            break;
+            //break;
           case 5: {
             const accion = Object.keys(relGlobal);
             nrand = getRandomIntInclusive(accion.length - 1);
             relGlobal[accion[nrand]](nombre, vida, i);
+            break;
+          }
+          case 6: {
+            if (lista[el].)
             break;
           }
         }
