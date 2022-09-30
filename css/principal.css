@@ -5,11 +5,7 @@ body{
 
 .header{
     background: #16131d ;
-    padding: 2rem 0;
-    position: sticky;
-    top: 0;
-    transition: padding 0.5s ease;
-    z-index: 999;
+    padding: 1.5rem 0;
 }
 .sticky
 {

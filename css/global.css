@@ -11,3 +11,9 @@ div {
       visibility: visible;
     }
   }
+.header{
+  position: sticky;
+  top: 0;
+  transition: padding 0.5s ease;
+  z-index: 999;
+}
