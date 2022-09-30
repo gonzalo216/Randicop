@@ -1,11 +1,13 @@
+import { completo, crearDiv, hayEvent, texto, titulo } from "./imprimir.js";
 import {
-  completo,
-  crearDiv,
-  hayEvent,
-  texto,
-  titulo,
-} from "./imprimir.js";
-import { danoDia, danoNoche, randomDia, randomNoche, relGlobal, vidaDia, vidaNoche } from "./lista_situaciones.js";
+  danoDia,
+  danoNoche,
+  randomDia,
+  randomNoche,
+  relGlobal,
+  vidaDia,
+  vidaNoche,
+} from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { jugs, lista } from "./variables.js";
 
@@ -42,40 +44,43 @@ export default async function evento() {
           i++;
           continue;
         }
-        (vida === 20) 
+        vida === 20
           ? (nrand = getRandomIntInclusive(3, 1)) //saltea cura
           : (nrand = getRandomIntInclusive(3));
         switch (nrand) {
-          case 0: { // cura
+          case 0: {
+            // cura
             const accion = Object.keys(vidaDia);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 1: { // daño
+          case 1: {
+            // daño
             const accion = Object.keys(danoDia);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = danoDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 2: { // random
+          case 2: {
+            // random
             const accion = Object.keys(randomDia);
             nrand = getRandomIntInclusive(accion.length - 1);
             randomDia[accion[nrand]](nombre, vida);
             break;
           }
-          case 3:{
-            const accion = Object.keys(relGlobal);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            relGlobal[accion[nrand]](nombre, vida, i)
+          case 3:
+            console.log("descubrimiento");
             break;
-          }
           case 4:
             console.log("decisivas");
             break;
-          case 5:
-            console.log("descubrimiento");
+          case 5: {
+            const accion = Object.keys(relGlobal);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            relGlobal[accion[nrand]](nombre, vida, i);
             break;
+          }
         }
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
@@ -93,40 +98,43 @@ export default async function evento() {
           i++;
           continue;
         }
-        (vida === 20)
+        vida === 20
           ? (nrand = getRandomIntInclusive(3, 1))
           : (nrand = getRandomIntInclusive(3));
         switch (nrand) {
-          case 0: { // cura
+          case 0: {
+            // cura
             const accion = Object.keys(vidaNoche);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 1: { // daño
+          case 1: {
+            // daño
             const accion = Object.keys(danoNoche);
             nrand = getRandomIntInclusive(accion.length - 1);
             lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 2: { // random
+          case 2: {
+            // random
             const accion = Object.keys(randomNoche);
             nrand = getRandomIntInclusive(accion.length - 1);
             randomNoche[accion[nrand]](nombre, vida);
             break;
           }
-          case 3:{
-            const accion = Object.keys(relGlobal);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            relGlobal[accion[nrand]](nombre, vida, i)
+          case 3:
+            console.log("descubrimiento");
             break;
-          }
           case 4:
             console.log("decisivas");
             break;
-          case 5:
-            console.log("descubrimiento");
+          case 5: {
+            const accion = Object.keys(relGlobal);
+            nrand = getRandomIntInclusive(accion.length - 1);
+            relGlobal[accion[nrand]](nombre, vida, i);
             break;
+          }
         }
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
