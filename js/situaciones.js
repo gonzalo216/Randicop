@@ -144,7 +144,6 @@ export default async function evento() {
             break;
           }
           case 6: {
-            if (lista[el].)
             break;
           }
         }
