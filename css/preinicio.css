@@ -119,12 +119,16 @@ button {
   color: #16131d;
 }
 .mImg {
+  border: medium solid black;
+  border-radius: 1rem;
   margin: auto;
-  width: 5rem;
+  width: 25rem;
+  height: 10rem;
 }
-#imgdmine {
-  border-top-left-radius: 4.5%;
-  border-top-right-radius: 4.5%;
+.mImg img {
+  border-radius: 1rem;
+  object-fit: cover;
+  height: 100%;
 }
 
 #b1 {
