@@ -1,4 +1,4 @@
-div {
+body {
   animation: aparecer 2s;
 }
 @keyframes aparecer {
