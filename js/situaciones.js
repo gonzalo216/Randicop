@@ -51,9 +51,9 @@ export default async function evento() {
         do {
           repetir = false;
           vida === 20
-            ? (nrand = getRandomIntInclusive(9, 1)) //saltea cura
+            ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
             : vivos > 1
-            ? (nrand = getRandomIntInclusive(9))
+            ? (nrand = getRandomIntInclusive(10))
             : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
@@ -92,12 +92,13 @@ export default async function evento() {
             case 6:
             case 7:
             case 8:
-            case 9: {
+            case 9:
+            case 10: {
               if (lista[el].cantF === 0) repetir = true;
               else {
-                console.log("a1");
-                nrand = getRandomIntInclusive(lista[el].cantF);
-                lista[el].funciones[nrand]();
+                nrand = getRandomIntInclusive(lista[el].cantF -1);
+                delete lista[el].funciones[nrand]();
+                lista[el].cantF --;
               }
               break;
             }
@@ -127,9 +128,9 @@ export default async function evento() {
         do {
           repetir = false;
           vida === 20
-            ? (nrand = getRandomIntInclusive(3, 1))
+            ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
             : vivos > 1
-            ? (nrand = getRandomIntInclusive(6))
+            ? (nrand = getRandomIntInclusive(10))
             : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
@@ -165,12 +166,16 @@ export default async function evento() {
               relGlobal[accion[nrand]](nombre, vida, i);
               break;
             }
-            case 6: {
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10: {
               if (lista[el].cantF === 0) repetir = true;
               else {
-                console.log("a");
-                nrand = getRandomIntInclusive(lista[el].cantF);
-                lista[el].funciones[nrand]();
+                nrand = getRandomIntInclusive(lista[el].cantF -1);
+                delete lista[el].funciones[nrand]();
+                lista[el].cantF --;
               }
               break;
             }
