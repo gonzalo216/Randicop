@@ -217,7 +217,7 @@ const vidaGlobal = {
   };
 export const vidaDia = {
     angel: function (nombre, vida) {
-      cura = getRandomIntInclusive(19, 1);
+      cura = getRandomIntInclusive(19, 1) + vida;
       texto(`Un angel bajo del cielo y curó a ${nombre}`);
       vidaDefault(vida);
       ctrl();
