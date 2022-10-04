@@ -14,7 +14,6 @@ import { jugs, lista } from "./variables.js";
 let cont = 0,
   t = 0.5,
   finalista;
-
 export function apurar() {
   t = 0;
 }
@@ -40,52 +39,70 @@ export default async function evento() {
         const el = jugs[i];
         let nombre = lista[el].nombre,
           vida = lista[el].vida,
-          vivos; 
+          vivos,
+          repetir;
         if (vida <= 0) {
           i++;
           continue;
         }
-        jugs.forEach(n=> {if(lista[n].vida > 0) vivos++})
-        vida === 20
-          ? (nrand = getRandomIntInclusive(3, 1)) //saltea cura
-          : vivos > 1 
-            ? (nrand = getRandomIntInclusive(3))
+        jugs.forEach((n) => {
+          if (lista[n].vida > 0) vivos++;
+        });
+        do {
+          repetir = false;
+          vida === 20
+            ? (nrand = getRandomIntInclusive(9, 1)) //saltea cura
+            : vivos > 1
+            ? (nrand = getRandomIntInclusive(9))
             : (nrand = getRandomIntInclusive(2)); //saltea relaciones
-        switch (nrand) {
-          case 0: {
-            // cura
-            const accion = Object.keys(vidaDia);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 1: {
-            // daño
-            const accion = Object.keys(danoDia);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            lista[el].vida = danoDia[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 2: {
-            // random
-            const accion = Object.keys(randomDia);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            randomDia[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 3:
-            console.log("descubrimiento");
+          switch (nrand) {
+            case 0: {
+              // cura
+              const accion = Object.keys(vidaDia);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 1: {
+              // daño
+              const accion = Object.keys(danoDia);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              lista[el].vida = danoDia[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 2: {
+              // random
+              const accion = Object.keys(randomDia);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              randomDia[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 3:
+            //console.log("descubrimiento");
             //break;
-          case 4:
-            console.log("decisivas");
+            case 4:
+            //console.log("decisivas");
             //break;
-          case 5: {
-            const accion = Object.keys(relGlobal);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            relGlobal[accion[nrand]](nombre, vida, i);
-            break;
+            case 5: {
+              const accion = Object.keys(relGlobal);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              relGlobal[accion[nrand]](nombre, vida, i);
+              break;
+            }
+            case 6:
+            case 7:
+            case 8:
+            case 9: {
+              if (lista[el].cantF === 0) repetir = true;
+              else {
+                console.log("a1");
+                nrand = getRandomIntInclusive(lista[el].cantF);
+                lista[el].funciones[nrand]();
+              }
+              break;
+            }
           }
-        }
+        } while (repetir);
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
       }
@@ -98,55 +115,67 @@ export default async function evento() {
         const el = jugs[i];
         let nombre = lista[el].nombre,
           vida = lista[el].vida,
-          vivos; 
+          vivos,
+          repetir;
         if (vida <= 0) {
           i++;
           continue;
         }
-        jugs.forEach(n=> {if(lista[n].vida > 0) vivos++})
-        vida === 20
-          ? (nrand = getRandomIntInclusive(3, 1))
-          : vivos > 1 
-            ? (nrand = getRandomIntInclusive(3))
+        jugs.forEach((n) => {
+          if (lista[n].vida > 0) vivos++;
+        });
+        do {
+          repetir = false;
+          vida === 20
+            ? (nrand = getRandomIntInclusive(3, 1))
+            : vivos > 1
+            ? (nrand = getRandomIntInclusive(6))
             : (nrand = getRandomIntInclusive(2)); //saltea relaciones
-        switch (nrand) {
-          case 0: {
-            // cura
-            const accion = Object.keys(vidaNoche);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 1: {
-            // daño
-            const accion = Object.keys(danoNoche);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 2: {
-            // random
-            const accion = Object.keys(randomNoche);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            randomNoche[accion[nrand]](nombre, vida);
-            break;
-          }
-          case 3:
-            console.log("descubrimiento");
+          switch (nrand) {
+            case 0: {
+              // cura
+              const accion = Object.keys(vidaNoche);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 1: {
+              // daño
+              const accion = Object.keys(danoNoche);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 2: {
+              // random
+              const accion = Object.keys(randomNoche);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              randomNoche[accion[nrand]](nombre, vida);
+              break;
+            }
+            case 3:
+            //console.log("descubrimiento");
             //break;
-          case 4:
-            console.log("decisivas");
+            case 4:
+            //console.log("decisivas");
             //break;
-          case 5: {
-            const accion = Object.keys(relGlobal);
-            nrand = getRandomIntInclusive(accion.length - 1);
-            relGlobal[accion[nrand]](nombre, vida, i);
-            break;
+            case 5: {
+              const accion = Object.keys(relGlobal);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              relGlobal[accion[nrand]](nombre, vida, i);
+              break;
+            }
+            case 6: {
+              if (lista[el].cantF === 0) repetir = true;
+              else {
+                console.log("a");
+                nrand = getRandomIntInclusive(lista[el].cantF);
+                lista[el].funciones[nrand]();
+              }
+              break;
+            }
           }
-          case 6: {
-            break;
-          }
-        }
+        } while (repetir);
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
       }

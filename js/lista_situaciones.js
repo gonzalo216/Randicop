@@ -9,7 +9,7 @@ const nJugRand = (i) => {
     lista[jugs[num]].vida <= 0 ||
     lista[jugs[num]].nombre === lista[jugs[i]].nombre
   );
-  console.log(lista[jugs[num]].nombre, lista[jugs[i]].nombre);
+  //console.log(lista[jugs[num]].nombre, lista[jugs[i]].nombre);
   return jugs[num];
 };
 let nrand, dano, cura, adicional;
@@ -225,9 +225,7 @@ export const vidaDia = {
       return cura;
     },
   },
-  vidaNoche = {
-    
-  };
+  vidaNoche = {};
 repetir(vidaDiaNoche, 1);
 repetir(vidaDia, 2);
 repetir(vidaNoche, 2);
@@ -298,9 +296,13 @@ Object.assign(randomNoche, randomDiaNoche);
 
 export const relGlobal = {
   mirarfeo: function (nombre, vida, i) {
-    const n2 = nJugRand(i)
+    const n2 = nJugRand(i);
     texto(`${nombre} miro feo a ${lista[n2].nombre}`);
     vidaDefault(vida, true);
-    lista[n2].setFunction(()=>texto(`${this.nombre} odia a ${lista[jugs[i]].nombre}`))
+    lista[jugs[i]].funciones[lista[jugs[i]].cantF] = () => {
+      texto(`${nombre} odia a ${lista[n2].nombre}`);
+      vidaDefault(vida, true);
+    };
+    lista[jugs[i]].cantF++;
   },
 };
