@@ -1,4 +1,3 @@
-import { esperar } from "./funciones.js";
 import evento, { apurar, final } from "./situaciones.js";
 
 const d = document,
@@ -102,8 +101,8 @@ const btnSig = d.getElementById("sig"),
       : (btnAnt.disabled = true);
   };
 async function copySize() {
-    $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
-  }
+  $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
+}
 
 let escrito = false;
 export function completo(bol = escrito, fin = false) {
@@ -143,8 +142,8 @@ export function anterior() {
     contenidoAnt("cont actual").className = "cont sig";
     contenidoAnt("cont anterior").className = "cont actual";
     contenidoSig("cont sig").id === "fin"
-    ? (btnSig.textContent = "FINALIZAR")
-    : (btnSig.textContent = "SIGUIENTE");
+      ? (btnSig.textContent = "FINALIZAR")
+      : (btnSig.textContent = "SIGUIENTE");
   }
   desHabi();
   btnSig.disabled = false;
