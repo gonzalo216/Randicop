@@ -6,7 +6,7 @@ body {
   background: #100f0f;
   padding: 4rem 0;
   position: sticky;
-  top:0;
+  top: 0;
   z-index: 999;
 }
 .logo {
@@ -16,7 +16,7 @@ body {
   display: flex;
 }
 
-p1 {
+h1 {
   font-family: COCHIN;
   color: #76ba99;
   font-size: 70px;
@@ -132,5 +132,4 @@ div {
   z-index: 998;
   bottom: 10px;
   padding-left: 20px;
-
 }
