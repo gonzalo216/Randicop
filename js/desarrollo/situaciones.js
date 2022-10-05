@@ -51,12 +51,12 @@ export default async function evento() {
         do {
           repetir = false;
           vida === 20
-            ? vivos > 1 
-              ?(nrand = getRandomIntInclusive(10, 1)) //saltea curar
-              :(nrand = getRandomIntInclusive(2, 1))
+            ? vivos > 1
+              ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
+              : (nrand = getRandomIntInclusive(2, 1))
             : vivos > 1
-              ? (nrand = getRandomIntInclusive(10))
-              : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+            ? (nrand = getRandomIntInclusive(10))
+            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
               // cura
@@ -98,11 +98,11 @@ export default async function evento() {
             case 10: {
               if (lista[el].cantF === 0) repetir = true;
               else {
-                nrand = getRandomIntInclusive(lista[el].cantF -1);
-                console.log(lista[el].cantF)
+                nrand = getRandomIntInclusive(lista[el].cantF - 1);
+                console.log(lista[el].cantF);
                 delete lista[el].funciones[nrand]();
-                lista[el].cantF --;
-                console.log(lista[el].cantF)
+                lista[el].cantF--;
+                console.log(lista[el].cantF);
               }
               break;
             }
@@ -132,12 +132,12 @@ export default async function evento() {
         do {
           repetir = false;
           vida === 20
-            ? vivos > 1 
-              ?(nrand = getRandomIntInclusive(10, 1)) //saltea curar
-              :(nrand = getRandomIntInclusive(2, 1))
+            ? vivos > 1
+              ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
+              : (nrand = getRandomIntInclusive(2, 1))
             : vivos > 1
-              ? (nrand = getRandomIntInclusive(10))
-              : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+            ? (nrand = getRandomIntInclusive(10))
+            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
               // cura
@@ -179,11 +179,11 @@ export default async function evento() {
             case 10: {
               if (lista[el].cantF === 0) repetir = true;
               else {
-                nrand = getRandomIntInclusive(lista[el].cantF -1);
-                console.log(lista[el].cantF)
+                nrand = getRandomIntInclusive(lista[el].cantF - 1);
+                console.log(lista[el].cantF);
                 delete lista[el].funciones[nrand]();
-                lista[el].cantF --;
-                console.log(lista[el].cantF)
+                lista[el].cantF--;
+                console.log(lista[el].cantF);
               }
               break;
             }
@@ -217,7 +217,7 @@ export default async function evento() {
 export function final() {
   crearDiv();
   titulo(
-    `<h1>El ultimo jugador sobreviviente fue ${finalista}</h1>`,
+    `<h2>El ultimo jugador sobreviviente fue ${finalista}</h2>`,
     "finalista"
   );
 }
