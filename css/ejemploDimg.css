@@ -1,7 +1,0 @@
-.zoom
-{
-transition: width 1s, height 1s, transform 1s ;
-}
-.zoom :hover { 
-    transform: scale(1.5);
- }
