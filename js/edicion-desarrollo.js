@@ -1,6 +1,7 @@
 const d = document,
   $main = d.querySelector("main"),
-  $script = d.getElementById("index");
+  $desarrolloJs = d.getElementById("index");
+  $edicionJs = d.getElementById("crear-formulario")
 
 const insertar = (url) => {
   fetch(url)
@@ -13,11 +14,12 @@ const insertar = (url) => {
 
 d.addEventListener("DOMContentLoaded", (e) => {
   insertar("./edicion.html");
+  $edicionJs.setAttribute("src", "./../js/edicion/crear_formulario.js");
 });
 d.addEventListener("click", (e) => {
   if (e.target.matches(".iniciar")) {
     e.preventDefault();
     insertar("./desarrollo.html");
-    $script.setAttribute("src", "./../js/desarrollo/index_desarrollo.js");
+    $desarrolloJs.setAttribute("src", "./../js/desarrollo/index_desarrollo.js");
   }
 });
