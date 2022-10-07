@@ -1,13 +1,10 @@
-import { anterior, siguiente } from "./imprimir.js";
-import evento from "./situaciones.js";
+import { anterior, siguiente } from "./desarrollo/imprimir.js";
+import evento from "./desarrollo/situaciones.js";
 
 const d = document,
   btnAnt = d.getElementById("ant");
-console.log("hola");
-//d.addEventListener("DOMContentLoaded", (e) => {
 evento();
 btnAnt.disabled = true;
-//});
 d.addEventListener("click", (e) => {
   if (e.target.matches("#sig")) {
     siguiente();

@@ -1,83 +1,83 @@
-body{
-    margin: 0;
-    background: #DBD8E3;
+body {
+  margin: 0;
+  background: #dbd8e3;
 }
 
-.header{
-    background: #16131d ;
-    padding: 1.5rem 0;
+.header {
+  background: #16131d;
+  padding: 1.5rem 0;
 }
-.sticky
-{
-    padding: 0px;
+.sticky {
+  padding: 0px;
 }
 
 .logo {
-    top:18px;
-    align-items: center ;
-    display: flex;
-    }
-
-    p1{
-        font-family:COCHIN;
-        color: #FFCBCB;
-        font-size: 70px;
-        letter-spacing: 5px;
-        }
-
-#mImg{
-margin-right: 150px;
-width: 25%; 
-padding-left: 510px;
+  top: 18px;
+  align-items: center;
+  display: flex;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  font-family: COCHIN;
+  color: #ffcbcb;
+  font-size: 70px;
+  letter-spacing: 5px;
 }
 
+#mImg {
+  margin-right: 150px;
+  width: 25%;
+  padding-left: 510px;
+}
 
-#nImg{
-    width: 25%;
-    margin-left :150px;
+#nImg {
+  width: 25%;
+  margin-left: 150px;
   padding-left: 370px;
 }
 
-.sec{
-    margin-top: 100px;
+.sec {
+  margin-top: 100px;
 }
 
-#mImg p{
-    text-align: center;
-    color:#574B90;
-    font-family: 'Times New Roman', Times, serif;
+#mImg p {
+  text-align: center;
+  color: #574b90;
+  font-family: "Times New Roman", Times, serif;
 }
 
-#t1{
-    font-size: 2em;
+#t1 {
+  font-size: 2em;
 }
-#t2{
-    font-size: 2em;
+#t2 {
+  font-size: 2em;
 }
 
-#nImg p{
-    text-align: center;
-    color:#574B90;
-    font-family: 'Times New Roman', Times, serif;
+#nImg p {
+  text-align: center;
+  color: #574b90;
+  font-family: "Times New Roman", Times, serif;
 }
 .parent {
-    width: 300px;
-    height: 300px;
-    background-color: #cccccc;
-    text-align: center;
-  }
-  .zoom{
-    /* Aumentamos la anchura y altura durante 2 segundos */
-    transition: width 2s, height 2s, transform 2s;
-    display: inline-block;
+  width: 300px;
+  height: 300px;
+  background-color: #cccccc;
+  text-align: center;
+}
+.zoom {
+  /* Aumentamos la anchura y altura durante 2 segundos */
+  transition: width 2s, height 2s, transform 2s;
+  display: inline-block;
 }
 
-.zoom:hover{
-    /* tranformamos el elemento al pasar el mouse por encima al doble de
+.zoom:hover {
+  /* tranformamos el elemento al pasar el mouse por encima al doble de
        su tamaño con scale(2). */
-    transform : scale(1.2);
-    backface-visibility: hidden;    
+  transform: scale(1.2);
+  backface-visibility: hidden;
 }
-#lilo{
-    color: red;
+#lilo {
+  color: red;
 }

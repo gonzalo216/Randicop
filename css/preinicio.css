@@ -11,6 +11,7 @@ body {
   background: #100f0f;
   padding: 1rem 0;
 }
+
 h1 {
   /* color: #76ba99; */
   color: darkseagreen;
@@ -67,7 +68,7 @@ details > p {
 } */
 
 .container {
-  margin: 1rem 3rem 1rem;
+  margin: 1rem 5% 1rem;
   padding: 2rem;
   border: thin solid black;
   width: auto;
