@@ -1,12 +1,11 @@
 import evento, { apurar, final } from "./situaciones.js";
 
 const d = document,
-  $divPadre = d.getElementById("imprimir"),
-  $transcurso = [],
-  $tamanio = d.getElementById("tamanio");
+  $transcurso = [];
 
 let primero = true;
 export function crearDiv() {
+  const $divPadre = d.getElementById("imprimir");
   if (primero) primero = false;
   else {
     $transcurso.at(-1).className = "cont anterior";
@@ -86,10 +85,12 @@ export async function hayEvent() {
     imprimir("<h1>...</h1>", "vacio", "p", true, true);
   }
 }
+let btnSig, btnAnt;
 
-const btnSig = d.getElementById("sig"),
-  btnAnt = d.getElementById("ant"),
-  hayValor = (valor) =>
+export function iniciar() {
+  (btnSig = d.getElementById("sig")), (btnAnt = d.getElementById("ant"));
+}
+const hayValor = (valor) =>
     $transcurso.findIndex((el) => el.className === valor) !== -1 ? true : false,
   contenidoSig = (valor) =>
     $transcurso.at($transcurso.findIndex((el) => el.className === valor)),
@@ -101,6 +102,7 @@ const btnSig = d.getElementById("sig"),
       : (btnAnt.disabled = true);
   };
 async function copySize() {
+  const $tamanio = d.getElementById("tamanio");
   $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
 }
 

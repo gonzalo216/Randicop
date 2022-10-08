@@ -9,7 +9,7 @@ import {
   vidaNoche,
 } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
-import { jugs, lista } from "./variables.js";
+import { lista, jugs } from "./variables.js";
 
 let cont = 0,
   t = 0.5,

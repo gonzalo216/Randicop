@@ -7,6 +7,8 @@ export default function crearFormulario() {
     .then((json) => {
       json.forEach((el) => {
         $template.querySelector(".input-name").value = el.name;
+        $template.querySelector(".input-id").value = el.id;
+
         let $clone = d.importNode($template, true);
         $fragment.appendChild($clone);
       });

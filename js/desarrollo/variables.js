@@ -6,11 +6,14 @@ class Jugador {
     this.funciones = new Object();
   }
 }
-export const lista = {
-    jug1: new Jugador("Juli"),
-    jug2: new Jugador("Tiago"),
-    jug3: new Jugador("Nati"),
-    jug4: new Jugador("Troche"),
-    jug5: new Jugador("Gonza"),
-  },
+export const lista = new Object();
+export function crearJugs() {
+  const $names = document.querySelectorAll(".input-name"),
+    names = $names.values;
+  console.log($names);
+  $names.forEach((el, index) => {
+    lista[`jug${index}`] = new Jugador(el.value);
+  });
   jugs = Object.keys(lista);
+}
+export let jugs;

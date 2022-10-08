@@ -1,6 +1,6 @@
 import { curar, danoInsta, texto, vidaDefault, vidaExtra } from "./imprimir.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
-import { jugs, lista } from "./variables.js";
+import { lista, jugs } from "./variables.js";
 const nJugRand = (i) => {
   let num;
   do {
