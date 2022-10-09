@@ -7,6 +7,7 @@ class Jugador {
   }
 }
 export const lista = new Object();
+export let jugs;
 export function crearJugs() {
   const $names = document.querySelectorAll(".input-name"),
     names = $names.values;
@@ -16,4 +17,3 @@ export function crearJugs() {
   });
   jugs = Object.keys(lista);
 }
-export let jugs;

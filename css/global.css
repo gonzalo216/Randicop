@@ -1,5 +1,6 @@
 body {
   animation: aparecer 2s;
+  min-width: 200px;
 }
 @keyframes aparecer {
   from {
@@ -14,23 +15,41 @@ body {
 .header {
   position: sticky;
   top: 0;
-  transition: padding 0.5s ease;
+  transition: height 0.5s ease;
   z-index: 999;
+  align-items: center;
+  display: grid;
+  padding-top: 1rem;
+  grid-template-columns: 15% 65% 20%;
+  grid-template-rows: 80%;
+  background: #100f0f;
+  height: 8rem;
+}
+.sticky {
+  height: 6rem;
 }
 
+header > img {
+  justify-self: center;
+  padding: 1rem;
+  height: 90%;
+  object-fit: contain;
+}
 #burger {
   margin-left: 100%;
   background-color: rgb(102, 96, 96);
 
-  position: fixed;
+  /* position: fixed;
   top: 1vh;
-  right: 1vh;
+  right: 1vh; */
+
   border-radius: 1rem;
   width: 42px;
   height: 40px;
   padding: 0.5rem;
-  margin: 6px;
+  margin: 1rem;
   display: flex;
+  justify-self: right;
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -74,7 +93,7 @@ menu a:hover {
   background-color: rgb(223, 223, 105);
 }
 .logo {
-  height: 100%;
-  align-items: center;
-  display: flex;
+  /* align-items: center;
+  display: grid;
+  grid-template-columns: 20% 60% 20%; */
 }

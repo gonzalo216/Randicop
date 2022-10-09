@@ -30,32 +30,27 @@
 
   <body>
     <header class="header" id="sh">
-      <div class="logo" id="logo">
-        <img
-          src="./../assets/logo1.png"
-          width="80px"
-          height="70px"
-          alt="Hola"
-        />
-        <a href="./../html/principal.html " style="text-decoration: none">
-          <h1>RANDICOP</h1>
-        </a>
-        <button
-          class="panel-btn hamburger hamburger--3dxy"
-          id="burger"
-          type="button"
-        >
-          <span class="hamburger-box">
-            <span class="hamburger-inner"></span>
-          </span>
-        </button>
-        <aside class="panel">
-          <nav class="menu">
-            <a href="./../html/principal.html ">HOME</a>
-          </nav>
-        </aside>
-      </div>
+      <!-- <div class="logo" id="logo"> -->
+      <img src="./../assets/logo1.png" alt="Hola" />
+      <a href="./../html/principal.html " style="text-decoration: none">
+        <h1>RANDICOP</h1>
+      </a>
+      <button
+        class="panel-btn hamburger hamburger--3dxy"
+        id="burger"
+        type="button"
+      >
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <!-- </div> -->
     </header>
+    <aside class="panel">
+      <nav class="menu">
+        <a href="./../html/principal.html ">HOME</a>
+      </nav>
+    </aside>
     <main>
       <section>
         <details>
@@ -93,7 +88,7 @@
         <section class="flex"></section>
       </article>
       <template>
-        <div>
+        <div class="celda">
           <div>
             <input class="input-img" type="text" name="nomb" required="" />
             <label>IMAGEN</label>
@@ -112,13 +107,21 @@
         </div>
       </template>
       <br /><br /><br />
-      <section class="mImg">
-        <a
-          class="iniciar"
-          href=""
-          style="text-decoration: none; color: white"
-        ></a>
-        <h2>INICIAR</h2>
+      <section class="buttons">
+        <div id="mas" class="boton mas">
+          <img src="./../assets/add.svg" alt="add" />
+        </div>
+        <div class="mImg">
+          <!-- <a
+            class="iniciar"
+            href=""
+            style="text-decoration: none; color: white"
+          ></a> -->
+          <h2>INICIAR</h2>
+        </div>
+        <div id="menos" class="boton menos">
+          <img src="./../assets/remove.svg" alt="remove" />
+        </div>
       </section>
       <br /><br />
     </main>

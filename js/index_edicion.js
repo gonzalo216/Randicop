@@ -5,13 +5,21 @@ import crearFormulario from "./edicion/crear_formulario.js";
 const d = document,
   $desarrolloJs = d.getElementById("index");
 d.addEventListener("DOMContentLoaded", (e) => {
-  crearFormulario();
+  crearFormulario(5);
 });
 d.addEventListener("click", (e) => {
-  if (e.target.matches(".iniciar")) {
+  if (e.target.matches(".mImg") || e.target.matches(".mImg *")) {
     e.preventDefault();
     crearJugs();
     insertar("./desarrollo.html");
     $desarrolloJs.setAttribute("src", "./../js/index_desarrollo.js");
+  }
+  if (e.target.matches("#mas") || e.target.matches("#mas *")) {
+    console.log("click");
+    crearFormulario(1);
+  }
+  if (e.target.matches("#menos") || e.target.matches("#menos *")) {
+    console.log("click-");
+    crearFormulario(0, true);
   }
 });

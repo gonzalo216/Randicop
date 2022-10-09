@@ -2,25 +2,17 @@ body {
   margin: 0;
   /* background: #ccffbd; */
   background: darkseagreen;
-  min-width: 25rem;
   font-family: "Abyssinica SIL", serif;
   font-family: "Silkscreen", cursive;
-}
-
-.header {
-  background: #100f0f;
-  padding: 1rem 0;
 }
 
 h1 {
   /* color: #76ba99; */
   color: darkseagreen;
-  font-size: 70px;
+  height: max-content;
+  font-size: min(8vw, 70px);
   letter-spacing: 5px;
   margin: 0;
-}
-.sticky {
-  padding: 0px;
 }
 
 section {
@@ -69,7 +61,7 @@ details > p {
 
 .container {
   margin: 1rem 5% 1rem;
-  padding: 2rem;
+  padding: 3vw;
   border: thin solid black;
   width: auto;
   bottom: 100%;
@@ -79,6 +71,7 @@ details > p {
   box-shadow: inset 0.1rem 0.1rem 1rem black;
 }
 .grid {
+  min-width: 2rem;
   display: grid;
   background: darkgreen;
   padding: 1rem 0;
@@ -142,16 +135,19 @@ input:valid ~ label {
   -webkit-text-stroke: 0;
 }
 
-button {
-  width: 20rem;
-  color: #16131d;
+.buttons {
+  margin: 0 3rem 0 1rem;
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1rem;
 }
 .mImg {
   background-color: rgb(29, 181, 60);
   border: medium solid black;
   border-radius: 1rem;
-  margin: auto;
-  width: 22rem;
+  width: min(100%, 22rem);
   height: 10rem;
   background-image: url(./../assets/minecraft.png);
   background-size: contain;
@@ -163,19 +159,23 @@ button {
   color: white;
   -webkit-text-stroke: 1px black;
   font-size: 1.5rem;
-  /* transition: width 1s, height 1s, transform 1s;  */
   transition: box-shadow 1s, text-shadow 1s, font-size 1s;
   box-shadow: 0.1rem 0.1rem 1rem black;
-}
-.mImg a {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  cursor: pointer;
 }
 .mImg:hover {
   text-shadow: 0 -0.75rem 0.1rem darkgreen;
   box-shadow: 0.2rem 0.2rem 2rem darkgreen;
   font-size: 2rem;
-  /* transform: scale(1.2);
-  backface-visibility: hidden; */
+}
+.boton {
+  width: min(4rem, 90%);
+  height: 4rem;
+  border: thick solid black;
+  border-radius: 45%;
+  cursor: pointer;
+}
+.boton > img {
+  width: 100%;
+  height: 100%;
 }
