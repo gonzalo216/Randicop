@@ -28,7 +28,9 @@ body {
 .sticky {
   height: 6rem;
 }
-
+a {
+  text-decoration: none;
+}
 header > img {
   justify-self: center;
   padding: 1rem;

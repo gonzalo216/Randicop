@@ -3,27 +3,15 @@ body {
   background: #dbd8e3;
 }
 
-.header {
-  background: #16131d;
-  padding: 1.5rem 0;
-}
-.sticky {
-  padding: 0px;
-}
 
-.logo {
-  top: 18px;
-  align-items: center;
-  display: flex;
-}
-a {
-  text-decoration: none;
-}
+
 h1 {
   font-family: COCHIN;
   color: #ffcbcb;
-  font-size: 70px;
+  height: max-content;
+  font-size: min(8vw, 70px);
   letter-spacing: 5px;
+  margin: 0;
 }
 
 #mImg {
