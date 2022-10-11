@@ -14,7 +14,7 @@ h1 {
   margin: 0;
 }
 
-#mImg {
+/* #mImg {
   margin-right: 150px;
   width: 25%;
   padding-left: 510px;
@@ -24,10 +24,19 @@ h1 {
   width: 25%;
   margin-left: 150px;
   padding-left: 370px;
-}
+} */
 
 .sec {
   margin-top: 100px;
+  display: grid;
+  align-items:center; 
+}
+.sec >div {
+  align-items: center;
+}
+.sec img {
+  padding-left: 4rem;
+  width: 250px;
 }
 
 #mImg p {
