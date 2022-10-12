@@ -12,3 +12,17 @@ body h1 {
       text-shadow: 0 0 30px #991b60, 0 0 10px rgb(207, 17, 49);
     }
   }
+  
+/* body h2 {
+  margin: 0;
+  font-family: 'Teko', sans-serif;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgb(205, 226, 188);
+  }
+  to {
+    text-shadow: 0 0 30px #b45087, 0 0 10px rgb(65, 63, 194);
+  }
+} */

@@ -28,9 +28,7 @@ body {
 .sticky {
   height: 6rem;
 }
-a {
-  text-decoration: none;
-}
+
 header > img {
   justify-self: center;
   padding: 1rem;
@@ -58,7 +56,7 @@ header > img {
 }
 
 .panel {
-  background-color: rgba(206, 200, 200, 0.5);
+  background-color: rgb(63, 57, 57, 0.5);
   position: fixed;
   z-index: 997;
   width: 25%;
@@ -72,27 +70,25 @@ header > img {
 .panel.is-active {
   transform: translate(0%, 0%);
 }
-.menu {
-  width: inherit;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: center;
-}
-.menu a {
-  margin-top: 40px;
-  padding: 2rem;
-  width: inherit;
-  display: block;
-  font-size: 1.5rem;
+a{
   text-decoration: none;
-  color: black;
+}
+.menu {
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.menu a{
+  color: bisque;
+  margin-top: 40px;
+  font-size: 50pxx;
   transition: all o.3s ease;
 }
-menu a:hover {
+.menu a:hover {
   font-weight: bold;
   color: rgba(238, 186, 65, 0.922);
-  background-color: rgb(223, 223, 105);
+  /* background-color: rgb(223, 223, 105); */
 }
 .logo {
   /* align-items: center;

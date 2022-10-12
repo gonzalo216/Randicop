@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    background: #dbd8e3;
+  
+  
+  }
+  
+  
+  main{
+    display: grid;
+    align-items:center; 
+    justify-content:center ;
+    justify-items: center;
+    text-align: center;
+    place-content: center;
+  }
+  h1 {
+    font-family: COCHIN;
+    color: #ffcbcb;
+    height: max-content;
+    font-size: min(8vw, 70px);
+    letter-spacing: 5px;
+    margin: 0;
+  }
+  .mishi{
+    margin-top: 150px;
+  }
+  .lilo > div {
+    width: 40rem;
+    background: rgb(199, 153, 160);
+    padding: 1.5rem 1rem 0;
+    margin: 0px;
+  
+    border: 1px black solid;
+    /* border-radius: 1.5rem; */
+    box-shadow: 1rem 1rem 0.5rem black;
+    color: white;
+    -webkit-text-stroke: thin black;
+  }
+  input {
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 2rem;
+    border: none;
+    border-bottom: thin solid white;
+    outline: none;
+    background: transparent;
+    color: white;
+  }
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    pointer-events: none;
+    color: white;
+    transition: 0.5s;
+  }
+  input:focus ~ label,
+  input:valid ~ label {
+    top: -1rem;
+    left: 0;
+    font-size: 0.75rem;
+    color: greenyellow;
+    -webkit-text-stroke: 0;
+  }
+  
