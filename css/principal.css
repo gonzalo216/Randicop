@@ -1,10 +1,19 @@
 body {
   margin: 0;
   background: #dbd8e3;
+
+
 }
 
 
-
+main{
+  display: grid;
+  align-items:center; 
+  justify-content:center ;
+  justify-items: center;
+  text-align: center;
+  place-content: center;
+}
 h1 {
   font-family: COCHIN;
   color: #ffcbcb;
@@ -27,23 +36,20 @@ h1 {
 } */
 
 .sec {
+  width: 40%;
   margin-top: 100px;
+
   display: grid;
   align-items:center; 
+  justify-content:center ;
+  justify-items: center;
+  text-align: center;
+  place-content: center;
 }
-.sec >div {
-  align-items: center;
-}
-.sec img {
-  padding-left: 4rem;
+.sec img{
   width: 250px;
 }
 
-#mImg p {
-  text-align: center;
-  color: #574b90;
-  font-family: "Times New Roman", Times, serif;
-}
 
 #t1 {
   font-size: 2em;
@@ -52,11 +58,7 @@ h1 {
   font-size: 2em;
 }
 
-#nImg p {
-  text-align: center;
-  color: #574b90;
-  font-family: "Times New Roman", Times, serif;
-}
+
 .parent {
   width: 300px;
   height: 300px;
