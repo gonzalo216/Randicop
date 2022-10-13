@@ -68,7 +68,7 @@ details > p {
   display: grid;
   grid-template-columns: min(20%, 10rem) auto;
   position: relative;
-  box-shadow: inset 0.1rem 0.1rem 1rem black;
+  box-shadow: inset 0 0 1rem 0.2rem black;
 }
 .grid {
   min-width: 2rem;
@@ -79,7 +79,7 @@ details > p {
   text-align: center;
   border: 1px black solid;
   /* border-radius: 20px; */
-  box-shadow: 1rem 1rem 0.5rem black;
+  box-shadow: 0.75rem 0.75rem 1rem black;
   color: white;
   -webkit-text-stroke: 2px black;
   font-size: 2rem;
@@ -100,7 +100,7 @@ details > p {
 
   border: 1px black solid;
   /* border-radius: 1.5rem; */
-  box-shadow: 1rem 1rem 0.5rem black;
+  box-shadow: 0.75rem 0.75rem 1rem black;
   color: white;
   -webkit-text-stroke: thin black;
 }
@@ -160,22 +160,38 @@ input:valid ~ label {
   -webkit-text-stroke: 1px black;
   font-size: 1.5rem;
   transition: box-shadow 1s, text-shadow 1s, font-size 1s;
-  box-shadow: 0.1rem 0.1rem 1rem black;
+  box-shadow: 0 0 1rem 0.1rem black;
   cursor: pointer;
 }
 .mImg:hover {
   text-shadow: 0 -0.75rem 0.1rem darkgreen;
-  box-shadow: 0.2rem 0.2rem 2rem darkgreen;
+  box-shadow: 0 0 1rem 0.75rem green;
   font-size: 2rem;
 }
-.boton {
+.mas,
+.menos {
   width: min(4rem, 90%);
   height: 4rem;
   border: thick solid black;
   border-radius: 45%;
   cursor: pointer;
+  box-shadow: 0 0 1rem 0.1rem black;
+  transition: box-shadow 1s ease;
 }
-.boton > img {
+.mas > img,
+.menos > img {
   width: 100%;
   height: 100%;
+}
+.mas {
+  background-color: limegreen;
+}
+.mas:hover {
+  box-shadow: 0 0 1rem 0.75rem greenyellow;
+}
+.menos {
+  background-color: firebrick;
+}
+.menos:hover{
+  box-shadow: 0 0 1rem 0.75rem red;
 }
