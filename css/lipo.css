@@ -6,10 +6,10 @@ body h1 {
   }
   @keyframes glow {
     from {
-      text-shadow: 0 0 20px rgb(212, 199, 202);
+      text-shadow: 0 0 20px rgb(134, 67, 221);
     }
     to {
-      text-shadow: 0 0 30px #991b60, 0 0 10px rgb(207, 17, 49);
+      text-shadow: 0 0 30px #ff2faf, 0 0 10px rgb(182, 11, 139);
     }
   }
   
