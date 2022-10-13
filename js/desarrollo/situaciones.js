@@ -86,6 +86,7 @@ export default async function evento() {
             //console.log("decisivas");
             //break;
             case 5: {
+              //relaciones
               const accion = Object.keys(relGlobal);
               nrand = getRandomIntInclusive(accion.length - 1);
               relGlobal[accion[nrand]](nombre, vida, i);
