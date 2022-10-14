@@ -110,7 +110,50 @@ details > p {
 .flex > div > div {
   position: relative;
 }
-input {
+
+input[type="checkbox"]{
+  display: block;
+  margin-bottom: 1rem;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+}
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em green;
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+.label-protag{
+  position: absolute;
+  top: -0.83rem;
+  left: 1.75rem;
+  padding: 10px 0;
+  pointer-events: none;
+  color: white;
+  transition: 0.5s;
+}
+input[type="checkbox"]:checked ~ .label-protag{
+  color: greenyellow;
+  -webkit-text-stroke: 0;
+}
+input[type="text"] {
   width: 100%;
   padding: 10px 0;
   margin-bottom: 2rem;
@@ -120,7 +163,7 @@ input {
   background: transparent;
   color: white;
 }
-label {
+.label-name {
   position: absolute;
   top: 0;
   left: 0;
@@ -129,8 +172,8 @@ label {
   color: white;
   transition: 0.5s;
 }
-input:focus ~ label,
-input:valid ~ label {
+input[type="text"]:focus ~ .label-name,
+input[type="text"]:valid ~ .label-name {
   top: -1rem;
   left: 0;
   font-size: 0.75rem;

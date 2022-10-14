@@ -9,7 +9,7 @@ class Jugador {
 export const lista = new Object();
 export let jugs;
 export function crearJugs() {
-  const $names = document.querySelectorAll(".input-name"),
+  const $names = document.querySelectorAll(`input[name="nombre"]`),
     names = $names.values;
   console.log($names);
   $names.forEach((el, index) => {
