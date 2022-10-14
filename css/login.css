@@ -17,7 +17,7 @@ body {
   @font-face {
     font-family: 'Monoton';
     font-style: normal;
-    font-weight: 400;
+    font-weight: 800;
     src: local('Monoton'), local('Monoton-Regular'), url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff) format('woff');
   }
   a{
@@ -34,9 +34,9 @@ font-size: 90px;
     font-family:Monoton;
   }
   h1 a:hover{
-    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
-    animation: neon1 1.5s ease-in-out infinite alternate;
+    -webkit-animation: neon1 0.5s ease-in-out infinite alternate;
+    -moz-animation: neon1 0.5s ease-in-out infinite alternate;
+    animation: neon1 0.5s ease-in-out infinite alternate;
   }
    
   @-webkit-keyframes neon1 {
