@@ -16,7 +16,8 @@ main{
 }
 h1 {
   font-family: COCHIN;
-  color: #cd77e2;
+  color:#ffcbcb;
+
   height: max-content;
   font-size: min(8vw, 70px);
   letter-spacing: 5px;
