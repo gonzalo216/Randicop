@@ -1,4 +1,4 @@
-import { completo, crearDiv, hayEvent, texto, titulo } from "./imprimir.js";
+import { haySit, texto, titulo } from "./print_lines.js";
 import {
   danoDia,
   danoNoche,
@@ -10,7 +10,7 @@ import {
 } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
-
+import { completo, crearDiv } from "./print_blocks.js";
 let cont = 0,
   t = 0.5,
   finalista;
@@ -112,7 +112,7 @@ export default async function evento() {
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
       }
-      hayEvent();
+      haySit();
       await esperar(t);
 
       titulo("<h2>NOCHE</h2>", "evento noche");
@@ -193,7 +193,7 @@ export default async function evento() {
         if (lista[el].vida <= 0) muertos.push(el);
         i += await esperar(t);
       }
-      hayEvent();
+      haySit();
       await esperar(t);
     }
     //else

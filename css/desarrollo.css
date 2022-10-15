@@ -98,7 +98,8 @@ div {
 }
 .vacio {
   position: relative;
-  top: -14px;
+  font-size: 3rem;
+  top: 0rem;
 }
 .finalista {
   font-size: 30px;

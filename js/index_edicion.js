@@ -1,6 +1,6 @@
 import evento from "./desarrollo/situaciones.js";
 import { crearJugs } from "./desarrollo/variables.js";
-import insertar from "./edicion-desarrollo.js";
+import insertar from "./edicion/insertar_html.js";
 import crearFormulario from "./edicion/crear_formulario.js";
 import { toggleDescription } from "./edicion/toggle_description.js";
 const d = document,
@@ -25,6 +25,6 @@ d.addEventListener("click", (e) => {
   }
   if (e.target.matches("summary") || e.target.matches("summary *")) {
     console.log("abrir");
-    toggleDescription()
+    toggleDescription();
   }
 });

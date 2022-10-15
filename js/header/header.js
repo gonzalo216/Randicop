@@ -1,5 +1,7 @@
-window.onscroll = function() {myFunction()};
-  
+window.onscroll = function () {
+  myFunction();
+};
+
 const $header = document.getElementById("sh");
 const sticky = $header.offsetTop;
 

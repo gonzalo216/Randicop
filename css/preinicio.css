@@ -111,7 +111,7 @@ details > p {
   position: relative;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
   display: block;
   margin-bottom: 1rem;
   -webkit-appearance: none;
@@ -140,7 +140,7 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
-.label-protag{
+.label-protag {
   position: absolute;
   top: -0.83rem;
   left: 1.75rem;
@@ -149,7 +149,7 @@ input[type="checkbox"]:checked::before {
   color: white;
   transition: 0.5s;
 }
-input[type="checkbox"]:checked ~ .label-protag{
+input[type="checkbox"]:checked ~ .label-protag {
   color: greenyellow;
   -webkit-text-stroke: 0;
 }
@@ -238,6 +238,6 @@ input[type="text"]:valid ~ .label-name {
 .menos {
   background-color: firebrick;
 }
-.menos:hover{
+.menos:hover {
   box-shadow: 0 0 1rem 0.75rem red;
 }

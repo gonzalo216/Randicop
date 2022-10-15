@@ -1,4 +1,10 @@
-import { curar, danoInsta, texto, vidaDefault, vidaExtra } from "./imprimir.js";
+import {
+  curar,
+  danoInsta,
+  texto,
+  vidaDefault,
+  vidaExtra,
+} from "./print_lines.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
 const nJugRand = (i) => {
@@ -9,38 +15,37 @@ const nJugRand = (i) => {
     lista[jugs[num]].vida <= 0 ||
     lista[jugs[num]].nombre === lista[jugs[i]].nombre
   );
-  //console.log(lista[jugs[num]].nombre, lista[jugs[i]].nombre);
   return jugs[num];
 };
 let nrand, dano, cura, adicional;
 const danoGlobal = {
-    papa: function (nombre, vida) {
-      nrand = getRandomIntInclusive(9);
-      nrand <= 5 ? (dano = 2) : (dano = 0);
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} se vió forzado a comer una papa envenenada`);
-      vidaDefault(vida);
-      danoInsta(dano);
-      return vida;
-    },
-    enderman: function (nombre, vida) {
-      dano = getRandomIntInclusive(10);
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} intentó seducir a un enderman`);
-      vidaDefault(vida);
-      danoInsta(dano);
-      return vida;
-    },
-    nocomer: function (nombre, vida) {
-      dano = vida;
-      vida = 1;
-      texto(`${nombre} se quedó sin comida`);
-      vidaDefault(vida);
-      danoInsta(dano);
-      return vida;
-    },
+    // papa: function (nombre, vida) {
+    //   nrand = getRandomIntInclusive(9);
+    //   nrand <= 5 ? (dano = 2) : (dano = 0);
+    //   vida -= dano;
+    //   dano += vida;
+    //   texto(`${nombre} se vió forzado a comer una papa envenenada`);
+    //   vidaDefault(vida);
+    //   danoInsta(dano);
+    //   return vida;
+    // },
+    // enderman: function (nombre, vida) {
+    //   dano = getRandomIntInclusive(10);
+    //   vida -= dano;
+    //   dano += vida;
+    //   texto(`${nombre} intentó seducir a un enderman`);
+    //   vidaDefault(vida);
+    //   danoInsta(dano);
+    //   return vida;
+    // },
+    // nocomer: function (nombre, vida) {
+    //   dano = vida;
+    //   vida = 1;
+    //   texto(`${nombre} se quedó sin comida`);
+    //   vidaDefault(vida);
+    //   danoInsta(dano);
+    //   return vida;
+    // },
     conexion: function (nombre, vida) {
       dano = vida;
       vida = 0;
@@ -51,23 +56,23 @@ const danoGlobal = {
       danoInsta(dano);
       return vida;
     },
-    tropezon: function (nombre, vida) {
-      nrand = getRandomIntInclusive(9);
-      nrand < 9
-        ? (dano = getRandomIntInclusive(10, 1))
-        : (dano = getRandomIntInclusive(20, 11));
-      dano > 11
-        ? (adicional = "y cayó de un precipicio")
-        : dano > 4
-        ? (adicional = "y cayó desde muy alto")
-        : (adicional = "");
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} se tropezó ${adicional}`);
-      vidaDefault(vida);
-      danoInsta(dano);
-      return vida;
-    },
+    // tropezon: function (nombre, vida) {
+    //   nrand = getRandomIntInclusive(9);
+    //   nrand < 9
+    //     ? (dano = getRandomIntInclusive(10, 1))
+    //     : (dano = getRandomIntInclusive(20, 11));
+    //   dano > 11
+    //     ? (adicional = "y cayó de un precipicio")
+    //     : dano > 4
+    //     ? (adicional = "y cayó desde muy alto")
+    //     : (adicional = "");
+    //   vida -= dano;
+    //   dano += vida;
+    //   texto(`${nombre} se tropezó ${adicional}`);
+    //   vidaDefault(vida);
+    //   danoInsta(dano);
+    //   return vida;
+    // },
   },
   danoDiaNoche = {
     lobo: function (nombre, vida) {
@@ -207,7 +212,7 @@ const vidaGlobal = {
     bruja: function (nombre, vida) {
       pocionIns(vida);
       texto(
-        `Una bruja le tiro una pocion splash de <i>curación instantánea ${adicional}</i> a ${nombre}`
+        `Una bruja se confunde y le tira una pocion splash de <i>curación instantánea ${adicional}</i> a ${nombre}`
       );
       vidaDefault(vida);
       ctrl();
@@ -234,12 +239,12 @@ Object.assign(vidaDia, vidaDiaNoche);
 Object.assign(vidaNoche, vidaDiaNoche);
 
 const randomGlobal = {
-    locura: function (nombre, vida) {
-      texto(
-        `${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`
-      );
-      vidaDefault(vida, true);
-    },
+    // locura: function (nombre, vida) {
+    //   texto(
+    //     `${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`
+    //   );
+    //   vidaDefault(vida, true);
+    // },
   },
   randomDiaNoche = {
     armadura: function (nombre, vida) {
@@ -284,6 +289,12 @@ export const randomDia = {
   randomNoche = {
     aldeanozombie: function (nombre, vida) {
       texto(`${nombre} deja que un aldeano muera por un zombie para curarlo`);
+      vidaDefault(vida, true);
+    },
+    pollozombie: function (nombre, vida) {
+      texto(
+        `Después de ver a un mini zombie montando un pollo, ${nombre} intenta hacer lo mismo`
+      );
       vidaDefault(vida, true);
     },
   };

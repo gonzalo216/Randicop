@@ -70,7 +70,7 @@ header > img {
 .panel.is-active {
   transform: translate(0%, 0%);
 }
-a{
+a {
   text-decoration: none;
 }
 .menu {
@@ -79,7 +79,7 @@ a{
   align-items: center;
   justify-items: center;
 }
-.menu a{
+.menu a {
   color: bisque;
   margin-top: 40px;
   font-size: 50pxx;
