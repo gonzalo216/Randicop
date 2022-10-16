@@ -7,8 +7,39 @@ export function titulo(text, clas = null) {
   $p.innerHTML = text;
   $transcurso.at(-1).appendChild($p);
 }
+export async function decidir(si, no) {
+  const eleccion = new Promise((resolve, reject) => {
+    d.addEventListener("click", (e) => {
+      if (e.target.matches("#btn-si")) {
+        console.log("toco");
+        resolve(true);
+      }
+      if (e.target.matches("#btn-no")) {
+        console.log("toco2");
+        resolve(false);
+      }
+    });
+  });
+  const $template = d.getElementById("tem-decidir").content,
+    $fragment = d.createDocumentFragment();
+  $template.getElementById("btn-si").innerHTML = si;
+  $template.getElementById("btn-no").innerHTML = no;
+  let $clone = d.importNode($template, true);
+  $fragment.appendChild($clone);
+  $transcurso.at(-1).lastElementChild.appendChild($fragment);
+  copySize();
+  let result = await eleccion;
+  $transcurso.at(-1).lastElementChild.lastElementChild.remove();
+  $transcurso.at(-1).lastElementChild.lastElementChild.remove();
+  //if (result)
+  $transcurso
+    .at(-1)
+    .lastElementChild.lastElementChild.lastElementChild.remove();
+
+  return result;
+}
 function imprimir(text, clas, fin = false, addClass = null) {
-  const $template = d.querySelector("template").content,
+  const $template = d.getElementById("tem-linea").content,
     $fragment = d.createDocumentFragment();
 
   $template.querySelector(clas).innerHTML = text;

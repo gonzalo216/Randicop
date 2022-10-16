@@ -2,6 +2,8 @@ import { haySit, texto, titulo } from "./print_lines.js";
 import {
   danoDia,
   danoNoche,
+  decidirDia,
+  decidirNoche,
   randomDia,
   randomNoche,
   relGlobal,
@@ -39,7 +41,7 @@ export default async function evento() {
         const el = jugs[i];
         let nombre = lista[el].nombre,
           vida = lista[el].vida,
-          vivos,
+          vivos = 0,
           repetir;
         if (vida <= 0) {
           i++;
@@ -50,13 +52,14 @@ export default async function evento() {
         });
         do {
           repetir = false;
-          vida === 20
-            ? vivos > 1
+          if (vida === 20)
+            vivos > 1
               ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
-              : (nrand = getRandomIntInclusive(2, 1))
-            : vivos > 1
-            ? (nrand = getRandomIntInclusive(10))
-            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+              : (nrand = getRandomIntInclusive(2, 1));
+          else
+            vivos > 1
+              ? (nrand = getRandomIntInclusive(10))
+              : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
               // cura
@@ -82,9 +85,12 @@ export default async function evento() {
             case 3:
             //console.log("descubrimiento");
             //break;
-            case 4:
-            //console.log("decisivas");
-            //break;
+            case 4: {
+              const accion = Object.keys(decidirDia);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              await decidirDia[accion[nrand]](nombre, vida, i);
+              break;
+            }
             case 5: {
               //relaciones
               const accion = Object.keys(relGlobal);
@@ -121,7 +127,7 @@ export default async function evento() {
         const el = jugs[i];
         let nombre = lista[el].nombre,
           vida = lista[el].vida,
-          vivos,
+          vivos = 0,
           repetir;
         if (vida <= 0) {
           i++;
@@ -132,13 +138,14 @@ export default async function evento() {
         });
         do {
           repetir = false;
-          vida === 20
-            ? vivos > 1
+          if (vida === 20)
+            vivos > 1
               ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
-              : (nrand = getRandomIntInclusive(2, 1))
-            : vivos > 1
-            ? (nrand = getRandomIntInclusive(10))
-            : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+              : (nrand = getRandomIntInclusive(2, 1));
+          else
+            vivos > 1
+              ? (nrand = getRandomIntInclusive(10))
+              : (nrand = getRandomIntInclusive(2)); //saltea relaciones
           switch (nrand) {
             case 0: {
               // cura
@@ -164,9 +171,12 @@ export default async function evento() {
             case 3:
             //console.log("descubrimiento");
             //break;
-            case 4:
-            //console.log("decisivas");
-            //break;
+            case 4: {
+              const accion = Object.keys(decidirNoche);
+              nrand = getRandomIntInclusive(accion.length - 1);
+              await decidirNoche[accion[nrand]](nombre, vida, i);
+              break;
+            }
             case 5: {
               const accion = Object.keys(relGlobal);
               nrand = getRandomIntInclusive(accion.length - 1);
@@ -181,10 +191,8 @@ export default async function evento() {
               if (lista[el].cantF === 0) repetir = true;
               else {
                 nrand = getRandomIntInclusive(lista[el].cantF - 1);
-                console.log(lista[el].cantF);
                 delete lista[el].funciones[nrand]();
                 lista[el].cantF--;
-                console.log(lista[el].cantF);
               }
               break;
             }
@@ -226,6 +234,6 @@ export function final() {
 export function Hola() {
   for (let i = 0; i < jugs.length; i++) {
     const el = jugs[i];
-    console.log(lista[el].nombre, lista[el].vida);
+    console.log(lista[el].nombre, lista[el].vida, lista[el].protag);
   }
 }

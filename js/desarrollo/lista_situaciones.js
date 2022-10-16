@@ -1,6 +1,7 @@
 import {
   curar,
   danoInsta,
+  decidir,
   texto,
   vidaDefault,
   vidaExtra,
@@ -317,3 +318,60 @@ export const relGlobal = {
     lista[jugs[i]].cantF++;
   },
 };
+
+export const decidirDia = {
+    entrarCasa: async function (nombre, vida, i) {
+      const n2 = nJugRand(i);
+      texto(
+        `${nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
+      );
+      vidaDefault(vida, true);
+      texto(`¿Debería aprovecharse y entrar a su casa?`, true);
+      let decision = await decidir("Entrar", "No entrar");
+      if (decision) {
+        nrand = getRandomIntInclusive(0);
+        switch (nrand) {
+          case 0:
+            texto(
+              `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Antes de que el dueño regrese, toma todos los diamantes y escapa`
+            );
+            vidaDefault(vida, true);
+            break;
+
+          default:
+            break;
+        }
+      } else {
+        texto(`${nombre} deja pasar la oportunidad`);
+        vidaDefault(vida, true);
+      }
+    },
+  },
+  decidirNoche = {
+    entrarCasa: async function (nombre, vida, i) {
+      const n2 = nJugRand(i);
+      texto(
+        `${nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
+      );
+      vidaDefault(vida, true);
+      texto(`¿Debería aprovecharse y entrar a su casa?`, true);
+      let decision = await decidir("Entrar", "No entrar");
+      if (decision) {
+        nrand = getRandomIntInclusive(0);
+        switch (nrand) {
+          case 0:
+            texto(
+              `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Antes de que el dueño regrese, toma todos los diamantes y escapa`
+            );
+            vidaDefault(vida, true);
+            break;
+
+          default:
+            break;
+        }
+      } else {
+        texto(`${nombre} deja pasar la oportunidad`);
+        vidaDefault(vida, true);
+      }
+    },
+  };

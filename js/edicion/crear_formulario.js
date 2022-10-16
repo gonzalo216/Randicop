@@ -19,9 +19,7 @@ export default function crearFormulario(num, eliminar = false) {
           console.log(lastId);
           return;
         }
-        console.log(lastId);
       } else {
-        console.log($ids);
         lastId = 0;
         console.log();
       }
