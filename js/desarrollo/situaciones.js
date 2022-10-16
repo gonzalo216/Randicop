@@ -86,9 +86,11 @@ export default async function evento() {
             //console.log("descubrimiento");
             //break;
             case 4: {
-              const accion = Object.keys(decidirDia);
-              nrand = getRandomIntInclusive(accion.length - 1);
-              await decidirDia[accion[nrand]](nombre, vida, i);
+              if (lista[el].protag) {
+                const accion = Object.keys(decidirDia);
+                nrand = getRandomIntInclusive(accion.length - 1);
+                await decidirDia[accion[nrand]](nombre, vida, i);
+              } else repetir = true;
               break;
             }
             case 5: {
@@ -172,9 +174,11 @@ export default async function evento() {
             //console.log("descubrimiento");
             //break;
             case 4: {
-              const accion = Object.keys(decidirNoche);
-              nrand = getRandomIntInclusive(accion.length - 1);
-              await decidirNoche[accion[nrand]](nombre, vida, i);
+              if (lista[el].protag) {
+                const accion = Object.keys(decidirNoche);
+                nrand = getRandomIntInclusive(accion.length - 1);
+                await decidirNoche[accion[nrand]](nombre, vida, i);
+              } else repetir = true;
               break;
             }
             case 5: {
