@@ -5,6 +5,12 @@ class Jugador {
     this.protag = bol;
     this.cantF = 0;
     this.funciones = new Object();
+    this.armadura = {
+      casco: 0,
+      peto: 0,
+      pantalones: 0,
+      botas: 0,
+    };
   }
 }
 export const lista = new Object();

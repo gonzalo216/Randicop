@@ -53,28 +53,35 @@ function imprimir(text, clas, fin = false, addClass = null) {
     $template.querySelector(".texto").className = "texto";
   }
 }
-const agregarC = (corazones, img, midImg = null) => {
+const printIcons = (corazones, img, midImg = null) => {
   const text = [];
   for (let i = 0; i < corazones - 1; i += 2)
     text.push(`<img src="./../assets/${img}.png">​`);
   if (corazones % 2 === 1) text.push(`<img src="./../assets/${midImg}.png">​`);
   return text.join("");
 };
-export function vidaDefault(vida, bol = false) {
-  vidaTotal();
-  imprimir(agregarC(vida, "cRojo", "midRojo"), ".vida.jugador", bol);
+export function armar(armadura) {
+  imprimir(printIcons(armadura, "armadura", "midArm"), ".armadura");
 }
 export function vidaTotal() {
-  imprimir(agregarC(20, "cBlanco"), ".vida.total");
+  imprimir(printIcons(20, "cBlanco"), ".vida.total");
+}
+export function vidaDefault(vida, bol = false) {
+  vidaTotal();
+  imprimir(printIcons(vida, "cRojo", "midRojo"), ".vida.jugador", bol);
 }
 export function vidaExtra(extra) {
-  imprimir(agregarC(extra, "cAmari"), ".vida.extra");
+  imprimir(printIcons(extra, "cAmari"), ".vida.extra");
 }
 export function danoInsta(dano, bol = true) {
-  imprimir(agregarC(dano, "cVerde", "midVerde"), ".vida.anterior", bol);
+  imprimir(printIcons(dano, "cVerde", "midVerde"), ".vida.anterior", bol);
 }
 export function curar(cura, bol = true) {
-  imprimir(agregarC(cura, "cRojoOpaco", "midRojoOpaco"), ".vida.anterior", bol);
+  imprimir(
+    printIcons(cura, "cRojoOpaco", "midRojoOpaco"),
+    ".vida.anterior",
+    bol
+  );
 }
 export function texto(text, bol = false) {
   imprimir(text, ".texto", bol);
