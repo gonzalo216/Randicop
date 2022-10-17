@@ -14,7 +14,6 @@ div {
 }
 .imprimir {
   position: relative;
-  width: 100%;
   /* width: fit-content;
   min-width: 250px;
   margin-left: auto;
@@ -68,33 +67,45 @@ div {
 .texto {
   margin-bottom: 0;
 }
-.corazones {
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
+.iconos {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem 2rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
-.vida {
+.corazones {
+  position: relative;
+  min-width: max-content;
+}
+.armour {
+  min-width: max-content;
+}
+.icon {
   height: 23px;
 }
-.vida img {
+.icon img {
   max-height: 100%;
+}
+.vida {
+  text-align: left;
 }
 .vida.total {
   position: relative;
 }
 .vida.anterior {
   position: absolute;
-  bottom: 0;
   z-index: 2;
+  top: 0;
 }
 .vida.jugador {
   position: absolute;
-  bottom: 0;
   z-index: 3;
+  top: 0;
 }
 .vida.extra {
-  position: relative;
-  text-align: left;
+  position: absolute;
+  top: -1rem;
 }
 .vacio {
   position: relative;

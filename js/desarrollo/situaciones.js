@@ -38,12 +38,10 @@ export default async function evento() {
       await esperar(t);
       let i = 0;
       while (i < mitad) {
-        const el = jugs[i];
-        let nombre = lista[el].nombre,
-          vida = lista[el].vida,
-          vivos = 0,
+        const jug = lista[jugs[i]];
+        let vivos = 0,
           repetir;
-        if (vida <= 0) {
+        if (jug.vida <= 0) {
           i++;
           continue;
         }
@@ -52,7 +50,7 @@ export default async function evento() {
         });
         do {
           repetir = false;
-          if (vida === 20)
+          if (jug.vida === 20)
             vivos > 1
               ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
               : (nrand = getRandomIntInclusive(2, 1));
@@ -65,31 +63,31 @@ export default async function evento() {
               // cura
               const accion = Object.keys(vidaDia);
               nrand = getRandomIntInclusive(accion.length - 1);
-              lista[el].vida = vidaDia[accion[nrand]](nombre, vida);
+              vidaDia[accion[nrand]](jug);
               break;
             }
             case 1: {
               // daño
               const accion = Object.keys(danoDia);
               nrand = getRandomIntInclusive(accion.length - 1);
-              lista[el].vida = danoDia[accion[nrand]](nombre, vida);
+              danoDia[accion[nrand]](jug);
               break;
             }
             case 2: {
               // random
               const accion = Object.keys(randomDia);
               nrand = getRandomIntInclusive(accion.length - 1);
-              randomDia[accion[nrand]](nombre, vida);
+              randomDia[accion[nrand]](jug);
               break;
             }
             case 3:
             //console.log("descubrimiento");
             //break;
             case 4: {
-              if (lista[el].protag) {
+              if (jug.protag) {
                 const accion = Object.keys(decidirDia);
                 nrand = getRandomIntInclusive(accion.length - 1);
-                await decidirDia[accion[nrand]](nombre, vida, i);
+                await decidirDia[accion[nrand]](jug);
               } else repetir = true;
               break;
             }
@@ -97,7 +95,7 @@ export default async function evento() {
               //relaciones
               const accion = Object.keys(relGlobal);
               nrand = getRandomIntInclusive(accion.length - 1);
-              relGlobal[accion[nrand]](nombre, vida, i);
+              relGlobal[accion[nrand]](jug);
               break;
             }
             case 6:
@@ -105,19 +103,17 @@ export default async function evento() {
             case 8:
             case 9:
             case 10: {
-              if (lista[el].cantF === 0) repetir = true;
+              if (jug.cantF === 0) repetir = true;
               else {
-                nrand = getRandomIntInclusive(lista[el].cantF - 1);
-                console.log(lista[el].cantF);
-                delete lista[el].funciones[nrand]();
-                lista[el].cantF--;
-                console.log(lista[el].cantF);
+                nrand = getRandomIntInclusive(jug.cantF - 1);
+                delete jug.funciones[nrand]();
+                jug.cantF--;
               }
               break;
             }
           }
         } while (repetir);
-        if (lista[el].vida <= 0) muertos.push(el);
+        if (jug.vida <= 0) muertos.push(jugs[i]);
         i += await esperar(t);
       }
       haySit();
@@ -126,12 +122,10 @@ export default async function evento() {
       titulo("<h2>NOCHE</h2>", "evento noche");
       await esperar(t);
       while (i < cant) {
-        const el = jugs[i];
-        let nombre = lista[el].nombre,
-          vida = lista[el].vida,
-          vivos = 0,
+        const jug = lista[jugs[i]];
+        let vivos = 0,
           repetir;
-        if (vida <= 0) {
+        if (jug.vida <= 0) {
           i++;
           continue;
         }
@@ -140,7 +134,7 @@ export default async function evento() {
         });
         do {
           repetir = false;
-          if (vida === 20)
+          if (jug.vida === 20)
             vivos > 1
               ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
               : (nrand = getRandomIntInclusive(2, 1));
@@ -153,38 +147,38 @@ export default async function evento() {
               // cura
               const accion = Object.keys(vidaNoche);
               nrand = getRandomIntInclusive(accion.length - 1);
-              lista[el].vida = vidaNoche[accion[nrand]](nombre, vida);
+              vidaNoche[accion[nrand]](jug);
               break;
             }
             case 1: {
               // daño
               const accion = Object.keys(danoNoche);
               nrand = getRandomIntInclusive(accion.length - 1);
-              lista[el].vida = danoNoche[accion[nrand]](nombre, vida);
+              danoNoche[accion[nrand]](jug);
               break;
             }
             case 2: {
               // random
               const accion = Object.keys(randomNoche);
               nrand = getRandomIntInclusive(accion.length - 1);
-              randomNoche[accion[nrand]](nombre, vida);
+              randomNoche[accion[nrand]](jug);
               break;
             }
             case 3:
             //console.log("descubrimiento");
             //break;
             case 4: {
-              if (lista[el].protag) {
+              if (jug.protag) {
                 const accion = Object.keys(decidirNoche);
                 nrand = getRandomIntInclusive(accion.length - 1);
-                await decidirNoche[accion[nrand]](nombre, vida, i);
+                await decidirNoche[accion[nrand]](jug);
               } else repetir = true;
               break;
             }
             case 5: {
               const accion = Object.keys(relGlobal);
               nrand = getRandomIntInclusive(accion.length - 1);
-              relGlobal[accion[nrand]](nombre, vida, i);
+              relGlobal[accion[nrand]](jug);
               break;
             }
             case 6:
@@ -192,17 +186,17 @@ export default async function evento() {
             case 8:
             case 9:
             case 10: {
-              if (lista[el].cantF === 0) repetir = true;
+              if (jug.cantF === 0) repetir = true;
               else {
-                nrand = getRandomIntInclusive(lista[el].cantF - 1);
-                delete lista[el].funciones[nrand]();
-                lista[el].cantF--;
+                nrand = getRandomIntInclusive(jug.cantF - 1);
+                delete jug.funciones[nrand]();
+                jug.cantF--;
               }
               break;
             }
           }
         } while (repetir);
-        if (lista[el].vida <= 0) muertos.push(el);
+        if (jug.vida <= 0) muertos.push(jugs[i]);
         i += await esperar(t);
       }
       haySit();

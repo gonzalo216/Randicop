@@ -15,8 +15,8 @@ export function repetir(obj, cant) {
   for (let i = 1; i <= cant; i++) {
     keys.forEach((el) => {
       let propiedad = `${el}${i}`;
-      obj[propiedad] = function (nombre, vida) {
-        return obj[el](nombre, vida);
+      obj[propiedad] = function (jug) {
+        return obj[el](jug);
       };
     });
   }

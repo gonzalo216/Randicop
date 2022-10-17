@@ -8,13 +8,13 @@ import {
 } from "./print_lines.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
-const nJugRand = (i) => {
+const nJugRand = (jug) => {
   let num;
   do {
     num = getRandomIntInclusive(Object.keys(lista).length - 1);
   } while (
     lista[jugs[num]].vida <= 0 ||
-    lista[jugs[num]].nombre === lista[jugs[i]].nombre
+    lista[jugs[num]].nombre === jug.nombre
   );
   return jugs[num];
 };
@@ -47,15 +47,14 @@ const danoGlobal = {
     //   danoInsta(dano);
     //   return vida;
     // },
-    conexion: function (nombre, vida) {
-      dano = vida;
-      vida = 0;
+    conexion: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
       texto(
-        `${nombre} perdió la conexión, al volver le aparece un <strong>Game Over</strong>`
+        `${jug.nombre} perdió la conexión, al volver le aparece un <strong>Game Over</strong>`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
     // tropezon: function (nombre, vida) {
     //   nrand = getRandomIntInclusive(9);
@@ -76,96 +75,87 @@ const danoGlobal = {
     // },
   },
   danoDiaNoche = {
-    lobo: function (nombre, vida) {
+    lobo: function (jug) {
       dano = getRandomIntInclusive(20);
-      vida -= dano;
-      dano += vida;
+      jug.vida -= dano;
+      dano += jug.vida;
       texto(
-        `${nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`
+        `${jug.nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    creeper: function (nombre, vida) {
+    creeper: function (jug) {
       dano = getRandomIntInclusive(20, 2);
-      vida -= dano;
-      dano += vida;
-      texto(`Un creeper sorpende a ${nombre} por la espalda`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`Un creeper sorpende a ${jug.nombre} por la espalda`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    grava: function (nombre, vida) {
+    grava: function (jug) {
       dano = getRandomIntInclusive(5, 1);
-      vida -= dano;
-      dano += vida;
-      texto(`Mientras picaba, a ${nombre} le cayó grava encima`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`Mientras picaba, a ${jug.nombre} le cayó grava encima`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    speedrun: function (nombre, vida) {
+    speedrun: function (jug) {
       dano = getRandomIntInclusive(20, 1);
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} cayó en lava al cavar en linea recta hacia abajo`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`${jug.nombre} cayó en lava al cavar en linea recta hacia abajo`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    bedrock: function (nombre, vida) {
+    bedrock: function (jug) {
       dano = 20;
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} intenta romper bedrock, lo consigue y cae al vacío`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`${jug.nombre} intenta romper bedrock, lo consigue y cae al vacío`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
   };
 export const danoDia = {
-    sol: function (nombre, vida) {
+    sol: function (jug) {
       dano = getRandomIntInclusive(3, 1);
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} se quemó con el Sol`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`${jug.nombre} se quemó con el Sol`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    charco: function (nombre, vida) {
+    charco: function (jug) {
       dano = getRandomIntInclusive(15, 3);
-      vida -= dano;
-      dano += vida;
-      texto(`${nombre} vió el charco de lava cuando ya era muy tarde`);
-      vidaDefault(vida);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`${jug.nombre} vió el charco de lava cuando ya era muy tarde`);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
-    golem: function (nombre, vida) {
+    golem: function (jug) {
       dano = getRandomIntInclusive(20);
-      vida -= dano;
-      dano += vida;
+      jug.vida -= dano;
+      dano += jug.vida;
       texto(
-        `El golem de la aldea defendió a un aldeano al enfrentarse a ${nombre}`
+        `El golem de la aldea defendió a un aldeano al enfrentarse a ${jug.nombre}`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
   },
   danoNoche = {
-    phantoms: function (nombre, vida) {
+    phantoms: function (jug) {
       dano = getRandomIntInclusive(15);
-      vida -= dano;
-      dano += vida;
+      jug.vida -= dano;
+      dano += jug.vida;
       texto(
-        `Tras no dormir por tres noches seguidas, ${nombre} sufre daño de los phantoms`
+        `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre daño de los phantoms`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       danoInsta(dano);
-      return vida;
     },
   };
 repetir(danoDiaNoche, 1);
@@ -189,46 +179,46 @@ const ctrl = () => {
     }
   };
 const vidaGlobal = {
-    pocionCura: function (nombre, vida) {
-      pocionIns(vida);
+    pocionCura: function (jug) {
+      pocionIns(jug.vida);
       texto(
-        `${nombre} usó una pocion de <i>curación instantánea ${adicional}</i>`
+        `${jug.nombre} usó una pocion de <i>curación instantánea ${adicional}</i>`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       ctrl();
       curar(cura);
-      return cura;
+      jug.vida = cura;
     },
-    manzana: function (nombre, vida) {
-      cura = 4 + vida;
-      texto(`${nombre} comió una manzana dorada`);
+    manzana: function (jug) {
+      cura = 4 + jug.vida;
+      texto(`${jug.nombre} comió una manzana dorada`);
       vidaExtra(4);
-      vidaDefault(vida);
+      vidaDefault(jug);
       ctrl();
       curar(cura);
-      return cura;
+      jug.vida = cura;
     },
   },
   vidaDiaNoche = {
-    bruja: function (nombre, vida) {
-      pocionIns(vida);
+    bruja: function (jug) {
+      pocionIns(jug.vida);
       texto(
-        `Una bruja se confunde y le tira una pocion splash de <i>curación instantánea ${adicional}</i> a ${nombre}`
+        `Una bruja se confunde y le tira una pocion splash de <i>curación instantánea ${adicional}</i> a ${jug.nombre}`
       );
-      vidaDefault(vida);
+      vidaDefault(jug);
       ctrl();
       curar(cura);
-      return cura;
+      jug.vida = cura;
     },
   };
 export const vidaDia = {
-    angel: function (nombre, vida) {
-      cura = getRandomIntInclusive(19, 1) + vida;
-      texto(`Un angel bajo del cielo y curó a ${nombre}`);
-      vidaDefault(vida);
+    angel: function (jug) {
+      cura = getRandomIntInclusive(19, 1) + jug.vida;
+      texto(`Un angel bajo del cielo y curó a ${jug.nombre}`);
+      vidaDefault(jug);
       ctrl();
       curar(cura);
-      return cura;
+      jug.vida = cura;
     },
   },
   vidaNoche = {};
@@ -248,55 +238,57 @@ const randomGlobal = {
     // },
   },
   randomDiaNoche = {
-    armadura: function (nombre, vida) {
-      texto(`${nombre} encanta su armadura de cuero`);
-      vidaDefault(vida, true);
+    armadura: function (jug) {
+      texto(`${jug.nombre} encanta su armadura de cuero`);
+      vidaDefault(jug, true);
     },
-    bedrock: function (nombre, vida) {
-      texto(`${nombre} pierde el dia intentando romper bedrock`);
-      vidaDefault(vida, true);
+    bedrock: function (jug) {
+      texto(`${jug.nombre} pierde el dia intentando romper bedrock`);
+      vidaDefault(jug, true);
     },
   };
 export const randomDia = {
-    oveja: function (nombre, vida) {
+    oveja: function (jug) {
       texto(
-        `${nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`
+        `${jug.nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`
       );
-      vidaDefault(vida, true);
+      vidaDefault(jug, true);
     },
-    golem: function (nombre, vida) {
+    golem: function (jug) {
       texto(
-        `${nombre} golpeó a un aldeano por accidente y huyó del golem que le venía encima`
+        `${jug.nombre} golpeó a un aldeano por accidente y huyó del golem que le venía encima`
       );
-      vidaDefault(vida, true);
+      vidaDefault(jug, true);
     },
-    semillas: function (nombre, vida) {
-      texto(`${nombre} cada vez tiene mas semillas`);
-      vidaDefault(vida, true);
+    semillas: function (jug) {
+      texto(`${jug.nombre} cada vez tiene mas semillas`);
+      vidaDefault(jug, true);
     },
-    frasco: function (nombre, vida) {
-      texto(`${nombre} fabrica un frasco para toma agua`);
-      vidaDefault(vida, true);
+    frasco: function (jug) {
+      texto(`${jug.nombre} fabrica un frasco para toma agua`);
+      vidaDefault(jug, true);
     },
-    pala: function (nombre, vida) {
-      texto(`${nombre} fabricó una pala y se puso a trabajar`);
-      vidaDefault(vida, true);
+    pala: function (jug) {
+      texto(`${jug.nombre} fabricó una pala y se puso a trabajar`);
+      vidaDefault(jug, true);
     },
-    esclavos: function (nombre, vida) {
-      texto(`${nombre} ya está esclavizando aldeanos`);
-      vidaDefault(vida, true);
+    esclavos: function (jug) {
+      texto(`${jug.nombre} ya está esclavizando aldeanos`);
+      vidaDefault(jug, true);
     },
   },
   randomNoche = {
-    aldeanozombie: function (nombre, vida) {
-      texto(`${nombre} deja que un aldeano muera por un zombie para curarlo`);
-      vidaDefault(vida, true);
-    },
-    pollozombie: function (nombre, vida) {
+    aldeanozombie: function (jug) {
       texto(
-        `Después de ver a un mini zombie montando un pollo, ${nombre} intenta hacer lo mismo`
+        `${jug.nombre} deja que un aldeano muera por un zombie para curarlo`
       );
-      vidaDefault(vida, true);
+      vidaDefault(jug, true);
+    },
+    pollozombie: function (jug) {
+      texto(
+        `Después de ver a un mini zombie montando un pollo, ${jug.nombre} intenta hacer lo mismo`
+      );
+      vidaDefault(jug, true);
     },
   };
 repetir(randomDiaNoche, 1);
@@ -307,25 +299,25 @@ Object.assign(randomDia, randomDiaNoche);
 Object.assign(randomNoche, randomDiaNoche);
 
 export const relGlobal = {
-  mirarfeo: function (nombre, vida, i) {
-    const n2 = nJugRand(i);
-    texto(`${nombre} miro feo a ${lista[n2].nombre}`);
-    vidaDefault(vida, true);
-    lista[jugs[i]].funciones[lista[jugs[i]].cantF] = () => {
-      texto(`${nombre} odia a ${lista[n2].nombre}`);
-      vidaDefault(vida, true);
+  mirarfeo: function (jug) {
+    const n2 = nJugRand(jug);
+    texto(`${jug.nombre} miro feo a ${lista[n2].nombre}`);
+    vidaDefault(jug, true);
+    jug.funciones[jug.cantF] = () => {
+      texto(`${jug.nombre} odia a ${lista[n2].nombre}`);
+      vidaDefault(jug, true);
     };
-    lista[jugs[i]].cantF++;
+    jug.cantF++;
   },
 };
 
 export const decidirDia = {
-    entrarCasa: async function (nombre, vida, i) {
-      const n2 = nJugRand(i);
+    entrarCasa: async function (jug) {
+      const n2 = nJugRand(jug);
       texto(
-        `${nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
+        `${jug.nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
       );
-      vidaDefault(vida, true);
+      vidaDefault(jug, true);
       texto(`¿Debería aprovecharse y entrar a su casa?`, true);
       let decision = await decidir("Entrar", "No entrar");
       if (decision) {
@@ -335,25 +327,25 @@ export const decidirDia = {
             texto(
               `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Antes de que el dueño regrese, toma todos los diamantes y escapa`
             );
-            vidaDefault(vida, true);
+            vidaDefault(jug, true);
             break;
 
           default:
             break;
         }
       } else {
-        texto(`${nombre} deja pasar la oportunidad`);
-        vidaDefault(vida, true);
+        texto(`${jug.nombre} deja pasar la oportunidad`);
+        vidaDefault(jug, true);
       }
     },
   },
   decidirNoche = {
-    entrarCasa: async function (nombre, vida, i) {
-      const n2 = nJugRand(i);
+    entrarCasa: async function (jug) {
+      const n2 = nJugRand(jug);
       texto(
-        `${nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
+        `${jug.nombre} observa a ${lista[n2].nombre} alejarse de su casa, y no cree que vuelva pronto.`
       );
-      vidaDefault(vida, true);
+      vidaDefault(jug, true);
       texto(`¿Debería aprovecharse y entrar a su casa?`, true);
       let decision = await decidir("Entrar", "No entrar");
       if (decision) {
@@ -363,15 +355,15 @@ export const decidirDia = {
             texto(
               `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Antes de que el dueño regrese, toma todos los diamantes y escapa`
             );
-            vidaDefault(vida, true);
+            vidaDefault(jug, true);
             break;
 
           default:
             break;
         }
       } else {
-        texto(`${nombre} deja pasar la oportunidad`);
-        vidaDefault(vida, true);
+        texto(`${jug.nombre} deja pasar la oportunidad`);
+        vidaDefault(jug, true);
       }
     },
   };

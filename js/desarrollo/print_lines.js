@@ -50,6 +50,8 @@ function imprimir(text, clas, fin = false, addClass = null) {
     $transcurso.at(-1).lastElementChild.appendChild($fragment);
     copySize();
     $template.querySelectorAll(".vida").forEach((el) => (el.innerHTML = ""));
+    $template.querySelector(".armadura").innerHTML = "";
+
     $template.querySelector(".texto").className = "texto";
   }
 }
@@ -61,14 +63,21 @@ const printIcons = (corazones, img, midImg = null) => {
   return text.join("");
 };
 export function armar(armadura) {
-  imprimir(printIcons(armadura, "armadura", "midArm"), ".armadura");
+  let escudo = Object.values(armadura).reduce(
+    (total, actual) => total + actual,
+    0
+  );
+  escudo = 20;
+  console.log("armando");
+  imprimir(printIcons(escudo, "armadura", "midArm"), ".armadura");
 }
 export function vidaTotal() {
   imprimir(printIcons(20, "cBlanco"), ".vida.total");
 }
-export function vidaDefault(vida, bol = false) {
+export function vidaDefault(jug, bol = false) {
   vidaTotal();
-  imprimir(printIcons(vida, "cRojo", "midRojo"), ".vida.jugador", bol);
+  armar(jug.armadura);
+  imprimir(printIcons(jug.vida, "cRojo", "midRojo"), ".vida.jugador", bol);
 }
 export function vidaExtra(extra) {
   imprimir(printIcons(extra, "cAmari"), ".vida.extra");
