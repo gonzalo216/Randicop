@@ -114,7 +114,32 @@ const danoGlobal = {
       vidaDefault(jug);
       danoInsta(dano);
     },
+    escapar: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(`Por un error de calculo, ${jug.nombre} muere de caida mientras intenta escapar de ${jug2.nombre}`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+    banneado: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(`${jug.nombre} es banneado por utilizar creativo (y tomar un stock de manzanas de Notch)`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+    papaenvenenada: function (jug) {
+      dano = getRandomIntInclusive(4, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(`${jug.nombre} se ve forzado a comer una papa envenenada`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    }
   };
+
 export const danoDia = {
     sol: function (jug) {
       dano = getRandomIntInclusive(3, 1);
@@ -306,6 +331,18 @@ const randomGlobal = {
       texto(`${jug.nombre} pierde el dia intentando romper bedrock`);
       vidaDefault(jug, true);
     },
+    cat: function (jug) {
+      texto(`${jug.nombre} se siente mas optimista tras obtener el disco de música 'Cat'`);
+      vidaDefault(jug, true);
+    },
+    recuento: function (jug) {
+      texto(`${jug.nombre} recuenta sus diamantes pensando en conseguir una armadura`);
+      vidaDefault(jug, true);
+    },
+    diamantelava: function (jug) {
+      texto(`${jug.nombre} tira por error en la lava el único diamante que logra encontrar`);
+      vidaDefault(jug, true);
+    },
   };
 export const randomDia = {
     oveja: function (jug) {
@@ -410,30 +447,73 @@ export const relGlobal = {
   },
 }
 
+const relDiaNoche = {
+  robarhierro: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} roba hierro del horno de ${jug2.nombre}`);
+    vidaDefault(jug, true);
+  },
+  incendiarcasa: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} amenaza a ${jug2.nombre} con incendiar su casa`);
+    vidaDefault(jug, true);
+  }
+  }
+
+export const relDia = {
+  construircasa: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} ayuda a ${jug2.nombre} con la construccion de su casa`);
+    vidaDefault(jug, true);
+  },
+  vivirjuntos: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
+    vidaDefault(jug, true);
+  },
+  novivirjuntos: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`);
+    vidaDefault(jug, true);
+  },
+  florescasa: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`);
+    vidaDefault(jug, true);
+  },
+  cazarjuntos: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`);
+    vidaDefault(jug, true);
+  }
+}
+
+const relNoche = {
+  juntarcamas: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} y ${jug2.nombre} juntan sus camas para dormir`);
+    vidaDefault(jug, true);
+  },
+  buscarmobs: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} y ${jug2.nombre} exploran los alrededores juntos en busca de mobs`);
+    vidaDefault(jug, true);
+  },
+  dejarmobs: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(`${jug.nombre} deja solo a ${jug2.nombre} en cuanto ve al primer mob`);
+    vidaDefault(jug, true);
+  }
+}
+
+repetir(relDiaNoche, 1);
+repetir(relDia, 2);
+repetir(relNoche, 2);
+Object.assign(relDiaNoche, relGlobal);
+Object.assign(relDia, relDiaNoche);
+Object.assign(relNoche, relDiaNoche);
+
 // DECIDIR
-const relacionesGlobal = {
-
-}
-
-const relacionesDiaNoche = {
-
-}
-
-export const relacionesDia = {
-
-}
-
-const relacionesNoche = {
-
-}
-
-repetir(relacionesDiaNoche, 1);
-repetir(relacionesDia, 2);
-repetir(relacionesNoche, 2);
-Object.assign(relacionesDiaNoche, relacionesGlobal);
-Object.assign(relacionesDia, relacionesDiaNoche);
-Object.assign(relacionesNoche, relacionesDiaNoche);
-
 const decidirGlobal = {
 
 }
