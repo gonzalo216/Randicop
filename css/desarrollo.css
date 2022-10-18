@@ -74,26 +74,23 @@ div {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-.corazones {
+.corazones,
+.armour {
   position: relative;
   min-width: max-content;
 }
-.armour {
-  min-width: max-content;
+.armadura {
+  position: absolute;
+  z-index: 1;
 }
 .icon {
   height: 23px;
+  text-align: left;
 }
 .icon img {
   width: auto;
   height: 100%;
   margin-right: 4px;
-}
-.vida {
-  text-align: left;
-}
-.vida.total {
-  position: relative;
 }
 .vida.anterior {
   position: absolute;

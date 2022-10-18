@@ -9,7 +9,7 @@ const d = document,
   iniciar();
   evento();
   btnAnt.disabled = true;
-  Hola();
+  //Hola();
 })();
 d.addEventListener("click", (e) => {
   if (e.target.matches("#sig")) {
