@@ -69,25 +69,25 @@ export function armar(armadura) {
   );
   escudo = 20;
   console.log("armando");
-  imprimir(printIcons(escudo, "armadura", "midArm"), ".armadura");
+  imprimir(printIcons(escudo, "FullArmor", "MedioArmor"), ".armadura");
 }
 export function vidaTotal() {
-  imprimir(printIcons(20, "cBlanco"), ".vida.total");
+  imprimir(printIcons(20, "Hvacio"), ".vida.total");
 }
 export function vidaDefault(jug, bol = false) {
   vidaTotal();
   armar(jug.armadura);
-  imprimir(printIcons(jug.vida, "cRojo", "midRojo"), ".vida.jugador", bol);
+  imprimir(printIcons(jug.vida, "cRojo", "Medio"), ".vida.jugador", bol);
 }
 export function vidaExtra(extra) {
-  imprimir(printIcons(extra, "cAmari"), ".vida.extra");
+  imprimir(printIcons(extra, "FullG", "MedioG"), ".vida.extra");
 }
 export function danoInsta(dano, bol = true) {
-  imprimir(printIcons(dano, "cVerde", "midVerde"), ".vida.anterior", bol);
+  imprimir(printIcons(dano, "FullDano", "MedioDano"), ".vida.anterior", bol);
 }
 export function curar(cura, bol = true) {
   imprimir(
-    printIcons(cura, "cRojoOpaco", "midRojoOpaco"),
+    printIcons(cura, "FullRosa", "MedioRosa"),
     ".vida.anterior",
     bol
   );
