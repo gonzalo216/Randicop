@@ -1,14 +1,16 @@
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/Minecrafter.Reg.ttf);
+}
 body {
   margin: 0;
   /* background: #ccffbd; */
   background: darkseagreen;
-  font-family: "Abyssinica SIL", serif;
-  font-family: "Silkscreen", cursive;
+  font-family: minecrafter;
 }
-
 h1 {
   /* color: #76ba99; */
-  color: darkseagreen;
+  color: rgb(0, 177, 0);
   height: max-content;
   font-size: min(8vw, 70px);
   letter-spacing: 5px;
@@ -83,7 +85,7 @@ details > p {
   border: 1px black solid;
   /* border-radius: 20px; */
   box-shadow: 0.75rem 0.75rem 1rem black;
-  color: white;
+  color: lightgray;
   -webkit-text-stroke: 2px black;
   font-size: 2rem;
 }
@@ -116,7 +118,7 @@ input[type="checkbox"] {
   margin-bottom: 1rem;
   -webkit-appearance: none;
   appearance: none;
-  background-color: #fff;
+  background-color: white;
   font: inherit;
   color: currentColor;
   width: 1.15em;
@@ -146,7 +148,7 @@ input[type="checkbox"]:checked::before {
   left: 1.75rem;
   padding: 10px 0;
   pointer-events: none;
-  color: white;
+  color: lightgray;
   transition: 0.5s;
 }
 input[type="checkbox"]:checked ~ .label-protag {
@@ -161,7 +163,7 @@ input[type="text"] {
   border-bottom: thin solid white;
   outline: none;
   background: transparent;
-  color: white;
+  color: lightgray;
 }
 .label-name {
   position: absolute;

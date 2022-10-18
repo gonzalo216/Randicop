@@ -1,0 +1,115 @@
+body {
+  margin: 0;
+  background: #dbd8e3;
+}
+
+
+@font-face {
+  font-family: "Monoton";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Monoton"), local("Monoton-Regular"),
+    url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff)
+      format("woff");
+}
+a {
+  text-decoration: none;
+  -webkit-transition: all 1.5s;
+  -moz-transition: all 1.5s;
+  transition: all 1.5s;
+}
+h1 {
+  font-size: 90px;
+  width: max-content;
+}
+h1 a {
+  color: #ff1177;
+  font-family: Monoton;
+}
+h1 a:hover {
+  -webkit-animation: neon1 0.5s ease-in-out infinite alternate;
+  -moz-animation: neon1 0.5s ease-in-out infinite alternate;
+  animation: neon1 0.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+@-moz-keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
+      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
+      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+  }
+}
+main {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  place-content: center;
+}
+.sec {
+  width: 40%;
+  margin-top: 100px;
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  place-content: center;
+}
+.sec img {
+  width: 250px;
+}
+
+#t1 {
+  font-size: 2em;
+}
+#t2 {
+  font-size: 2em;
+}
+
+.parent {
+  width: 300px;
+  height: 300px;
+  background-color: #cccccc;
+  text-align: center;
+}
+.zoom {
+  /* Aumentamos la anchura y altura durante 2 segundos */
+  transition: width 2s, height 2s, transform 2s;
+  display: inline-block;
+}
+
+.zoom:hover {
+  /* tranformamos el elemento al pasar el mouse por encima al doble de
+       su tamaño con scale(2). */
+  transform: scale(1.2);
+  backface-visibility: hidden;
+}
+#lilo {
+  color: red;
+}

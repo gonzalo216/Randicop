@@ -85,7 +85,9 @@ div {
   height: 23px;
 }
 .icon img {
-  max-height: 100%;
+  width: auto;
+  height: 100%;
+  margin-right: 4px;
 }
 .vida {
   text-align: left;
@@ -105,7 +107,7 @@ div {
 }
 .vida.extra {
   position: absolute;
-  top: -1rem;
+  top: -1.5rem;
 }
 .vacio {
   position: relative;
