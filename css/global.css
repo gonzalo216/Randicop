@@ -20,10 +20,10 @@ body {
   top: 0;
   transition: height 0.5s ease;
   z-index: 999;
-  align-items: center;
   display: grid;
+  align-items: center;
   padding-top: 1rem;
-  grid-template-columns: 15% 65% 20%;
+  grid-template-columns: 15% 70% 15%;
   grid-template-rows: 80%;
   background: #100f0f;
   height: 8rem;
