@@ -10,7 +10,7 @@ body {
 }
 h1 {
   /* color: #76ba99; */
-  color: rgb(0, 177, 0);
+  color: darkseagreen;
   height: max-content;
   font-size: min(8vw, 70px);
   letter-spacing: 5px;

@@ -7,9 +7,9 @@ body {
 @font-face {
   font-family: "Monoton";
   font-style: normal;
-  font-weight: 800;
-  src: local("Monoton"), local("Monoton-Regular"),
-    url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff)
+  font-weight: 400;
+  src: local("Iceland"), local("Iceland-Regular"),
+    url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
       format("woff");
 }
 a {
@@ -23,7 +23,7 @@ h1 {
   width: max-content;
 }
 h1 a {
-  color: #ff1177;
+  color: #dbd8e3;
   font-family: Monoton;
 }
 h1 a:hover {
