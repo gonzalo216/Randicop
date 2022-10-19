@@ -1,4 +1,4 @@
-import evento, { apurar, final } from "./situaciones.js";
+import juego, { apurar, final } from "./situaciones.js";
 
 const d = document;
 var btnSig, btnAnt;
@@ -59,7 +59,7 @@ export function siguiente() {
       btnSig.disabled = true;
       return;
     }
-    if (btnSig.textContent === "SIGUIENTE") evento();
+    if (btnSig.textContent === "SIGUIENTE") juego();
     else apurar();
     completo(false);
     btnSig.textContent = "Completar";

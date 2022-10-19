@@ -11,6 +11,8 @@ class Jugador {
       pantalon: 0,
       botas: 0,
     };
+    this.perro = false;
+    this.gato = false;
   }
 }
 export const lista = new Object();

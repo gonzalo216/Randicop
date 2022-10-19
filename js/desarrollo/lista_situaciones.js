@@ -186,10 +186,16 @@ export const danoDia = {
       danoInsta(dano);
     },
     zombiebpato: function (jug) {
-      dano = getRandomIntInclusive(20, 4);
+      if(jug.perro){
+       dano = getRandomIntInclusive(5)
+       texto(`Un zombie bebé montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`);
+      }
+      else {
+       dano = getRandomIntInclusive(20, 4); 
+       texto(`Un zombie bebé montado en un pato ataca a ${jug.nombre}`);
+      }
       jug.vida -= dano;
       dano += jug.vida;
-      texto(`Un zombie bebé montado en un pato ataca a${jug.nombre}`);
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -521,6 +527,7 @@ const decidirDiaNoche = {
           break;
         case 1:
           texto(`¡Ahora ${jug.nombre} tiene un nuevo perro!`);
+          jug.perro = true;
           vidaDefault(jug, true);
           break;
         case 2:
