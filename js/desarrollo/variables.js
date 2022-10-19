@@ -8,7 +8,7 @@ class Jugador {
     this.armadura = {
       casco: 0,
       peto: 0,
-      pantalones: 0,
+      pantalon: 0,
       botas: 0,
     };
   }

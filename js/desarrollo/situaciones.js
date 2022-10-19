@@ -164,9 +164,10 @@ export default async function evento() {
               randomNoche[accion[nrand]](jug);
               break;
             }
-            case 3:
-            //console.log("descubrimiento");
-            //break;
+            case 3: {
+              //console.log("descubrimiento");
+              //break;
+            }
             case 4: {
               if (jug.protag) {
                 const accion = Object.keys(decidirNoche);

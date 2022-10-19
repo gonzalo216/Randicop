@@ -1,3 +1,5 @@
+import { desordenar } from "./funciones.js";
+
 export const armadura = {
   casco: {
     cuero: 1,
@@ -32,3 +34,5 @@ export const armadura = {
     netherite: 3,
   },
 };
+export const partes = desordenar(Object.keys(armadura)),
+  materiales = desordenar(Object.keys(armadura.casco));

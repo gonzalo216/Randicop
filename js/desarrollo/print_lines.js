@@ -65,7 +65,6 @@ function armar(armadura) {
     (total, actual) => total + actual,
     0
   );
-  escudo = 10;
   imprimir(printIcons(escudo, "armorOne", "armorHalf"), ".armadura");
 }
 function armarTotal() {
