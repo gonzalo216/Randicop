@@ -5,6 +5,14 @@ body {
   animation: aparecer 2s;
   min-width: 200px;
 }
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/Minecrafter.Alt.ttf);
+}
+@font-face {
+  font-family: god;
+  src: url(./../assets/AmongUsFilled-Regular.ttf);
+}
 @keyframes aparecer {
   from {
     opacity: 0;

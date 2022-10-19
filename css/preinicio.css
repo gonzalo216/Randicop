@@ -1,7 +1,4 @@
-@font-face {
-  font-family: minecrafter;
-  src: url(./../assets/Minecrafter.Reg.ttf);
-}
+
 body {
   margin: 0;
   /* background: #ccffbd; */
@@ -64,6 +61,10 @@ details > p {
   bottom: 0;
 } */
 
+.desc{
+  border: 0.9px black solid;
+  color: grey;
+}
 .container {
   margin: 1rem 5% 1rem;
   padding: 3vw;
