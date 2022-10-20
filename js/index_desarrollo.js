@@ -2,16 +2,15 @@ import { esperar } from "./desarrollo/funciones.js";
 import { anterior, iniciar, siguiente } from "./desarrollo/print_blocks.js";
 import juego, { Hola } from "./desarrollo/situaciones.js";
 
-const d = document,
-  btnAnt = d.getElementById("ant");
-(async function () {
+export async function resetear() {
   await esperar(0.1);
+  const btnAnt = document.getElementById("ant");
   iniciar();
   juego();
   btnAnt.disabled = true;
   //Hola();
-})();
-d.addEventListener("click", (e) => {
+};
+document.addEventListener("click", (e) => {
   if (e.target.matches("#sig")) {
     siguiente();
   }

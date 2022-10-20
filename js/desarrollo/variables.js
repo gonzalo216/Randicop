@@ -24,4 +24,10 @@ export function crearJugs() {
     lista[`jug${i}`] = new Jugador(el.value, $protags[i].checked);
   });
   jugs = Object.keys(lista);
+  console.log(lista)
+}
+export function resetJugs(){
+  for (const key of Object.keys(lista)) {
+    lista[key] = new Jugador(lista[key].nombre, lista[key].protag);
+  }
 }
