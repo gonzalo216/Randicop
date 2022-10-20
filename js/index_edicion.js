@@ -1,8 +1,9 @@
-import evento from "./desarrollo/situaciones.js";
-import { crearJugs } from "./desarrollo/variables.js";
+import { resetDias } from "./desarrollo/situaciones.js";
+import { crearJugs, resetJugs } from "./desarrollo/variables.js";
 import insertar from "./edicion/insertar_html.js";
 import crearFormulario from "./edicion/crear_formulario.js";
 import { toggleDescription } from "./edicion/toggle_description.js";
+import { resetear } from "./index_desarrollo.js";
 const d = document,
   $desarrolloJs = d.getElementById("index");
 d.addEventListener("DOMContentLoaded", (e) => {
@@ -10,10 +11,17 @@ d.addEventListener("DOMContentLoaded", (e) => {
 });
 d.addEventListener("click", (e) => {
   if (e.target.matches(".mImg") || e.target.matches(".mImg *")) {
-    e.preventDefault();
     crearJugs();
     insertar("./desarrollo.html");
     $desarrolloJs.setAttribute("src", "./../js/index_desarrollo.js");
+    resetear();
+  }
+  if(e.target.matches(".btn-final:last-child") || e.target.matches(".btn-final:last-child *")){
+    console.log("ok")
+    resetJugs();
+    insertar("./desarrollo.html");
+    resetear();
+    resetDias()
   }
   if (e.target.matches("#mas") || e.target.matches("#mas *")) {
     console.log("click");

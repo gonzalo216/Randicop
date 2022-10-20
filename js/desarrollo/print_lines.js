@@ -7,6 +7,17 @@ export function titulo(text, clas = null) {
   $p.innerHTML = text;
   $transcurso.at(-1).appendChild($p);
 }
+export function crearBotones(si, no, clas = null){
+  const $template = d.getElementById("tem-decidir").content,
+    $fragment = d.createDocumentFragment();
+  let $clone = d.importNode($template, true);
+  if (clas) $clone.firstElementChild.className = clas;
+  $clone.getElementById("btn-si").innerHTML = si;
+  $clone.getElementById("btn-no").innerHTML = no;
+  $fragment.appendChild($clone);
+  $transcurso.at(-1).lastElementChild.appendChild($fragment);
+  copySize(); 
+}
 export async function decidir(si, no) {
   const eleccion = new Promise((resolve, reject) => {
     d.addEventListener("click", (e) => {
@@ -20,14 +31,7 @@ export async function decidir(si, no) {
       }
     });
   });
-  const $template = d.getElementById("tem-decidir").content,
-    $fragment = d.createDocumentFragment();
-  $template.getElementById("btn-si").innerHTML = si;
-  $template.getElementById("btn-no").innerHTML = no;
-  let $clone = d.importNode($template, true);
-  $fragment.appendChild($clone);
-  $transcurso.at(-1).lastElementChild.appendChild($fragment);
-  copySize();
+  crearBotones(si, no);
   let result = await eleccion;
   $transcurso.at(-1).lastElementChild.lastElementChild.remove();
   $transcurso.at(-1).lastElementChild.lastElementChild.remove();
