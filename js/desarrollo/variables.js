@@ -13,6 +13,7 @@ class Jugador {
     };
     this.perro = false;
     this.gato = false;
+    this.conv = false;
   }
 }
 export const lista = new Object();
