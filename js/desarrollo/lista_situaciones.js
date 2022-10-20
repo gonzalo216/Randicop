@@ -210,29 +210,27 @@ export const Dano = {
     waterdrop: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
-      texto(
-        `${jug.nombre} intenta hacer un waterdrop`
-      );
+      texto(`${jug.nombre} intenta hacer un waterdrop`);
       vidaDefault(jug);
       danoInsta(dano);
     },
-  waterdrop: function (jug) {
-    dano = getRandomIntInclusive(12,5);
-    jug.vida -= dano;
-    texto(
-      `${jug.nombre} pone una cama e intenta dormir`
-    );
-    vidaDefault(jug);
-    danoInsta(dano);
-  }
-}
+    waterdrop: function (jug) {
+      dano = getRandomIntInclusive(12, 5);
+      jug.vida -= dano;
+      texto(`${jug.nombre} pone una cama e intenta dormir`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+  },
 };
+repetir(Dano.Nether, 4);
 repetir(Dano.Dia, 2);
 repetir(Dano.Noche, 2);
 repetir(DanoDiaNoche, 1);
 Object.assign(DanoDiaNoche, DanoGlobal);
 Object.assign(Dano.Dia, DanoDiaNoche);
 Object.assign(Dano.Noche, DanoDiaNoche);
+Object.assign(Dano.Nether, DanoGlobal);
 
 // VIDA
 const ctrl = () => {
@@ -293,13 +291,16 @@ export const Vida = {
     },
   },
   Noche: {},
+  Nether: {},
 };
+repetir(Vida.Nether, 4);
 repetir(Vida.Dia, 2);
 repetir(Vida.Noche, 2);
 repetir(VidaDiaNoche, 1);
 Object.assign(VidaDiaNoche, VidaGlobal);
 Object.assign(Vida.Dia, VidaDiaNoche);
 Object.assign(Vida.Noche, VidaDiaNoche);
+Object.assign(Vida.Nether, VidaGlobal);
 
 // RANDOM
 const RandomGlobal = {
@@ -422,29 +423,27 @@ export const Random = {
     waterdrop: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
-      texto(
-        `${jug.nombre} intenta hacer un waterdrop`
-      );
+      texto(`${jug.nombre} intenta hacer un waterdrop`);
       vidaDefault(jug);
       danoInsta(dano);
     },
-  waterdrop: function (jug) {
-    dano = getRandomIntInclusive(12,5);
-    jug.vida -= dano;
-    texto(
-      `${jug.nombre} pone una cama e intenta dormir`
-    );
-    vidaDefault(jug);
-    danoInsta(dano);
-  }
-}
+    waterdrop: function (jug) {
+      dano = getRandomIntInclusive(12, 5);
+      jug.vida -= dano;
+      texto(`${jug.nombre} pone una cama e intenta dormir`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+  },
 };
+repetir(Random.Nether, 4);
 repetir(Random.Dia, 2);
 repetir(Random.Noche, 2);
 repetir(RandomDiaNoche, 1);
 Object.assign(RandomDiaNoche, RandomGlobal);
 Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
+Object.assign(Random.Noche, RandomGlobal);
 
 // RELACIONES
 export const RelGlobal = {
@@ -495,34 +494,35 @@ export const Rel = {
       const jug2 = nJugRand(jug);
       if (jug.conv && jug2.conv) {
         nrand = getRandomIntInclusive(2);
-        switch(nrand)
-        {
-        case 0:
-          dano = getRandomIntInclusive(10);
-          jug.vida -= dano;
-          dano += jug.vida;
-          texto(
-          `Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`
-          );
-          vidaDefault(jug);
-          danoInsta(dano);
-          break;
-        case 1:
-          dano = jug.vida;
-          jug.vida = 0;
-          texto(`${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`);
-          vidaDefault(jug);
-          danoInsta(dano);
-          break;
-        case 2:
-          texto(`${jug.nombre} y ${jug2.nombre} agrandan su casa`);
-        } 
+        switch (nrand) {
+          case 0:
+            dano = getRandomIntInclusive(10);
+            jug.vida -= dano;
+            dano += jug.vida;
+            texto(
+              `Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
+            break;
+          case 1:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(
+              `${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
+            break;
+          case 2:
+            texto(`${jug.nombre} y ${jug2.nombre} agrandan su casa`);
+        }
       } else {
-      texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
-      vidaDefault(jug, true);
-      jug.conv = true;
-      jug2.conv = true
-       }
+        texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
+        vidaDefault(jug, true);
+        jug.conv = true;
+        jug2.conv = true;
+      }
     },
     florescasa: function (jug) {
       const jug2 = nJugRand(jug);
@@ -562,30 +562,28 @@ export const Rel = {
     waterdrop: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
-      texto(
-        `${jug.nombre} intenta hacer un waterdrop`
-      );
+      texto(`${jug.nombre} intenta hacer un waterdrop`);
       vidaDefault(jug);
       danoInsta(dano);
     },
-  waterdrop: function (jug) {
-    dano = getRandomIntInclusive(12,5);
-    jug.vida -= dano;
-    texto(
-      `${jug.nombre} pone una cama e intenta dormir`
-    );
-    vidaDefault(jug);
-    danoInsta(dano);
-  }
-}
+    waterdrop: function (jug) {
+      dano = getRandomIntInclusive(12, 5);
+      jug.vida -= dano;
+      texto(`${jug.nombre} pone una cama e intenta dormir`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+  },
 };
 
+repetir(Rel.Nether, 4);
 repetir(RelDiaNoche, 1);
 repetir(Rel.Dia, 2);
 repetir(Rel.Noche, 2);
 Object.assign(RelDiaNoche, RelGlobal);
 Object.assign(Rel.Dia, RelDiaNoche);
 Object.assign(Rel.Noche, RelDiaNoche);
+Object.assign(Rel.Nether, RelGlobal);
 
 // DECIDIR
 const DecidGlobal = {};
@@ -643,10 +641,9 @@ export const Decid = {
     entrarCasa: async function (jug) {
       const jug2 = nJugRand(jug);
       const jug3 = nJugRand(jug);
-      while (jug3 == jug2)
-      {
+      while (jug3 == jug2) {
         const jug3 = nJugRand(jug);
-      };
+      }
       texto(
         `${jug.nombre} observa a ${jug2.nombre} alejarse de su casa, y no cree que vuelva pronto.`
       );
@@ -774,7 +771,9 @@ export const Decid = {
   },
   Noche: {
     spawner: async function (jug) {
-      texto(`Cuando está por abandonar una mina, ${jug.nombre} da con una gran cantidad de zombies y cree que se trata a un spawner oculto en las cercanías.`);
+      texto(
+        `Cuando está por abandonar una mina, ${jug.nombre} da con una gran cantidad de zombies y cree que se trata a un spawner oculto en las cercanías.`
+      );
       vidaDefault(jug, true);
       texto(`¿Debería ir a buscarlo?`, true);
       let decision = await decidir("Buscar spwner", "Seguir de largo");
@@ -809,10 +808,10 @@ export const Decid = {
             danoInsta(dano);
             break;
           case 4:
-            dano = jug.vida
+            dano = jug.vida;
             jug.vida = 0;
             texto(
-            `${jug.nombre} ve el spawner a lo lejos, pero antes de lograr acercarse un grupo de zombies lo ataca, asesinándolo`
+              `${jug.nombre} ve el spawner a lo lejos, pero antes de lograr acercarse un grupo de zombies lo ataca, asesinándolo`
             );
             vidaDefault(jug);
             danoInsta(dano);
@@ -827,49 +826,48 @@ export const Decid = {
             break;
           case 1:
             dano = getRandomIntInclusive(10, 4);
-            jug.vida -= dano;  
+            jug.vida -= dano;
             texto(
-              `${jug.nombre} cree haberse alejado lo suficiente cuando un grupo de zombies lo ataca por la espalda`);
-              vidaDefault(jug);
-              danoInsta(dano);
+              `${jug.nombre} cree haberse alejado lo suficiente cuando un grupo de zombies lo ataca por la espalda`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
             break;
           case 2:
             dano = jug.vida;
             jug.vida = 0;
             texto(
-              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`);
-              vidaDefault(jug);
-              danoInsta(dano);
+              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
             break;
         }
       }
-    }
+    },
   },
   Nether: {
-  waterdrop: function (jug) {
-    dano = jug.vida;
-    jug.vida = 0;
-    texto(
-      `${jug.nombre} intenta hacer un waterdrop`
-    );
-    vidaDefault(jug);
-    danoInsta(dano);
+    waterdrop: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(`${jug.nombre} intenta hacer un waterdrop`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+    waterdrop: function (jug) {
+      dano = getRandomIntInclusive(12, 5);
+      jug.vida -= dano;
+      texto(`${jug.nombre} pone una cama e intenta dormir`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
   },
-waterdrop: function (jug) {
-  dano = getRandomIntInclusive(12,5);
-  jug.vida -= dano;
-  texto(
-    `${jug.nombre} pone una cama e intenta dormir`
-  );
-  vidaDefault(jug);
-  danoInsta(dano);
-}
-  }
-}
-
+};
+repetir(Decid.Nether, 4);
 repetir(DecidDiaNoche, 1);
 repetir(Decid.Dia, 2);
 repetir(Decid.Noche, 2);
 Object.assign(DecidDiaNoche, DecidGlobal);
 Object.assign(Decid.Dia, DecidDiaNoche);
 Object.assign(Decid.Noche, DecidDiaNoche);
+Object.assign(Decid.Nether, DecidGlobal);

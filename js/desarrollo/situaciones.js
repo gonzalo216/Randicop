@@ -10,7 +10,7 @@ let nrand,
   finalista,
   nether = false,
   caso = 1;
-export const resetDias =()=> cont=0;
+export const resetDias = () => (cont = 0);
 export function apurar() {
   t = 0;
 }
@@ -108,11 +108,11 @@ export default async function juego() {
   crearDiv();
   titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
   cont++;
-  //if (cont > 3 && !nether) caso = getRandomIntInclusive(10, 1);
+  if (cont > 3 && !nether) caso = getRandomIntInclusive(10, 1);
   // 1/10 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
-  //if (contNether > 3 && nether) caso = getRandomIntInclusive(18, 9);
+  if (contNether > 3 && nether) caso = getRandomIntInclusive(18, 9);
   // 1/10 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
-  //if (cont > 10 && contNether > 3) caso = getRandomIntInclusive(9);
+  if (cont > 10 && contNether > 3) caso = getRandomIntInclusive(9);
   // 1/10 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END
@@ -149,7 +149,7 @@ export function final() {
     `<h2>El ultimo jugador sobreviviente fue ${finalista}</h2>`,
     "finalista"
   );
-  crearBotones(`<a href="./preinicio.html">Volver</a>`, `Rejugar`, "btn-final")
+  crearBotones(`<a href="./preinicio.html">Volver</a>`, `Rejugar`, "btn-final");
 }
 
 export function Hola() {
