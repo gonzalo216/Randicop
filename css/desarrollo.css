@@ -117,6 +117,54 @@ div {
 .botones {
   position: fixed;
   z-index: 998;
-  bottom: 10px;
+  bottom: 15px;
   padding-left: 20px;
+}
+
+#ant{
+  border-radius: 25px;
+  transition: 0.3s;
+}
+#ant:hover{
+  background: var(--color-primary-600);
+  box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+}
+#sig{
+  border-radius: 25px;
+  transition: 0.3s;
+}
+#sig:hover{
+  background: var(--color-primary-600);
+  box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+}
+
+#btn-si{
+  border-radius: 25px;
+  transition: 0.3s;
+}
+#btn-si:hover{
+  background: var(--color-primary-600);
+  box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  transform: scale(1.06);
+}
+#btn-no{
+  border-radius: 25px;
+  transition: 0.3s;
+}
+#btn-no:hover{
+  background: var(--color-primary-600);
+  box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
+  transition: 0.3s;
+  transform: scale(1.06);
+}
+
+:root {
+  --color-primary-500: #367E18;
+  --color-primary-600: #38E54D;
+  --color-primary-900: #3D8361;
+  --color-secondary-500: #009688;
+  --color-secondary-900: #004d40;
 }

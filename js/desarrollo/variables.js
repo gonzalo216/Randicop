@@ -1,7 +1,7 @@
 class Jugador {
   constructor(nombre, bol) {
     this.nombre = nombre;
-    this.vida = 20;
+    this.vida = 0;
     this.protag = bol;
     this.cantF = 0;
     this.funciones = new Object();
