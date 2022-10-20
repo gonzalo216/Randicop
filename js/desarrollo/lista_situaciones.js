@@ -22,7 +22,7 @@ const nJugRand = (jug) => {
 let nrand, dano, cura, adicional;
 
 // DAÑO
-const danoGlobal = {
+const DanoGlobal = {
     // nocomer: function (nombre, vida) {
     //   dano = vida;
     //   vida = 1;
@@ -52,7 +52,7 @@ const danoGlobal = {
       danoInsta(dano);
     },
   },
-  danoDiaNoche = {
+  DanoDiaNoche = {
     lobo: function (jug) {
       dano = getRandomIntInclusive(20);
       jug.vida -= dano;
@@ -114,7 +114,8 @@ const danoGlobal = {
     },
   };
 
-export const danoDia = {
+export const Dano = {
+  Dia: {
     sol: function (jug) {
       dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
@@ -158,7 +159,7 @@ export const danoDia = {
       danoInsta(dano);
     },
   },
-  danoNoche = {
+  Noche: {
     phantoms: function (jug) {
       dano = getRandomIntInclusive(20);
       jug.vida -= dano;
@@ -186,13 +187,14 @@ export const danoDia = {
       danoInsta(dano);
     },
     zombiebpato: function (jug) {
-      if(jug.perro){
-       dano = getRandomIntInclusive(5)
-       texto(`Un zombie bebé montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`);
-      }
-      else {
-       dano = getRandomIntInclusive(20, 4); 
-       texto(`Un zombie bebé montado en un pato ataca a ${jug.nombre}`);
+      if (jug.perro) {
+        dano = getRandomIntInclusive(5);
+        texto(
+          `Un zombie bebé montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`
+        );
+      } else {
+        dano = getRandomIntInclusive(20, 4);
+        texto(`Un zombie bebé montado en un pato ataca a ${jug.nombre}`);
       }
       jug.vida -= dano;
       dano += jug.vida;
@@ -209,13 +211,14 @@ export const danoDia = {
       vidaDefault(jug);
       danoInsta(dano);
     },
-  };
-repetir(danoDia, 2);
-repetir(danoNoche, 2);
-repetir(danoDiaNoche, 1);
-Object.assign(danoDiaNoche, danoGlobal);
-Object.assign(danoDia, danoDiaNoche);
-Object.assign(danoNoche, danoDiaNoche);
+  },
+};
+repetir(Dano.Dia, 2);
+repetir(Dano.Noche, 2);
+repetir(DanoDiaNoche, 1);
+Object.assign(DanoDiaNoche, DanoGlobal);
+Object.assign(Dano.Dia, DanoDiaNoche);
+Object.assign(Dano.Noche, DanoDiaNoche);
 
 // VIDA
 const ctrl = () => {
@@ -231,7 +234,7 @@ const ctrl = () => {
       cura = vida + 8;
     }
   };
-const vidaGlobal = {
+const VidaGlobal = {
     pocionCura: function (jug) {
       pocionIns(jug.vida);
       texto(
@@ -252,7 +255,7 @@ const vidaGlobal = {
       jug.vida = cura;
     },
   },
-  vidaDiaNoche = {
+  VidaDiaNoche = {
     bruja: function (jug) {
       pocionIns(jug.vida);
       texto(
@@ -264,7 +267,8 @@ const vidaGlobal = {
       jug.vida = cura;
     },
   };
-export const vidaDia = {
+export const Vida = {
+  Dia: {
     angel: function (jug) {
       cura = getRandomIntInclusive(19, 1) + jug.vida;
       texto(`Un angel bajo del cielo y curo a ${jug.nombre}`);
@@ -274,16 +278,17 @@ export const vidaDia = {
       jug.vida = cura;
     },
   },
-  vidaNoche = {};
-repetir(vidaDia, 2);
-repetir(vidaNoche, 2);
-repetir(vidaDiaNoche, 1);
-Object.assign(vidaDiaNoche, vidaGlobal);
-Object.assign(vidaDia, vidaDiaNoche);
-Object.assign(vidaNoche, vidaDiaNoche);
+  Noche: {},
+};
+repetir(Vida.Dia, 2);
+repetir(Vida.Noche, 2);
+repetir(VidaDiaNoche, 1);
+Object.assign(VidaDiaNoche, VidaGlobal);
+Object.assign(Vida.Dia, VidaDiaNoche);
+Object.assign(Vida.Noche, VidaDiaNoche);
 
 // RANDOM
-const randomGlobal = {
+const RandomGlobal = {
     // locura: function (nombre, vida) {
     //   texto(
     //     `${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`
@@ -291,7 +296,7 @@ const randomGlobal = {
     //   vidaDefault(vida, true);
     // },
   },
-  randomDiaNoche = {
+  RandomDiaNoche = {
     armadura: function (jug) {
       texto(`${jug.nombre} encanta su armadura de cuero`);
       vidaDefault(jug, true);
@@ -319,7 +324,8 @@ const randomGlobal = {
       vidaDefault(jug, true);
     },
   };
-export const randomDia = {
+export const Random = {
+  Dia: {
     // oveja: function (jug) {
     //   texto(
     //     `${jug.nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`
@@ -360,7 +366,7 @@ export const randomDia = {
       vidaDefault(jug, true);
     },
   },
-  randomNoche = {
+  Noche: {
     aldeanozombie: function (jug) {
       texto(
         `${jug.nombre} deja que un aldeano muera por un zombie para curarlo`
@@ -397,16 +403,17 @@ export const randomDia = {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`);
       vidaDefault(jug, true);
     },
-  };
-repetir(randomDia, 2);
-repetir(randomNoche, 2);
-repetir(randomDiaNoche, 1);
-Object.assign(randomDiaNoche, randomGlobal);
-Object.assign(randomDia, randomDiaNoche);
-Object.assign(randomNoche, randomDiaNoche);
+  },
+};
+repetir(Random.Dia, 2);
+repetir(Random.Noche, 2);
+repetir(RandomDiaNoche, 1);
+Object.assign(RandomDiaNoche, RandomGlobal);
+Object.assign(Random.Dia, RandomDiaNoche);
+Object.assign(Random.Noche, RandomDiaNoche);
 
 // RELACIONES
-export const relGlobal = {
+export const RelGlobal = {
   mirarfeo: function (jug) {
     const jug2 = nJugRand(jug);
     texto(`${jug.nombre} miro feo a ${jug2.nombre}`);
@@ -428,7 +435,7 @@ export const relGlobal = {
   },
 };
 
-const relDiaNoche = {
+const RelDiaNoche = {
   robarhierro: function (jug) {
     const jug2 = nJugRand(jug);
     texto(`${jug.nombre} roba hierro del horno de ${jug2.nombre}`);
@@ -441,73 +448,74 @@ const relDiaNoche = {
   },
 };
 
-export const relDia = {
-  construircasa: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} ayuda a ${jug2.nombre} con la construccion de su casa`
-    );
-    vidaDefault(jug, true);
+export const Rel = {
+  Dia: {
+    construircasa: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} ayuda a ${jug2.nombre} con la construccion de su casa`
+      );
+      vidaDefault(jug, true);
+    },
+    vivirjuntos: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
+      vidaDefault(jug, true);
+    },
+    novivirjuntos: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`
+      );
+      vidaDefault(jug, true);
+    },
+    florescasa: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`
+      );
+      vidaDefault(jug, true);
+    },
+    cazarjuntos: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(`${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`);
+      vidaDefault(jug, true);
+    },
   },
-  vivirjuntos: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
-    vidaDefault(jug, true);
-  },
-  novivirjuntos: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`
-    );
-    vidaDefault(jug, true);
-  },
-  florescasa: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`
-    );
-    vidaDefault(jug, true);
-  },
-  cazarjuntos: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(`${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`);
-    vidaDefault(jug, true);
+  Noche: {
+    juntarcamas: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(`${jug.nombre} y ${jug2.nombre} juntan sus camas para dormir`);
+      vidaDefault(jug, true);
+    },
+    buscarmobs: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} y ${jug2.nombre} exploran los alrededores juntos en busca de mobs`
+      );
+      vidaDefault(jug, true);
+    },
+    dejarmobs: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} deja solo a ${jug2.nombre} en cuanto ve al primer mob`
+      );
+      vidaDefault(jug, true);
+    },
   },
 };
 
-const relNoche = {
-  juntarcamas: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(`${jug.nombre} y ${jug2.nombre} juntan sus camas para dormir`);
-    vidaDefault(jug, true);
-  },
-  buscarmobs: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} y ${jug2.nombre} exploran los alrededores juntos en busca de mobs`
-    );
-    vidaDefault(jug, true);
-  },
-  dejarmobs: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} deja solo a ${jug2.nombre} en cuanto ve al primer mob`
-    );
-    vidaDefault(jug, true);
-  },
-};
-
-repetir(relDiaNoche, 1);
-repetir(relDia, 2);
-repetir(relNoche, 2);
-Object.assign(relDiaNoche, relGlobal);
-Object.assign(relDia, relDiaNoche);
-Object.assign(relNoche, relDiaNoche);
+repetir(RelDiaNoche, 1);
+repetir(Rel.Dia, 2);
+repetir(Rel.Noche, 2);
+Object.assign(RelDiaNoche, RelGlobal);
+Object.assign(Rel.Dia, RelDiaNoche);
+Object.assign(Rel.Noche, RelDiaNoche);
 
 // DECIDIR
-const decidirGlobal = {};
+const DecidGlobal = {};
 
-const decidirDiaNoche = {
+const DecidDiaNoche = {
   encontrarLobo: async function (jug) {
     const jug2 = nJugRand(jug);
     texto(
@@ -555,7 +563,8 @@ const decidirDiaNoche = {
   },
 };
 
-export const decidirDia = {
+export const Decid = {
+  Dia: {
     entrarCasa: async function (jug) {
       const jug2 = nJugRand(jug);
       const jug3 = nJugRand(jug);
@@ -687,7 +696,7 @@ export const decidirDia = {
       }
     },
   },
-  decidirNoche = {
+  Noche: {
     // entrarCasa: async function (jug) {
     //   const jug2 = nJugRand(jug);
     //   texto(
@@ -713,10 +722,11 @@ export const decidirDia = {
     //     vidaDefault(jug, true);
     //   }
     // },
-  };
-repetir(decidirDiaNoche, 1);
-repetir(decidirDia, 2);
-repetir(decidirNoche, 2);
-Object.assign(decidirDiaNoche, decidirGlobal);
-Object.assign(decidirDia, decidirDiaNoche);
-Object.assign(decidirNoche, decidirDiaNoche);
+  },
+};
+repetir(DecidDiaNoche, 1);
+repetir(Decid.Dia, 2);
+repetir(Decid.Noche, 2);
+Object.assign(DecidDiaNoche, DecidGlobal);
+Object.assign(Decid.Dia, DecidDiaNoche);
+Object.assign(Decid.Noche, DecidDiaNoche);

@@ -45,11 +45,11 @@ function imprimir(text, clas, fin = false, addClass = null) {
   if (addClass) $template.querySelector(clas).className += addClass;
   if (fin) {
     let $clone = d.importNode($template, true);
+    $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
+    $template.querySelector(".texto").className = "texto";
     $fragment.appendChild($clone);
     $transcurso.at(-1).lastElementChild.appendChild($fragment);
     copySize();
-    $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
-    $template.querySelector(".texto").className = "texto";
   }
 }
 const printIcons = (corazones, img, midImg = null) => {
