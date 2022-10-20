@@ -42,6 +42,7 @@ details > p {
   border-bottom-right-radius: 2rem;
   box-shadow: 3px 3px 4px black;
   text-align: center;
+  
 }
 /* .summery {
   padding: 1rem;
@@ -60,10 +61,31 @@ details > p {
 .detalles.is-active {
   bottom: 0;
 } */
+.tdesc{
+  
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  color: rgb(175, 175, 175);
+  font-family: minecrafter;
+  font-size: 3em;
+   
+  text-shadow: 0 1px 0 rgb(2, 2, 2),
+  0 2px 0 #201e1e,
+  0 3px 0 rgb(22, 20, 20), 
+  0 4px 0 #131212, 
+  0 5px 0 rgb(17, 16, 16), 
+  0 6px 1px rgba(0, 0, 0, .1), 
+  0 0 5px rgba(0, 0, 0, .1), 
+  0 1px 3px rgba(0, 0, 0, .3), 
+  0 3px 5px rgba(0, 0, 0, .2), 
+  0 5px 10px rgba(0, 0, 0, .25), 
+  0 10px 10px rgba(0, 0, 0, .2),
+  0 20px 20px rgba(0, 0, 0, .15) ;   
 
+}
 .desc{
+  transition: 0.5s;
   border: 0.9px black solid;
-  color: grey;
+  color: rgb(126, 117, 117);
 }
 .container {
   margin: 1rem 5% 1rem;
