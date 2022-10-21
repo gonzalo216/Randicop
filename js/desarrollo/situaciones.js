@@ -148,10 +148,22 @@ export function final() {
     `<h2>El ultimo jugador sobreviviente fue ${finalista.nombre}</h2>`,
     "finalista"
   );
+  const mascotas = [];
+  if (finalista.perro) mascotas.push("<li>Perro");
+  if (finalista.gato) mascotas.push("<li>Gato");
+
   titulo(
     `
   <h5>Armadura</h5>
   <ol>
+    <li>Casco: ${finalista.armourName.casco}</li>
+    <li>Peto: ${finalista.armourName.peto}</li>
+    <li>Pantalones: ${finalista.armourName.pantalon}</li>
+    <li>Botas: ${finalista.armourName.botas}</li>
+  </ol>
+  <h5>Armadura</h5>
+  <ol>
+  
     <li>Casco: ${finalista.armourName.casco}</li>
     <li>Peto: ${finalista.armourName.peto}</li>
     <li>Pantalones: ${finalista.armourName.pantalon}</li>

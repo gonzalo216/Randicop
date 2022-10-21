@@ -542,39 +542,55 @@ export const Rel = {
       vidaDefault(jug, true);
     },
     vivirjuntos: function (jug) {
-      const jug2 = nJugRand(jug);
-      if (jug.conv && jug2.conv) {
-        nrand = getRandomIntInclusive(2);
+      console.log("casa");
+      if (jug.conv) {
+        if (jug.conv.vida <= 0) {
+          texto(
+            `${jug.nombre} sigue pensando en ${jug.conv.nombre}, el mejor companero de cuarto que pudo tener`
+          );
+          vidaDefault(jug);
+        }
+        nrand = getRandomIntInclusive(1);
         switch (nrand) {
           case 0:
-            dano = getRandomIntInclusive(10);
+            dano = getRandomIntInclusive(20);
             jug.vida -= dano;
             dano += jug.vida;
-            texto(
-              `Despues de unos dias viviendo juntos, ${jug.nombre} no soporta mas e intenta matar a ${jug2.nombre}`
-            );
+            if (jug.vida <= 0)
+              texto(
+                `${jug.conv.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
+              );
+            else
+              texto(
+                `Despues de unos dias viviendo juntos, ${jug.conv.nombre} no soporta mas e intenta matar a ${jug.nombre}`
+              );
             vidaDefault(jug);
             danoInsta(dano);
+            jug.conv.conv = null;
+            jug.conv = null;
             break;
           case 1:
-            dano = jug.vida;
-            jug.vida = 0;
-            texto(
-              `${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
-            );
-            vidaDefault(jug);
-            danoInsta(dano);
-            break;
-          case 2:
-            texto(`${jug.nombre} y ${jug2.nombre} agrandan su casa`);
+            texto(`${jug.nombre} y ${jug.conv} agrandan su casa`);
             vidaDefault(jug, true);
             break;
         }
       } else {
+        let jug2,
+          i = 0;
+        do {
+          jug2 = nJugRand(jug);
+          i++;
+          if (i > 10) {
+            texto(
+              `${jug.nombre} Intento encontrar un compañero, pero no lo logro`
+            );
+            vidaDefault(jug, true);
+          }
+        } while (jug2.conv);
         texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
         vidaDefault(jug, true);
-        jug.conv = true;
-        jug2.conv = true;
+        jug.conv = jug2;
+        jug2.conv = jug;
       }
     },
     florescasa: function (jug) {
