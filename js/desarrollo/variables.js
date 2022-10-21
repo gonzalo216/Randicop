@@ -14,6 +14,8 @@ class Jugador {
     this.perro = false;
     this.gato = false;
     this.conv = false;
+    this.strider = false;
+    this.lagrima = false;
   }
 }
 export const lista = new Object();
