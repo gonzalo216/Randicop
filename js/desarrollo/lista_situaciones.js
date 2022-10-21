@@ -215,9 +215,16 @@ export const Dano = {
       danoInsta(dano);
     },
     waterdrop: function (jug) {
-      dano = getRandomIntInclusive(12, 5);
+      dano = getRandomIntInclusive(20, 4);
       jug.vida -= dano;
       texto(`${jug.nombre} pone una cama e intenta dormir`);
+      vidaDefault(jug);
+      danoInsta(dano);
+    },
+    piglin: function (jug) {
+      dano = getRandomIntInclusive(16, 8);
+      jug.vida -= dano;
+      texto(`${jug.nombre} olvida llevar algo de oro y es atacado por un grupo de piglins`);
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -291,7 +298,17 @@ export const Vida = {
     },
   },
   Noche: {},
-  Nether: {},
+  Nether: {
+    manzana: function (jug) {
+      cura = 4 + jug.vida;
+      texto(`${jug.nombre} come una manzana dorada`);
+      vidaExtra(4);
+      vidaDefault(jug);
+      ctrl();
+      curar(cura);
+      jug.vida = cura;
+    },
+  },
 };
 repetir(Vida.Nether, 4);
 repetir(Vida.Dia, 2);
@@ -420,19 +437,23 @@ export const Random = {
     },
   },
   Nether: {
-    waterdrop: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
-      texto(`${jug.nombre} intenta hacer un waterdrop`);
-      vidaDefault(jug);
-      danoInsta(dano);
+    tiempoPortal: function (jug) {
+      texto(
+        `${jug.nombre} pierde la cuenta del tiempo pasado desde que vio por ultima vez un portal`
+      );
+      vidaDefault(jug, true);
     },
-    waterdrop: function (jug) {
-      dano = getRandomIntInclusive(12, 5);
-      jug.vida -= dano;
-      texto(`${jug.nombre} pone una cama e intenta dormir`);
-      vidaDefault(jug);
-      danoInsta(dano);
+    esponjas: function (jug) {
+      texto(
+        `${jug.nombre} pasa todo el dia intentando que las esponjas mojadas no se sequen al ponerlas en el suelo`
+      );
+      vidaDefault(jug, true);
+    },
+    relojRoto: function (jug) {
+      texto(
+        `${jug.nombre} observa su reloj, pero parece estar roto...`
+      );
+      vidaDefault(jug, true);
     },
   },
 };
@@ -516,6 +537,7 @@ export const Rel = {
             break;
           case 2:
             texto(`${jug.nombre} y ${jug2.nombre} agrandan su casa`);
+            break;
         }
       } else {
         texto(`${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`);
@@ -560,16 +582,10 @@ export const Rel = {
   },
   Nether: {
     waterdrop: function (jug) {
+      const jug2 = getRandomIntInclusive(jug);
       dano = jug.vida;
       jug.vida = 0;
-      texto(`${jug.nombre} intenta hacer un waterdrop`);
-      vidaDefault(jug);
-      danoInsta(dano);
-    },
-    waterdrop: function (jug) {
-      dano = getRandomIntInclusive(12, 5);
-      jug.vida -= dano;
-      texto(`${jug.nombre} pone una cama e intenta dormir`);
+      texto(`${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`);
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -763,7 +779,7 @@ export const Decid = {
         }
       } else {
         texto(
-          `${jug.nombre} cree que es una pérdida de tiempo y cambia el rumbo`
+          `${jug.nombre} cree que es una perdida de tiempo y cambia el rumbo`
         );
         vidaDefault(jug, true);
       }
@@ -772,23 +788,23 @@ export const Decid = {
   Noche: {
     spawner: async function (jug) {
       texto(
-        `Cuando está por abandonar una mina, ${jug.nombre} da con una gran cantidad de zombies y cree que se trata a un spawner oculto en las cercanías.`
+        `Cuando esta por abandonar una mina, ${jug.nombre} da con una gran cantidad de zombies y cree que se trata a un spawner oculto en las cercanias.`
       );
       vidaDefault(jug, true);
-      texto(`¿Debería ir a buscarlo?`, true);
+      texto(`¿Deberia ir a buscarlo?`, true);
       let decision = await decidir("Buscar spwner", "Seguir de largo");
       if (decision) {
         nrand = getRandomIntInclusive(4);
         switch (nrand) {
           case 0:
             texto(
-              `${jug.nombre} recorre los alrededores pero no encuentra ningun spawner. Deja la cueva con las manos vacías`
+              `${jug.nombre} recorre los alrededores pero no encuentra ningun spawner. Deja la cueva con las manos vacias`
             );
             vidaDefault(jug, true);
             break;
           case 1:
             texto(
-              ` ${jug.nombre} planta una antorcha sobre el spawner sin perder vida y, después de tomar los objetos de los cofres, piensa en crear una granja de experiencia`
+              ` ${jug.nombre} planta una antorcha sobre el spawner sin perder vida y, despues de tomar los objetos de los cofres, piensa en crear una granja de experiencia`
             );
             vidaDefault(jug, true);
             break;
@@ -811,7 +827,7 @@ export const Decid = {
             dano = jug.vida;
             jug.vida = 0;
             texto(
-              `${jug.nombre} ve el spawner a lo lejos, pero antes de lograr acercarse un grupo de zombies lo ataca, asesinándolo`
+              `${jug.nombre} ve el spawner a lo lejos, pero antes de lograr acercarse un grupo de zombies lo ataca, asesinandolo`
             );
             vidaDefault(jug);
             danoInsta(dano);
@@ -847,21 +863,91 @@ export const Decid = {
     },
   },
   Nether: {
-    waterdrop: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
-      texto(`${jug.nombre} intenta hacer un waterdrop`);
-      vidaDefault(jug);
-      danoInsta(dano);
-    },
-    waterdrop: function (jug) {
-      dano = getRandomIntInclusive(12, 5);
-      jug.vida -= dano;
-      texto(`${jug.nombre} pone una cama e intenta dormir`);
-      vidaDefault(jug);
-      danoInsta(dano);
-    },
-  },
+    bosqueDis: async function (jug) {
+      const jug2 = getRandomIntInclusive(jug);
+      texto(`${jug.nombre} quiere ir en busca del bosque distorsionado, tierra de los enderman, y conseguir enderpearls,`);
+      vidaDefault(jug, true);
+      texto(`¿Deberia partir?`, true);
+      let decision = await decidir("Ir en su busqueda", "Pensar en otra cosa");
+      if (decision) {
+        nrand = getRandomIntInclusive(6);
+        switch (nrand) {
+          case 0:
+            texto(
+              `${jug.nombre} camina durante lo que parecen ser siglos pero no encuentra ningun enderman`
+            );
+            vidaDefault(jug, true);
+            break;
+          case 1:
+            texto(
+              `Tras una larga caminata, ${jug.nombre} cree haber conseguido enderpearls suficientes para comenzar la busqueda del End en un futuro cercano`
+            );
+            vidaDefault(jug, true);
+            break;
+          case 2:
+            texto(
+              `${jug.nombre} convence a ${jug2.nombre} para que explore con el. Ambos consiguen una gran cantidad de enderpearls`
+            );
+            vidaDefault(jug, true);
+            break;
+          case 3:
+            dano = getRandomIntInclusive(15, 8);
+            jug.vida -= dano;
+            texto(
+              `${jug.nombre} sufre gran daño por parte de los endermans ocultos en el bosque, pero logra huir con una gran cantidad de enderpearls`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
+            break;
+          case 4:
+            dano = jug.vida
+            jug.vida = 0;
+            texto(
+            `${jug.nombre} convence a ${jug2.nombre} para que explore con el. Tras alcanzar su meta, ${jug2.nombre} mata a ${jug.nombre} y se queda con los stacks de enderpearls para el solo`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
+            break;
+           case 5:
+              dano = jug.vida;
+              jug.vida = 0;
+              texto(
+                `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es asesinado por un enderman`
+              );
+              vidaDefault(jug);
+              danoInsta(dano);
+              break;
+             case 6:
+                texto(
+                  `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es intimidado por un enderman, huyendo sin daños`
+                );
+                vidaDefault(jug, true);
+                break;
+        }
+      } else {
+        nrand = getRandomIntInclusive(1);
+        switch (nrand) {
+          case 0:
+            texto(`${jug.nombre} decide que aun no es tiempo para pensar en el End`);
+            vidaDefault(jug, true);
+            break;
+          case 1:
+            texto(
+              `${jug.nombre} ve a la distancia lo que podría ser un bosque distorsionado, pero prefiere dar la vuelta`);
+              vidaDefault(jug, true);
+            break;
+          case 2:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(
+              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`);
+              vidaDefault(jug);
+              danoInsta(dano);
+            break;
+        }
+      }
+    }
+  }
 };
 repetir(Decid.Nether, 4);
 repetir(DecidDiaNoche, 1);
