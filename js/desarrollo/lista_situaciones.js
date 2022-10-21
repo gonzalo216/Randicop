@@ -113,7 +113,6 @@ const DanoGlobal = {
       danoInsta(dano);
     },
   };
-
 export const Dano = {
   Dia: {
     sol: function (jug) {
@@ -257,7 +256,7 @@ const VidaGlobal = {
     pocionCura: function (jug) {
       pocionIns(jug.vida);
       texto(
-        `${jug.nombre} usa una pocion de <i>curación instantánea ${adicional}</i>`
+        `${jug.nombre} usa una pocion de <i>curación instantanea ${adicional}</i>`
       );
       vidaDefault(jug);
       ctrl();
@@ -278,7 +277,7 @@ const VidaGlobal = {
     bruja: function (jug) {
       pocionIns(jug.vida);
       texto(
-        `Una bruja se confunde y le tira una pocion splash de <i>curación instantanea ${adicional}</i> a ${jug.nombre}`
+        `Una bruja se confunde y le tira una pocion splash de <i>curacion instantanea ${adicional}</i> a ${jug.nombre}`
       );
       vidaDefault(jug);
       ctrl();
@@ -297,7 +296,16 @@ export const Vida = {
       jug.vida = cura;
     },
   },
-  Noche: {},
+  Noche: {
+    angel: function (jug) {
+      cura = 3 + jug.vida;
+      texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
+       vidaDefault(jug);
+       ctrl();
+       curar(cura);
+       jug.vida = cura;
+     },
+    },
   Nether: {
     manzana: function (jug) {
       cura = 4 + jug.vida;
@@ -307,7 +315,7 @@ export const Vida = {
       ctrl();
       curar(cura);
       jug.vida = cura;
-    },
+    }
   },
 };
 repetir(Vida.Nether, 4);
@@ -435,6 +443,11 @@ export const Random = {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`);
       vidaDefault(jug, true);
     },
+    arco: function (jug) {
+      texto(`${jug.nombre} se hace con el arco de un esqueleto`);
+      vidaDefault(jug, true);
+      jug.arco = true;
+    },
   },
   Nether: {
     tiempoPortal: function (jug) {
@@ -452,6 +465,25 @@ export const Random = {
     relojRoto: function (jug) {
       texto(
         `${jug.nombre} observa su reloj, pero parece estar roto...`
+      );
+      vidaDefault(jug, true);
+    },
+    explorarStrider: function (jug) {
+      if (jug.strider)
+      {
+      texto(`Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montaado a un strider`);
+      }
+      vidaDefault(jug, true);
+    },
+    mascotaStrider: function (jug) {
+      texto(
+        `${jug.nombre} se encariña con un strider solitario`
+      );
+      vidaDefault(jug, true);
+    },
+    piensaStrider: function (jug) {
+      texto(
+        `${jug.nombre} piensa en adoptar a un strider como mascota`
       );
       vidaDefault(jug, true);
     },
@@ -537,6 +569,7 @@ export const Rel = {
             break;
           case 2:
             texto(`${jug.nombre} y ${jug2.nombre} agrandan su casa`);
+            vidaDefault(jug, true);
             break;
         }
       } else {
@@ -558,6 +591,29 @@ export const Rel = {
       texto(`${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`);
       vidaDefault(jug, true);
     },
+
+        // vivirHacha: function (jug) {
+    //   const jug2 = nJugRand(jug);
+    //   texto(
+    //     `${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
+    //   );
+    //   vidaDefault(jug);
+    //   danoInsta(dano);
+    // },
+    // casaAgrandar: function (jug) {
+    //   const jug2 = nJugRand(jug);
+    //   texto(
+    //     `$${jug.nombre} y ${jug2.nombre} agrandan su casa`
+    //   );
+    //   vidaDefault(jug, true);
+    // },
+    // vivirJuntos: function (jug) {
+    //   const jug2 = nJugRand(jug);
+    //   texto(
+    //     `$${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`
+    //   );
+    //   vidaDefault(jug, true);
+    // },
   },
   Noche: {
     juntarcamas: function (jug) {
@@ -582,7 +638,7 @@ export const Rel = {
   },
   Nether: {
     waterdrop: function (jug) {
-      const jug2 = getRandomIntInclusive(jug);
+      const jug2 = nJugRand(jug);
       dano = jug.vida;
       jug.vida = 0;
       texto(`${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`);
@@ -864,13 +920,13 @@ export const Decid = {
   },
   Nether: {
     bosqueDis: async function (jug) {
-      const jug2 = getRandomIntInclusive(jug);
+      const jug2 = nJugRand(jug);
       texto(`${jug.nombre} quiere ir en busca del bosque distorsionado, tierra de los enderman, y conseguir enderpearls,`);
       vidaDefault(jug, true);
       texto(`¿Deberia partir?`, true);
       let decision = await decidir("Ir en su busqueda", "Pensar en otra cosa");
       if (decision) {
-        nrand = getRandomIntInclusive(6);
+        nrand = getRandomIntInclusive(8);
         switch (nrand) {
           case 0:
             texto(
@@ -893,8 +949,9 @@ export const Decid = {
           case 3:
             dano = getRandomIntInclusive(15, 8);
             jug.vida -= dano;
+            jug.vida += 4;
             texto(
-              `${jug.nombre} sufre gran daño por parte de los endermans ocultos en el bosque, pero logra huir con una gran cantidad de enderpearls`
+              `${jug.nombre} es herido por los enderman ocultos en el bosque, pero logra huir con una gran cantidad de enderpearls`
             );
             vidaDefault(jug);
             danoInsta(dano);
@@ -919,13 +976,26 @@ export const Decid = {
               break;
              case 6:
                 texto(
-                  `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es intimidado por un enderman, huyendo sin daños`
+                  `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es intimidado por un enderman, huyendo sin heridas`
                 );
                 vidaDefault(jug, true);
                 break;
+              case 7:
+                  texto(
+                    `En lugar de enderpearls, ${jug.nombre} se aleja de los enderman cargado de hongos distorsionados. ¿Que podria hacer con eso?`
+                  );
+                  vidaDefault(jug, true);
+                  jug.strider = true;
+                  break;
+                case 8:
+                    texto(
+                      `${jug.nombre} pierde tanto tiempo buscando endermans que, al encontrarlos, mata a unos pocos y se aleja cansado`
+                    );
+                    vidaDefault(jug, true);
+                    break;
         }
       } else {
-        nrand = getRandomIntInclusive(1);
+        nrand = getRandomIntInclusive(2);
         switch (nrand) {
           case 0:
             texto(`${jug.nombre} decide que aun no es tiempo para pensar en el End`);
@@ -947,7 +1017,7 @@ export const Decid = {
         }
       }
     }
-  }
+  },
 };
 repetir(Decid.Nether, 4);
 repetir(DecidDiaNoche, 1);
