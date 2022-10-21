@@ -1,11 +1,13 @@
 import juego, { apurar, final } from "./situaciones.js";
 
 const d = document;
-var btnSig, btnAnt;
-let primero = true;
+let btnSig, btnAnt;
+let primero;
 export const $transcurso = [];
 export function iniciar() {
-  (btnSig = d.getElementById("sig")), (btnAnt = d.getElementById("ant"));
+  primero = true;
+  btnSig = d.getElementById("sig");
+  btnAnt = d.getElementById("ant");
 }
 
 export function crearDiv() {

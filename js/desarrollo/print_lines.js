@@ -7,7 +7,7 @@ export function titulo(text, clas = null) {
   $p.innerHTML = text;
   $transcurso.at(-1).appendChild($p);
 }
-export function crearBotones(si, no, clas = null){
+export function crearBotones(si, no, clas = null) {
   const $template = d.getElementById("tem-decidir").content,
     $fragment = d.createDocumentFragment();
   let $clone = d.importNode($template, true);
@@ -16,7 +16,7 @@ export function crearBotones(si, no, clas = null){
   $clone.getElementById("btn-no").innerHTML = no;
   $fragment.appendChild($clone);
   $transcurso.at(-1).lastElementChild.appendChild($fragment);
-  copySize(); 
+  copySize();
 }
 export async function decidir(si, no) {
   const eleccion = new Promise((resolve, reject) => {
@@ -31,9 +31,9 @@ export async function decidir(si, no) {
       }
     });
   });
+  $transcurso.at(-1).lastElementChild.lastElementChild.remove();
   crearBotones(si, no);
   let result = await eleccion;
-  $transcurso.at(-1).lastElementChild.lastElementChild.remove();
   $transcurso.at(-1).lastElementChild.lastElementChild.remove();
   //if (result)
   $transcurso
@@ -49,6 +49,8 @@ function imprimir(text, clas, fin = false, addClass = null) {
   if (addClass) $template.querySelector(clas).className += addClass;
   if (fin) {
     let $clone = d.importNode($template, true);
+    if (!$clone.querySelector(".vida-extra").innerHTML)
+      $clone.querySelector(".vida-extra").remove();
     $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
     $template.querySelector(".texto").className = "texto";
     $fragment.appendChild($clone);
@@ -75,22 +77,22 @@ function armarTotal() {
   imprimir(printIcons(20, "armorNo"), ".arm-total");
 }
 function vidaTotal() {
-  imprimir(printIcons(20, "heartNo"), ".vida.total");
+  imprimir(printIcons(20, "heartNo"), ".vida-total");
 }
 export function vidaDefault(jug, bol = false) {
   vidaTotal();
   armarTotal();
   armar(jug.armadura);
-  imprimir(printIcons(jug.vida, "heartOne", "heartHalf"), ".vida.jugador", bol);
+  imprimir(printIcons(jug.vida, "heartOne", "heartHalf"), ".vida-jugador", bol);
 }
 export function vidaExtra(extra) {
-  imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida.extra");
+  imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida-extra");
 }
 export function danoInsta(dano, bol = true) {
-  imprimir(printIcons(dano, "damagOne", "damagHalf"), ".vida.anterior", bol);
+  imprimir(printIcons(dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
 }
 export function curar(cura, bol = true) {
-  imprimir(printIcons(cura, "addOne", "addHalf"), ".vida.anterior", bol);
+  imprimir(printIcons(cura, "addOne", "addHalf"), ".vida-anterior", bol);
 }
 export function texto(text, bol = false) {
   imprimir(text, ".texto", bol);

@@ -223,7 +223,9 @@ export const Dano = {
     piglin: function (jug) {
       dano = getRandomIntInclusive(16, 8);
       jug.vida -= dano;
-      texto(`${jug.nombre} olvida llevar algo de oro y es atacado por un grupo de piglins`);
+      texto(
+        `${jug.nombre} olvida llevar algo de oro y es atacado por un grupo de piglins`
+      );
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -300,12 +302,12 @@ export const Vida = {
     angel: function (jug) {
       cura = 3 + jug.vida;
       texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
-       vidaDefault(jug);
-       ctrl();
-       curar(cura);
-       jug.vida = cura;
-     },
+      vidaDefault(jug);
+      ctrl();
+      curar(cura);
+      jug.vida = cura;
     },
+  },
   Nether: {
     manzana: function (jug) {
       cura = 4 + jug.vida;
@@ -315,7 +317,7 @@ export const Vida = {
       ctrl();
       curar(cura);
       jug.vida = cura;
-    }
+    },
   },
 };
 repetir(Vida.Nether, 4);
@@ -401,6 +403,7 @@ export const Random = {
         articulo = "un";
       if (parte === "botas") articulo = "unas";
       jug.armadura[parte] = armadura[parte][material];
+      jug.armourName[parte] = material;
       texto(`${jug.nombre} se construyo ${articulo} ${parte} de ${material}
       `);
       vidaDefault(jug, true);
@@ -463,28 +466,23 @@ export const Random = {
       vidaDefault(jug, true);
     },
     relojRoto: function (jug) {
-      texto(
-        `${jug.nombre} observa su reloj, pero parece estar roto...`
-      );
+      texto(`${jug.nombre} observa su reloj, pero parece estar roto...`);
       vidaDefault(jug, true);
     },
     explorarStrider: function (jug) {
-      if (jug.strider)
-      {
-      texto(`Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montaado a un strider`);
+      if (jug.strider) {
+        texto(
+          `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montaado a un strider`
+        );
       }
       vidaDefault(jug, true);
     },
     mascotaStrider: function (jug) {
-      texto(
-        `${jug.nombre} se encariña con un strider solitario`
-      );
+      texto(`${jug.nombre} se encariña con un strider solitario`);
       vidaDefault(jug, true);
     },
     piensaStrider: function (jug) {
-      texto(
-        `${jug.nombre} piensa en adoptar a un strider como mascota`
-      );
+      texto(`${jug.nombre} piensa en adoptar a un strider como mascota`);
       vidaDefault(jug, true);
     },
   },
@@ -496,7 +494,7 @@ repetir(RandomDiaNoche, 1);
 Object.assign(RandomDiaNoche, RandomGlobal);
 Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
-Object.assign(Random.Noche, RandomGlobal);
+Object.assign(Random.Nether, RandomGlobal);
 
 // RELACIONES
 export const RelGlobal = {
@@ -592,7 +590,7 @@ export const Rel = {
       vidaDefault(jug, true);
     },
 
-        // vivirHacha: function (jug) {
+    // vivirHacha: function (jug) {
     //   const jug2 = nJugRand(jug);
     //   texto(
     //     `${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
@@ -641,7 +639,9 @@ export const Rel = {
       const jug2 = nJugRand(jug);
       dano = jug.vida;
       jug.vida = 0;
-      texto(`${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`);
+      texto(
+        `${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`
+      );
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -921,7 +921,9 @@ export const Decid = {
   Nether: {
     bosqueDis: async function (jug) {
       const jug2 = nJugRand(jug);
-      texto(`${jug.nombre} quiere ir en busca del bosque distorsionado, tierra de los enderman, y conseguir enderpearls,`);
+      texto(
+        `${jug.nombre} quiere ir en busca del bosque distorsionado, tierra de los enderman, y conseguir enderpearls,`
+      );
       vidaDefault(jug, true);
       texto(`¿Deberia partir?`, true);
       let decision = await decidir("Ir en su busqueda", "Pensar en otra cosa");
@@ -957,66 +959,70 @@ export const Decid = {
             danoInsta(dano);
             break;
           case 4:
-            dano = jug.vida
+            dano = jug.vida;
             jug.vida = 0;
             texto(
-            `${jug.nombre} convence a ${jug2.nombre} para que explore con el. Tras alcanzar su meta, ${jug2.nombre} mata a ${jug.nombre} y se queda con los stacks de enderpearls para el solo`
+              `${jug.nombre} convence a ${jug2.nombre} para que explore con el. Tras alcanzar su meta, ${jug2.nombre} mata a ${jug.nombre} y se queda con los stacks de enderpearls para el solo`
             );
             vidaDefault(jug);
             danoInsta(dano);
             break;
-           case 5:
-              dano = jug.vida;
-              jug.vida = 0;
-              texto(
-                `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es asesinado por un enderman`
-              );
-              vidaDefault(jug);
-              danoInsta(dano);
-              break;
-             case 6:
-                texto(
-                  `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es intimidado por un enderman, huyendo sin heridas`
-                );
-                vidaDefault(jug, true);
-                break;
-              case 7:
-                  texto(
-                    `En lugar de enderpearls, ${jug.nombre} se aleja de los enderman cargado de hongos distorsionados. ¿Que podria hacer con eso?`
-                  );
-                  vidaDefault(jug, true);
-                  jug.strider = true;
-                  break;
-                case 8:
-                    texto(
-                      `${jug.nombre} pierde tanto tiempo buscando endermans que, al encontrarlos, mata a unos pocos y se aleja cansado`
-                    );
-                    vidaDefault(jug, true);
-                    break;
+          case 5:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(
+              `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es asesinado por un enderman`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
+            break;
+          case 6:
+            texto(
+              `${jug.nombre} se topa con el bosque distorsionado casi al instante, pero antes de comenzar a llenar su inventario es intimidado por un enderman, huyendo sin heridas`
+            );
+            vidaDefault(jug, true);
+            break;
+          case 7:
+            texto(
+              `En lugar de enderpearls, ${jug.nombre} se aleja de los enderman cargado de hongos distorsionados. ¿Que podria hacer con eso?`
+            );
+            vidaDefault(jug, true);
+            jug.strider = true;
+            break;
+          case 8:
+            texto(
+              `${jug.nombre} pierde tanto tiempo buscando endermans que, al encontrarlos, mata a unos pocos y se aleja cansado`
+            );
+            vidaDefault(jug, true);
+            break;
         }
       } else {
         nrand = getRandomIntInclusive(2);
         switch (nrand) {
           case 0:
-            texto(`${jug.nombre} decide que aun no es tiempo para pensar en el End`);
+            texto(
+              `${jug.nombre} decide que aun no es tiempo para pensar en el End`
+            );
             vidaDefault(jug, true);
             break;
           case 1:
             texto(
-              `${jug.nombre} ve a la distancia lo que podría ser un bosque distorsionado, pero prefiere dar la vuelta`);
-              vidaDefault(jug, true);
+              `${jug.nombre} ve a la distancia lo que podría ser un bosque distorsionado, pero prefiere dar la vuelta`
+            );
+            vidaDefault(jug, true);
             break;
           case 2:
             dano = jug.vida;
             jug.vida = 0;
             texto(
-              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`);
-              vidaDefault(jug);
-              danoInsta(dano);
+              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`
+            );
+            vidaDefault(jug);
+            danoInsta(dano);
             break;
         }
       }
-    }
+    },
   },
 };
 repetir(Decid.Nether, 4);

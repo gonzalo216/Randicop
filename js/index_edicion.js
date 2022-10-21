@@ -1,4 +1,3 @@
-import { resetDias } from "./desarrollo/situaciones.js";
 import { crearJugs, resetJugs } from "./desarrollo/variables.js";
 import insertar from "./edicion/insertar_html.js";
 import crearFormulario from "./edicion/crear_formulario.js";
@@ -16,12 +15,14 @@ d.addEventListener("click", (e) => {
     $desarrolloJs.setAttribute("src", "./../js/index_desarrollo.js");
     resetear();
   }
-  if(e.target.matches(".btn-final:last-child") || e.target.matches(".btn-final:last-child *")){
-    console.log("ok")
+  if (
+    e.target.matches(".btn-final:last-child") ||
+    e.target.matches(".btn-final:last-child *")
+  ) {
+    console.log("ok");
     resetJugs();
     insertar("./desarrollo.html");
     resetear();
-    resetDias()
   }
   if (e.target.matches("#mas") || e.target.matches("#mas *")) {
     console.log("click");

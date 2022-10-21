@@ -3,14 +3,14 @@ import { Dano, Decid, Random, Rel, Vida } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
-let nrand,
-  cont = 0,
-  contNether = 0,
-  t = 0.5,
-  finalista,
-  nether = false,
+let nrand, cont, contNether, t, finalista, nether, caso;
+export function resetEventos() {
+  cont = 0;
+  contNether = 0;
+  t = 0.5;
+  nether = false;
   caso = 1;
-export const resetDias = () => (cont = 0);
+}
 export function apurar() {
   t = 0;
 }
@@ -134,10 +134,9 @@ export default async function juego() {
     muertos.forEach((el) => {
       texto(`${lista[el].nombre}`, true);
     });
-    finalista = lista[muertos.at(-1)].nombre;
+    finalista = lista[muertos.at(-1)];
   }
   if (jugs.every((el) => lista[el].vida <= 0)) {
-    t = 0.5;
     completo(true, true);
     return;
   }
@@ -146,10 +145,26 @@ export default async function juego() {
 export function final() {
   crearDiv();
   titulo(
-    `<h2>El ultimo jugador sobreviviente fue ${finalista}</h2>`,
+    `<h2>El ultimo jugador sobreviviente fue ${finalista.nombre}</h2>`,
     "finalista"
   );
-  crearBotones(`<a href="./preinicio.html">Inicio</a>`, `Volver a Jugar`, "btn-final");
+  titulo(
+    `
+  <h5>Armadura</h5>
+  <ol>
+    <li>Casco: ${finalista.armourName.casco}</li>
+    <li>Peto: ${finalista.armourName.peto}</li>
+    <li>Pantalones: ${finalista.armourName.pantalon}</li>
+    <li>Botas: ${finalista.armourName.botas}</li>
+  </ol>
+  `,
+    "datos"
+  );
+  crearBotones(
+    `<a href="./preinicio.html">Inicio</a>`,
+    `Volver a Jugar`,
+    "btn-final"
+  );
 }
 
 export function Hola() {

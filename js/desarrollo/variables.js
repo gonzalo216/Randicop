@@ -11,6 +11,12 @@ class Jugador {
       pantalon: 0,
       botas: 0,
     };
+    this.armourName = {
+      casco: "",
+      peto: "",
+      pantalon: "",
+      botas: "",
+    };
     this.perro = false;
     this.gato = false;
     this.conv = false;
