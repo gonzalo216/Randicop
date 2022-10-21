@@ -149,7 +149,7 @@ export function final() {
     `<h2>El ultimo jugador sobreviviente fue ${finalista}</h2>`,
     "finalista"
   );
-  crearBotones(`<a href="./preinicio.html">Volver</a>`, `Rejugar`, "btn-final");
+  crearBotones(`<a href="./preinicio.html">Inicio</a>`, `Volver a Jugar`, "btn-final");
 }
 
 export function Hola() {

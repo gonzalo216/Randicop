@@ -168,3 +168,25 @@ div {
   --color-secondary-500: #009688;
   --color-secondary-900: #004d40;
 }
+.btn-final{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+justify-items: center;
+}
+.btn-final > button:last-child {
+  padding: 15px;
+  font-size: 70px;
+  margin: 1rem;
+  grid-row-start: 1;
+  grid-row-end: 1;
+}
+
+.btn-final > button:first-child {
+  grid-row-start: 2;
+  grid-row-end: 2;
+  width: 100px;
+}
+#btn-si a{
+  color: black;
+}
