@@ -9,6 +9,7 @@ import {
 import { getRandomIntInclusive, repetir } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
 import { armadura, materiales, partes } from "./armadura.js";
+
 const nJugRand = (jug) => {
   let num;
   do {
@@ -21,12 +22,12 @@ const nJugRand = (jug) => {
 };
 let nrand, dano, cura, adicional;
 
-// DAÑO
+/* ----------------------------------------DAÑO----------------------------------------*/
 const DanoGlobal = {
     // nocomer: function (nombre, vida) {
     //   dano = vida;
     //   vida = 1;
-    //   texto(`${nombre} se quedó sin comida`);
+    //   texto(`${nombre} se quedo sin comida`);
     //   vidaDefault(vida);
     //   danoInsta(dano);
     //   return vida;
@@ -58,7 +59,7 @@ const DanoGlobal = {
       jug.vida -= dano;
       dano += jug.vida;
       texto(
-        `${jug.nombre} golpea a un lobo, logrando que una manada se abalanzase sobre él`
+        `${jug.nombre} golpea a un lobo, logrando que una manada se abalanzase sobre el`
       );
       vidaDefault(jug);
       danoInsta(dano);
@@ -108,6 +109,7 @@ const DanoGlobal = {
       nrand <= 5 ? (dano = 4) : (dano = 0); //hay un 60% de propabilidades de perder 2 corazones
       jug.vida -= dano;
       dano += jug.vida;
+      if (jug.vida <= 0) jug.vida = 1;
       texto(`${jug.nombre} se ve forzado a comer una papa envenenada`);
       vidaDefault(jug);
       danoInsta(dano);
@@ -135,22 +137,22 @@ export const Dano = {
       dano = getRandomIntInclusive(20);
       jug.vida -= dano;
       dano += jug.vida;
-      texto(`El golem de la aldea defendió a un aldeano de ${jug.nombre}`);
+      texto(`El golem de la aldea defendio a un aldeano de ${jug.nombre}`);
       vidaDefault(jug);
       danoInsta(dano);
     },
     llamas: function (jug) {
-      nrand = getRandomIntInclusive(20);
+      nrand = getRandomIntInclusive(20, 1);
       jug.vida -= dano;
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
-        adicional = "las llamas lo abligan a escapar de alli";
+        adicional = "Las llamas lo abligan a escapar de alli";
       else if (dano > 4 && dano < 12)
-        adicional = "las llamas le dan unos poderosos escupitajos";
-      else if (dano > 1) adicional = "es escupido por unas llamas";
-      else adicional = "una llama le escupe";
+        adicional = "Las llamas le dan unos poderosos escupitajos";
+      else if (dano > 1) adicional = "Es escupido por unas llamas";
+      else adicional = "Una llama le escupe";
       dano += jug.vida;
-      texto(`${jug.nombre} mata a un vendedor ambulante, pero ${adicional}`);
+      texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`);
       vidaDefault(jug);
       danoInsta(dano);
     },
@@ -198,17 +200,24 @@ export const Dano = {
       danoInsta(dano);
     },
     babyzombie: function (jug) {
-      dano = getRandomIntInclusive(9, 4);
+      if (jug.perro) {
+        dano = getRandomIntInclusive(3);
+        texto(`${jug.nombre} mata a un bebe zombie con ayuda de su perro`);
+      } else {
+        dano = getRandomIntInclusive(9, 4);
+        texto(`Aterrorizado, ${jug.nombre} escapa de un bebe zombie`);
+      }
       jug.vida -= dano;
-      texto(`Aterrorizado, ${jug.nombre} escapa de un bebe zombie`);
+      dano += jug.vida;
       vidaDefault(jug);
       danoInsta(dano);
     },
   },
   Nether: {
     waterdrop: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
+      dano = getRandomIntInclusive(20, 8);
+      jug.vida -= dano;
+      dano += jug.vida;
       texto(`${jug.nombre} intenta hacer un waterdrop`);
       vidaDefault(jug);
       danoInsta(dano);
@@ -216,6 +225,7 @@ export const Dano = {
     waterdrop: function (jug) {
       dano = getRandomIntInclusive(20, 4);
       jug.vida -= dano;
+      dano += jug.vida;
       texto(`${jug.nombre} pone una cama e intenta dormir`);
       vidaDefault(jug);
       danoInsta(dano);
@@ -223,6 +233,7 @@ export const Dano = {
     piglin: function (jug) {
       dano = getRandomIntInclusive(16, 8);
       jug.vida -= dano;
+      dano += jug.vida;
       texto(
         `${jug.nombre} olvida llevar algo de oro y es atacado por un grupo de piglins`
       );
@@ -240,7 +251,7 @@ Object.assign(Dano.Dia, DanoDiaNoche);
 Object.assign(Dano.Noche, DanoDiaNoche);
 Object.assign(Dano.Nether, DanoGlobal);
 
-// VIDA
+/* ----------------------------------------VIDA----------------------------------------*/
 const ctrl = () => {
     if (cura > 20) cura = 20;
   },
@@ -258,7 +269,7 @@ const VidaGlobal = {
     pocionCura: function (jug) {
       pocionIns(jug.vida);
       texto(
-        `${jug.nombre} usa una pocion de <i>curación instantanea ${adicional}</i>`
+        `${jug.nombre} usa una pocion de <i>curacion instantanea ${adicional}</i>`
       );
       vidaDefault(jug);
       ctrl();
@@ -299,26 +310,16 @@ export const Vida = {
     },
   },
   Noche: {
-    angel: function (jug) {
-      cura = 3 + jug.vida;
-      texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
-      vidaDefault(jug);
-      ctrl();
-      curar(cura);
-      jug.vida = cura;
-    },
+    // angel: function (jug) {
+    //   cura = 3 + jug.vida;
+    //   texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
+    //   vidaDefault(jug);
+    //   ctrl();
+    //   curar(cura);
+    //   jug.vida = cura;
+    // },
   },
-  Nether: {
-    manzana: function (jug) {
-      cura = 4 + jug.vida;
-      texto(`${jug.nombre} come una manzana dorada`);
-      vidaExtra(4);
-      vidaDefault(jug);
-      ctrl();
-      curar(cura);
-      jug.vida = cura;
-    },
-  },
+  Nether: {},
 };
 repetir(Vida.Nether, 4);
 repetir(Vida.Dia, 2);
@@ -329,11 +330,11 @@ Object.assign(Vida.Dia, VidaDiaNoche);
 Object.assign(Vida.Noche, VidaDiaNoche);
 Object.assign(Vida.Nether, VidaGlobal);
 
-// RANDOM
+/* ----------------------------------------RANDOM----------------------------------------*/
 const RandomGlobal = {
     // locura: function (nombre, vida) {
     //   texto(
-    //     `${nombre} entra en la locura pensando por qué el cubo no tiene forma de cubo`
+    //     `${nombre} entra en la locura pensando por que el cubo no tiene forma de cubo`
     //   );
     //   vidaDefault(vida, true);
     // },
@@ -368,40 +369,39 @@ const RandomGlobal = {
   };
 export const Random = {
   Dia: {
-    // oveja: function (jug) {
-    //   texto(
-    //     `${jug.nombre} encuentra una oveja rosa... ahora está pensando en hacerse una cama`
-    //   );
-    //   vidaDefault(jug, true);
-    // },
-    // golem: function (jug) {
-    //   texto(
-    //     `${jug.nombre} golpeó a un aldeano por accidente y huyó del golem que le venía encima`
-    //   );
-    //   vidaDefault(jug, true);
-    // },
-    // semillas: function (jug) {
-    //   texto(`${jug.nombre} cada vez tiene mas semillas`);
-    //   vidaDefault(jug, true);
-    // },
-    // frasco: function (jug) {
-    //   texto(`${jug.nombre} fabrica un frasco para toma agua`);
-    //   vidaDefault(jug, true);
-    // },
-    // pala: function (jug) {
-    //   texto(`${jug.nombre} fabrica una pala y se pone a trabajar`);
-    //   vidaDefault(jug, true);
-    // },
-    // caña: function (jug) {
-    //   texto(`${jug.nombre} intenta pescar con su nueva caña, pero se rinde y entra al agua, golpeando a los peces con la espada
-    //   `);
-    //   vidaDefault(jug, true);
-    // },
+    oveja: function (jug) {
+      texto(
+        `${jug.nombre} encuentra una oveja rosa... ahora esta pensando en hacerse una cama`
+      );
+      vidaDefault(jug, true);
+    },
+    golem: function (jug) {
+      texto(
+        `${jug.nombre} golpeo a un aldeano por accidente y huyo del golem que le venia encima`
+      );
+      vidaDefault(jug, true);
+    },
+    semillas: function (jug) {
+      texto(`${jug.nombre} cada vez tiene mas semillas`);
+      vidaDefault(jug, true);
+    },
+    frasco: function (jug) {
+      texto(`${jug.nombre} fabrica un frasco para toma agua`);
+      vidaDefault(jug, true);
+    },
+    pala: function (jug) {
+      texto(`${jug.nombre} fabrica una pala y se pone a trabajar`);
+      vidaDefault(jug, true);
+    },
+    caña: function (jug) {
+      texto(`${jug.nombre} intenta pescar con su nueva caña, pero se rinde y entra al agua, golpeando a los peces con la espada
+      `);
+      vidaDefault(jug, true);
+    },
     armado: function (jug) {
       let parte = partes[1],
         material = materiales[1],
-        articulo = "un";
-      if (parte === "botas") articulo = "unas";
+        articulo = parte === botas ? "unas" : "un";
       jug.armadura[parte] = armadura[parte][material];
       jug.armourName[parte] = material;
       texto(`${jug.nombre} se construyo ${articulo} ${parte} de ${material}
@@ -472,7 +472,7 @@ export const Random = {
     explorarStrider: function (jug) {
       if (jug.strider) {
         texto(
-          `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montaado a un strider`
+          `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montando a un strider`
         );
       }
       vidaDefault(jug, true);
@@ -496,7 +496,7 @@ Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
 Object.assign(Random.Nether, RandomGlobal);
 
-// RELACIONES
+/* ----------------------------------------RELACION----------------------------------------*/
 export const RelGlobal = {
   mirarfeo: function (jug) {
     const jug2 = nJugRand(jug);
@@ -645,7 +645,7 @@ export const Rel = {
     dejarmobs: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
-        `${jug.nombre} deja solo a ${jug2.nombre} en cuanto ve al primer mob`
+        `En cuanto aparecen los mobs, ${jug.nombre} deja solo a ${jug2.nombre}`
       );
       vidaDefault(jug, true);
     },
@@ -673,7 +673,7 @@ Object.assign(Rel.Dia, RelDiaNoche);
 Object.assign(Rel.Noche, RelDiaNoche);
 Object.assign(Rel.Nether, RelGlobal);
 
-// DECIDIR
+/* ----------------------------------------DECISIoN----------------------------------------*/
 const DecidGlobal = {};
 
 const DecidDiaNoche = {
@@ -683,7 +683,7 @@ const DecidDiaNoche = {
       `${jug.nombre} encuentra a un lobo solitario, pero solo tiene unos pocos huesos en su inventario.`
     );
     vidaDefault(jug, true);
-    texto(`¿Debería intentar domesticarlo?`, true);
+    texto(`¿Deberia intentar domesticarlo?`, true);
     let decision = await decidir("Intentar domesticarlo", "Ignorar al lobo");
     if (decision) {
       nrand = getRandomIntInclusive(2);
@@ -716,7 +716,7 @@ const DecidDiaNoche = {
           vidaDefault(jug, true);
           break;
         case 1:
-          texto(`${jug.nombre} es más bien un fanático de los gatos`);
+          texto(`${jug.nombre} es mas bien un fanatico de los gatos`);
           vidaDefault(jug, true);
           break;
       }
@@ -766,7 +766,7 @@ export const Decid = {
           case 3:
             pocionIns(jug.vida);
             texto(
-              `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiéndola al instante`
+              `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiendola al instante`
             );
             vidaDefault(jug);
             ctrl();
@@ -831,6 +831,7 @@ export const Decid = {
             texto(
               `${jug.nombre} se aleja con el inventario cargado de polovora mientras se imagina a ${jug2.nombre} volando por los aires`
             );
+            //Que tiene que ver NN2?
             vidaDefault(jug, true);
             break;
           case 3:
@@ -843,7 +844,7 @@ export const Decid = {
             dano = jug.vida;
             jug.vida = 0;
             texto(
-              `${jug.nombre} se planta en el centro del templo y pica hacia abajo, cayendo directo sobre una placa de presión. Antes de entender qué ocurre, vuela por los aires`
+              `${jug.nombre} se planta en el centro del templo y pica hacia abajo, cayendo directo sobre una placa de presion. Antes de entender que ocurre, vuela por los aires`
             );
             vidaDefault(jug);
             danoInsta(dano);
@@ -864,7 +865,7 @@ export const Decid = {
       );
       vidaDefault(jug, true);
       texto(`¿Deberia ir a buscarlo?`, true);
-      let decision = await decidir("Buscar spwner", "Seguir de largo");
+      let decision = await decidir("Buscar spawner", "Seguir de largo");
       if (decision) {
         nrand = getRandomIntInclusive(4);
         switch (nrand) {
@@ -901,6 +902,7 @@ export const Decid = {
             texto(
               `${jug.nombre} ve el spawner a lo lejos, pero antes de lograr acercarse un grupo de zombies lo ataca, asesinandolo`
             );
+            //creo que preferiria con un getRandomIntInclusive(-, -);
             vidaDefault(jug);
             danoInsta(dano);
             break;
@@ -1013,7 +1015,7 @@ export const Decid = {
             break;
         }
       } else {
-        nrand = getRandomIntInclusive(2);
+        nrand = getRandomIntInclusive(1);
         switch (nrand) {
           case 0:
             texto(
@@ -1023,18 +1025,9 @@ export const Decid = {
             break;
           case 1:
             texto(
-              `${jug.nombre} ve a la distancia lo que podría ser un bosque distorsionado, pero prefiere dar la vuelta`
+              `${jug.nombre} ve a la distancia lo que podria ser un bosque distorsionado, pero prefiere dar la vuelta`
             );
             vidaDefault(jug, true);
-            break;
-          case 2:
-            dano = jug.vida;
-            jug.vida = 0;
-            texto(
-              `Aunque ${jug.nombre} cree haber ido por el camino opuesto, termina dentro del spawner. Antes de poder hacer algo, es asesinado por un grupo de zombies`
-            );
-            vidaDefault(jug);
-            danoInsta(dano);
             break;
         }
       }

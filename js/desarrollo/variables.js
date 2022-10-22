@@ -1,7 +1,7 @@
 class Jugador {
   constructor(nombre, bol) {
     this.nombre = nombre;
-    this.vida = 20;
+    this.vida = 1;
     this.protag = bol;
     this.cantF = 0;
     this.funciones = new Object();
@@ -12,10 +12,10 @@ class Jugador {
       botas: 0,
     };
     this.armourName = {
-      casco: "",
-      peto: "",
-      pantalon: "",
-      botas: "",
+      casco: "-",
+      peto: "-",
+      pantalon: "-",
+      botas: "-",
     };
     this.perro = false;
     this.gato = false;

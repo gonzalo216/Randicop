@@ -148,30 +148,33 @@ export function final() {
     `<h2>El ultimo jugador sobreviviente fue ${finalista.nombre}</h2>`,
     "finalista"
   );
-  const mascotas = [];
-  if (finalista.perro) mascotas.push("<li>Perro");
-  if (finalista.gato) mascotas.push("<li>Gato");
-
+  const petsArray = [];
+  if (finalista.perro) petsArray.push("<li>Perro</li>");
+  if (finalista.gato) petsArray.push("<li>Gato</li>");
+  if (!petsArray.length) petsArray.push("<li>No consiguio mascotas</li>");
+  let companero = "Murio viviendo solo";
+  if (finalista.conv) companero = finalista.conv.nombre;
+  console.log(finalista);
   titulo(
     `
-  <h5>Armadura</h5>
-  <ol>
-    <li>Casco: ${finalista.armourName.casco}</li>
-    <li>Peto: ${finalista.armourName.peto}</li>
-    <li>Pantalones: ${finalista.armourName.pantalon}</li>
-    <li>Botas: ${finalista.armourName.botas}</li>
-  </ol>
-  <h5>Armadura</h5>
-  <ol>
-  
-    <li>Casco: ${finalista.armourName.casco}</li>
-    <li>Peto: ${finalista.armourName.peto}</li>
-    <li>Pantalones: ${finalista.armourName.pantalon}</li>
-    <li>Botas: ${finalista.armourName.botas}</li>
-  </ol>
+  <div><h4>Armadura</h4>
+    <ul>
+      <li>Casco: ${finalista.armourName.casco}</li>
+      <li>Peto: ${finalista.armourName.peto}</li>
+      <li>Pantalones: ${finalista.armourName.pantalon}</li>
+      <li>Botas: ${finalista.armourName.botas}</li>
+    </ul>
+  </div>
+  <div><h4>Mascotas</h4>
+    <ul>
+      ${petsArray.join("")}
+    </ul>
+  </div>
+  <p>${companero}</p>
   `,
     "datos"
   );
+  titulo("", "volver");
   crearBotones(
     `<a href="./preinicio.html">Inicio</a>`,
     `Volver a Jugar`,
