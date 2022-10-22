@@ -394,7 +394,7 @@ export const Random = {
     armado: function (jug) {
       let parte = partes[1],
         material = materiales[1],
-        articulo = parte === botas ? "unas" : "un";
+        articulo = parte === "botas" ? "unas" : "un";
       jug.armadura[parte] = armadura[parte][material];
       jug.armourName[parte] = material;
       texto(
