@@ -79,7 +79,7 @@ function armarTotal() {
 function vidaTotal() {
   imprimir(printIcons(20, "heartNo"), ".vida-total");
 }
-export function vidaDefault(jug, bol = false) {
+export function vidaDefault(jug, bol = true) {
   vidaTotal();
   armarTotal();
   armar(jug.armadura);
@@ -88,10 +88,10 @@ export function vidaDefault(jug, bol = false) {
 export function vidaExtra(extra) {
   imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida-extra");
 }
-export function danoInsta(dano, bol = true) {
+export function danoInsta(dano, bol = false) {
   imprimir(printIcons(dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
 }
-export function curar(cura, bol = true) {
+export function curar(cura, bol = false) {
   imprimir(printIcons(cura, "addOne", "addHalf"), ".vida-anterior", bol);
 }
 export function texto(text, bol = false) {
