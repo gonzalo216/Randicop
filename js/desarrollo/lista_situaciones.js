@@ -15,7 +15,7 @@ const nJugRand = (jug) => {
 };
 let nrand, dano, cura, adicional;
 
-/* ----------------------------------------DAÑO----------------------------------------*/
+/* ----------------------------------------DAnO----------------------------------------*/
 const DanoGlobal = {
     // nocomer: function (nombre, vida) {
     //   dano = vida;
@@ -139,7 +139,6 @@ export const Dano = {
     },
     llamas: function (jug) {
       nrand = getRandomIntInclusive(20, 1);
-      jug.vida -= dano;
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
         adicional = "Las llamas lo abligan a escapar de alli";
@@ -147,6 +146,7 @@ export const Dano = {
         adicional = "Las llamas le dan unos poderosos escupitajos";
       else if (dano > 1) adicional = "Es escupido por unas llamas";
       else adicional = "Una llama le escupe";
+      jug.vida -= dano;
       dano += jug.vida;
       texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`, jug);
       danoInsta(dano);
@@ -158,7 +158,7 @@ export const Dano = {
       jug.vida -= dano;
       dano += jug.vida;
       texto(
-        `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre daño de los phantoms`,
+        `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre dano de los phantoms`,
         jug
       );
       danoInsta(dano);
@@ -170,7 +170,7 @@ export const Dano = {
       texto(`${jug.nombre} intenta seducir a un enderman`, jug);
       danoInsta(dano);
     },
-    dañopeleaes: function (jug) {
+    danopeleaes: function (jug) {
       dano = getRandomIntInclusive(5, 1);
       jug.vida -= dano;
       dano += jug.vida;
@@ -383,9 +383,9 @@ export const Random = {
     pala: function (jug) {
       texto(`${jug.nombre} fabrica una pala y se pone a trabajar`, jug, true);
     },
-    caña: function (jug) {
+    cana: function (jug) {
       texto(
-        `${jug.nombre} intenta pescar con su nueva caña, pero se rinde y entra al agua, golpeando a los peces con la espada
+        `${jug.nombre} intenta pescar con su nueva cana, pero se rinde y entra al agua, golpeando a los peces con la espada
       `,
         jug,
         true
@@ -483,7 +483,7 @@ export const Random = {
       }
     },
     mascotaStrider: function (jug) {
-      texto(`${jug.nombre} se encariña con un strider solitario`, jug, true);
+      texto(`${jug.nombre} se encarina con un strider solitario`, jug, true);
     },
     piensaStrider: function (jug) {
       texto(
@@ -519,7 +519,7 @@ export const RelGlobal = {
     dano = getRandomIntInclusive(10);
     jug.vida -= dano;
     dano += jug.vida;
-    texto(`${jug.nombre} es perseguido por ${jug2.nombre}`, jug, true);
+    texto(`${jug.nombre} es perseguido por ${jug2.nombre}`, jug);
     danoInsta(dano);
   },
 };
@@ -591,7 +591,7 @@ export const Rel = {
           i++;
           if (i > 10) {
             texto(
-              `${jug.nombre} intento encontrar un compañero, pero no lo logro`,
+              `${jug.nombre} intento encontrar un companero, pero no lo logro`,
               jug,
               true
             );
@@ -779,7 +779,7 @@ export const Decid = {
             jug.vida -= dano;
             dano += jug.vida;
             texto(
-              `${jug2.nombre} regresa mucho antes de lo esperado y golpea a ${jug.nombre} con los puños`,
+              `${jug2.nombre} regresa mucho antes de lo esperado y golpea a ${jug.nombre} con los punos`,
               jug
             );
             danoInsta(dano);

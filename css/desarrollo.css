@@ -21,6 +21,7 @@ div {
 }
 .imprimir {
   position: relative;
+  color: #333;
 }
 
 /* EVENTOS */

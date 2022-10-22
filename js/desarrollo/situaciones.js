@@ -131,9 +131,9 @@ export default async function juego() {
   t = 0.5;
   if (muertos.length) {
     titulo("<hr><h3>Murieron</h3>", "muertes");
-    muertos.forEach((el) => {
-      texto(`${lista[el].nombre}`, false, true);
-    });
+    const nombres = [];
+    muertos.forEach((el) => nombres.push(lista[el].nombre));
+    texto(nombres.join(" - "), false, true);
     finalista = lista[muertos.at(-1)];
   }
   if (jugs.every((el) => lista[el].vida <= 0)) {
