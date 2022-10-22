@@ -132,7 +132,7 @@ export default async function juego() {
   if (muertos.length) {
     titulo("<hr><h3>Murieron</h3>", "muertes");
     muertos.forEach((el) => {
-      texto(`${lista[el].nombre}`, true);
+      texto(`${lista[el].nombre}`, false, true);
     });
     finalista = lista[muertos.at(-1)];
   }
