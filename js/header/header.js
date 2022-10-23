@@ -1,7 +1,6 @@
 const d = document,
   $header = d.querySelector(".header"),
-  $title = d.querySelector("h1"),
-  $logo = d.querySelector(".logo");
+  $content = d.querySelectorAll(".header > *");
 let topAnterior = true;
 export default function scaleHeader() {
   let top;
@@ -9,7 +8,8 @@ export default function scaleHeader() {
   if (top !== topAnterior) {
     topAnterior = top;
     $header.classList.toggle("sticky");
-    $title.classList.toggle("sticky");
-    $logo.classList.toggle("sticky");
+    // $title.classList.toggle("sticky");
+    // $logo.classList.toggle("sticky");
+    $content.forEach((el) => el.classList.toggle("sticky"));
   }
 }
