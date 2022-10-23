@@ -144,7 +144,7 @@ export const Dano = {
         adicional = "Las llamas lo abligan a escapar de alli";
       else if (dano > 4 && dano < 12)
         adicional = "Las llamas le dan unos poderosos escupitajos";
-      else if (dano > 1) adicional = "Es escupido por unas llamas";
+      else if (dano > 1) adicional = "Le escupen unas llamas";
       else adicional = "Una llama le escupe";
       jug.vida -= dano;
       dano += jug.vida;
