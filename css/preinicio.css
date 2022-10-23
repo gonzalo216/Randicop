@@ -11,10 +11,9 @@ body {
 h1 {
   /* color: #76ba99; */
   color: #8fbc8b;
-  height: max-content;
-  font-size: min(8vw, 70px);
   letter-spacing: 5px;
   margin: 0;
+  font-size: min(5vw, 40px);
 }
 section {
   margin: 0;

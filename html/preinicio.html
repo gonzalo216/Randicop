@@ -30,12 +30,18 @@
   </head>
 
   <body>
-    <header class="header" id="sh">
+    <header class="header sticky">
       <!-- <div class="logo" id="logo"> -->
-      <img src="./../assets/letrasAzarVerde.png" alt="Hola" />
-      <a href="./../html/index.html" style="text-decoration: none">
-        <h1>Randicop</h1>
+      <a href="./../html/index.html">
+        <img
+          src="./../assets/letrasAzarVerde.png"
+          class="logo sticky"
+          alt="Hola"
+        />
       </a>
+      <h1 class="sticky">
+        <a href="./../html/index.html"> Randicop </a>
+      </h1>
       <button
         class="panel-btn hamburger hamburger--3dxy"
         id="burger"
@@ -120,8 +126,7 @@
       </section>
       <br /><br />
     </main>
-    <script src="./../js/header/menuh.js" type="module"></script>
-    <script src="./../js/header/header.js"></script>
+    <script src="./../js/index_header.js" type="module"></script>
     <script id="index" type="module"></script>
     <script src="./../js/index_edicion.js" type="module"></script>
   </body>

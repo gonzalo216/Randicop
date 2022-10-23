@@ -25,10 +25,10 @@ a {
 }
 /* HEADER */
 h1 {
-  font-size: 90px;
   width: max-content;
   color: #dbd8e3;
   font-family: Monoton;
+  font-size: min(7vw, 60px);
 }
 
 /* MAIN */
