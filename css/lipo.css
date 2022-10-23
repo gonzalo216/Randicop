@@ -1,4 +1,4 @@
-body h1 {
+/* body h1 {
   margin: 0;
   animation: glow 2s ease-in-out infinite alternate;
 }
@@ -10,7 +10,7 @@ body h1 {
     text-shadow: 0 0 30px #c50094, 0 0 10px rgb(182, 11, 139),
       0 0px 40px rgb(255, 44, 44), 0 0 15px rgb(243, 114, 211);
   }
-}
+} */
 
 /* .bubbly-button {
   font-family: 'Teko', sans-serif;

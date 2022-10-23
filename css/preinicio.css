@@ -1,18 +1,21 @@
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/Minecrafter.Alt.ttf);
+}
 body {
   margin: 0;
   /* background: #ccffbd; */
-  background: darkseagreen;
+  background: #8fbc8b;
   font-family: minecrafter;
 }
 h1 {
   /* color: #76ba99; */
-  color: darkseagreen;
+  color: #8fbc8b;
   height: max-content;
   font-size: min(8vw, 70px);
   letter-spacing: 5px;
   margin: 0;
 }
-
 section {
   margin: 0;
   position: relative;

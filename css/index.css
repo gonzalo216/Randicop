@@ -1,11 +1,3 @@
-body {
-  margin: 0;
-  background: #dbd8e3;
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; */
-}
 @font-face {
   font-family: "Monoton";
   font-style: normal;
@@ -14,34 +6,181 @@ body {
     url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
       format("woff");
 }
-a {
-  text-decoration: none;
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  transition: all 1.5s;
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/Minecrafter.Alt.ttf);
 }
+@font-face {
+  font-family: god;
+  src: url(./../assets/AmongUsFilled-Regular.ttf);
+}
+body {
+  margin: 0;
+  background: #dbd8e3;
+}
+a {
+  /* -webkit-transition: all 1.5s;
+  -moz-transition: all 1.5s;
+  transition: all 1.5s; */
+}
+/* HEADER */
 h1 {
   font-size: 90px;
   width: max-content;
-}
-h1 a {
   color: #dbd8e3;
   font-family: Monoton;
 }
-h1 a:hover {
+
+/* MAIN */
+main {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+main img {
+  width: 250px;
+}
+
+/* TITULOS */
+.titulo {
+  text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+    0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
+.t1 {
+  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
+  color: rgb(175, 175, 175);
+  font-family: minecrafter;
+  font-size: 3em;
+}
+.t2 {
+  font-family: god;
+  font-size: 2em;
+}
+
+/* CUBO */
+.cube {
+  margin-left: 40px;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: rotarCube 4s linear infinite;
+}
+@keyframes rotarCube {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+.cube div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+}
+.cube div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(./../assets/frente.jpg);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(100.01px);
+}
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 205px;
+  height: 205px;
+  background-image: url(./../assets/superior.jpg);
+  transform: rotateX(90deg) translateZ(100.08px);
+}
+.top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: rgb(29, 31, 29);
+  transform: translateZ(-380px);
+  filter: blur(20px);
+  box-shadow: 0 0 120px rgba(16, 18, 16, 0.2), 0 0 200px rgba(44, 45, 44, 0.4),
+    0 0 300px rgba(62, 63, 62, 0.6), 0 0 400px rgba(29, 30, 29, 0.8),
+    0 0 500px rgba(0, 255, 0, 0.1);
+}
+
+/* PROXIMAMENTE */
+.proximamente {
+  /* Aumentamos la anchura y altura durante 2 segundos */
+  transition: transform 0.5s ease;
+  display: inline-block;
+}
+
+.proximamente:hover {
+  /* tranformamos el elemento al pasar el mouse por encima al doble de
+  su tamaño con scale(2). */
+  transform: scale(1.2);
+  backface-visibility: hidden;
+}
+
+/* NO SE */
+/* .animated {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes flash {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+@keyframes flash {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+.flash {
+  -webkit-animation-name: flash;
+  animation-name: flash;
+} */
+
+/* NO ME GUSTA */
+/* h1 a:hover {
   -webkit-animation: neon1 0.5s ease-in-out infinite alternate;
   -moz-animation: neon1 0.5s ease-in-out infinite alternate;
   animation: neon1 0.5s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes neon1 {
+} */
+/* @-webkit-keyframes neon1 {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
-      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
+    0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
   }
   to {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
-      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+    0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
   }
 }
 @-moz-keyframes neon1 {
@@ -58,183 +197,9 @@ h1 a:hover {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
       0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
-  }
-  to {
+    }
+    to {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
-      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
+    0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
   }
-}
-main {
-  width: ;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-  place-content: center;
-}
-.sec img {
-  width: 250px;
-}
-
-.cube{
-  margin-left:40px; 
-  position: relative;
-  width: 200px;
-  height: 200px;
-  transform-style: preserve-3d;
-  animation: animate 4s linear infinite;
-}
-@keyframes animate
-{
-  0%
-  {
-    transform: rotateX(-30deg) rotateY(0deg);
-  }
-  100%
-  {
-    transform: rotateX(-30deg) rotateY(360deg);
-  }
-}
-.cube div {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  transform-style: preserve-3d ;
-}
-.cube div span
-{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(./../assets/frente.jpg);
-  transform: rotateY(calc(90deg * var(--i)))
-  translateZ(100.01px);
-}
-.top{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 205px;
-  height: 205px;
-  background-image: url(./../assets/superior.jpg);
-  transform: rotateX(90deg) translateZ(100.08px);
-}
-.top::before{ 
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  background: rgb(29, 31, 29);
-  transform: translateZ(-380px);
-  filter: blur(20px);
-  box-shadow: 0 0 120px rgba(16, 18, 16, 0.2),
-  0 0 200px rgba(44, 45, 44, 0.4),
-  0 0 300px rgba(62, 63, 62, 0.6),
-  0 0 400px rgba(29, 30, 29, 0.8),
-  0 0 500px rgba(0, 255, 0, 0.1);
-}
-#t1 {
-  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
-  color: rgb(175, 175, 175);
-  font-family: minecrafter;
-  font-size: 3em;
-   
-  text-shadow: 0 1px 0 rgb(2, 2, 2),
-  0 2px 0 #201e1e,
-  0 3px 0 rgb(22, 20, 20), 
-  0 4px 0 #131212, 
-  0 5px 0 rgb(17, 16, 16), 
-  0 6px 1px rgba(0, 0, 0, .1), 
-  0 0 5px rgba(0, 0, 0, .1), 
-  0 1px 3px rgba(0, 0, 0, .3), 
-  0 3px 5px rgba(0, 0, 0, .2), 
-  0 5px 10px rgba(0, 0, 0, .25), 
-  0 10px 10px rgba(0, 0, 0, .2),
-  0 20px 20px rgba(0, 0, 0, .15) ;   
-
-}
-#t2 {
-  font-family: god;
-  font-size: 2em;
-  text-shadow: 0 1px 0 rgb(2, 2, 2),
-  0 2px 0 #201e1e,
-  0 3px 0 rgb(22, 20, 20), 
-  0 4px 0 #131212, 
-  0 5px 0 rgb(17, 16, 16), 
-  0 6px 1px rgba(0, 0, 0, .1), 
-  0 0 5px rgba(0, 0, 0, .1), 
-  0 1px 3px rgba(0, 0, 0, .3), 
-  0 3px 5px rgba(0, 0, 0, .2), 
-  0 5px 10px rgba(0, 0, 0, .25), 
-  0 10px 10px rgba(0, 0, 0, .2),
-  0 20px 20px rgba(0, 0, 0, .15) ;  
-}
-
-
-.sec {
-  width: 600px;
-  margin-top: 100px;
-
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-  place-content: center;
-}
-.parent {
-  width: 300px;
-  height: 300px;
-  background-color: #cccccc;
-  text-align: center;
-}
-.zoom {
-  /* Aumentamos la anchura y altura durante 2 segundos */
-  transition: width 2s, height 2s, transform 2s;
-  display: inline-block;
-}
-
-.zoom:hover {
-  /* tranformamos el elemento al pasar el mouse por encima al doble de
-       su tamaño con scale(2). */
-  transform: scale(1.2);
-  backface-visibility: hidden;
-}
-#lilo {
-  color: red;
-}
-
-.animated {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
- }
- @-webkit-keyframes flash {
-  0%, 50%, 100% {
-  opacity: 1;
-  }
- 25%, 75% {
-  opacity: 0;
-  }
- }
- @keyframes flash {
-  0%, 50%, 100% {
-  opacity: 1;
-  }
- 25%, 75% {
-  opacity: 0;
-  }
- }
- .flash {
-  -webkit-animation-name: flash;
-  animation-name: flash;
- }
+} */
