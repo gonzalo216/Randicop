@@ -11,9 +11,14 @@ body {
 h1 {
   /* color: #76ba99; */
   color: #8fbc8b;
-  letter-spacing: 5px;
+  /* letter-spacing: 5px;
   margin: 0;
-  font-size: min(5vw, 40px);
+  font-size: min(5vw, 40px); */
+  text-shadow: 1px 1px 1rem mediumseagreen;
+}
+.panel-btn {
+  background-color: #8fbc8b;
+  box-shadow: 1px 1px 1rem mediumseagreen;
 }
 section {
   margin: 0;

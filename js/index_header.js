@@ -4,6 +4,6 @@ import scaleHeader from "./header/header.js";
 const d = document;
 
 d.addEventListener("DOMContentLoaded", (e) => {
-  hamburgerMenu(".panel-btn", ".panel");
+  hamburgerMenu(".panel-btn", "aside");
 });
 window.addEventListener("scroll", (e) => scaleHeader());

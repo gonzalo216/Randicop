@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "Monoton";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Iceland"), local("Iceland-Regular"),
+    url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
+      format("woff");
+}
 body {
   animation: aparecer 2s;
   min-width: 200px;
@@ -34,10 +42,9 @@ a {
   height: 8rem;
 }
 header > a {
-  justify-self: right;
   width: 80px;
   height: 70px;
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 .logo {
   height: 100%;
@@ -45,7 +52,9 @@ header > a {
   animation: rotar 10s linear infinite;
 }
 h1 {
-  width: min-content;
+  width: max-content;
+  font-family: Monoton;
+  font-size: min(7vw, 60px);
 }
 .header > * {
   transition: transform 0.5s ease, margin-left 0.5s ease, margin-right 0.5s ease;
@@ -53,13 +62,12 @@ h1 {
 h1.sticky {
   margin-left: 3vw;
 }
-.header > button.sticky {
-  margin-right: 3vw;
+.panel-btn.sticky {
+  margin-right: 1rem;
+  transform: scale(0.8);
 }
-.header > button {
-  margin-right: 0.5rem;
-}
-.header > .sticky {
+a.sticky,
+h1.sticky {
   transform: scale(1.2);
 }
 h1 > a {
@@ -73,27 +81,12 @@ h1 > a {
     rotate: 360deg;
   }
 }
-#burger {
-  background-color: #dbd8e3;
-
-  /* position: fixed;
-  top: 1vh;
-  right: 1vh; */
-
-  border-radius: 40%;
-  width: 22px;
-  height: 20px;
-  padding: 0.5rem;
+.panel-btn {
+  border-radius: 30%;
   display: flex;
-  justify-self: right;
-  justify-content: center;
-  align-items: center;
   z-index: 999;
-}
-#burger span,
-#burger span::after,
-#burger span::before {
-  width: 100%;
+  margin-right: 0.5rem;
+  transform: scale(0.7);
 }
 /* ASIDE */
 aside {

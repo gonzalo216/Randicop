@@ -1,12 +1,4 @@
 @font-face {
-  font-family: "Monoton";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Iceland"), local("Iceland-Regular"),
-    url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
-      format("woff");
-}
-@font-face {
   font-family: minecrafter;
   src: url(./../assets/Minecrafter.Alt.ttf);
 }
@@ -25,12 +17,15 @@ a {
 }
 /* HEADER */
 h1 {
-  width: max-content;
   color: #dbd8e3;
-  font-family: Monoton;
-  font-size: min(7vw, 60px);
+  /* font-family: Monoton;
+  font-size: min(7vw, 60px); */
+  text-shadow: 1px 1px 1rem white;
 }
-
+.panel-btn {
+  background-color: #dbd8e3;
+  box-shadow: 1px 1px 1rem white;
+}
 /* MAIN */
 main {
   display: grid;
