@@ -41,11 +41,14 @@ h1 {
     text-shadow: 0 0 20px #2bff00, 0 0 10px rgb(0, 87, 39);
   }
 } */
-h1 a:hover {
-  animation: neon1 0.5s ease-in-out infinite alternate;
+.logo:hover img {
+  animation: boxneon1 2s ease-in-out infinite alternate;
 }
-.logo:hover {
-  animation: boxneon1 0.5s ease-in-out infinite alternate;
+.logo:hover a {
+  animation: neon1 2s ease-in-out infinite alternate;
+}
+.logo-img {
+  filter: hue-rotate(120deg);
 }
 @keyframes boxneon1 {
   from {
