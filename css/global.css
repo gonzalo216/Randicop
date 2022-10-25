@@ -1,3 +1,8 @@
+:root {
+  --color-header: #222;
+  --color-menulinks: #ffe4c4; /* bisque */
+  --color-menulinks-hover: #fff; /* white */
+}
 @font-face {
   font-family: "Monoton";
   font-style: normal;
@@ -34,7 +39,7 @@ a {
   padding-top: 1rem;
   grid-template-columns: max-content auto max-content;
   grid-template-rows: 80%;
-  background: black;
+  background: var(--color-header);
   transition: height 0.5s ease;
   height: 6rem;
 }
@@ -49,8 +54,17 @@ header > a {
 .logo {
   height: 100%;
   object-fit: contain;
-  animation: rotar 10s linear infinite;
+  transition: transform 1s ease;
+  /* animation: rotar 10s linear infinite; */
 }
+/* @-webkit-keyframes rotar {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+} */
 h1 {
   width: max-content;
   font-family: Monoton;
@@ -72,14 +86,6 @@ h1.sticky {
 }
 h1 > a {
   color: inherit;
-}
-@-webkit-keyframes rotar {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
-  }
 }
 .panel-btn {
   border-radius: 30%;
@@ -115,13 +121,13 @@ aside > nav {
   justify-items: center;
 }
 .menu a {
-  color: bisque;
+  color: var(--color-menulinks);
   margin-top: 40px;
   font-size: 50pxx;
   transition: all o.3s ease;
 }
 .menu a:hover {
   font-weight: bold;
-  color: rgba(238, 186, 65, 0.922);
+  color: var(--color-menulinks-hover);
   /* background-color: rgb(223, 223, 105); */
 }
