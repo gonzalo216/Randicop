@@ -13,10 +13,10 @@ export default function crearFormulario(num, eliminar = false) {
         lastId = parseInt(lastId, 10);
         if (eliminar) {
           const $divs = d.querySelectorAll(".celda");
-          console.log($divs);
-          $divs[$divs.length - 1].remove();
-          lastId--;
-          console.log(lastId);
+          if($divs.length > 1){
+            $divs[$divs.length - 1].remove();
+            lastId--;
+          }
           return;
         }
       } else {
