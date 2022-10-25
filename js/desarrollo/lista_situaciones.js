@@ -47,7 +47,7 @@ const DanoGlobal = {
   },
   DanoDiaNoche = {
     lobo: function (jug) {
-      dano = getRandomIntInclusive(20);
+      dano = getRandomIntInclusive(10);
       jug.vida -= dano;
       dano += jug.vida;
       texto(
@@ -58,10 +58,17 @@ const DanoGlobal = {
     },
     creeper: function (jug) {
       if (jug.gato) {
-        adicional = `Un creeper casi sorprende a ${jug.nombre} por la espalda, pero su gato lo salvo`;
+        adicional = `Un creeper casi sorprende a ${jug.nombre} por la espalda, pero su gato lo salva`;
         dano = 0;
+      }
+      else if (jug.escudo) {
+        dano = getRandomIntInclusive(8, 6);
+        jug.vida -= dano;
+        dano += jug.vida;
+        adicional = `${jug.nombre} logra minimizar el daño del creeper que lo sorprende por la espalda con su escudo`;
+
       } else {
-        dano = getRandomIntInclusive(20, 5);
+        dano = getRandomIntInclusive(20, 19);
         jug.vida -= dano;
         dano += jug.vida;
         adicional = `Un creeper sorpende a ${jug.nombre} por la espalda`;
@@ -69,8 +76,13 @@ const DanoGlobal = {
       texto(adicional, jug);
       danoInsta(dano);
     },
+    creeperCargado: function (jug){
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
+    },
     grava: function (jug) {
-      dano = getRandomIntInclusive(5, 1);
+      dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
       dano += jug.vida;
       texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
@@ -82,8 +94,7 @@ const DanoGlobal = {
       dano += jug.vida;
       texto(
         `${jug.nombre} cae en lava al cavar en linea recta hacia abajo`,
-        jug
-      );
+        jug);
       danoInsta(dano);
     },
     bedrock: function (jug) {
@@ -233,8 +244,16 @@ export const Dano = {
       danoInsta(dano);
     },
   },
+  End: {
+    calabaza: function (jug) {
+      texto(
+        `${jug.nombre} observa su inventario cargado de calabazas`,
+        jug, true);
+    },
+  }
 };
 repetir(Dano.Nether, 4);
+repetir(Dano.End, 4);
 repetir(Dano.Dia, 2);
 repetir(Dano.Noche, 2);
 repetir(DanoDiaNoche, 1);
@@ -242,6 +261,7 @@ Object.assign(DanoDiaNoche, DanoGlobal);
 Object.assign(Dano.Dia, DanoDiaNoche);
 Object.assign(Dano.Noche, DanoDiaNoche);
 Object.assign(Dano.Nether, DanoGlobal);
+Object.assign(Dano.End, DanoGlobal);
 
 /* ----------------------------------------VIDA----------------------------------------*/
 const ctrl = () => {
@@ -309,9 +329,20 @@ export const Vida = {
     //   jug.vida = cura;
     // },
   },
-  Nether: {},
+  Nether: {
+
+  },
+  End: {
+    calabaza: function (jug) {
+      texto(
+        `${jug.nombre} observa su inventario cargado de calabazas`,
+        jug, true);
+    },
+  },
+  
 };
 repetir(Vida.Nether, 4);
+repetir(Vida.End, 4);
 repetir(Vida.Dia, 2);
 repetir(Vida.Noche, 2);
 repetir(VidaDiaNoche, 1);
@@ -319,6 +350,7 @@ Object.assign(VidaDiaNoche, VidaGlobal);
 Object.assign(Vida.Dia, VidaDiaNoche);
 Object.assign(Vida.Noche, VidaDiaNoche);
 Object.assign(Vida.Nether, VidaGlobal);
+Object.assign(Vida.End, VidaGlobal);
 
 /* ----------------------------------------RANDOM----------------------------------------*/
 const RandomGlobal = {
@@ -350,9 +382,16 @@ const RandomGlobal = {
         true
       );
     },
-    diamantelava: function (jug) {
+    diamanteLava: function (jug) {
       texto(
         `${jug.nombre} tira por error en la lava el unico diamante que logra encontrar`,
+        jug,
+        true
+      );
+    },
+        aldea: function (jug) {
+      texto(
+        `${jug.nombre} encuentra una aldea`,
         jug,
         true
       );
@@ -439,9 +478,7 @@ export const Random = {
     domesticarpp: function (jug) {
       texto(
         `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug,
-        true
-      );
+        jug, true);
     },
     pensandositios: function (jug) {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug, true);
@@ -449,6 +486,20 @@ export const Random = {
     arco: function (jug) {
       texto(`${jug.nombre} se hace con el arco de un esqueleto`, jug, true);
       jug.arco = true;
+    },
+    domesticarpp: function (jug) {
+      texto(
+        `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
+        jug,
+        true
+      );
+    },
+    domesticarpp: function (jug) {
+      texto(
+        `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
+        jug,
+        true
+      );
     },
   },
   Nether: {
@@ -477,24 +528,32 @@ export const Random = {
       if (jug.strider) {
         texto(
           `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montando a un strider`,
-          jug,
-          true
-        );
+          jug,true );
       }
+      else
+      texto (`${jug.nombre} desea tener un hongo distorsionado para pasear sobre un strider`, jug, true)
     },
     mascotaStrider: function (jug) {
       texto(`${jug.nombre} se encarina con un strider solitario`, jug, true);
     },
     piensaStrider: function (jug) {
       texto(
-        `${jug.nombre} piensa en adoptar a un strider como mascota`,
-        jug,
-        true
-      );
+        `${jug.nombre} piensa en adoptar a un strider como mascota`, jug,true);
+    },
+    fortaleza: function (jug) {
+      texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug, true);
+    },
+  },
+  End: {
+    calabaza: function (jug) {
+      texto(
+        `${jug.nombre} observa su inventario cargado de calabazas`,
+        jug, true);
     },
   },
 };
 repetir(Random.Nether, 4);
+repetir(Vida.End, 4);
 repetir(Random.Dia, 2);
 repetir(Random.Noche, 2);
 repetir(RandomDiaNoche, 1);
@@ -502,6 +561,7 @@ Object.assign(RandomDiaNoche, RandomGlobal);
 Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
 Object.assign(Random.Nether, RandomGlobal);
+Object.assign(Random.End, RandomGlobal);
 
 /* ----------------------------------------RELACION----------------------------------------*/
 export const RelGlobal = {
@@ -648,7 +708,7 @@ export const Rel = {
     // },
   },
   Noche: {
-    juntarcamas: function (jug) {
+    juntarCamas: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
         `${jug.nombre} y ${jug2.nombre} juntan sus camas para dormir`,
@@ -656,7 +716,7 @@ export const Rel = {
         true
       );
     },
-    buscarmobs: function (jug) {
+    buscarMobs: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
         `${jug.nombre} y ${jug2.nombre} exploran los alrededores juntos en busca de mobs`,
@@ -664,7 +724,7 @@ export const Rel = {
         true
       );
     },
-    dejarmobs: function (jug) {
+    dejarMobs: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
         `En cuanto aparecen los mobs, ${jug.nombre} deja solo a ${jug2.nombre}`,
@@ -684,10 +744,28 @@ export const Rel = {
       );
       danoInsta(dano);
     },
+  camas: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(
+      `${jug.nombre} y ${jug2.nombre} llenan sus inventarios de camas pensando en ir a busar netherite`, jug, true);
+  },
+  advertir: function (jug) {
+    const jug2 = nJugRand(jug);
+    texto(
+      `${jug.nombre} advierte a ${jug2.nombre} sobre la presencia de un ghast`, jug, true);
+  },
+},
+  End: {
+    calabaza: function (jug) {
+      texto(
+        `${jug.nombre} observa su inventario cargado de calabazas`,
+        jug, true);
+    },
   },
 };
 
 repetir(Rel.Nether, 4);
+repetir(Rel.End, 4);
 repetir(RelDiaNoche, 1);
 repetir(Rel.Dia, 2);
 repetir(Rel.Noche, 2);
@@ -695,6 +773,7 @@ Object.assign(RelDiaNoche, RelGlobal);
 Object.assign(Rel.Dia, RelDiaNoche);
 Object.assign(Rel.Noche, RelDiaNoche);
 Object.assign(Rel.Nether, RelGlobal);
+Object.assign(Rel.End, RelGlobal);
 
 /* ----------------------------------------DECISIoN----------------------------------------*/
 const DecidGlobal = {};
@@ -1085,8 +1164,16 @@ export const Decid = {
       }
     },
   },
+  End: {
+    calabaza: function (jug) {
+      texto(
+        `${jug.nombre} observa su inventario cargado de calabazas`,
+        jug, true);
+    },
+  },
 };
 repetir(Decid.Nether, 4);
+repetir(Decid.End, 4);
 repetir(DecidDiaNoche, 1);
 repetir(Decid.Dia, 2);
 repetir(Decid.Noche, 2);
@@ -1094,3 +1181,4 @@ Object.assign(DecidDiaNoche, DecidGlobal);
 Object.assign(Decid.Dia, DecidDiaNoche);
 Object.assign(Decid.Noche, DecidDiaNoche);
 Object.assign(Decid.Nether, DecidGlobal);
+Object.assign(Decid.End, DecidGlobal);

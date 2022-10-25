@@ -22,6 +22,7 @@ class Jugador {
     this.conv = false;
     this.strider = false;
     this.lagrima = false;
+    this.escudo = false;
   }
 }
 export const lista = new Object();
