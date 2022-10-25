@@ -56,10 +56,6 @@ header > section > a {
   height: 70px;
   margin-left: 1rem;
 }
-
-.logo {
-  width: 100%;
-
 .header > section {
   display: grid;
   grid-template-columns: max-content auto;

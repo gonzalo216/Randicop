@@ -12,7 +12,7 @@ export function resetEventos() {
   caso = 1;
   primWorld = true;
   primNether = true;
-  secondWorld = true;
+  secondWorld = false;
   primEnd = true;
 }
 export function apurar() {
@@ -22,7 +22,6 @@ async function transicion(evento){
   await esperar(t);
   titulo(`<h3>Los jugadores pasaron al ${evento.toUpperCase()}</h3>`, `transicion ${evento}`);
   await esperar(t);
-  haySit();
 }
 async function eventos(evento, i, cant, muertos) {
   await esperar(t);
@@ -134,18 +133,21 @@ export default async function juego() {
     }
   } else if (caso < 10) {
     // OVERWORLD
-
-    if (!primWorld){
+    if(primWorld){
+      primWorld = false;
+      titulo(`<h3>Los jugadores spawnearon en el OVERWORLD</h3>`, `transicion Inicio`);
+    } else if (secondWorld){
       secondWorld = false;
       transicion("OverWorld")
     }else{
-    await eventos("Dia", 0, mitad, muertos);
-    await eventos("Noche", mitad, cant, muertos);
+      await eventos("Dia", 0, mitad, muertos);
+      await eventos("Noche", mitad, cant, muertos);
     }
   } else {
     // NETHER
     if (primNether){
       primNether = false;
+      secondWorld = true;
       transicion("Nether")
     } else {
     contNether++;
