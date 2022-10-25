@@ -13,9 +13,8 @@ export async function resetear() {
 }
 document.addEventListener("click", (e) => {
   if (e.target.matches("#sig")) {
+    console.log("sig")
     siguiente();
   }
-  if (e.target.matches("#ant")) {
-    anterior();
-  }
+  if (e.target.matches("#ant")) anterior();
 });
