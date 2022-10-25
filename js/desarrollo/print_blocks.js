@@ -3,11 +3,14 @@ import juego, { apurar, final } from "./situaciones.js";
 const d = document;
 let btnSig, btnAnt;
 let primero;
+let $tamanio;
 export const $transcurso = [];
 export function iniciar() {
   primero = true;
   btnSig = d.getElementById("sig");
   btnAnt = d.getElementById("ant");
+  $tamanio = d.getElementById("tamanio");
+  $tamanio.innerHTML = "";
 }
 
 export function crearDiv() {
@@ -31,7 +34,6 @@ const hayValor = (valor) =>
   };
 
 export async function copySize() {
-  const $tamanio = d.getElementById("tamanio");
   $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
 }
 
