@@ -117,11 +117,11 @@ export default async function juego() {
   crearDiv();
   titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
   cont++;
-  if (cont > 3 && !primNether) caso = getRandomIntInclusive(10, 1);
+  if (cont > 3 && primNether) caso = getRandomIntInclusive(10, 1);
   // 1/10 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
-  if (contNether > 3 && !secondWorld) caso = getRandomIntInclusive(18, 9);
+  if (contNether > 3 && secondWorld) caso = getRandomIntInclusive(18, 9);
   // 1/10 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
-  if (cont > 10 && contNether > 3 && !primEnd) caso = getRandomIntInclusive(9);
+  if (cont > 10 && contNether > 3 && primEnd) caso = getRandomIntInclusive(9);
   // 1/10 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END
