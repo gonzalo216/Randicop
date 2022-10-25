@@ -37,7 +37,7 @@ a {
   display: grid;
   align-items: center;
   padding-top: 1rem;
-  grid-template-columns: max-content auto max-content;
+  grid-template-columns: max-content auto;
   grid-template-rows: 80%;
   background: var(--color-header);
   transition: height 0.5s ease;
@@ -46,12 +46,17 @@ a {
 .header.sticky {
   height: 8rem;
 }
-header > a {
+header > section > a {
   width: 80px;
   height: 70px;
   margin-left: 1rem;
 }
-.logo {
+.header > section {
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: center;
+}
+.logo-img {
   height: 100%;
   object-fit: contain;
   transition: transform 1s ease;
@@ -88,6 +93,8 @@ h1 > a {
   color: inherit;
 }
 .panel-btn {
+  width: max-content;
+  justify-self: right;
   border-radius: 30%;
   display: flex;
   z-index: 999;
