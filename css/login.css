@@ -12,9 +12,9 @@ main {
   place-content: center;
 }
 @font-face {
-  font-family: "Monoton";
+  font-family: "loli";
   font-style: normal;
-  font-weight: 800;
+  font-weight: 200;
   src: local("Monoton"), local("Monoton-Regular"),
     url(http://themes.googleusercontent.com/static/fonts/monoton/v4/AKI-lyzyNHXByGHeOcds_w.woff)
       format("woff");
@@ -30,7 +30,7 @@ h1 {
 }
 h1 a {
   color: #ff1177;
-  font-family: Monoton;
+  font-family: loli;
 }
 h1 a:hover {
   -webkit-animation: neon1 0.5s ease-in-out infinite alternate;

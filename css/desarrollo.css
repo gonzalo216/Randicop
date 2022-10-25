@@ -168,11 +168,13 @@ div {
   justify-content: center;
   align-items: center;
   justify-items: center;
+  
 }
 .btn-final > button:first-child {
   grid-row-start: 2;
   grid-row-end: 2;
   width: 100px;
+  border-radius: 20px;
 }
 .btn-final > button:last-child {
   padding: 15px;
@@ -180,6 +182,7 @@ div {
   margin: 1rem;
   grid-row-start: 1;
   grid-row-end: 1;
+  border-radius: 20px;
 }
 
 /* BOTONES DE ATRAS Y SIGUIENTE */

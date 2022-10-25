@@ -8,4 +8,4 @@ d.addEventListener("DOMContentLoaded", (e) => {
   hamburgerMenu(".panel-btn", "aside");
 });
 window.addEventListener("scroll", (e) => scaleHeader());
-setInterval(rotarLogo, 10000);
+setInterval(rotarLogo, 5000);
