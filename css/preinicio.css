@@ -6,6 +6,7 @@
   --intensity2-hover-shadow: 20px;
   --intensity3-hover-shadow: 30px;
 }
+
 @font-face {
   font-family: minecrafter;
   src: url(./../assets/Minecrafter.Alt.ttf);
@@ -46,9 +47,6 @@ h1 {
 }
 .logo:hover a {
   animation: neon1 2s ease-in-out infinite alternate;
-}
-.logo-img {
-  filter: hue-rotate(120deg);
 }
 @keyframes boxneon1 {
   from {
