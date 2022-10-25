@@ -127,6 +127,7 @@ export default async function juego() {
   if (caso === 0) {
     // END
     if (primEnd){
+      cont --;
       primEnd = false;
       await transicion("End")
     } else {
@@ -135,11 +136,13 @@ export default async function juego() {
   } else if (caso < 10) {
     // OVERWORLD
     if(primWorld){
+      cont --;
       primWorld = false;
       await esperar(t);
       titulo(`<h3>Los jugadores spawnearon en el OVERWORLD</h3>`, `transicion Inicio`);
       await esperar(t);
     } else if (secondWorld){
+      cont --;
       secondWorld = false;
       await transicion("OverWorld")
     }else{
@@ -149,6 +152,7 @@ export default async function juego() {
   } else {
     // NETHER
     if (primNether){
+      cont --;
       primNether = false;
       secondWorld = true;
       await transicion("Nether")
