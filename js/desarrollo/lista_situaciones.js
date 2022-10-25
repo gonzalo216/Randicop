@@ -227,7 +227,7 @@ export const Dano = {
       danoInsta(dano);
     },
     waterdrop: function (jug) {
-      dano = getRandomIntInclusive(20, 4);
+      dano = getRandomIntInclusive(20, 19);
       jug.vida -= dano;
       dano += jug.vida;
       texto(`${jug.nombre} pone una cama e intenta dormir`, jug);
@@ -245,7 +245,7 @@ export const Dano = {
     },
   },
   End: {
-    calabaza: function (jug) {
+    caer: function (jug) {
       texto(
         `${jug.nombre} observa su inventario cargado de calabazas`,
         jug, true);
@@ -550,6 +550,16 @@ export const Random = {
         `${jug.nombre} observa su inventario cargado de calabazas`,
         jug, true);
     },
+    puente: function (jug) {
+      texto(
+        `${jug.nombre} ignora al dragon y, con el inventario lleno de bloques, parte en busca de la end city`,
+        jug, true);
+    },
+    brujula: function (jug) {
+      texto(
+        `${jug.nombre} se distrae observando su brujula girar sin parar`,
+        jug, true);
+    },
   },
 };
 repetir(Random.Nether, 4);
@@ -756,12 +766,31 @@ export const Rel = {
   },
 },
   End: {
-    calabaza: function (jug) {
+    calabazaPrestar: function (jug) {
+      const jug2 = nJugRand(jug);
       texto(
-        `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug, true);
+        `${jug.nombre} otorga a ${jug2.nombre} su calabaza tallada`, jug, true);
     },
   },
+    ayudarEnd: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = getRandomIntInclusive(20, 10);
+      jug.vida -= dano;
+      dano += jug.vida;
+        texto(
+          `${jug.nombre} protege a ${jug2.nombre} de un enderman, saliendo herido`,
+          jug, true);
+        danoInsta(dano);
+      },
+      dejarEnd: function (jug) {
+        const jug2 = nJugRand(jug);
+        dano = jug.vida;
+        jug.vida = 0;
+          texto(
+            `${jug2.nombre} deja que ${jug.nombre} muera a manos de un enderman a pesar de haber podido ayudar`,
+            jug, true);
+          danoInsta(dano);
+        },
 };
 
 repetir(Rel.Nether, 4);
