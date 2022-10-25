@@ -3,16 +3,25 @@ import { Dano, Decid, Random, Rel, Vida } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
-let nrand, cont, contNether, t, finalista, nether, caso;
+let nrand, cont, contNether, t, finalista, nether, caso, primWorld, primNether, secondWorld, primEnd;
 export function resetEventos() {
   cont = 0;
   contNether = 0;
   t = 0.5;
   nether = false;
   caso = 1;
+  primWorld = true;
+  primNether = true;
+  secondWorld = true;
+  primEnd = true;
 }
 export function apurar() {
   t = 0;
+}
+async function transicion(evento){
+  await esperar(t);
+  titulo(`<h3>Los jugadores pasaron al ${evento.toUpperCase()}</h3>`, `transicion ${evento}`);
+  await esperar(t);
 }
 async function eventos(evento, i, cant, muertos) {
   await esperar(t);
@@ -108,23 +117,33 @@ export default async function juego() {
   crearDiv();
   titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
   cont++;
-  if (cont > 3 && !nether) caso = getRandomIntInclusive(10, 1);
+  if (cont > 3 && !primNether) caso = getRandomIntInclusive(10, 1);
   // 1/10 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
-  if (contNether > 3 && nether) caso = getRandomIntInclusive(18, 9);
+  if (contNether > 3 && !secondWorld) caso = getRandomIntInclusive(18, 9);
   // 1/10 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
-  if (cont > 10 && contNether > 3) caso = getRandomIntInclusive(9);
+  if (cont > 10 && contNether > 3 && !primEnd) caso = getRandomIntInclusive(9);
   // 1/10 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END
+    if (primEnd){
+      primEnd = false;
+      transicion("End")
+    }
     await eventos("End", 0, cant, muertos);
   } else if (caso < 10) {
     // OVERWORLD
-    nether = false;
+    if (secondWorld){
+      secondWorld = false;
+      transicion("OverWorld")
+    }
     await eventos("Dia", 0, mitad, muertos);
     await eventos("Noche", mitad, cant, muertos);
   } else {
     // NETHER
-    nether = true;
+    if (primNether){
+      primNether = false;
+      transicion("Nether")
+    }
     contNether++;
     await eventos("Nether", 0, cant, muertos);
   }
