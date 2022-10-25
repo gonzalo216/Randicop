@@ -25,11 +25,6 @@ div {
   margin-top: 1rem;
 }
 
-/* EVENTOS */
-.noche {
-  padding-bottom: 2rem;
-}
-
 /* CONTENEDORES */
 .cont {
   width: fit-content;
@@ -65,6 +60,7 @@ div {
   margin-left: auto;
   margin-right: auto;
   max-width: 80%;
+  min-height: 50vh;
   padding-bottom: 5rem;
   opacity: 0;
 }
@@ -150,6 +146,17 @@ h3 {
   transform: scale(1.06);
 }
 
+/* EVENTOS */
+.noche {
+  padding-bottom: 2rem;
+}
+.transicion {
+  position: absolute;
+  top: 20vh;
+  bottom: 10vh;
+  display: grid;
+  align-items: center;
+}
 /* FINALISTA */
 .finalista {
   font-size: 30px;
