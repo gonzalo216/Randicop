@@ -205,7 +205,6 @@ export function final() {
     "btn-final"
   );
 }
-
 export function Hola() {
   for (let i = 0; i < jugs.length; i++) {
     const el = jugs[i];
