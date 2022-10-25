@@ -22,6 +22,7 @@ div {
 .imprimir {
   position: relative;
   color: #333;
+  margin-top: 1rem;
 }
 
 /* EVENTOS */
@@ -63,16 +64,20 @@ div {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  padding: 2rem;
+  max-width: 80%;
+  padding-bottom: 5rem;
   opacity: 0;
 }
 
 /* LINEAS */
+h3 {
+  margin-top: 0;
+}
 .linea {
   position: relative;
 }
 .texto {
-  margin-bottom: 0;
+  margin-top: 0;
 }
 .iconos {
   margin: 1rem 0;

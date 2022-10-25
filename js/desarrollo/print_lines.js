@@ -21,14 +21,8 @@ export function crearBotones(si, no, clas = null) {
 export async function decidir(si, no) {
   const eleccion = new Promise((resolve, reject) => {
     d.addEventListener("click", (e) => {
-      if (e.target.matches("#btn-si")) {
-        console.log("toco");
-        resolve(true);
-      }
-      if (e.target.matches("#btn-no")) {
-        console.log("toco2");
-        resolve(false);
-      }
+      if (e.target.matches("#btn-si")) resolve(true);
+      if (e.target.matches("#btn-no")) resolve(false)
     });
   });
   $transcurso.at(-1).lastElementChild.lastElementChild.remove();

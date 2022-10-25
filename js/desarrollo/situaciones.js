@@ -22,6 +22,7 @@ async function transicion(evento){
   await esperar(t);
   titulo(`<h3>Los jugadores pasaron al ${evento.toUpperCase()}</h3>`, `transicion ${evento}`);
   await esperar(t);
+  //completo(true);
 }
 async function eventos(evento, i, cant, muertos) {
   await esperar(t);
@@ -127,7 +128,7 @@ export default async function juego() {
     // END
     if (primEnd){
       primEnd = false;
-      transicion("End")
+      await transicion("End")
     } else {
     await eventos("End", 0, cant, muertos);
     }
@@ -135,10 +136,12 @@ export default async function juego() {
     // OVERWORLD
     if(primWorld){
       primWorld = false;
+      await esperar(t);
       titulo(`<h3>Los jugadores spawnearon en el OVERWORLD</h3>`, `transicion Inicio`);
+      await esperar(t);
     } else if (secondWorld){
       secondWorld = false;
-      transicion("OverWorld")
+      await transicion("OverWorld")
     }else{
       await eventos("Dia", 0, mitad, muertos);
       await eventos("Noche", mitad, cant, muertos);
@@ -148,10 +151,10 @@ export default async function juego() {
     if (primNether){
       primNether = false;
       secondWorld = true;
-      transicion("Nether")
+      await transicion("Nether")
     } else {
-    contNether++;
-    await eventos("Nether", 0, cant, muertos);
+      contNether++;
+      await eventos("Nether", 0, cant, muertos);
     }
   }
   t = 0.5;
@@ -166,6 +169,7 @@ export default async function juego() {
     completo(true, true);
     return;
   }
+  console.log("fin")
   completo(true);
 }
 export function final() {
