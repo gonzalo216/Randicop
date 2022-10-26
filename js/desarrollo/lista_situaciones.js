@@ -74,11 +74,11 @@ const DanoGlobal = {
       texto(adicional, jug);
       danoInsta(dano);
     },
-    creeperCargado: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
-      texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
-    },
+    // creeperCargado: function (jug) {
+    //   dano = jug.vida;
+    //   jug.vida = 0;
+    //   texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
+    // },
     grava: function (jug) {
       dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
@@ -201,7 +201,7 @@ export const Dano = {
         adicional = `${jug.nombre} mata a un bebe zombie con ayuda de su perro`;
       } else {
         dano = getRandomIntInclusive(9, 4);
-        adicional = `Aterrorizado, ${jug.nombre} escapa de un bebe zombie`;
+        adicional = `Sintiendo demasiado miedo, ${jug.nombre} escapa de un bebe zombie`;
       }
       jug.vida -= dano;
       dano += jug.vida;
@@ -236,13 +236,23 @@ export const Dano = {
     },
   },
   End: {
-    caer: function (jug) {
+    vacio: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
       texto(
-        //???
-        `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug,
-        true
+        `${jug.nombre} olvida poner el siguiente bloque en su camino a la end city y cae al vacio`,
+        jug
       );
+      danoInsta(dano);
+    },
+    volarCristal: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(
+        `${jug.nombre} sale volando de lo alto de una torre al golpear un end crystal`,
+        jug
+      );
+      danoInsta(dano);
     },
   },
 };
@@ -563,9 +573,12 @@ export const Random = {
         true
       );
     },
+    montar: function (jug) {
+      texto(`${jug.nombre} piensa en montar al ender dragon`, jug, true);
+    },
     puente: function (jug) {
       texto(
-        `${jug.nombre} ignora al dragon y, con el inventario lleno de bloques, parte en busca de la end city`,
+        `${jug.nombre} ignora al dragon y, con el inventario lleno de bloques, piensa en partir en busca de la end city`,
         jug,
         true
       );
@@ -573,6 +586,13 @@ export const Random = {
     brujula: function (jug) {
       texto(
         `${jug.nombre} se distrae observando su brujula girar sin parar`,
+        jug,
+        true
+      );
+    },
+    observar: function (jug) {
+      texto(
+        `${jug.nombre} no puede quitar la vista del ender dragon`,
         jug,
         true
       );
@@ -611,6 +631,19 @@ const RelDiaNoche = {
     const jug2 = nJugRand(jug);
     texto(
       `${jug.nombre} amenaza a ${jug2.nombre} con incendiar su casa`,
+      jug,
+      true
+    );
+  },
+  armado: function (jug) {
+    const jug2 = nJugRand(jug);
+    let parte = partes[1],
+      material = materiales[1],
+      articulo = parte === "botas" ? "unas" : "un";
+    jug.armadura[parte] = armadura[parte][material];
+    jug.armourName[parte] = material;
+    texto(
+      `${jug2.nombre} regala a ${jug.nombre} ${articulo} ${parte} de ${material}`,
       jug,
       true
     );
@@ -763,27 +796,43 @@ export const Rel = {
       //boleano para jug2 de inmune a que los enderman se enojen
       texto(`${jug.nombre} le da a ${jug2.nombre} una calabaza tallada`, jug);
     },
-  },
-  ayudarEnd: function (jug) {
-    const jug2 = nJugRand(jug);
-    dano = getRandomIntInclusive(20, 10);
-    jug.vida -= dano;
-    dano += jug.vida;
-    texto(
-      `${jug.nombre} protege a ${jug2.nombre} de un enderman, saliendo herido`,
-      jug
-    );
-    danoInsta(dano);
-  },
-  dejarEnd: function (jug) {
-    const jug2 = nJugRand(jug);
-    dano = jug.vida;
-    jug.vida = 0;
-    texto(
-      `${jug2.nombre} deja que ${jug.nombre} muera a manos de un enderman a pesar de haber podido ayudar`,
-      jug
-    );
-    danoInsta(dano);
+    ayudarEnd: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = getRandomIntInclusive(20, 10);
+      jug.vida -= dano;
+      dano += jug.vida;
+      texto(
+        `${jug.nombre} protege a ${jug2.nombre} de un enderman, saliendo herido`,
+        jug
+      );
+      danoInsta(dano);
+    },
+    dejarEnd: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(
+        `${jug2.nombre} deja que ${jug.nombre} muera a manos de un enderman a pesar de haber podido ayudar`,
+        jug
+      );
+      danoInsta(dano);
+    },
+    golpearArco: function (jug) {
+      const jug2 = nJugRand(jug);
+      if (jug.arco) {
+        dano = getRandomIntInclusive(6, 4);
+        texto(
+          `Intentando disparar a un end crystal ${jug2.nombre} golpea por error a ${jug.nombre}`,
+          jug
+        );
+        danoInsta(dano);
+      } else
+        texto(
+          `${jug.nombre} piensa que, si tuviera un arco, atacaria a ${jug.nombre} en lugar de al ender dragon`,
+          jug,
+          true
+        );
+    },
   },
 };
 
@@ -888,7 +937,7 @@ export const Decid = {
             break;
           case 2:
             texto(
-              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman`,
+              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
               jug
             ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
 
