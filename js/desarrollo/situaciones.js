@@ -1,14 +1,22 @@
-import { crearBotones, haySit, texto, titulo } from "./print_lines.js";
+import { haySit, texto, titulo } from "./print_lines.js";
 import { Dano, Decid, Random, Rel, Vida } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
-let nrand, cont, contNether, t, finalista, nether, caso, primWorld, primNether, secondWorld, primEnd;
+import { finalistaData } from "./final.js";
+let nrand,
+  cont,
+  contNether,
+  t,
+  caso,
+  primWorld,
+  primNether,
+  secondWorld,
+  primEnd;
 export function resetEventos() {
   cont = 0;
   contNether = 0;
   t = 0.5;
-  nether = false;
   caso = 1;
   primWorld = true;
   primNether = true;
@@ -18,9 +26,12 @@ export function resetEventos() {
 export function apurar() {
   t = 0;
 }
-async function transicion(evento){
+async function transicion(evento) {
   await esperar(t);
-  titulo(`<h3>Los jugadores pasaron al ${evento.toUpperCase()}</h3>`, `transicion ${evento}`);
+  titulo(
+    `<h3>Los jugadores pasaron al ${evento.toUpperCase()}</h3>`,
+    `transicion ${evento}`
+  );
   await esperar(t);
   //completo(true);
 }
@@ -36,6 +47,21 @@ async function eventos(evento, i, cant, muertos) {
       i++;
       continue;
     }
+    if (jug.cantF === 0) repetir = true;
+    else {
+      nrand = getRandomIntInclusive(jug.cantF - 1);
+
+      jug.cantF--;
+    }
+    if (jug.funcion.length) {
+      let seguir = jug.funcion[0]();
+      jug.funcion.shift();
+      console.log(seguir);
+      if (!seguir) {
+        if (jug.vida <= 0) muertos.push(jugs[i]);
+        continue;
+      }
+    }
     jugs.forEach((n) => {
       if (lista[n].vida > 0) vivos++;
     });
@@ -43,11 +69,11 @@ async function eventos(evento, i, cant, muertos) {
       repetir = false;
       if (jug.vida === 20)
         vivos > 1
-          ? (nrand = getRandomIntInclusive(10, 1)) //saltea curar
+          ? (nrand = getRandomIntInclusive(5, 1)) //saltea curar
           : (nrand = getRandomIntInclusive(2, 1));
       else
         vivos > 1
-          ? (nrand = getRandomIntInclusive(10))
+          ? (nrand = getRandomIntInclusive(5))
           : (nrand = getRandomIntInclusive(2)); //saltea relaciones
       switch (nrand) {
         case 0: {
@@ -89,19 +115,6 @@ async function eventos(evento, i, cant, muertos) {
           Rel[evento][accion[nrand]](jug);
           break;
         }
-        case 6:
-        case 7:
-        case 8:
-        case 9:
-        case 10: {
-          if (jug.cantF === 0) repetir = true;
-          else {
-            nrand = getRandomIntInclusive(jug.cantF - 1);
-            delete jug.funciones[nrand]();
-            jug.cantF--;
-          }
-          break;
-        }
       }
     } while (repetir);
     if (jug.vida <= 0) muertos.push(jugs[i]);
@@ -126,36 +139,36 @@ export default async function juego() {
   // 1/10 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END
-    if (primEnd){
-      cont --;
+    if (primEnd) {
+      cont--;
       primEnd = false;
-      await transicion("End")
+      await transicion("End");
     } else {
-    await eventos("End", 0, cant, muertos);
+      await eventos("End", 0, cant, muertos);
     }
   } else if (caso < 10) {
     // OVERWORLD
-    if(primWorld){
-      cont --;
+    if (primWorld) {
+      cont--;
       primWorld = false;
       await esperar(t);
-      titulo(`<h3>Los jugadores spawnearon en el OVERWORLD</h3>`, `transicion Inicio`);
+      titulo(`<h3>Los jugadores spawnearon</h3>`, `transicion Inicio`);
       await esperar(t);
-    } else if (secondWorld){
-      cont --;
+    } else if (secondWorld) {
+      cont--;
       secondWorld = false;
-      await transicion("OverWorld")
-    }else{
+      await transicion("OverWorld");
+    } else {
       await eventos("Dia", 0, mitad, muertos);
       await eventos("Noche", mitad, cant, muertos);
     }
   } else {
     // NETHER
-    if (primNether){
-      cont --;
+    if (primNether) {
+      cont--;
       primNether = false;
       secondWorld = true;
-      await transicion("Nether")
+      await transicion("Nether");
     } else {
       contNether++;
       await eventos("Nether", 0, cant, muertos);
@@ -167,54 +180,16 @@ export default async function juego() {
     const nombres = [];
     muertos.forEach((el) => nombres.push(lista[el].nombre));
     texto(nombres.join(" - "), false, true);
-    finalista = lista[muertos.at(-1)];
+    finalistaData(lista[muertos.at(-1)]);
   }
   if (jugs.every((el) => lista[el].vida <= 0)) {
     completo(true, true);
     return;
   }
-  console.log("fin")
+  Hola();
   completo(true);
 }
-export function final() {
-  crearDiv();
-  titulo(
-    `<h2>El ultimo jugador sobreviviente fue ${finalista.nombre}</h2>`,
-    "finalista"
-  );
-  const petsArray = [];
-  if (finalista.perro) petsArray.push("<li>Perro</li>");
-  if (finalista.gato) petsArray.push("<li>Gato</li>");
-  if (!petsArray.length) petsArray.push("<li>No consiguio mascotas</li>");
-  let companero = "Murio viviendo solo";
-  if (finalista.conv) companero = finalista.conv.nombre;
-  console.log(finalista);
-  titulo(
-    `
-  <div><h4>Armadura</h4>
-    <ul>
-      <li>Casco: ${finalista.armourName.casco}</li>
-      <li>Peto: ${finalista.armourName.peto}</li>
-      <li>Pantalones: ${finalista.armourName.pantalon}</li>
-      <li>Botas: ${finalista.armourName.botas}</li>
-    </ul>
-  </div>
-  <div><h4>Mascotas</h4>
-    <ul>
-      ${petsArray.join("")}
-    </ul>
-  </div>
-  <p>${companero}</p>
-  `,
-    "datos"
-  );
-  titulo("", "volver");
-  crearBotones(
-    `<a href="./preinicio.html">Inicio</a>`,
-    `Volver a Jugar`,
-    "btn-final"
-  );
-}
+
 export function Hola() {
   for (let i = 0; i < jugs.length; i++) {
     const el = jugs[i];

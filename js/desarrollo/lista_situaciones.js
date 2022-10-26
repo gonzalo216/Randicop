@@ -60,13 +60,11 @@ const DanoGlobal = {
       if (jug.gato) {
         adicional = `Un creeper casi sorprende a ${jug.nombre} por la espalda, pero su gato lo salva`;
         dano = 0;
-      }
-      else if (jug.escudo) {
+      } else if (jug.escudo) {
         dano = getRandomIntInclusive(8, 6);
         jug.vida -= dano;
         dano += jug.vida;
         adicional = `${jug.nombre} logra minimizar el daño del creeper que lo sorprende por la espalda con su escudo`;
-
       } else {
         dano = getRandomIntInclusive(20, 19);
         jug.vida -= dano;
@@ -76,7 +74,7 @@ const DanoGlobal = {
       texto(adicional, jug);
       danoInsta(dano);
     },
-    creeperCargado: function (jug){
+    creeperCargado: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
       texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
@@ -94,7 +92,8 @@ const DanoGlobal = {
       dano += jug.vida;
       texto(
         `${jug.nombre} cae en lava al cavar en linea recta hacia abajo`,
-        jug);
+        jug
+      );
       danoInsta(dano);
     },
     bedrock: function (jug) {
@@ -106,15 +105,7 @@ const DanoGlobal = {
       );
       danoInsta(dano);
     },
-    banneado: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
-      texto(
-        `${jug.nombre} es banneado por usar creativo (y tomar un stock de manzanas de Notch)`,
-        jug
-      );
-      danoInsta(dano);
-    },
+
     papaenvenenada: function (jug) {
       nrand = getRandomIntInclusive(9);
       nrand <= 5 ? (dano = 4) : (dano = 0); //hay un 60% de propabilidades de perder 2 corazones
@@ -145,11 +136,13 @@ export const Dano = {
       dano = getRandomIntInclusive(20);
       jug.vida -= dano;
       dano += jug.vida;
-      texto(`El golem de la aldea defendio a un aldeano de ${jug.nombre}`, jug);
+      texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
       danoInsta(dano);
     },
     llamas: function (jug) {
-      nrand = getRandomIntInclusive(20, 1);
+      nrand = getRandomIntInclusive(15, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
         adicional = "Las llamas lo abligan a escapar de alli";
@@ -157,8 +150,6 @@ export const Dano = {
         adicional = "Las llamas le dan unos poderosos escupitajos";
       else if (dano > 1) adicional = "Le escupen unas llamas";
       else adicional = "Una llama le escupe";
-      jug.vida -= dano;
-      dano += jug.vida;
       texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`, jug);
       danoInsta(dano);
     },
@@ -194,10 +185,10 @@ export const Dano = {
     zombiebpato: function (jug) {
       if (jug.perro) {
         dano = getRandomIntInclusive(5);
-        adicional = `Un zombie bebe montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`;
+        adicional = `Un zombie bebe montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`; //pato?
       } else {
         dano = getRandomIntInclusive(20, 4);
-        adicional = `Un zombie bebe montado en un pato ataca a ${jug.nombre}`;
+        adicional = `Un zombie bebe montado en un pato ataca a ${jug.nombre}`; //pato?
       }
       jug.vida -= dano;
       dano += jug.vida;
@@ -247,10 +238,13 @@ export const Dano = {
   End: {
     caer: function (jug) {
       texto(
+        //???
         `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug, true);
+        jug,
+        true
+      );
     },
-  }
+  },
 };
 repetir(Dano.Nether, 4);
 repetir(Dano.End, 4);
@@ -296,6 +290,25 @@ const VidaGlobal = {
       curar(cura);
       jug.vida = cura;
     },
+    Notch: function (jug) {
+      texto(`${jug.nombre} toma una manzana de Notch desde el creativo`, jug);
+      vidaExtra(16);
+      curar(20);
+      console.log("notch");
+      jug.vida = 20;
+      jug.funcion.push(() => {
+        nrand = getRandomIntInclusive(1);
+        if (nrand) {
+          dano = jug.vida;
+          jug.vida = 0;
+          texto(`Descubrieron a ${jug.nombre} por lo que habia hecho`, jug);
+          danoInsta(dano);
+          return false;
+        } else {
+          return true;
+        }
+      });
+    },
   },
   VidaDiaNoche = {
     bruja: function (jug) {
@@ -320,7 +333,7 @@ export const Vida = {
     },
   },
   Noche: {
-    // angel: function (jug) {
+    // angel: function (jug) { // dsp hago con cada sopa
     //   cura = 3 + jug.vida;
     //   texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
     //   vidaDefault(jug);
@@ -329,17 +342,8 @@ export const Vida = {
     //   jug.vida = cura;
     // },
   },
-  Nether: {
-
-  },
-  End: {
-    calabaza: function (jug) {
-      texto(
-        `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug, true);
-    },
-  },
-  
+  Nether: {},
+  End: {},
 };
 repetir(Vida.Nether, 4);
 repetir(Vida.End, 4);
@@ -362,9 +366,9 @@ const RandomGlobal = {
     // },
   },
   RandomDiaNoche = {
-    armadura: function (jug) {
-      texto(`${jug.nombre} encanta su armadura de cuero`, jug, true);
-    },
+    // armadura: function (jug) { // un if si tiene armadura de cuero
+    //   texto(`${jug.nombre} encanta su armadura de cuero`, jug, true);
+    // },
     bedrock: function (jug) {
       texto(`${jug.nombre} pierde el dia intentando romper bedrock`, jug, true);
     },
@@ -389,12 +393,8 @@ const RandomGlobal = {
         true
       );
     },
-        aldea: function (jug) {
-      texto(
-        `${jug.nombre} encuentra una aldea`,
-        jug,
-        true
-      );
+    aldea: function (jug) {
+      texto(`${jug.nombre} encuentra una aldea`, jug, true);
     },
   };
 export const Random = {
@@ -408,7 +408,7 @@ export const Random = {
     },
     golem: function (jug) {
       texto(
-        `${jug.nombre} golpeo a un aldeano por accidente y huyo del golem que le venia encima`,
+        `${jug.nombre} golpea a un aldeano por accidente y huyo del golem que le venia encima`,
         jug,
         true
       );
@@ -460,6 +460,7 @@ export const Random = {
     },
     peleaesqueletos: function (jug) {
       texto(
+        // esta buena la idea, pero no esta clara la oracion, reescribirla
         `Un esqueleto desvia su flecha de ${jug.nombre} y le da a otro esqueleto, generando una pelea entre ambos`,
         jug,
         true
@@ -473,19 +474,7 @@ export const Random = {
       );
     },
     pensandodiam: function (jug) {
-      texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug);
-    },
-    domesticarpp: function (jug) {
-      texto(
-        `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug, true);
-    },
-    pensandositios: function (jug) {
-      texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug, true);
-    },
-    arco: function (jug) {
-      texto(`${jug.nombre} se hace con el arco de un esqueleto`, jug, true);
-      jug.arco = true;
+      texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug); // no se, la dejo pasar por ahora
     },
     domesticarpp: function (jug) {
       texto(
@@ -493,6 +482,13 @@ export const Random = {
         jug,
         true
       );
+    },
+    pensandositios: function (jug) {
+      texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug, true);
+    },
+    arco: function (jug) {
+      texto(`${jug.nombre} se hace con el arco de un esqueleto`, jug, true);
+      jug.arco = true;
     },
     domesticarpp: function (jug) {
       texto(
@@ -528,37 +524,58 @@ export const Random = {
       if (jug.strider) {
         texto(
           `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montando a un strider`,
-          jug,true );
-      }
-      else
-      texto (`${jug.nombre} desea tener un hongo distorsionado para pasear sobre un strider`, jug, true)
+          jug,
+          true
+        );
+      } else
+        texto(
+          `${jug.nombre} desea tener un hongo distorsionado para pasear sobre un strider`,
+          jug,
+          true
+        );
     },
     mascotaStrider: function (jug) {
       texto(`${jug.nombre} se encarina con un strider solitario`, jug, true);
     },
     piensaStrider: function (jug) {
       texto(
-        `${jug.nombre} piensa en adoptar a un strider como mascota`, jug,true);
+        `${jug.nombre} piensa en adoptar a un strider como mascota`,
+        jug,
+        true
+      );
     },
     fortaleza: function (jug) {
-      texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug, true);
+      texto(
+        `${jug.nombre} comienza a construir su propia fortaleza`,
+        jug,
+        true
+      );
     },
   },
   End: {
     calabaza: function (jug) {
+      //jug.armadura.casco = 0;
+      //jug.armourName.casco = "calabaza tallada"
+      //boleano para inmune a que los enderman se enojen
       texto(
-        `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug, true);
+        `${jug.nombre} observa su inventario cargado de calabazas`, //podria ser mejor "NN se equipa una calabaza tallada"
+        jug,
+        true
+      );
     },
     puente: function (jug) {
       texto(
         `${jug.nombre} ignora al dragon y, con el inventario lleno de bloques, parte en busca de la end city`,
-        jug, true);
+        jug,
+        true
+      );
     },
     brujula: function (jug) {
       texto(
         `${jug.nombre} se distrae observando su brujula girar sin parar`,
-        jug, true);
+        jug,
+        true
+      );
     },
   },
 };
@@ -575,15 +592,6 @@ Object.assign(Random.End, RandomGlobal);
 
 /* ----------------------------------------RELACION----------------------------------------*/
 export const RelGlobal = {
-  // mirarfeo: function (jug) {
-  //   const jug2 = nJugRand(jug);
-  //   texto(`${jug.nombre} mira feo a ${jug2.nombre}`, jug);
-  //   jug.funciones[jug.cantF] = () => {
-  //     texto(`${jug.nombre} odia a ${jug2.nombre}`, jug);
-  //   };
-  //   jug.cantF++;
-  // }, ESTO ES UNA PRUEBA
-
   escapar: function (jug) {
     const jug2 = nJugRand(jug);
     dano = getRandomIntInclusive(10);
@@ -620,7 +628,6 @@ export const Rel = {
       );
     },
     vivirjuntos: function (jug) {
-      console.log("casa");
       if (jug.conv) {
         if (jug.conv.vida <= 0) {
           texto(
@@ -661,7 +668,7 @@ export const Rel = {
           i++;
           if (i > 10) {
             texto(
-              `${jug.nombre} intento encontrar un companero, pero no lo logro`,
+              `${jug.nombre} intento encontrar un companero, pero no lo logra`,
               jug,
               true
             );
@@ -693,29 +700,6 @@ export const Rel = {
         true
       ); //No me convence, le falta algo mas
     },
-
-    // vivirHacha: function (jug) {
-    //   const jug2 = nJugRand(jug);
-    //   texto(
-    //     `${jug2.nombre} no puede convivir mas y mata a ${jug.nombre} con un hacha`
-    //   );
-    //   vidaDefault(jug);
-    //   danoInsta(dano);
-    // },
-    // casaAgrandar: function (jug) {
-    //   const jug2 = nJugRand(jug);
-    //   texto(
-    //     `$${jug.nombre} y ${jug2.nombre} agrandan su casa`
-    //   );
-    //   vidaDefault(jug, true);
-    // },
-    // vivirJuntos: function (jug) {
-    //   const jug2 = nJugRand(jug);
-    //   texto(
-    //     `$${jug.nombre} y ${jug2.nombre} comienzan a vivir juntos`
-    //   );
-    //   vidaDefault(jug, true);
-    // },
   },
   Noche: {
     juntarCamas: function (jug) {
@@ -754,43 +738,53 @@ export const Rel = {
       );
       danoInsta(dano);
     },
-  camas: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} y ${jug2.nombre} llenan sus inventarios de camas pensando en ir a busar netherite`, jug, true);
+    camas: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} y ${jug2.nombre} llenan sus inventarios de camas pensando en ir a busar netherite`,
+        jug,
+        true
+      );
+    },
+    advertir: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} advierte a ${jug2.nombre} sobre la presencia de un ghast`,
+        jug,
+        true
+      );
+    },
   },
-  advertir: function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} advierte a ${jug2.nombre} sobre la presencia de un ghast`, jug, true);
-  },
-},
   End: {
     calabazaPrestar: function (jug) {
       const jug2 = nJugRand(jug);
-      texto(
-        `${jug.nombre} otorga a ${jug2.nombre} su calabaza tallada`, jug, true);
+      //jug2.armadura.casco = 0;
+      //jug2.armourName.casco = "calabaza tallada"
+      //boleano para jug2 de inmune a que los enderman se enojen
+      texto(`${jug.nombre} le da a ${jug2.nombre} una calabaza tallada`, jug);
     },
   },
-    ayudarEnd: function (jug) {
-      const jug2 = nJugRand(jug);
-      dano = getRandomIntInclusive(20, 10);
-      jug.vida -= dano;
-      dano += jug.vida;
-        texto(
-          `${jug.nombre} protege a ${jug2.nombre} de un enderman, saliendo herido`,
-          jug, true);
-        danoInsta(dano);
-      },
-      dejarEnd: function (jug) {
-        const jug2 = nJugRand(jug);
-        dano = jug.vida;
-        jug.vida = 0;
-          texto(
-            `${jug2.nombre} deja que ${jug.nombre} muera a manos de un enderman a pesar de haber podido ayudar`,
-            jug, true);
-          danoInsta(dano);
-        },
+  ayudarEnd: function (jug) {
+    const jug2 = nJugRand(jug);
+    dano = getRandomIntInclusive(20, 10);
+    jug.vida -= dano;
+    dano += jug.vida;
+    texto(
+      `${jug.nombre} protege a ${jug2.nombre} de un enderman, saliendo herido`,
+      jug
+    );
+    danoInsta(dano);
+  },
+  dejarEnd: function (jug) {
+    const jug2 = nJugRand(jug);
+    dano = jug.vida;
+    jug.vida = 0;
+    texto(
+      `${jug2.nombre} deja que ${jug.nombre} muera a manos de un enderman a pesar de haber podido ayudar`,
+      jug
+    );
+    danoInsta(dano);
+  },
 };
 
 repetir(Rel.Nether, 4);
@@ -861,10 +855,10 @@ export const Decid = {
   Dia: {
     entrarCasa: async function (jug) {
       const jug2 = nJugRand(jug);
-      const jug3 = nJugRand(jug);
-      while (jug3 == jug2) {
-        const jug3 = nJugRand(jug);
-      }
+      let jug3;
+      do {
+        jug3 = nJugRand(jug);
+      } while (jug3 === jug2);
       texto(
         `${jug.nombre} observa a ${jug2.nombre} alejarse de su casa, y no cree que vuelva pronto.`,
         jug,
@@ -1036,7 +1030,7 @@ export const Decid = {
             );
             break;
           case 3:
-            dano = getRandomIntInclusive(15, 3); //mas dano minimo?
+            dano = getRandomIntInclusive(15, 3); //un mayor dano minimo?
             jug.vida -= dano;
             texto(
               `Cansado de no encontrar el spawner, ${jug.nombre} comienza a picar en todas las direcciones, cayendo sobre lava`,
@@ -1193,13 +1187,7 @@ export const Decid = {
       }
     },
   },
-  End: {
-    calabaza: function (jug) {
-      texto(
-        `${jug.nombre} observa su inventario cargado de calabazas`,
-        jug, true);
-    },
-  },
+  End: {},
 };
 repetir(Decid.Nether, 4);
 repetir(Decid.End, 4);

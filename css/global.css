@@ -4,16 +4,16 @@
   --color-menulinks-hover: #fff; /* white */
   --color-footer: black;
 }
-footer{
+footer {
   background-color: black;
   height: 100px;
   color: white;
   display: grid;
   align-items: center;
   justify-content: center;
-justify-items: center;
-position: sticky;
-top: 100%;
+  justify-items: center;
+  position: sticky;
+  top: 100%;
 }
 @font-face {
   font-family: "Monoton";
@@ -23,8 +23,7 @@ top: 100%;
     url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
       format("woff");
 }
-@font-face
-{
+@font-face {
   font-family: lolo;
   src: url(./../assets/GODOFWAR.TTF);
 }
@@ -74,41 +73,28 @@ header > section > a {
   align-items: center;
 }
 .logo-img {
-
   height: 100%;
   object-fit: contain;
   transition: transform 1s ease;
-  /* animation: rotar 10s linear infinite; */
 }
-/* @-webkit-keyframes rotar {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
-  }
-} */
-h1 {
-  width: max-content;
-  font-family: Monoton;
-  font-size: min(7vw, 60px);
+.logo-link {
+  transition: transform 0.5s ease;
 }
-.header > * {
-  transition: transform 0.5s ease, margin-left 0.5s ease, margin-right 0.5s ease;
-}
-h1.sticky {
-  margin-left: 3vw;
-}
-.panel-btn.sticky {
-  margin-right: 1rem;
-  transform: scale(0.8);
-}
-a.sticky,
-h1.sticky {
+.logo-link.sticky {
   transform: scale(1.2);
 }
 h1 > a {
   color: inherit;
+}
+h1 {
+  width: max-content;
+  font-family: Monoton;
+  font-size: min(7vw, 60px);
+  transition: transform 0.5s ease;
+  transform-origin: left;
+}
+h1.sticky {
+  transform: scale(1.2);
 }
 .panel-btn {
   width: max-content;
@@ -118,6 +104,11 @@ h1 > a {
   z-index: 999;
   margin-right: 0.5rem;
   transform: scale(0.7);
+  transition: transform 0.5s ease;
+  transform-origin: right;
+}
+.panel-btn.sticky {
+  transform: scale(0.8);
 }
 /* ASIDE */
 aside {

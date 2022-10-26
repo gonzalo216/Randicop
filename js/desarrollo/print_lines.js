@@ -22,7 +22,7 @@ export async function decidir(si, no) {
   const eleccion = new Promise((resolve, reject) => {
     d.addEventListener("click", (e) => {
       if (e.target.matches("#btn-si")) resolve(true);
-      if (e.target.matches("#btn-no")) resolve(false)
+      if (e.target.matches("#btn-no")) resolve(false);
     });
   });
   $transcurso.at(-1).lastElementChild.lastElementChild.remove();
@@ -45,10 +45,10 @@ function imprimir(text, clas, fin = false, addClass = null) {
     let $clone = d.importNode($template, true);
     if (!$clone.querySelector(".vida-extra").innerHTML)
       $clone.querySelector(".vida-extra").remove();
-    $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
-    $template.querySelector(".texto").className = "texto";
     $fragment.appendChild($clone);
     $transcurso.at(-1).lastElementChild.appendChild($fragment);
+    $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
+    $template.querySelector(".texto").className = "texto";
     copySize();
   }
 }

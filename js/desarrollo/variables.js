@@ -4,7 +4,7 @@ class Jugador {
     this.vida = 20;
     this.protag = bol;
     this.cantF = 0;
-    this.funciones = new Object();
+    this.funcion = [];
     this.armadura = {
       casco: 0,
       peto: 0,

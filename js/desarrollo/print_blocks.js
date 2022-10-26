@@ -1,5 +1,5 @@
-import juego, { apurar, final } from "./situaciones.js";
-
+import { final } from "./final.js";
+import juego, { apurar } from "./situaciones.js";
 const d = document;
 let btnSig, btnAnt;
 let primero;

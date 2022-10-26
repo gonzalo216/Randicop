@@ -17,6 +17,12 @@ body {
   background: var(--color-body);
   font-family: minecrafter;
 }
+section {
+  margin: 0;
+  position: relative;
+}
+
+/* HEADER */
 h1 {
   /* color: #76ba99; */
   color: var(--color-body);
@@ -24,7 +30,6 @@ h1 {
   margin: 0;
   font-size: min(5vw, 40px); */
   animation: glow 2s ease-in-out infinite alternate;
-  transition: text-shadow 0.5s ease-in-out;
 }
 @keyframes glow {
   from {
@@ -34,43 +39,29 @@ h1 {
     text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body);
   }
 }
-/* @keyframes glow {
-  from {
-    text-shadow: 0px 0px 10px rgb(48, 218, 90);
-  }
-  to {
-    text-shadow: 0 0 20px #2bff00, 0 0 10px rgb(0, 87, 39);
-  }
-} */
 .logo:hover img {
   animation: boxneon1 2s ease-in-out infinite alternate;
-}
-.logo:hover a {
-  animation: neon1 2s ease-in-out infinite alternate;
 }
 @keyframes boxneon1 {
   from {
     filter: drop-shadow(
-      0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-shadow-body)
-    );
-    filter: drop-shadow(
-      0 0 calc(var(--intensity2-hover-shadow) / 2) var(--color-shadow-body)
-    );
-    filter: drop-shadow(
-      0 0 calc(var(--intensity3-hover-shadow) / 2) var(--color-shadow-body)
-    );
+        0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-shadow-body)
+      )
+      drop-shadow(
+        0 0 calc(var(--intensity2-hover-shadow) / 2) var(--color-shadow-body)
+      )
+      drop-shadow(
+        0 0 calc(var(--intensity3-hover-shadow) / 2) var(--color-shadow-body)
+      );
   }
   to {
     filter: drop-shadow(
       0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-body)
     );
-    filter: drop-shadow(
-      0 0 calc(var(--intensity2-hover-shadow) / 2) var(--color-body)
-    );
-    filter: drop-shadow(
-      0 0 calc(var(--intensity3-hover-shadow) / 2) var(--color-body)
-    );
   }
+}
+.logo:hover a {
+  animation: neon1 2s ease-in-out infinite alternate;
 }
 @keyframes neon1 {
   from {
@@ -79,18 +70,12 @@ h1 {
       0 0 var(--intensity3-hover-shadow) var(--color-shadow-body);
   }
   to {
-    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-body),
-      0 0 var(--intensity2-hover-shadow) var(--color-body),
-      0 0 var(--intensity3-hover-shadow) var(--color-body);
+    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body);
   }
 }
 .panel-btn {
   background-color: var(--color-body);
   box-shadow: 1px 1px 1rem var(--color-shadow-body);
-}
-section {
-  margin: 0;
-  position: relative;
 }
 
 /* DESCRIPCION */
@@ -143,6 +128,8 @@ details dl {
 details > p {
   text-align: center;
 }
+
+/* FORMULARIO */
 .container {
   margin: 1rem 5% 1rem;
   padding: 3vw;
@@ -191,7 +178,7 @@ details > p {
 .flex > div > div {
   position: relative;
 }
-
+/* INPUTS Y LABELS */
 input[type="checkbox"] {
   display: block;
   margin-bottom: 1rem;
@@ -262,6 +249,7 @@ input[type="text"]:valid ~ .label-name {
   -webkit-text-stroke: 0;
 }
 
+/* BOTONES */
 .buttons {
   margin: 0 3rem 0 1rem;
   display: grid;

@@ -180,7 +180,6 @@ h3 {
   justify-content: center;
   align-items: center;
   justify-items: center;
-  
 }
 .btn-final > button:first-child {
   grid-row-start: 2;
