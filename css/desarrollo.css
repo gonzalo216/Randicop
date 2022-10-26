@@ -175,25 +175,56 @@ h3 {
 }
 
 /* BOTONES PARA VOLVER */
+.volver{
+  margin-top: 2rem;
+}
 .btn-final {
+  position: relative;
   display: grid;
   justify-content: center;
   align-items: center;
   justify-items: center;
+  padding-top: 200px;
 }
 .btn-final > button:first-child {
   grid-row-start: 2;
   grid-row-end: 2;
   width: 100px;
   border-radius: 20px;
+  margin-top: 20px;
+  transition: font-size 2s;
+  box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+  0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+  0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+  0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+  0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 .btn-final > button:last-child {
+  position: absolute;
+  top: -200px;
+  right: 0;
+  left: 0;
+  height: 150px;
   padding: 15px;
-  font-size: 70px;
-  margin: 1rem;
+  font-size: 60px;
   grid-row-start: 1;
   grid-row-end: 1;
   border-radius: 20px;
+  cursor: pointer;
+  transition: font-size 1s;
+  box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+    0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+}
+.btn-final > button:last-child:hover {
+  font-size: 50px;
+ 
+}
+.btn-final > button:first-child:hover {
+  font-size: 30px;
+ 
 }
 
 /* BOTONES DE ATRAS Y SIGUIENTE */
@@ -215,3 +246,5 @@ h3 {
   box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
 }
+
+

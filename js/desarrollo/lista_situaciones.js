@@ -140,7 +140,7 @@ export const Dano = {
       danoInsta(dano);
     },
     llamas: function (jug) {
-      nrand = getRandomIntInclusive(15, 1);
+      dano = getRandomIntInclusive(15, 1);
       jug.vida -= dano;
       dano += jug.vida;
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
@@ -389,6 +389,12 @@ const RandomGlobal = {
         true
       );
     },
+    gatete: function (jug) {
+      texto(
+        `Paseando cerca de una aldea, ${jug.nombre} descubre a un gato y lo adiestra`,
+        jug, true);
+        jug.perro++;
+    },
     recuento: function (jug) {
       texto(
         `${jug.nombre} recuenta sus diamantes pensando en hacerse una armadura`,
@@ -470,28 +476,20 @@ export const Random = {
     },
     peleaesqueletos: function (jug) {
       texto(
-        // esta buena la idea, pero no esta clara la oracion, reescribirla
-        `Un esqueleto desvia su flecha de ${jug.nombre} y le da a otro esqueleto, generando una pelea entre ambos`,
-        jug,
-        true
-      );
+        `Un esqueleto falla un tiro a ${jug.nombre} y le da a otro esqueleto, generando una pelea entre ambos`,
+        jug, true);
     },
     bajotierra: function (jug) {
       texto(
-        `Escapando de los mobs, ${jug.nombre} se refugia bajo tierra`,
-        jug,
-        true
-      );
+        `Escapando de los mobs, ${jug.nombre} se refugia bajo tierra`, jug, true);
     },
     pensandodiam: function (jug) {
-      texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug); // no se, la dejo pasar por ahora
+      texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug);
     },
     domesticarpp: function (jug) {
       texto(
         `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug,
-        true
-      );
+        jug,true);
     },
     pensandositios: function (jug) {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug, true);
@@ -503,9 +501,7 @@ export const Random = {
     domesticarpp: function (jug) {
       texto(
         `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug,
-        true
-      );
+  jug, true);
     },
   },
   Nether: {
@@ -723,7 +719,7 @@ export const Rel = {
         `${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`,
         jug,
         true
-      ); //No me convence
+      );
     },
     cazarjuntos: function (jug) {
       const jug2 = nJugRand(jug);
@@ -731,7 +727,7 @@ export const Rel = {
         `${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`,
         jug,
         true
-      ); //No me convence, le falta algo mas
+      );
     },
   },
   Noche: {
@@ -872,7 +868,7 @@ const DecidDiaNoche = {
           break;
         case 1:
           texto(`¡Ahora ${jug.nombre} tiene un nuevo perro!`, jug, true);
-          jug.perro = true;
+          jug.perro++;
           break;
         case 2:
           dano = getRandomIntInclusive(4, 1);
@@ -1017,7 +1013,7 @@ export const Decid = {
             texto(
               `${jug.nombre} se aleja con el inventario cargado de polovora mientras se imagina a ${jug2.nombre} volando por los aires`,
               jug
-            ); //No me convence
+            );
             break;
           case 3:
             texto(

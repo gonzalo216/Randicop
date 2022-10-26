@@ -13,7 +13,7 @@ export function final() {
   if (finalista.gato) petsArray.push("<li>Gato</li>");
   if (!petsArray.length) petsArray.push("<li>No consiguio mascotas</li>");
   let companero = "Murio viviendo solo";
-  if (finalista.conv) companero = finalista.conv.nombre;
+  if (finalista.conv) companero = `Convivio con ${finalista.conv.nombre}`;
   titulo(
     `
   <div><h4>Armadura</h4>

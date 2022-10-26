@@ -147,3 +147,7 @@ aside > nav {
   color: var(--color-menulinks-hover);
   /* background-color: rgb(223, 223, 105); */
 }
+
+button{
+  cursor: pointer;
+}
