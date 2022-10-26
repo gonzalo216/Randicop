@@ -1,27 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Randicop</title>
+    <!-- LOGO -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./../assets/letrasAzarIcon.png"
+    />
+    <!-- META -->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./../css/global.css" />
+    <!-- NORMALIZE CSS-->
     <link rel="stylesheet" href="./../css/normalize.css" />
-    <link rel="stylesheet" href="./../css/login.css" />
+    <!-- FUENTES DE LETRAS -->
+    <!-- HAMBURGUESA CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css"
     />
+    <!-- NO SE -->
     <link rel="stylesheet" href="./../css/lipo.css" />
-    <title>Inicio de Sesión</title>
+    <!-- CSS PRINCIPAL -->
+    <link rel="stylesheet" href="./../css/global.css" />
+    <link rel="stylesheet" href="./../css/login.css" />
   </head>
   <body>
-    <header class="header" id="sh">
-      <img src="./../assets/logo.png" width="80px" height="70px" alt="Hola" />
-      <h1>
-        <a href="./../html/index.html"> RANDICOP </a>
-      </h1>
+    <header class="header sticky">
+      <section class="logo">
+        <a href="./../html/index.html" class="logo-link sticky">
+          <img src="./../assets/dados.png" class="logo-img" alt="Hola" />
+        </a>
+        <h1 class="sticky">
+          <a class="randicop" href="./../html/index.html"> RANDICOP </a>
+        </h1>
+      </section>
       <button
-        class="panel-btn hamburger hamburger--3dxy"
+        class="panel-btn hamburger hamburger--3dxy sticky"
         id="burger"
         type="button"
       >
@@ -33,12 +49,18 @@
     <aside>
       <nav class="menu">
         <a href="./../html/index.html ">HOME</a>
+        <a href="./../html/login.html ">LOGIN</a>
+      </nav>
+    </aside>
+<aside>
+      <nav class="menu">
+        <a href="./../html/index.html ">HOME</a>
       </nav>
     </aside>
     <main>
       <form class="mishi">
         <div class="lilo">
-          <div>
+          <div class="pitu">
             <h2>Inicio de Sesión</h2>
             <div class="celda">
               <div>
