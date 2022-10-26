@@ -140,7 +140,7 @@ export const Dano = {
       danoInsta(dano);
     },
     llamas: function (jug) {
-      nrand = getRandomIntInclusive(15, 1);
+      dano = getRandomIntInclusive(15, 1);
       jug.vida -= dano;
       dano += jug.vida;
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
