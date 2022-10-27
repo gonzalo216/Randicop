@@ -27,7 +27,6 @@ div {
 
 /* CONTENEDORES */
 .cont {
-  width: fit-content;
   position: absolute;
   min-width: 250px;
   max-width: 80%;
@@ -154,6 +153,8 @@ h3 {
   position: absolute;
   top: 20vh;
   bottom: 10vh;
+  left: 0;
+  right: 0;
   display: grid;
   align-items: center;
 }
