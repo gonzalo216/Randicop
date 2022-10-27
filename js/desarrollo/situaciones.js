@@ -83,7 +83,7 @@ async function eventos(evento, i, cant, muertos) {
           break;
         }
         case 1: {
-          daño;
+          // daño;
           const accion = Object.keys(Dano[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Dano[evento][accion[nrand]](jug);
