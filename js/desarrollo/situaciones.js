@@ -56,7 +56,6 @@ async function eventos(evento, i, cant, muertos) {
     if (jug.funcion.length) {
       let seguir = jug.funcion[0]();
       jug.funcion.shift();
-      console.log(seguir);
       if (!seguir) {
         if (jug.vida <= 0) muertos.push(jugs[i]);
         continue;

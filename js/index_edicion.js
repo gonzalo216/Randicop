@@ -25,15 +25,12 @@ d.addEventListener("click", (e) => {
     resetear();
   }
   if (e.target.matches("#mas") || e.target.matches("#mas *")) {
-    console.log("click");
     crearFormulario(1);
   }
   if (e.target.matches("#menos") || e.target.matches("#menos *")) {
-    console.log("click-");
     crearFormulario(0, true);
   }
   if (e.target.matches("summary") || e.target.matches("summary *")) {
-    console.log("abrir");
     toggleDescription();
   }
 });
