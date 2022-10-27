@@ -23,6 +23,8 @@ class Jugador {
     this.strider = false;
     this.lagrima = false;
     this.escudo = false;
+    this.espadaD = false;
+    this.espadaN = false;
   }
 }
 export const lista = new Object();
@@ -42,7 +44,8 @@ export function resetJugs() {
 }
 class Dragon {
   constructor() {
-    this.vida = 100;
+    this.vida = 200;
+    this.crystalAct = 0;
   }
 }
 const dragonBase = new Dragon();
