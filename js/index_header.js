@@ -5,7 +5,7 @@ import { rotarLogo } from "./header/logo_randomrotate.js";
 const d = document;
 
 d.addEventListener("DOMContentLoaded", (e) => {
-  hamburgerMenu(".panel-btn", "aside");
+  hamburgerMenu(".panel-btn", "aside", ".panel");
 });
 window.addEventListener("scroll", (e) => scaleHeader());
 setInterval(rotarLogo, 5000);
