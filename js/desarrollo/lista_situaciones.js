@@ -49,7 +49,7 @@ const DanoGlobal = {
       jug.vida -= dano;
       dano += jug.vida;
       texto(`${jug.nombre} tropieza ${adicional}`, jug);
-      danoInsta(dano);
+    //   danoInsta(dano);
     },
   },
   DanoDiaNoche = {
@@ -81,11 +81,12 @@ const DanoGlobal = {
       texto(adicional, jug);
       danoInsta(dano);
     },
-    // creeperCargado: function (jug) {
-    //   dano = jug.vida;
-    //   jug.vida = 0;
-    //   texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
-    // },
+    creeperCargado: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
+      danoInsta(dano);
+    },
     grava: function (jug) {
       dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
@@ -243,7 +244,7 @@ export const Dano = {
     },
   },
   End: {
-    vacio: function (jug) {
+     vacio: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
       texto(
@@ -251,8 +252,8 @@ export const Dano = {
         jug
       );
       danoInsta(dano);
-    },
-    volarCristal: function (jug) {
+     },
+     volarCrystal: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
       texto(
@@ -920,6 +921,7 @@ const DecidDiaNoche = {
 };
 
 export const Decid = {
+  
   Dia: {
     entrarCasa: async function (jug) {
       const jug2 = nJugRand(jug);
@@ -932,6 +934,7 @@ export const Decid = {
         jug,
         true
       );
+      
       texto(`¿Deberia aprovecharse y entrar a su casa?`, false, true);
       let decision = await decidir("Entrar", "No entrar");
       if (decision) {
