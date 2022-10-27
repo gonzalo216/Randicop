@@ -11,6 +11,7 @@ export function iniciar() {
   btnAnt = d.getElementById("ant");
   $tamanio = d.getElementById("tamanio");
   $tamanio.innerHTML = "";
+  while ($transcurso.length) $transcurso.pop();
 }
 
 export function crearDiv() {

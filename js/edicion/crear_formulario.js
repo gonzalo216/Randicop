@@ -21,7 +21,6 @@ export default function crearFormulario(num, eliminar = false) {
         }
       } else {
         lastId = 0;
-        console.log();
       }
       num += lastId;
       for (let i = lastId; i < num; i++) {
