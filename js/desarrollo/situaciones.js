@@ -1,7 +1,7 @@
-import { haySit, texto, titulo } from "./print_lines.js";
+import { crearProgreso, haySit, texto, titulo } from "./print_lines.js";
 import { Dano, Decid, Random, Rel, Vida } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
-import { lista, jugs } from "./variables.js";
+import { lista, jugs, dragon } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
 import { finalistaData } from "./final.js";
 let nrand,
@@ -84,10 +84,10 @@ async function eventos(evento, i, cant, muertos) {
         }
         case 1: {
           // daño
-          const accion = Object.keys(Dano[evento]);
-          nrand = getRandomIntInclusive(accion.length - 1);
-          Dano[evento][accion[nrand]](jug);
-          break;
+          // const accion = Object.keys(Dano[evento]);
+          // nrand = getRandomIntInclusive(accion.length - 1);
+          // Dano[evento][accion[nrand]](jug);
+          // break;
         }
         case 2: {
           // random
@@ -143,6 +143,7 @@ export default async function juego() {
       primEnd = false;
       await transicion("End");
     } else {
+      crearProgreso(dragon.vida);
       await eventos("End", 0, cant, muertos);
     }
   } else if (caso < 10) {

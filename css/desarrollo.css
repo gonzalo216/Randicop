@@ -157,6 +157,16 @@ h3 {
   display: grid;
   align-items: center;
 }
+
+/* DRAGON */
+.progress > h4 {
+  margin-bottom: 0;
+}
+meter {
+  width: 100%;
+  height: 2rem;
+}
+
 /* FINALISTA */
 .finalista {
   font-size: 30px;
@@ -175,7 +185,7 @@ h3 {
 }
 
 /* BOTONES PARA VOLVER */
-.volver{
+.volver {
   margin-top: 2rem;
 }
 .btn-final {
@@ -194,10 +204,10 @@ h3 {
   margin-top: 20px;
   transition: font-size 2s;
   box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
-  0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
-  0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
-  0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
-  0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+    0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 .btn-final > button:last-child {
   position: absolute;
@@ -220,11 +230,9 @@ h3 {
 }
 .btn-final > button:last-child:hover {
   font-size: 50px;
- 
 }
 .btn-final > button:first-child:hover {
   font-size: 30px;
- 
 }
 
 /* BOTONES DE ATRAS Y SIGUIENTE */
@@ -246,5 +254,3 @@ h3 {
   box-shadow: -2px 2px 16px rgba(0, 0, 0, 0.6);
   transition: 0.3s;
 }
-
-

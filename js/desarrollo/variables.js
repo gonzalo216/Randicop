@@ -40,3 +40,10 @@ export function resetJugs() {
     lista[key] = new Jugador(lista[key].nombre, lista[key].protag);
   }
 }
+class Dragon {
+  constructor() {
+    this.vida = 100;
+  }
+}
+const dragonBase = new Dragon();
+export const dragon = dragonBase;

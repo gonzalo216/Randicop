@@ -9,13 +9,11 @@ export function titulo(text, clas = null) {
 }
 export function crearBotones(si, no, clas = null) {
   const $template = d.getElementById("tem-decidir").content,
-    $fragment = d.createDocumentFragment();
-  let $clone = d.importNode($template, true);
+    $clone = d.importNode($template, true);
   if (clas) $clone.firstElementChild.className = clas;
   $clone.getElementById("btn-si").innerHTML = si;
   $clone.getElementById("btn-no").innerHTML = no;
-  $fragment.appendChild($clone);
-  $transcurso.at(-1).lastElementChild.appendChild($fragment);
+  $transcurso.at(-1).lastElementChild.appendChild($clone);
   copySize();
 }
 export async function decidir(si, no) {
@@ -37,16 +35,14 @@ export async function decidir(si, no) {
   return result;
 }
 function imprimir(text, clas, fin = false, addClass = null) {
-  const $template = d.getElementById("tem-linea").content,
-    $fragment = d.createDocumentFragment();
+  const $template = d.getElementById("tem-linea").content;
   $template.querySelector(clas).innerHTML = text;
   if (addClass) $template.querySelector(clas).className += addClass;
   if (fin) {
-    let $clone = d.importNode($template, true);
+    const $clone = d.importNode($template, true);
     if (!$clone.querySelector(".vida-extra").innerHTML)
       $clone.querySelector(".vida-extra").remove();
-    $fragment.appendChild($clone);
-    $transcurso.at(-1).lastElementChild.appendChild($fragment);
+    $transcurso.at(-1).lastElementChild.appendChild($clone);
     $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
     $template.querySelector(".texto").className = "texto";
     copySize();
@@ -98,4 +94,15 @@ export async function haySit() {
   if ($transcurso.at(-1).lastElementChild.lastElementChild.tagName !== "DIV") {
     imprimir("&middot;&middot;&middot;", ".texto", true, " vacio");
   }
+}
+export function crearProgreso(valor) {
+  const $template = d.getElementById("tem-progreso").content,
+    $progress = d.importNode($template, true);
+  $progress.querySelector("h4").innerHTML = "DRAGON";
+  $progress.querySelector("meter").value = valor;
+  $transcurso.at(-1).lastElementChild.appendChild($progress);
+}
+export function updateProgreso(valor) {
+  const $meter = $transcurso.at(-1).querySelector("meter");
+  $meter.value = valor;
 }

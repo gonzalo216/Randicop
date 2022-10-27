@@ -1,6 +1,13 @@
-import { curar, danoInsta, decidir, texto, vidaExtra } from "./print_lines.js";
+import {
+  curar,
+  danoInsta,
+  decidir,
+  texto,
+  updateProgreso,
+  vidaExtra,
+} from "./print_lines.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
-import { lista, jugs } from "./variables.js";
+import { lista, jugs, dragon } from "./variables.js";
 import { armadura, materiales, partes } from "./armadura.js";
 
 const nJugRand = (jug) => {
@@ -392,8 +399,10 @@ const RandomGlobal = {
     gatete: function (jug) {
       texto(
         `Paseando cerca de una aldea, ${jug.nombre} descubre a un gato y lo adiestra`,
-        jug, true);
-        jug.perro++;
+        jug,
+        true
+      );
+      jug.perro++;
     },
     recuento: function (jug) {
       texto(
@@ -477,11 +486,16 @@ export const Random = {
     peleaesqueletos: function (jug) {
       texto(
         `Un esqueleto falla un tiro a ${jug.nombre} y le da a otro esqueleto, generando una pelea entre ambos`,
-        jug, true);
+        jug,
+        true
+      );
     },
     bajotierra: function (jug) {
       texto(
-        `Escapando de los mobs, ${jug.nombre} se refugia bajo tierra`, jug, true);
+        `Escapando de los mobs, ${jug.nombre} se refugia bajo tierra`,
+        jug,
+        true
+      );
     },
     pensandodiam: function (jug) {
       texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug);
@@ -489,7 +503,9 @@ export const Random = {
     domesticarpp: function (jug) {
       texto(
         `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug,true);
+        jug,
+        true
+      );
     },
     pensandositios: function (jug) {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug, true);
@@ -501,7 +517,9 @@ export const Random = {
     domesticarpp: function (jug) {
       texto(
         `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-  jug, true);
+        jug,
+        true
+      );
     },
   },
   Nether: {
@@ -592,6 +610,11 @@ export const Random = {
         jug,
         true
       );
+    },
+    danardragon: function (jug) {
+      texto(`${jug.nombre} dana al dragon`, jug, true);
+      dragon.vida -= 20;
+      updateProgreso(dragon.vida);
     },
   },
 };
