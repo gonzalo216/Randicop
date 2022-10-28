@@ -724,7 +724,7 @@ export const Random = {
     todaArmaNetherite: function (jug) {
       let material = "netherite";
       partes.forEach((el) => {
-        jug.armadura[el] = armadura.[el][material];
+        jug.armadura[el] = armadura[el][material];
         jug.armourName[el] = material;
       });
       texto(
