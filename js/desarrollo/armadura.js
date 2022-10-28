@@ -34,5 +34,7 @@ export const armadura = {
     netherite: 3,
   },
 };
+const Materiales = Object.keys(armadura.casco);
+Materiales.pop();
 export const partes = desordenar(Object.keys(armadura)),
-  materiales = desordenar(Object.keys(armadura.casco));
+  materiales = desordenar(Materiales); //No incluye al Netherite
