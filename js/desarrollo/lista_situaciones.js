@@ -252,38 +252,43 @@ export const Dano = {
         jug
       );
       danoInsta(dano);
-     },
-      alas: function (jug) {
-        nrand = getRandomIntInclusive(1);
-        switch(nrand) {
+    },
+    alas: function (jug) {
+      nrand = getRandomIntInclusive(1);
+      switch (nrand) {
         case 0:
           jug.vida -= 7;
-          dano += jug.vida;
-          texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon e intenta hacer un waterdrop`, jug);
+          dano = jug.vida + 7;
+          texto(
+            `${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon e intenta hacer un waterdrop`,
+            jug
+          );
           danoInsta(dano);
           break;
-          case 1:
-            dano = jug.vida;
-            jug.vida = 0;
-            texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon, muriendo al instante`, jug);
-            danoInsta(dano);
-            break;
-        };
-      },
-     volarCrystal: function (jug) {
-       if (dragon.crystalAct)
-       {
-      dano = jug.vida;
-      jug.vida = 0;
-      texto(
-        `${jug.nombre} sale volando de lo alto de un pico del end al golpear un end crystal, pero logra destruirlo`,
-        jug
-      );
-      dragon.crystalAct = dragon.crystalAct - 1;
-       } else {
-         dano = getRandomIntInclusive(20,8);
-         jug.vida -= dano;
-         dano += jug.vida;         
+        case 1:
+          dano = jug.vida;
+          jug.vida = 0;
+          texto(
+            `${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon, muriendo al instante`,
+            jug
+          );
+          danoInsta(dano);
+          break;
+      }
+    },
+    volarCrystal: function (jug) {
+      if (dragon.crystalAct) {
+        dano = jug.vida;
+        jug.vida = 0;
+        texto(
+          `${jug.nombre} sale volando de lo alto de un pico del end al golpear un end crystal, pero logra destruirlo`,
+          jug
+        );
+        dragon.crystalAct = dragon.crystalAct - 1;
+      } else {
+        dano = getRandomIntInclusive(20, 8);
+        jug.vida -= dano;
+        dano += jug.vida;
         texto(
           `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`,
           jug
@@ -476,14 +481,14 @@ export const Vida = {
   End: {
     CrystalCurar: function (jug) {
       if (dragon.crystalAct) {
-        cura = getRandomIntInclusive(50, 20) + dragon.vida;
-        dragon.vida = cura;
-        updateProgreso(dragon.vida);
-        texto(
-          `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
-          jug,
-          true
-        );
+        // cura = getRandomIntInclusive(50, 20) + dragon.vida;
+        // dragon.vida = cura;
+        // updateProgreso(dragon.vida);
+        // texto(
+        //   `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
+        //   jug,
+        //   true
+        // );
       } else {
         texto(
           `${jug.nombre} observa los picos, ahora sin uso para el ender dragon, del end`,

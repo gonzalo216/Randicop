@@ -38,16 +38,17 @@ export async function copySize() {
   $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
 }
 
-let escrito = false;
-export function completo(bol = escrito, fin = false) {
+let escrito = false,
+  win;
+export function completo(bol = escrito, fin = false, gano) {
   escrito = bol;
-  hayValor("cont sig")
-    ? (btnSig.textContent = "SIGUIENTE")
-    : escrito
-    ? fin
-      ? (btnSig.textContent = "FINALIZAR")
-      : (btnSig.textContent = "SIGUIENTE")
-    : (btnSig.textContent = "Completar");
+  if (hayValor("cont sig")) btnSig.textContent = "SIGUIENTE";
+  else if (escrito)
+    if (fin) {
+      btnSig.textContent = "FINALIZAR";
+      win = gano;
+    } else btnSig.textContent = "SIGUIENTE";
+  else btnSig.textContent = "Completar";
 }
 export function siguiente() {
   if (hayValor("cont sig")) {
@@ -59,7 +60,7 @@ export function siguiente() {
     if (contenidoSig("cont actual").id === "fin") btnSig.disabled = true;
   } else {
     if (btnSig.textContent === "FINALIZAR") {
-      final();
+      final(win);
       $transcurso.at(-1).id = "fin";
       btnSig.disabled = true;
       return;

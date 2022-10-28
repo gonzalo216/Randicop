@@ -185,6 +185,9 @@ meter {
   list-style: none;
 }
 
+.nombre-winner {
+  margin-top: 2rem;
+}
 /* BOTONES PARA VOLVER */
 .volver {
   margin-top: 2rem;

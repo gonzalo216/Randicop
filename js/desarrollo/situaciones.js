@@ -186,10 +186,19 @@ export default async function juego() {
     finalistaData(lista[muertos.at(-1)]);
   }
   if (jugs.every((el) => lista[el].vida <= 0)) {
-    completo(true, true);
+    completo(true, true, false);
     return;
   }
-  Hola();
+  if (dragon.vida <= 0) {
+    const finalistas = [];
+    jugs.forEach((el) => {
+      if (lista[el].vida > 0) finalistas.push(lista[el]);
+    });
+    finalistaData(finalistas);
+    console.log("0");
+    completo(true, true, true);
+    return;
+  }
   completo(true);
 }
 
