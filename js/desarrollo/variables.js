@@ -25,6 +25,7 @@ class Jugador {
     this.escudo = false;
     this.espadaD = false;
     this.espadaN = false;
+    this.netheritecrafteo = false;
   }
 }
 export const lista = new Object();

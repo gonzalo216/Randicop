@@ -408,7 +408,7 @@ const VidaGlobal = {
         if (nrand) {
           dano = jug.vida;
           jug.vida = 0;
-          texto(`Descubrieron a ${jug.nombre} por lo que habia hecho`, jug);
+          texto(`Los moderadores descubrieron a ${jug.nombre} por lo que habia hecho`, jug);
           danoInsta(dano);
           return false;
         } else {
@@ -513,6 +513,28 @@ const RandomGlobal = {
     //   );
     //   vidaDefault(vida, true);
     // },
+    cat: function (jug) {
+      if (jug.netheritecrafteo) {
+      let parte = partes[1],
+      material = "netherite",
+      articulo = parte === "botas" ? "unas" : "un";
+      jug.armadura[parte] = armadura[parte][material];
+     jug.armourName[parte] = material;
+      texto(
+        `Con parte de la netherite que habia conseguido en el bastion del nether, ${jug.nombre} craftea ${articulo} ${parte} de ${material}`,
+        jug, true);
+        jug.netheritecrafteo = false;
+      } else {
+        let parte = partes[1],
+        material = "oro",
+        articulo = parte === "botas" ? "unas" : "un";
+        jug.armadura[parte] = armadura[parte][material];
+       jug.armourName[parte] = material;
+        texto(
+          `${jug.nombre} desea craftear armadura de netherite, pero en su lugar crea ${articulo} ${parte} de ${material}`,
+          jug, true);
+      }
+    },
   },
   RandomDiaNoche = {
     // armadura: function (jug) { // un if si tiene armadura de cuero
@@ -572,6 +594,18 @@ const RandomGlobal = {
         jug.espadaD = true;
       }
     },
+    todaArmaRandom: function (jug) {
+      let material = materiales[1];
+      partes.forEach((el) => {
+        jug.armadura[el] = armadura[el][material];
+        jug.armourName[el] = material;
+      });
+      texto(
+        `${jug.nombre} logra fabricar toda una armadura de ${material}`,
+        jug,
+        true
+      );
+    },
   };
 export const Random = {
   Dia: {
@@ -613,7 +647,7 @@ export const Random = {
       jug.armadura[parte] = armadura[parte][material];
       jug.armourName[parte] = material;
       texto(
-        `${jug.nombre} se construyo ${articulo} ${parte} de ${material}`,
+        `${jug.nombre} se construye ${articulo} ${parte} de ${material}`,
         jug,
         true
       );
@@ -1504,6 +1538,7 @@ export const Decid = {
       }
     },
     bastion: async function (jug) {
+      const jug2 = nJugRand(jug);
       texto(`${jug.nombre} encuentra un bastion del nether`, jug, true);
       texto(`¿Deberia explorarlo?`, false, true);
       let decision = await decidir("Entrar", "Ignorar");
@@ -1533,11 +1568,12 @@ export const Decid = {
             break;
           case 2:
             texto(
-              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
-              jug,
-              true
-            ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
-
+              `${jug.nombre} descubre que ${jug2.nombre} estaba detras suyo y ambos se turnan para defender y tomar los objetos de los cofres`,
+              jug, true);
+              texto(
+                `Ambos consiguen netherite suficiente para luego craftear lo que deseen`,
+                jug, true);
+                jug.netheritecrafteo = true;
             break;
           case 3:
             pocionIns(jug.vida);
