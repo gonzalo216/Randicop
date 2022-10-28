@@ -198,45 +198,54 @@ meter {
   justify-content: center;
   align-items: center;
   justify-items: center;
-  padding-top: 200px;
+  align-content: center;
+  padding-top: 30px;
+  grid-template-rows: max-content max-content;
+  row-gap: 1rem;
 }
 .btn-final > button:first-child {
-  grid-row-start: 2;
-  grid-row-end: 2;
-  width: 100px;
+  height: max(150px, 100%);
+  width: 70vw;
+  padding: 10px;
+  font-size: 60px;
+  border: 1px black solid;
+  color: white;  
   border-radius: 20px;
-  margin-top: 20px;
-  transition: font-size 2s;
+  cursor: pointer;
+  transition: font-size 1s, background-color 0.3s;
   box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
     0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
+    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
+    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+    0 4px 0 #131212, 0 5px 0 rgb(0, 0, 0), 0 6px 1px rgba(0, 0, 0, 0.1),
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 .btn-final > button:last-child {
-  position: absolute;
-  top: -200px;
-  right: 0;
-  left: 0;
-  height: 150px;
-  padding: 15px;
-  font-size: 60px;
-  grid-row-start: 1;
-  grid-row-end: 1;
+  width: 100px;
   border-radius: 20px;
-  cursor: pointer;
-  transition: font-size 1s;
-  box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
-    0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
+  margin-top: 3rem;
+  transition: font-size 2s, background-color 0.3s;
+  box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20);
+  text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+    0 4px 0 #131212, 0 5px 0 rgb(0, 0, 0), 0 6px 1px rgba(0, 0, 0, 0.1),
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
-.btn-final > button:last-child:hover {
-  font-size: 50px;
+.btn-final > button > a:last-child{
+      color: white;
 }
 .btn-final > button:first-child:hover {
-  font-size: 30px;
+  font-size: 50px;
+  background-color:#367e18;
+}
+.btn-final > button:last-child:hover {
+  font-size: 20px;
+  background-color: #367e18;
 }
 
 /* BOTONES DE ATRAS Y SIGUIENTE */
