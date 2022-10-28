@@ -253,7 +253,23 @@ export const Dano = {
       );
       danoInsta(dano);
      },
-
+      alas: function (jug) {
+        nrand = getRandomIntInclusive(1);
+        switch(nrand) {
+        case 0:
+          jug.vida -= 7;
+          dano += jug.vida;
+          texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon e intenta hacer un waterdrop`, jug);
+          danoInsta(dano);
+          break;
+          case 1:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon, muriendo al instante`, jug);
+            danoInsta(dano);
+            break;
+        };
+      },
      volarCrystal: function (jug) {
        if (dragon.crystalAct)
        {
