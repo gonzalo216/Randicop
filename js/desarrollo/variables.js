@@ -48,7 +48,7 @@ export function resetJugs() {
 }
 class Dragon {
   constructor() {
-    this.vida = 0;
+    this.vida = 200;
     this.crystalAct = 10;
   }
 }
