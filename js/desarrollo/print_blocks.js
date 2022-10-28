@@ -40,7 +40,8 @@ export async function copySize() {
 
 let escrito = false,
   win;
-export function completo(bol = escrito, fin = false, gano) {
+  export function completo(bol = escrito, fin = false, gano) {
+  copySize()
   escrito = bol;
   if (hayValor("cont sig")) btnSig.textContent = "SIGUIENTE";
   else if (escrito)
