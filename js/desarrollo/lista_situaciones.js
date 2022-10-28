@@ -252,21 +252,38 @@ export const Dano = {
         jug
       );
       danoInsta(dano);
-    },
-
-    volarCrystal: function (jug) {
-      if (dragon.crystalAct) {
-        dano = jug.vida;
-        jug.vida = 0;
-        texto(
-          `${jug.nombre} sale volando de lo alto de un pico del end al golpear un end crystal, pero logra destruirlo`,
-          jug
-        );
-        dragon.crystalAct = dragon.crystalAct - 1;
-      } else {
-        dano = getRandomIntInclusive(20, 8);
-        jug.vida -= dano;
-        dano += jug.vida;
+     },
+      alas: function (jug) {
+        nrand = getRandomIntInclusive(1);
+        switch(nrand) {
+        case 0:
+          jug.vida -= 7;
+          dano += jug.vida;
+          texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon e intenta hacer un waterdrop`, jug);
+          danoInsta(dano);
+          break;
+          case 1:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(`${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon, muriendo al instante`, jug);
+            danoInsta(dano);
+            break;
+        };
+      },
+     volarCrystal: function (jug) {
+       if (dragon.crystalAct)
+       {
+      dano = jug.vida;
+      jug.vida = 0;
+      texto(
+        `${jug.nombre} sale volando de lo alto de un pico del end al golpear un end crystal, pero logra destruirlo`,
+        jug
+      );
+      dragon.crystalAct = dragon.crystalAct - 1;
+       } else {
+         dano = getRandomIntInclusive(20,8);
+         jug.vida -= dano;
+         dano += jug.vida;         
         texto(
           `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`,
           jug
