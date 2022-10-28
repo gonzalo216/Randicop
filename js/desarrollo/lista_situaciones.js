@@ -1354,12 +1354,16 @@ export const Decid = {
             danoInsta(dano);
             break;
           case 2:
+          //   // hay que revisarlo
+            // texto(
+            //   `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
+            //   jug,
+            //   true
+            // ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
             texto(
-              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
-              jug,
-              true
-            ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
-
+              `${jug.nombre} se interna en la casa sin inconvenientes, pero descubre que los cofres de ${jug2.nombre} se encontraban vacios`,
+              jug
+            );
             break;
           case 3:
             pocionIns(jug.vida);
@@ -1754,44 +1758,38 @@ export const Decid = {
       texto(`¿Deberia atacarlo de cerca o de lejos?`, false, true);
       let decision = await decidir("Cerca", "Lejos");
       if (decision) {
-        nrand = getRandomIntInclusive(6);
+        nrand = getRandomIntInclusive(2);
         switch (nrand) {
           case 0:
-
+            dano = jug.vida;
+            jug.vida = 0;
+            dragon.vida = dragon.vida - 20;
+            updateProgreso(dragon.vida);
             texto(
-              `Abriendo el primer cofre que encuentra por casualidad, se apresura a tomar ${articulo} ${parte} de ${material} y huye de un grupo amenazante de piglins`,
-              jug,
-              true
-            );
-            jug.oro = true;
+              `Confiado, ${jug.nombre} pone una cama junto al dragon cuando este se encuentra cerca, pero ambos reciben el impacto`,
+              jug,);
+            danoInsta(dano);
             break;
           case 1:
             dano = getRandomIntInclusive(20, 6);
             jug.vida -= dano;
-            dano += jug.vida;;
+            dano += jug.vida;
             texto(
               `El ender dragon ataca a ${jug.nombre} de cerca`,
               jug);
             danoInsta(dano);
             break;
-          case 2:
-            texto(
-              `${jug.nombre} descubre que ${jug2.nombre} estaba detras suyo y ambos se turnan para defender y tomar los objetos de los cofres`,
-              jug, true);
+            case 2:
+              dano = getRandomIntInclusive(15, 10);
+              jug.vida -= dano;
+              dano += jug.vida;
+              dragon.vida = dragon.vida - 8;
+              updateProgreso(dragon.vida);
               texto(
-                `Ambos consiguen netherite suficiente para intentar craftear algo`,
-                jug, true);
-                jug.netheritecrafteo = true;
-            break;
-          case 3:
-            dano = getRandomIntInclusive(18, 3);
-            jug.vida -= dano;
-            dano += jug.vida;
-            texto(
-              `${jug.nombre} se topa con un grupo de piglins brutos en la entrada al bastion. Entrar deja de ser una opcion`,
-              jug);
-            danoInsta(dano);
-            break;
+                `El ender dragon se dirige en picada hacia ${jug.nombre}. Aunque logra golpearlo, ambos pierden vida`,
+                jug);
+              danoInsta(dano);
+              break;
         }
       } else {
         nrand = getRandomIntInclusive(1);
