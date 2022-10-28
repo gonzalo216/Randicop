@@ -49,7 +49,7 @@ const DanoGlobal = {
       jug.vida -= dano;
       dano += jug.vida;
       texto(`${jug.nombre} tropieza ${adicional}`, jug);
-    //   danoInsta(dano);
+      //   danoInsta(dano);
     },
   },
   DanoDiaNoche = {
@@ -233,7 +233,7 @@ export const Dano = {
       danoInsta(dano);
     },
     piglin: function (jug) {
-      dano = getRandomIntInclusive(14,5);
+      dano = getRandomIntInclusive(14, 5);
       jug.vida -= dano;
       dano += jug.vida;
       texto(
@@ -244,7 +244,7 @@ export const Dano = {
     },
   },
   End: {
-     vacio: function (jug) {
+    vacio: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
       texto(
@@ -286,51 +286,72 @@ export const Dano = {
          dano += jug.vida;         
         texto(
           `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`,
-          jug,
+          jug
         );
-       };
-       danoInsta(dano);
+      }
+      danoInsta(dano);
     },
     espadaDragon: function (jug) {
-      if (jug.espadaN)
-      {
+      if (jug.espadaN) {
         texto(
           `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de netherite`,
-          jug, true);
-          dragon.vida = dragon.vida - 9;
-          updateProgreso(dragon.vida);
-      } else if (jug.espadaD){
+          jug,
+          true
+        );
+        dragon.vida = dragon.vida - 9;
+        updateProgreso(dragon.vida);
+      } else if (jug.espadaD) {
         texto(
           `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de diamante`,
-          jug, true);
-          dragon.vida = dragon.vida - 8;
-          updateProgreso(dragon.vida);
+          jug,
+          true
+        );
+        dragon.vida = dragon.vida - 8;
+        updateProgreso(dragon.vida);
       } else {
         texto(
           `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de hierro`,
-          jug, true);
-          dragon.vida = dragon.vida - 7;
-          updateProgreso(dragon.vida);
+          jug,
+          true
+        );
+        dragon.vida = dragon.vida - 7;
+        updateProgreso(dragon.vida);
       }
+    },
+    camaDragon: function (jug) {
+      dragon.vida = dragon.vida - 20;
+      updateProgreso(dragon.vida);
+      texto(
+        `${jug.nombre} hiere al dragon explotando una cama a su lado`,
+        jug,
+        true
+      );
+    },
+    arcoCrystal: function (jug) {
+      if (jug.arco) {
+        texto(
+          `${jug.nombre} utiliza su arco para destruir un end crystal`,
+          jug,
+          true
+        );
+        dragon.crystalAct = dragon.crystalAct - 1;
+      } else {
+        texto(
+          `${jug.nombre} piensa en intentar herir al dragon con un stack de bolas de nieve...`,
+          jug,
+          true
+        );
+      }
+    },
+    aguaCrystal: function (jug) {
+      texto(
+        `${jug.nombre} escala a lo alto de un pico usando agua y destruye un end crystal sin salir herido`,
+        jug,
+        true
+      );
+      dragon.crystalAct = dragon.crystalAct - 1;
+    },
   },
-  camaDragon: function (jug) {
-    dragon.vida = dragon.vida - 20;
-    updateProgreso(dragon.vida);
-    texto(`${jug.nombre} hiere al dragon explotando una cama a su lado`, jug, true);
-  },
-  arcoCrystal: function (jug) {
-    if (jug.arco) {
-    texto(`${jug.nombre} utiliza su arco para destruir un end crystal`, jug, true);
-    dragon.crystalAct = dragon.crystalAct - 1;
-    } else {
-      texto(`${jug.nombre} piensa en intentar herir al dragon con un stack de bolas de nieve...`, jug, true);
-    }
-  },
-  aguaCrystal: function (jug) {
-    texto(`${jug.nombre} escala a lo alto de un pico usando agua y destruye un end crystal sin salir herido`, jug, true);
-  dragon.crystalAct = dragon.crystalAct - 1;
-  },
-},
 };
 repetir(Dano.Nether, 2);
 repetir(Dano.End, 5);
@@ -431,7 +452,10 @@ export const Vida = {
   Nether: {
     cofreManzana: function (jug) {
       cura = 4 + jug.vida;
-      texto(`${jug.nombre} consigue una manzana dorada en el cofre de una fortaleza`, jug);
+      texto(
+        `${jug.nombre} consigue una manzana dorada en el cofre de una fortaleza`,
+        jug
+      );
       vidaExtra(4);
       ctrl();
       curar(cura);
@@ -439,7 +463,10 @@ export const Vida = {
     },
     cofreManzana: function (jug) {
       cura = 4 + jug.vida;
-      texto(`${jug.nombre} consigue una manzana dorada en el cofre de un bastion`, jug);
+      texto(
+        `${jug.nombre} consigue una manzana dorada en el cofre de un bastion`,
+        jug
+      );
       vidaExtra(4);
       ctrl();
       curar(cura);
@@ -448,14 +475,21 @@ export const Vida = {
   },
   End: {
     CrystalCurar: function (jug) {
-      if (dragon.crystalAct)
-      {
-      cura = getRandomIntInclusive(50, 20) + dragon.vida;
-      dragon.vida = cura;
-      updateProgreso(dragon.vida);
-      texto(`${jug.nombre} no puede evitar que el ender dragon recupere vida`, jug, true);
+      if (dragon.crystalAct) {
+        cura = getRandomIntInclusive(50, 20) + dragon.vida;
+        dragon.vida = cura;
+        updateProgreso(dragon.vida);
+        texto(
+          `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
+          jug,
+          true
+        );
       } else {
-        texto(`${jug.nombre} observa los picos, ahora sin uso para el ender dragon, del end`, jug, true);
+        texto(
+          `${jug.nombre} observa los picos, ahora sin uso para el ender dragon, del end`,
+          jug,
+          true
+        );
       }
     },
   },
@@ -528,11 +562,15 @@ const RandomGlobal = {
     },
     fabricaDiamante: function (jug) {
       if (jug.espadaD)
-        texto(`${jug.nombre} piensa en mejorar su espada de diamante`, jug, true);
+        texto(
+          `${jug.nombre} piensa en mejorar su espada de diamante`,
+          jug,
+          true
+        );
       else {
-      texto(`${jug.nombre} fabrica una espada de diamante`, jug, true);
-      jug.espadaD = true;
-      };
+        texto(`${jug.nombre} fabrica una espada de diamante`, jug, true);
+        jug.espadaD = true;
+      }
     },
   };
 export const Random = {
@@ -652,7 +690,10 @@ export const Random = {
     },
     relojRoto: function (jug) {
       texto(
-        `${jug.nombre} observa su reloj, pero parece estar roto...`, jug, true);
+        `${jug.nombre} observa su reloj, pero parece estar roto...`,
+        jug,
+        true
+      );
     },
     explorarStrider: function (jug) {
       if (jug.strider) {
@@ -686,46 +727,47 @@ export const Random = {
       );
     },
     parteArmaNetherite: function (jug) {
-        let parte = partes[1],
-          material = "netherite",
-          articulo = parte === "peto" ? "unas" : "un";
-        jug.armadura[parte] = armadura[parte][material];
-        jug.armourName[parte] = material;
-        texto(
-          `${jug.nombre} logra fabricar ${articulo} ${parte} de ${material}`,
-          jug, true);
+      let parte = partes[1],
+        material = "netherite",
+        articulo = parte === "peto" ? "unas" : "un";
+      jug.armadura[parte] = armadura[parte][material];
+      jug.armourName[parte] = material;
+      texto(
+        `${jug.nombre} logra fabricar ${articulo} ${parte} de ${material}`,
+        jug,
+        true
+      );
     },
-  //   todaArmaNetherite: function (jug) {
-  //     let parte = partes[4],
-  //       material = "netherite",
-  //       articulo = parte === "casco" ? "unas" : "un";
-  //     jug.armadura[parte] = armadura.casco[material];
-  //     jug.armourName[parte] = material;
-
-  //     jug.armadura[parte] = armadura.peto[material];
-  //     jug.armourName[parte] = material;
-
-  //     jug.armadura[parte] = armadura.pantalon[material];
-  //     jug.armourName[parte] = material;
-
-  //     jug.armadura[parte] = armadura.botas[material];
-  //     jug.armourName[parte] = material;
-  //     texto(
-  //       `${jug.nombre} logra fabricar toda una armadura de ${material}`,
-  //       jug, true);
-  // },
-  crearEspada: function (jug) {
+    todaArmaNetherite: function (jug) {
+      let material = "netherite";
+      partes.forEach((el) => {
+        jug.armadura[el] = armadura[el][material];
+        jug.armourName[el] = material;
+      });
+      texto(
+        `${jug.nombre} logra fabricar toda una armadura de ${material}`,
+        jug,
+        true
+      );
+    },
+    crearEspada: function (jug) {
       if (jug.espadaN) {
-        texto( `${jug.nombre} fabrica una espada de netherite`,jug, true);
+        texto(`${jug.nombre} fabrica una espada de netherite`, jug, true);
         jug.espadaN = true;
       } else
-        texto( `${jug.nombre} piensa que podria hacer si consiguiera mas netherite`,jug, true);
-  },
-  fortaleza: function (jug) {
-    texto(
-      `${jug.nombre} piensa en recolectar calaveras de esqueletos para invocar al wither`,
-      jug, true);
-  },
+        texto(
+          `${jug.nombre} piensa que podria hacer si consiguiera mas netherite`,
+          jug,
+          true
+        );
+    },
+    fortaleza: function (jug) {
+      texto(
+        `${jug.nombre} piensa en recolectar calaveras de esqueletos para invocar al wither`,
+        jug,
+        true
+      );
+    },
   },
   End: {
     calabaza: function (jug) {
@@ -758,17 +800,27 @@ export const Random = {
     observar: function (jug) {
       texto(
         `${jug.nombre} no puede quitar la vista del ender dragon`,
-        jug, true);
+        jug,
+        true
+      );
     },
     aguaCrystal: function (jug) {
       if (dragon.crystalAct) {
-      texto(`${jug.nombre} logra destruir un end crystal solo con bolas de nieve`, jug, true);
-    dragon.crystalAct = dragon.crystalAct - 1;
+        texto(
+          `${jug.nombre} logra destruir un end crystal solo con bolas de nieve`,
+          jug,
+          true
+        );
+        dragon.crystalAct = dragon.crystalAct - 1;
       } else {
         dragon.vida = dragon.vida - 8;
         updateProgreso(dragon.vida);
-      texto(`${jug.nombre} hiere al ender dragon golpeandolo con un hacha`, jug, true);
-      };
+        texto(
+          `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
+          jug,
+          true
+        );
+      }
     },
   },
 };
@@ -960,7 +1012,7 @@ export const Rel = {
         true
       );
     },
-    buscarNetherite (jug) {
+    buscarNetherite(jug) {
       const jug2 = nJugRand(jug);
       if (jug.espadaN) {
         texto(
@@ -976,7 +1028,7 @@ export const Rel = {
         );
         jug.espadaN = true;
       }
-    }
+    },
   },
   End: {
     calabazaPrestar: function (jug) {
@@ -1028,7 +1080,11 @@ export const Rel = {
       dano = getRandomIntInclusive(64, 16);
       dragon.vida = dragon.vida - dano;
       updateProgreso(dragon.vida);
-      texto(`${jug.nombre} y ${jug2.nombre} golpean con espadas reiteradas veces al ender dragon en cuanto se posa a descansar sobre el portal inactivo, hiriendolo`, jug, true);
+      texto(
+        `${jug.nombre} y ${jug2.nombre} golpean con espadas reiteradas veces al ender dragon en cuanto se posa a descansar sobre el portal inactivo, hiriendolo`,
+        jug,
+        true
+      );
     },
   },
 };
@@ -1116,11 +1172,11 @@ export const Decid = {
         nrand = getRandomIntInclusive(7);
         switch (nrand) {
           case 0:
-              let parte = partes[1],
-                material = materiales[1],
-                articulo = parte === "botas" ? "unas" : "un";
-              jug.armadura[parte] = armadura[parte][material];
-              jug.armourName[parte] = material;
+            let parte = partes[1],
+              material = materiales[1],
+              articulo = parte === "botas" ? "unas" : "un";
+            jug.armadura[parte] = armadura[parte][material];
+            jug.armourName[parte] = material;
             texto(
               `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Rapido, toma ${articulo} ${parte} de ${material} y escapa`,
               jug,
@@ -1140,7 +1196,8 @@ export const Decid = {
           case 2:
             texto(
               `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
-              jug, true
+              jug,
+              true
             ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
 
             break;
@@ -1203,12 +1260,12 @@ export const Decid = {
         switch (nrand) {
           case 0:
             if (jug.espadaD) {
-            texto(
-              `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo gran cantidad de objetos de los 4 cofres ocultos`,
-              jug,
-              true
-            );
-            } else{
+              texto(
+                `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo gran cantidad de objetos de los 4 cofres ocultos`,
+                jug,
+                true
+              );
+            } else {
               texto(
                 `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo diamantes suficientes para craftear una nueva espada`,
                 jug,
@@ -1446,88 +1503,87 @@ export const Decid = {
         }
       }
     },
-      bastion: async function (jug) {
-        texto(
-          `${jug.nombre} encuentra un bastion del nether`,
-          jug,
-          true
-        );
-        texto(`¿Deberia explorarlo?`, false, true);
-        let decision = await decidir("Entrar", "Ignorar");
-        if (decision) {
-          nrand = getRandomIntInclusive(7);
-          switch (nrand) {
-            case 0:
-                let parte = partes[1],
-                  material = "netherite",
-                  articulo = parte === "botas" ? "unas" : "un";
-                jug.armadura[parte] = armadura[parte][material];
-                jug.armourName[parte] = material;
-              texto(
-                `Abriendo el primer cofre que encuentra por casualidad, se apresura a tomar ${articulo} ${parte} de ${material} y huye de un grupo amenazante de piglins`,
-                jug, true);
-              break;
-            case 1:
-              dano = jug.vida;
-              jug.vida = 0;
-              texto(
-                `${jug.nombre} intenta abrir un cofre pero, antes de tomar algo, un grupo de piglins lo descubre y se encarga de asesinarlo`,
-                jug
-              );
-              danoInsta(dano);
-              break;
-            case 2:
-              texto(
-                `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
-                jug, true
-              ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
-  
-              break;
-            case 3:
-              pocionIns(jug.vida);
-              texto(
-                `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiendola al instante`,
-                jug
-              );
-              ctrl();
-              curar(cura);
-              jug.vida = cura;
-              break;
-            case 4:
-              dano = jug.vida;
-              jug.vida = 0;
-              texto(
-                `${jug.nombre} se toma demasiado tiempo y ${jug2.nombre} regresa, golpeandolo con su hacha hasta morir`,
-                jug
-              );
-              danoInsta(dano);
-              break;
-            case 5:
-              texto(
-                `${jug.nombre} piensa en tomar todo lo que encuentre, pero se siente culpable y decide no traicionar a ${jug2.nombre}`,
-                jug,
-                true
-              );
-              break;
-            case 6:
-              texto(
-                `Antes de que ${jug2.nombre} regrese, ${jug.nombre} llena su casa de TNT, activando el mechero y alejandose`,
-                jug,
-                true
-              );
-              break;
-            case 7:
-              texto(
-                `Cuando ${jug2.nombre} regresa se sorprende al encontrar su casa llena de ovejas`,
-                jug,
-                true
-              );
-              break;
-          }
-        } else {
-          texto(`${jug.nombre} deja pasar la oportunidad`, jug, true);
+    bastion: async function (jug) {
+      texto(`${jug.nombre} encuentra un bastion del nether`, jug, true);
+      texto(`¿Deberia explorarlo?`, false, true);
+      let decision = await decidir("Entrar", "Ignorar");
+      if (decision) {
+        nrand = getRandomIntInclusive(7);
+        switch (nrand) {
+          case 0:
+            let parte = partes[1],
+              material = "netherite",
+              articulo = parte === "botas" ? "unas" : "un";
+            jug.armadura[parte] = armadura[parte][material];
+            jug.armourName[parte] = material;
+            texto(
+              `Abriendo el primer cofre que encuentra por casualidad, se apresura a tomar ${articulo} ${parte} de ${material} y huye de un grupo amenazante de piglins`,
+              jug,
+              true
+            );
+            break;
+          case 1:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(
+              `${jug.nombre} intenta abrir un cofre pero, antes de tomar algo, un grupo de piglins lo descubre y se encarga de asesinarlo`,
+              jug
+            );
+            danoInsta(dano);
+            break;
+          case 2:
+            texto(
+              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
+              jug,
+              true
+            ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
+
+            break;
+          case 3:
+            pocionIns(jug.vida);
+            texto(
+              `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiendola al instante`,
+              jug
+            );
+            ctrl();
+            curar(cura);
+            jug.vida = cura;
+            break;
+          case 4:
+            dano = jug.vida;
+            jug.vida = 0;
+            texto(
+              `${jug.nombre} se toma demasiado tiempo y ${jug2.nombre} regresa, golpeandolo con su hacha hasta morir`,
+              jug
+            );
+            danoInsta(dano);
+            break;
+          case 5:
+            texto(
+              `${jug.nombre} piensa en tomar todo lo que encuentre, pero se siente culpable y decide no traicionar a ${jug2.nombre}`,
+              jug,
+              true
+            );
+            break;
+          case 6:
+            texto(
+              `Antes de que ${jug2.nombre} regrese, ${jug.nombre} llena su casa de TNT, activando el mechero y alejandose`,
+              jug,
+              true
+            );
+            break;
+          case 7:
+            texto(
+              `Cuando ${jug2.nombre} regresa se sorprende al encontrar su casa llena de ovejas`,
+              jug,
+              true
+            );
+            break;
         }
-      },
+      } else {
+        texto(`${jug.nombre} deja pasar la oportunidad`, jug, true);
+      }
+    },
   },
   End: {},
 };
