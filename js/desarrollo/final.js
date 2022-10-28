@@ -12,8 +12,8 @@ function loseArticle() {
   datos(finalista);
   titulo("", "volver");
   crearBotones(
-    `<a href="./preinicio.html">Inicio</a>`,
     `Volver a Jugar`,
+    `<a href="./preinicio.html">Inicio</a>`,
     "btn-final"
   );
 }
@@ -37,8 +37,8 @@ function winArticle() {
   }
   titulo("", "volver");
   crearBotones(
-    `<a href="./preinicio.html">Inicio</a>`,
     `Volver a Jugar`,
+    `<a href="./preinicio.html">Inicio</a>`,
     "btn-final"
   );
 }
