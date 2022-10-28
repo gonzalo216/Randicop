@@ -520,7 +520,7 @@ const RandomGlobal = {
     // },
     cat: function (jug) {
       if (jug.netheritecrafteo) {
-      let parte = partes[1],
+      let parte = partes()[0],
       material = "netherite",
       articulo = parte === "botas" ? "unas" : "un";
       jug.armadura[parte] = armadura[parte][material];
@@ -530,7 +530,7 @@ const RandomGlobal = {
         jug, true);
         jug.netheritecrafteo = false;
       } else {
-        let parte = partes[1],
+        let parte = partes()[0],
         material = "oro",
         articulo = parte === "botas" ? "unas" : "un";
         jug.armadura[parte] = armadura[parte][material];
@@ -600,8 +600,8 @@ const RandomGlobal = {
       }
     },
     todaArmaRandom: function (jug) {
-      let material = materiales[1];
-      partes.forEach((el) => {
+      let material = materiales();
+      Object.keys(armadura).forEach((el) => {
         jug.armadura[el] = armadura[el][material];
         jug.armourName[el] = material;
       });
@@ -646,8 +646,8 @@ export const Random = {
       );
     },
     armado: function (jug) {
-      let parte = partes[1],
-        material = materiales[1],
+      let parte = partes()[0],
+        material = materiales(),
         articulo = parte === "botas" ? "unas" : "un";
       jug.armadura[parte] = armadura[parte][material];
       jug.armourName[parte] = material;
@@ -766,7 +766,7 @@ export const Random = {
       );
     },
     parteArmaNetherite: function (jug) {
-      let parte = partes[1],
+      let parte = partes()[0],
         material = "netherite",
         articulo = parte === "peto" ? "unas" : "un";
       jug.armadura[parte] = armadura[parte][material];
@@ -779,7 +779,7 @@ export const Random = {
     },
     todaArmaNetherite: function (jug) {
       let material = "netherite";
-      partes.forEach((el) => {
+      Object.keys(armadura).forEach((el) => {
         jug.armadura[el] = armadura[el][material];
         jug.armourName[el] = material;
       });
@@ -901,8 +901,8 @@ const RelDiaNoche = {
   },
   armado: function (jug) {
     const jug2 = nJugRand(jug);
-    let parte = partes[1],
-      material = materiales[1],
+    let parte = partes()[0],
+      material = materiales(),
       articulo = parte === "botas" ? "unas" : "un";
     jug.armadura[parte] = armadura[parte][material];
     jug.armourName[parte] = material;
@@ -1211,8 +1211,8 @@ export const Decid = {
         nrand = getRandomIntInclusive(7);
         switch (nrand) {
           case 0:
-            let parte = partes[1],
-              material = materiales[1],
+            let parte = partes()[0],
+              material = materiales(),
               articulo = parte === "botas" ? "unas" : "un";
             jug.armadura[parte] = armadura[parte][material];
             jug.armourName[parte] = material;
@@ -1551,7 +1551,7 @@ export const Decid = {
         nrand = getRandomIntInclusive(7);
         switch (nrand) {
           case 0:
-            let parte = partes[1],
+            let parte = partes()[0],
               material = "netherite",
               articulo = parte === "botas" ? "unas" : "un";
             jug.armadura[parte] = armadura[parte][material];
