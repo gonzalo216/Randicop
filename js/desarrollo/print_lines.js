@@ -77,17 +77,22 @@ function vidaDefault(vida) {
 export function vidaExtra(extra) {
   imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida-extra");
 }
-export function danoInsta(dano, bol = true) {
+export function danoInsta(dano, bol = false) {
   imprimir(printIcons(dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
 }
-export function curar(cura, bol = true) {
-  imprimir(printIcons(cura, "addOne", "addHalf"), ".vida-anterior", bol);
+export function curar(cura, bol = false) {
+  imprimir(
+    printIcons(cura > 20 ? 20 : cura, "addOne", "addHalf"),
+    ".vida-anterior",
+    bol
+  );
 }
-export function texto(text, jug, bol = false) {
+export function texto(text, jug, bol = true) {
   if (jug) {
     vidaTotal();
     armarTotal();
     armar(jug.armadura);
+    if (jug.vida > 20) jug.vida = 20;
     vidaDefault(jug.vida);
   }
   imprimir(text, ".texto", bol);
@@ -106,5 +111,5 @@ export function crearProgreso(valor) {
 }
 export function updateProgreso(valor) {
   const $meter = $transcurso.at(-1).querySelector("meter");
-  $meter.value = valor;
+  $meter.value = valor > 200 ? 200 : valor;
 }

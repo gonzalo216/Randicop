@@ -196,7 +196,6 @@ export default async function juego() {
       if (lista[el].vida > 0) finalistas.push(lista[el]);
     });
     finalistaData(finalistas);
-    console.log("0");
     completo(true, true, true);
     return;
   }

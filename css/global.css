@@ -32,6 +32,8 @@ html {
 body {
   animation: aparecer 2s;
   min-width: 200px;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 main {
   min-height: 80vh;

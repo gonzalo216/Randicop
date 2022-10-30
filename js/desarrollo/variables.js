@@ -29,6 +29,8 @@ class Jugador {
     this.oro = false;
     this.huesos = false;
     this.peces = false;
+    this.noEnderman = false;
+    this.trofeo = false;
   }
 }
 export const lista = new Object();

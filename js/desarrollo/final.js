@@ -16,6 +16,7 @@ function loseArticle() {
     `<a href="./preinicio.html">Inicio</a>`,
     "btn-final"
   );
+  titulo("", "espacio");
 }
 function winArticle() {
   console.log(finalista);
@@ -41,6 +42,7 @@ function winArticle() {
     `<a href="./preinicio.html">Inicio</a>`,
     "btn-final"
   );
+  titulo("", "espacio");
 }
 function datos(el) {
   const petsArray = [];

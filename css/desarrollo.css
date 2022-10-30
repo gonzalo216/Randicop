@@ -201,20 +201,16 @@ meter {
 /* BOTONES PARA VOLVER */
 .volver {
   margin-top: 2rem;
+  pointer-events: visible;
 }
 .btn-final {
   position: relative;
   display: grid;
-  justify-content: center;
-  align-items: center;
   justify-items: center;
-  align-content: center;
-  padding-top: 30px;
-  grid-template-rows: max-content max-content;
   row-gap: 1rem;
 }
 .btn-final > button:first-child {
-  height: max(150px, 100%);
+  height: max(150px, calc(80vh - 100vw));
   width: 70vw;
   padding: 10px;
   font-size: 60px;
@@ -235,9 +231,9 @@ meter {
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 .btn-final > button:last-child {
-  width: 100px;
+  width: 150px;
+  height: 2rem;
   border-radius: 20px;
-  margin-top: 3rem;
   transition: font-size 2s, background-color 0.3s;
   box-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20);
   text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
