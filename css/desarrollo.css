@@ -22,7 +22,8 @@ div {
 .imprimir {
   position: relative;
   color: #333;
-  margin-top: 1rem;
+  padding-top: 1rem;
+  min-height: calc(80vh - 1rem);
 }
 
 /* CONTENEDORES */
@@ -45,7 +46,7 @@ div {
   z-index: 1;
 }
 .cont.actual {
-  top: 0;
+  top: 1rem;
   bottom: 0;
 }
 .cont.sig {
@@ -54,12 +55,10 @@ div {
   opacity: 0;
 }
 #tamanio {
-  min-height: 2rem;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
   max-width: 80%;
-  min-height: 50vh;
   padding-bottom: 5rem;
   opacity: 0;
 }
@@ -158,13 +157,10 @@ h3 {
   padding-bottom: 2rem;
 }
 .transicion {
-  position: absolute;
-  top: 20vh;
-  bottom: 10vh;
-  left: 0;
-  right: 0;
+  position: relative;
   display: grid;
-  align-items: center;
+  align-content: center;
+  height: 80%;
 }
 
 /* DRAGON */
@@ -217,7 +213,7 @@ meter {
   padding: 10px;
   font-size: 60px;
   border: 1px black solid;
-  color: white;  
+  color: white;
   border-radius: 20px;
   cursor: pointer;
   transition: font-size 1s, background-color 0.3s;
@@ -226,7 +222,7 @@ meter {
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-    text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
+  text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
     0 4px 0 #131212, 0 5px 0 rgb(0, 0, 0), 0 6px 1px rgba(0, 0, 0, 0.1),
     0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
@@ -244,12 +240,12 @@ meter {
     0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
     0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }
-.btn-final > button > a:last-child{
-      color: white;
+.btn-final > button > a:last-child {
+  color: white;
 }
 .btn-final > button:first-child:hover {
   font-size: 50px;
-  background-color:#367e18;
+  background-color: #367e18;
 }
 .btn-final > button:last-child:hover {
   font-size: 20px;

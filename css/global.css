@@ -31,6 +31,9 @@ body {
   animation: aparecer 2s;
   min-width: 200px;
 }
+main {
+  min-height: 80vh;
+}
 @keyframes aparecer {
   from {
     opacity: 0;
@@ -148,6 +151,6 @@ aside > nav {
   /* background-color: rgb(223, 223, 105); */
 }
 
-button{
+button {
   cursor: pointer;
 }

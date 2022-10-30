@@ -1,128 +1,7 @@
-:root {
-  /* background-image: url(./../assets/fonde2.gif); */
-  --color-body: #dbd8e3;
-  --color-shadow-body: #fff;
-  --intensity1-hover-shadow: 10px;
-  --intensity2-hover-shadow: 20px;
-  --intensity3-hover-shadow: 30px;
-}
-@font-face {
-  font-family: minecrafter;
-  src: url(./../assets/Minecrafter.Alt.ttf);
-}
-@font-face {
-  font-family: god;
-  src: url(./../assets/AmongUsFilled-Regular.ttf);
-}
-body {
-  margin: 0;
-  background: var(--color-body);
-}
-a {
-  /* -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  transition: all 1.5s; */
-}
-/* HEADER */
-.logo:hover img {
-  animation: boxneon1 2s ease-in-out infinite alternate;
-}
-.logo:hover a {
-  animation: neon1 2s ease-in-out infinite alternate;
-}
-@keyframes boxneon1 {
-  from {
-    filter: drop-shadow(
-        0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-shadow-body)
-      )
-      drop-shadow(
-        0 0 calc(var(--intensity2-hover-shadow) / 2) var(--color-shadow-body)
-      )
-      drop-shadow(
-        0 0 calc(var(--intensity3-hover-shadow) / 2) var(--color-shadow-body)
-      );
-  }
-  to {
-    filter: drop-shadow(
-      0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-body)
-    );
-  }
-}
-@keyframes neon1 {
-  from {
-    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body),
-      0 0 var(--intensity2-hover-shadow) var(--color-shadow-body),
-      0 0 var(--intensity3-hover-shadow) var(--color-shadow-body);
-  }
-  to {
-    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body);
-  }
-}
-h1 {
-  color: var(--color-body);
-  /* font-family: Monoton;
-  font-size: min(7vw, 60px); */
-  animation: glow 2s ease-in-out infinite alternate;
-}
-/* @keyframes glow {
-  from {
-    text-shadow: 0px 0px 30px rgb(132, 0, 158), 0 0 10px rgb(183, 28, 255);
-  }
-  to {
-    text-shadow: 0 0 30px #c50094, 0 0 10px rgb(182, 11, 139),
-      0 0px 40px rgb(255, 44, 44), 0 0 15px rgb(243, 114, 211);
-  }
-} */
-@keyframes glow {
-  from {
-    text-shadow: 0px 0px var(--intensity1-hover-shadow) var(--color-body);
-  }
-  to {
-    text-shadow: 0 0 var(--intensity3-hover-shadow) var(--color-shadow-body);
-  }
-}
-/* 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177, */
-/* 0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177 */
-
-/* 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177, */
-/* 0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177 */
-.panel-btn {
-  background-color: var(--color-body);
-  box-shadow: 1px 1px 1rem var(--color-shadow-body);
-}
-/* MAIN */
-main {
-  display: grid;
-  justify-items: center;
-  text-align: center;
-}
-main img {
-  width: 250px;
-}
-
-/* TITULOS */
-.titulo {
-  text-shadow: 0 1px 0 rgb(2, 2, 2), 0 2px 0 #201e1e, 0 3px 0 rgb(22, 20, 20),
-    0 4px 0 #131212, 0 5px 0 rgb(17, 16, 16), 0 6px 1px rgba(0, 0, 0, 0.1),
-    0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
-    0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-}
-.t1 {
-  -webkit-text-stroke: 0.9px rgb(0, 0, 0);
-  color: rgb(175, 175, 175);
-  font-family: minecrafter;
-  font-size: 3em;
-}
-.t2 {
-  font-family: god;
-  font-size: 2em;
-}
+/* FORMULARIO */
 .mishi {
-  margin-top: 150px;
- 
 }
-.pitu{
+.pitu {
   border-radius: 25px;
 }
 .lilo > div {
@@ -272,8 +151,7 @@ input:valid ~ label {
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
-.ld{
+.ld {
   font-size: 10px;
-color: black;
-font-family: ;
+  color: black;
 }

@@ -1,0 +1,77 @@
+:root {
+  --color-body: #dbd8e3;
+  --color-shadow-body: #fff;
+  --intensity1-hover-shadow: 10px;
+  --intensity2-hover-shadow: 20px;
+  --intensity3-hover-shadow: 30px;
+}
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/Minecrafter.Alt.ttf);
+}
+@font-face {
+  font-family: god;
+  src: url(./../assets/AmongUsFilled-Regular.ttf);
+}
+body {
+  margin: 0;
+  background: var(--color-body);
+}
+/* HEADER */
+.logo:hover img {
+  animation: boxneon1 2s ease-in-out infinite alternate;
+}
+.logo:hover a {
+  animation: neon1 2s ease-in-out infinite alternate;
+}
+@keyframes boxneon1 {
+  from {
+    filter: drop-shadow(
+        0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-shadow-body)
+      )
+      drop-shadow(
+        0 0 calc(var(--intensity2-hover-shadow) / 2) var(--color-shadow-body)
+      )
+      drop-shadow(
+        0 0 calc(var(--intensity3-hover-shadow) / 2) var(--color-shadow-body)
+      );
+  }
+  to {
+    filter: drop-shadow(
+      0 0 calc(var(--intensity1-hover-shadow) / 2) var(--color-body)
+    );
+  }
+}
+@keyframes neon1 {
+  from {
+    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body),
+      0 0 var(--intensity2-hover-shadow) var(--color-shadow-body),
+      0 0 var(--intensity3-hover-shadow) var(--color-shadow-body);
+  }
+  to {
+    text-shadow: 0 0 var(--intensity1-hover-shadow) var(--color-shadow-body);
+  }
+}
+h1 {
+  color: var(--color-body);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0px 0px var(--intensity1-hover-shadow) var(--color-body);
+  }
+  to {
+    text-shadow: 0 0 var(--intensity3-hover-shadow) var(--color-shadow-body);
+  }
+}
+.panel-btn {
+  background-color: var(--color-body);
+  box-shadow: 1px 1px 1rem var(--color-shadow-body);
+}
+/* MAIN */
+main {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  text-align: center;
+}
