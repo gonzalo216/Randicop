@@ -4,17 +4,8 @@
   --color-menulinks-hover: #fff; /* white */
   --color-footer: black;
 }
-footer {
-  background-color: black;
-  height: 100px;
-  color: white;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  position: sticky;
-  top: 100%;
-}
+/* TIPOGRAFIAS */
+
 @font-face {
   font-family: "Monoton";
   font-style: normal;
@@ -23,17 +14,8 @@ footer {
     url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
       format("woff");
 }
-@font-face {
-  font-family: lolo;
-  src: url(./../assets/GODOFWAR.TTF);
-}
-body {
-  animation: aparecer 2s;
-  min-width: 200px;
-}
-main {
-  min-height: 80vh;
-}
+
+/* GENERAL */
 @keyframes aparecer {
   from {
     opacity: 0;
@@ -43,6 +25,16 @@ main {
     opacity: 1;
     visibility: visible;
   }
+}
+body {
+  animation: aparecer 2s;
+  min-width: 200px;
+}
+main {
+  min-height: 80vh;
+}
+button {
+  cursor: pointer;
 }
 a {
   text-decoration: none;
@@ -113,6 +105,7 @@ h1.sticky {
 .panel-btn.sticky {
   transform: scale(0.8);
 }
+
 /* ASIDE */
 aside {
   background-color: rgba(0, 0, 0, 0.2);
@@ -151,6 +144,15 @@ aside > nav {
   /* background-color: rgb(223, 223, 105); */
 }
 
-button {
-  cursor: pointer;
+/* FOOTER */
+footer {
+  background-color: black;
+  height: 100px;
+  color: white;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  position: sticky;
+  top: 100%;
 }

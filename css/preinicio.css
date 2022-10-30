@@ -6,14 +6,14 @@
   --intensity2-hover-shadow: 20px;
   --intensity3-hover-shadow: 30px;
 }
-
+/* TIPOGRAFIAS */
 @font-face {
   font-family: minecrafter;
-  src: url(./../assets/Minecrafter.Alt.ttf);
+  src: url(./../assets/tipografias/Minecrafter.Alt.ttf);
 }
+/* GENERAL */
 body {
   margin: 0;
-  /* background: #ccffbd; */
   background: var(--color-body);
   font-family: minecrafter;
 }
@@ -24,11 +24,7 @@ section {
 
 /* HEADER */
 h1 {
-  /* color: #76ba99; */
   color: var(--color-body);
-  /* letter-spacing: 5px;
-  margin: 0;
-  font-size: min(5vw, 40px); */
   animation: glow 2s ease-in-out infinite alternate;
 }
 @keyframes glow {
@@ -149,7 +145,6 @@ details > p {
   margin: 0 1rem;
   text-align: center;
   border: 1px black solid;
-  /* border-radius: 20px; */
   box-shadow: 0.75rem 0.75rem 1rem black;
   color: lightgray;
   -webkit-text-stroke: 2px black;
@@ -170,7 +165,6 @@ details > p {
   margin: 0px;
 
   border: 1px black solid;
-  /* border-radius: 1.5rem; */
   box-shadow: 0.75rem 0.75rem 1rem black;
   color: white;
   -webkit-text-stroke: thin black;

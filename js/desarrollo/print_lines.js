@@ -43,7 +43,7 @@ function imprimir(text, clas, fin = false, addClass = null) {
     if (!$clone.querySelector(".vida-extra").innerHTML)
       $clone.querySelector(".vida-extra").remove();
     if (!$clone.querySelector(".vida-total").innerHTML)
-      $clone.querySelector(".bar").remove()
+      $clone.querySelector(".bar").remove();
     $transcurso.at(-1).lastElementChild.appendChild($clone);
     $template.querySelectorAll(".icon").forEach((el) => (el.innerHTML = ""));
     $template.querySelector(".texto").className = "texto";

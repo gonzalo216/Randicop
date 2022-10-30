@@ -2,6 +2,15 @@
 main img {
   width: 250px;
 }
+/* TIPOGRAFIAS */
+@font-face {
+  font-family: minecrafter;
+  src: url(./../assets/tipografias/Minecrafter.Alt.ttf);
+}
+@font-face {
+  font-family: amongUs;
+  src: url(./../assets/tipografias/AmongUsFilled-Regular.ttf);
+}
 
 /* TITULOS */
 .titulo {
@@ -18,7 +27,7 @@ main img {
   font-size: 3em;
 }
 .t2 {
-  font-family: god;
+  font-family: amongUs;
   font-size: 2em;
 }
 
@@ -55,7 +64,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.01px transparent solid;
-  background-image: url(./../assets/frente.jpg);
+  background-image: url(./../assets/cubes/minecraft/frente.jpg);
   transform: rotateY(calc(90deg * var(--i))) translateZ(100.01px);
 }
 .top {
@@ -65,7 +74,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.5px rgb(109, 211, 109) solid;
-  background-image: url(./../assets/superior.jpg);
+  background-image: url(./../assets/cubes/minecraft/superior.jpg);
   transform: rotateX(90deg) translateZ(101px);
 }
 .top::before {
@@ -116,7 +125,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.01px black solid;
-  background-image: url(./../assets/giphy-downsiz.gif);
+  background-image: url(./../assets/cubes/pregunta.gif);
   transform: rotateY(calc(90deg * var(--i))) translateZ(100.01px);
 }
 .topp {
@@ -147,86 +156,3 @@ main img {
   text-decoration: none;
   color: gray;
 }
-/* .proximamente { */
-/* Aumentamos la anchura y altura durante 2 segundos */
-/* transition: transform 0.5s ease;
-  display: inline-block;
-}
-
-.proximamente:hover { */
-/* tranformamos el elemento al pasar el mouse por encima al doble de
-  su tamaño con scale(2). */
-/* transform: scale(1.2);
-  backface-visibility: hidden;
-} */
-
-/* NO SE */
-/* .animated {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-@-webkit-keyframes flash {
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
-@keyframes flash {
-  0%,
-  50%,
-  100% {
-    opacity: 1;
-  }
-  25%,
-  75% {
-    opacity: 0;
-  }
-}
-.flash {
-  -webkit-animation-name: flash;
-  animation-name: flash;
-} */
-
-/* NO ME GUSTA */
-/* h1 a:hover {
-  -webkit-animation: neon1 0.5s ease-in-out infinite alternate;
-  -moz-animation: neon1 0.5s ease-in-out infinite alternate;
-  animation: neon1 0.5s ease-in-out infinite alternate;
-} */
-/* @-webkit-keyframes neon1 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
-    0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
-    0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
-  }
-}
-@-moz-keyframes neon1 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
-      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
-      0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
-  }
-}
-@keyframes neon1 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff1177,
-      0 0 70px #ff1177, 0 0 80px #ff1177, 0 0 100px #ff1177, 0 0 150px #ff1177;
-    }
-    to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff1177,
-    0 0 35px #ff1177, 0 0 40px #ff1177, 0 0 50px #ff1177, 0 0 75px #ff1177;
-  }
-} */

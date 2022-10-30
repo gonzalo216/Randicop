@@ -25,6 +25,7 @@ section {
   color: #333;
   padding-top: 1rem;
   min-height: calc(80vh - 1rem);
+  pointer-events: none;
 }
 
 /* CONTENEDORES */
