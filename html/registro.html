@@ -46,48 +46,39 @@
         <a href="./../html/login.html ">LOGIN</a>
       </nav>
     </aside>
-    <aside>
-      <nav class="menu">
-        <a href="./../html/index.html ">HOME</a>
-      </nav>
-    </aside>
     <main>
-      <form class="mishi">
-        <div class="lilo">
-          <div class="pitu">
-            <h2>Registrarse</h2>
-            <div class="celda">
-              <div>
-                <input/Mail class="input-img" type="text" name="nomb"
-                required="" />
-                <label>Mail</label>
-              </div>
-              <div>
-                <input
-                  class="input-name"
-                  type="password"
-                  id="nomb"
-                  name="nomb"
-                  required=""
-                />
-                <label>Contraseña</label>
-              </div>
-              <div>
-                <input
-                  class="input-name"
-                  type="password"
-                  id="nomb"
-                  name="nomb"
-                  required=""
-                />
-                <label>Repita la contraseña</label>
-              </div>
+      <form autocomplete="off">
+        <div class="caja">
+          <h2>Registrarse</h2>
+          <div class="celdas">
+            <div>
+              <input/Mail class="input-img" type="text" name="nomb" required=""
+              />
+              <label>Mail</label>
             </div>
-            <button class="bubbly-button" type="submit">Registrarse</button>
-            <a class="ld" href="./login.html">
-              <p>si ya esta registrado inicie sesión aqui</p>
-            </a>
+            <div>
+              <input
+                class="input-name"
+                type="password"
+                name="pass"
+                required=""
+              />
+              <label>Contraseña</label>
+            </div>
+            <div>
+              <input
+                class="input-name"
+                type="password"
+                name="pass2"
+                required=""
+              />
+              <label>Repita la contraseña</label>
+            </div>
           </div>
+          <button class="bubbly-button" type="submit">Registrarse</button>
+          <a href="./login.html">
+            <p>Presione aqui para iniciar sesión</p>
+          </a>
         </div>
       </form>
     </main>

@@ -6,7 +6,8 @@
   --color-secondary-900: #004d40;
 }
 p,
-div {
+div,
+section {
   animation: aparecer 1s;
 }
 @keyframes aparecer {

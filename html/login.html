@@ -52,27 +52,25 @@
       </nav>
     </aside>
     <main>
-      <form class="mishi" action="./../php/login.php" method="POST">
-        <div class="lilo">
-          <div class="pitu">
-            <h2>Inicio de Sesión</h2>
-            <div class="celda">
-              <div>
-                <input type="text" name="nomb" required="" />
-                <label>Mail</label>
-              </div>
-              <div>
-                <input type="password" id="pass" name="pass" required="" />
-                <label>Contraseña</label>
-              </div>
+      <form action="./../php/login.php" method="POST" autocomplete="off">
+        <div class="caja">
+          <h2>Inicio de Sesión</h2>
+          <div class="celdas">
+            <div>
+              <input type="text" name="nomb" required="" />
+              <label>Mail</label>
             </div>
-            <button class="bubbly-button" type="submit" name="registrarse">
-              iniciar sesión
-            </button>
-            <a class="ld" href="./registro.html">
-              <p>si no esta registrado registrese aqui</p>
-            </a>
+            <div>
+              <input type="password" id="pass" name="pass" required="" />
+              <label>Contraseña</label>
+            </div>
           </div>
+          <button class="bubbly-button" type="submit" name="registrarse">
+            iniciar sesión
+          </button>
+          <a href="./registro.html">
+            <p>Presione aqui para registrarse</p>
+          </a>
         </div>
       </form>
     </main>
