@@ -187,10 +187,10 @@ export const Dano = {
     zombiebpato: function (jug) {
       if (jug.perro) {
         dano = getRandomIntInclusive(5);
-        adicional = `Un zombie bebe montado en un pato se acerca a ${jug.nombre}, pero su perro lo defiende`; //pato?
+        adicional = `Un zombie bebe montado en un pollo se acerca a ${jug.nombre}, pero su perro lo defiende`;
       } else {
         dano = getRandomIntInclusive(20, 4);
-        adicional = `Un zombie bebe montado en una gallina ataca a ${jug.nombre}`; //pato?
+        adicional = `Un zombie bebe montado en un pollo ataca a ${jug.nombre}`;
       }
       jug.vida -= dano;
       dano += jug.vida;
@@ -954,7 +954,7 @@ const RelDiaNoche = {
     console.log("cargado");
     danoInsta(dano);
     texto(
-      `${jug.nombre} se encuentra con un creeper electrico y intenta sacarse una foto con el`,
+      `${jug.nombre} se encuentra con un creeper electrico e intenta sacarse una foto con el`,
       jug
     );
     const jug2 = nJugRand(jug);

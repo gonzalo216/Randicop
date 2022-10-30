@@ -3,15 +3,13 @@ import { esperar } from "./funciones.js";
 import { titulo } from "./print_lines.js";
 import juego, { apurar } from "./situaciones.js";
 const d = document;
-let btnSig, btnAnt;
-let primero;
-let $tamanio;
+var btnSig, btnAnt, primero, $tamanio;
 export const $transcurso = [];
 export function iniciar() {
+  $tamanio = d.getElementById("tamanio");
   primero = true;
   btnSig = d.getElementById("sig");
   btnAnt = d.getElementById("ant");
-  $tamanio = d.getElementById("tamanio");
   $tamanio.innerHTML = "";
   while ($transcurso.length) $transcurso.pop();
 }

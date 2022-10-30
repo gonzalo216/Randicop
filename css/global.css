@@ -10,9 +10,7 @@
   font-family: "Monoton";
   font-style: normal;
   font-weight: 400;
-  src: local("Iceland"), local("Iceland-Regular"),
-    url(http://themes.googleusercontent.com/static/fonts/iceland/v3/F6LYTZLHrG9BNYXRjU7RSw.woff)
-      format("woff");
+  src: url("./../assets/tipografias/Monoton.woff");
 }
 
 /* GENERAL */

@@ -8,10 +8,10 @@ const d = document,
 d.addEventListener("DOMContentLoaded", (e) => {
   crearFormulario(5);
 });
-d.addEventListener("click", (e) => {
+d.addEventListener("click", async (e) => {
   if (e.target.matches(".mImg") || e.target.matches(".mImg *")) {
     crearJugs();
-    insertar("./desarrollo.html");
+    await insertar("./desarrollo.html");
     $desarrolloJs.setAttribute("src", "./../js/index_desarrollo.js");
     resetear();
   }
@@ -21,7 +21,7 @@ d.addEventListener("click", (e) => {
   ) {
     console.log("ok");
     resetJugs();
-    insertar("./desarrollo.html");
+    await insertar("./desarrollo.html");
     resetear();
   }
   if (e.target.matches("#mas") || e.target.matches("#mas *")) {
