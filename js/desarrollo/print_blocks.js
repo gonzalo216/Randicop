@@ -51,7 +51,6 @@ export function completo(bol = escrito, fin = false, gano) {
       btnSig.textContent = "FINALIZAR";
       win = gano;
     } else {
-      titulo("", "espacio");
       btnSig.textContent = "SIGUIENTE";
     }
   else btnSig.textContent = "Completar";

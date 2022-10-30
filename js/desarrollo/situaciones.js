@@ -185,6 +185,7 @@ export default async function juego() {
     texto(nombres.join(" - "), false, true);
     finalistaData(lista[muertos.at(-1)]);
   }
+  titulo("", "espacio");
   if (jugs.every((el) => lista[el].vida <= 0)) {
     completo(true, true, false);
     return;

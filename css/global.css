@@ -34,7 +34,7 @@ body {
   min-width: 200px;
 }
 main {
-  min-height: calc(80vh - 1rem);
+  min-height: 80vh;
 }
 button {
   cursor: pointer;
@@ -50,15 +50,15 @@ a {
   z-index: 999;
   display: grid;
   align-items: center;
-  padding-top: 1rem;
+  padding-top: 2vh;
   grid-template-columns: max-content auto;
   grid-template-rows: 80%;
   background: var(--color-header);
   transition: height 0.5s ease;
-  height: 6rem;
+  height: 13vh;
 }
 .header.sticky {
-  height: 8rem;
+  height: 18vh;
 }
 header > section > a {
   width: 80px;

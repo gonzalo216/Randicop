@@ -23,7 +23,7 @@ section {
 .imprimir {
   position: relative;
   color: #333;
-  min-height: calc(80vh - 1rem);
+  min-height: 80vh;
   pointer-events: none;
 }
 
