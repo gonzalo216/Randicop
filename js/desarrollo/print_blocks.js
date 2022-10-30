@@ -1,4 +1,6 @@
 import { final } from "./final.js";
+import { esperar } from "./funciones.js";
+import { titulo } from "./print_lines.js";
 import juego, { apurar } from "./situaciones.js";
 const d = document;
 let btnSig, btnAnt;
@@ -35,27 +37,30 @@ const hayValor = (valor) =>
   };
 
 export async function copySize() {
+  await esperar(1);
   $tamanio.innerHTML = contenidoSig("cont actual").innerHTML;
 }
 
 let escrito = false,
   win;
 export function completo(bol = escrito, fin = false, gano) {
-  copySize();
   escrito = bol;
   if (hayValor("cont sig")) btnSig.textContent = "SIGUIENTE";
   else if (escrito)
     if (fin) {
       btnSig.textContent = "FINALIZAR";
       win = gano;
-    } else btnSig.textContent = "SIGUIENTE";
+    } else {
+      titulo("", "espacio");
+      btnSig.textContent = "SIGUIENTE";
+    }
   else btnSig.textContent = "Completar";
+  copySize();
 }
 export function siguiente() {
   if (hayValor("cont sig")) {
     contenidoSig("cont actual").className = "cont anterior";
     contenidoSig("cont sig").className = "cont actual";
-    copySize();
     completo();
     if (contenidoSig("cont sig").id === "fin") btnSig.textContent = "FINALIZAR";
     if (contenidoSig("cont actual").id === "fin") btnSig.disabled = true;

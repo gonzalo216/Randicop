@@ -23,11 +23,24 @@ section {
 .imprimir {
   position: relative;
   color: #333;
-  padding-top: 1rem;
   min-height: calc(80vh - 1rem);
   pointer-events: none;
 }
 
+#tamanio {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1rem;
+  max-width: 80%;
+  opacity: 0;
+}
+#tamanio .espacio {
+  padding-bottom: 4rem;
+}
+.espacio {
+  padding-bottom: 5rem;
+}
 /* CONTENEDORES */
 .cont {
   position: absolute;
@@ -43,7 +56,6 @@ section {
 }
 .cont.anterior {
   top: -100%;
-  bottom: 100%;
   opacity: 0;
   z-index: 1;
 }
@@ -54,14 +66,6 @@ section {
 .cont.sig {
   top: 100%;
   bottom: 0;
-  opacity: 0;
-}
-#tamanio {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 80%;
-  padding-bottom: 5rem;
   opacity: 0;
 }
 
@@ -161,8 +165,8 @@ h3 {
 .transicion {
   position: relative;
   display: grid;
-  align-content: center;
-  height: 80%;
+  align-content: flex-end;
+  height: 35vh;
 }
 
 /* DRAGON */

@@ -26,12 +26,15 @@
     visibility: visible;
   }
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   animation: aparecer 2s;
   min-width: 200px;
 }
 main {
-  min-height: 80vh;
+  min-height: calc(80vh - 1rem);
 }
 button {
   cursor: pointer;
