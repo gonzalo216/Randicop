@@ -12,7 +12,7 @@ d.addEventListener("click", async (e) => {
   if (e.target.matches(".mImg") || e.target.matches(".mImg *")) {
     crearJugs();
     await insertar("./desarrollo.html");
-    $desarrolloJs.setAttribute("src", "./../js/index_desarrollo.js");
+    $desarrolloJs.setAttribute("src", "/js/index_desarrollo.js");
     resetear();
   }
   if (

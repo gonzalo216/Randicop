@@ -5,11 +5,11 @@ main img {
 /* TIPOGRAFIAS */
 @font-face {
   font-family: minecrafter;
-  src: url(./../assets/tipografias/Minecrafter.Alt.ttf);
+  src: url(/assets/tipografias/Minecrafter.Alt.ttf);
 }
 @font-face {
   font-family: amongUs;
-  src: url(./../assets/tipografias/AmongUsFilled-Regular.ttf);
+  src: url(/assets/tipografias/AmongUsFilled-Regular.ttf);
 }
 
 /* TITULOS */
@@ -64,7 +64,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.01px transparent solid;
-  background-image: url(./../assets/cubes/minecraft/frente.jpg);
+  background-image: url(/assets/cubes/minecraft/frente.jpg);
   transform: rotateY(calc(90deg * var(--i))) translateZ(100.01px);
 }
 .top {
@@ -74,7 +74,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.5px rgb(109, 211, 109) solid;
-  background-image: url(./../assets/cubes/minecraft/superior.jpg);
+  background-image: url(/assets/cubes/minecraft/superior.jpg);
   transform: rotateX(90deg) translateZ(101px);
 }
 .top::before {
@@ -125,7 +125,7 @@ main img {
   width: 100%;
   height: 100%;
   border: 0.01px black solid;
-  background-image: url(./../assets/cubes/pregunta.gif);
+  background-image: url(/assets/cubes/pregunta.gif);
   transform: rotateY(calc(90deg * var(--i))) translateZ(100.01px);
 }
 .topp {

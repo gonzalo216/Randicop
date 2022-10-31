@@ -38,6 +38,6 @@ if(isset($_POST['registrarse'])){
 </head>
 <body>
     <h1>GENIAL!, YA HAS INGRESADO</h1>
-    <a href= ./../html/index.html>Volver</a>
+    <a href="/index.html">Volver</a>
 </body>
 </html>

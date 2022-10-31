@@ -53,9 +53,9 @@ function imprimir(text, clas, fin = false, addClass = null) {
 const printIcons = (corazones, img, midImg = null) => {
   const text = [];
   for (let i = 0; i < corazones - 1; i += 2)
-    text.push(`<img src="./../assets/bar/${img}.png">​`);
+    text.push(`<img src="/assets/bar/${img}.png">​`);
   if (corazones % 2 === 1)
-    text.push(`<img src="./../assets/bar/${midImg}.png">​`);
+    text.push(`<img src="/assets/bar/${midImg}.png">​`);
   return text.join("");
 };
 function vidaTotal() {

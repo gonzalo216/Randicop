@@ -4,7 +4,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: url("./../assets/descarga.jpg");
+  background-image: url("/assets/descarga.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0;
@@ -16,9 +16,9 @@
 }
 @keyframes twinkle {
   0% {
-    opacity: 0.9;
+    opacity: 0.5;
   }
   100% {
-    opacity: 0.9;
+    opacity: 1;
   }
 }

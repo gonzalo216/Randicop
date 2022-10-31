@@ -9,7 +9,7 @@
 /* TIPOGRAFIAS */
 @font-face {
   font-family: minecrafter;
-  src: url(./../assets/tipografias/Minecrafter.Alt.ttf);
+  src: url(/assets/tipografias/Minecrafter.Alt.ttf);
 }
 /* GENERAL */
 body {
@@ -25,7 +25,7 @@ section {
 /* HEADER */
 h1 {
   color: var(--color-body);
-  animation: glow 2s ease-in-out infinite alternate;
+  /* animation: glow 2s ease-in-out infinite alternate; */
 }
 @keyframes glow {
   from {
@@ -258,7 +258,7 @@ input[type="text"]:valid ~ .label-name {
   border-radius: 1rem;
   width: min(100%, 22rem);
   height: 10rem;
-  background-image: url(./../assets/minecraft.png);
+  background-image: url(/assets/minecraft.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;

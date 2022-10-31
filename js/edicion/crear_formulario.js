@@ -3,7 +3,7 @@ const d = document,
   $fragment = d.createDocumentFragment();
 
 export default function crearFormulario(num, eliminar = false) {
-  fetch("./../json/nombres.json")
+  fetch("/json/nombres.json")
     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
     .then((json) => {
       const $ids = d.querySelectorAll(`input[name="id"]`);
