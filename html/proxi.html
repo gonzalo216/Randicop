@@ -5,18 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./../css/proxi.css" />
-    <sound src="./../assets/audio/scrr.mp3" autoplay loop="infinite" volume="200">
     <title>que haces????</title>
   </head>
   <body>
     <header>
-      <p>te dije que proximamente, que parte no entendes?</p>
+      <h2>te dije que proximamente, que parte no entendes?</h2>
     </header>
-    <button class="panel-btn hamburger hamburger--3dxy" onclick="sound.play()"> REGRESAR </button>
-    <div class="panel">
-      <img src="./../assets/descarga.jpg" alt="buuu te asusto" />
-    </div>
-    <script src="./../js/proxi/sc.js" type="module"></script>
-    <script src="./../js/proxi/audio.js"></script>
+    <button type="button" onclick="escuchar()">REGRESAR</button>
+    <div class="panel"></div>
+    <audio src="./../assets/audio/scrr.mp3" volume="200"></audio>
+    <!-- <script src="./../js/proxi/sc.js" type="module"></script>
+    <script src="./../js/proxi/audio.js"></script> -->
+    <script>
+      const d = document;
+      function escuchar() {
+        d.querySelector("audio").play();
+        d.querySelector(".panel").classList.toggle("is-active");
+        d.querySelector("button").classList.toggle("is-active");
+      }
+    </script>
   </body>
 </html>
