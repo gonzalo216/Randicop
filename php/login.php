@@ -1,9 +1,9 @@
 <?php
 
 $servidor = "localhost";
-$usuario = "root";
+$usuario = "id19792673_datos";
 $clave = "";
-$bdd = "prueba";
+$bdd = "id19792673_prueba";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $bdd);
 
@@ -17,11 +17,10 @@ if(!$enlace)
 if(isset($_POST['registrarse'])){
     $Nombre = $_POST["nomb"];
     $Contraseña = $_POST["pass"];
-    $ID = 0;
+    
 
 
-    $insertar = "INSERT INTO datos VALUES('ID',
-                                          '$Nombre',
+    $insertar = "INSERT INTO datos (Nombre,Contraseña) VALUES('$Nombre',
                                           '$Contraseña')";
 
     $ejecutarInsertar = mysqli_query($enlace, $insertar);
@@ -37,7 +36,10 @@ if(isset($_POST['registrarse'])){
 
 </head>
 <body>
-    <h1>GENIAL!, YA HAS INGRESADO</h1>
-    <a href="/index.html">Volver</a>
+    <script type="module">
+        import alertar from "/index.html";
+        alertar();
+        window.location.href = "/index.html";
+    </script>
 </body>
 </html>
