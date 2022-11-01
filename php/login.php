@@ -36,8 +36,8 @@ if(isset($_POST['registrarse'])){
 
 </head>
 <body>
-    <script>
-        import alertar from "/index.html";
+    <script type="module">
+        import alertar from "/js/login/login.js";
         alertar();
         setTimeout(function () {
           window.location.href = "/index.html";
