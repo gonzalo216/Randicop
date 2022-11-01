@@ -129,6 +129,7 @@ h3 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   pointer-events: visible;
+  padding-bottom: 5rem;
 }
 .btn-decidir > button:first-child {
   border-radius: 25px;
@@ -251,7 +252,7 @@ meter {
 .botones {
   position: fixed;
   z-index: 998;
-  bottom: 15px;
+  bottom: 2rem;
   padding-left: 20px;
   display: inline-flex;
   column-gap: 1rem;

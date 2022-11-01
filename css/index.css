@@ -32,6 +32,9 @@ main img {
 }
 
 /* CUBO */
+.cube *{
+  cursor: pointer;
+}
 .cube {
   margin-left: 40px;
   position: relative;

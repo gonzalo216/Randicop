@@ -1,6 +1,7 @@
 import hamburgerMenu from "./header/hamburgermenu.js";
 import scaleHeader from "./header/header.js";
 import { rotarLogo } from "./header/logo_randomrotate.js";
+import linkear from "./linkear.js";
 
 const d = document;
 
