@@ -137,7 +137,8 @@ export default async function juego() {
   if (contNether > 3 && secondWorld) caso = getRandomIntInclusive(8, 4);
   // 1/5 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
   //if (cont > 10 && contNether > 3 && primEnd) caso = 0; //ir al end a partir de los 10 dias transcurridos en total
-  if (cont > 10 && contNether > 3 && primEnd) caso = getRandomIntInclusive(4);
+  if (cont > 10 && contNether > 3 && primEnd && !secondWorld)
+    caso = getRandomIntInclusive(4);
   // 1/5 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END

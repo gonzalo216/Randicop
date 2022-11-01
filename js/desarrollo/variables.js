@@ -23,13 +23,14 @@ class Jugador {
     this.strider = false;
     this.lagrima = false;
     this.escudo = false;
-    this.espada = false; 
+    this.espada = "hierro";
     this.netheritecrafteo = false;
     this.oro = false;
     this.huesos = false;
     this.peces = false;
     this.noEnderman = false;
     this.trofeo = false;
+    this.comida = false;
   }
 }
 export const lista = new Object();
