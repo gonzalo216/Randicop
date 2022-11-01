@@ -23,15 +23,13 @@ const nJugRand = (jug) => {
 let nrand, dano, cura, adicional;
 
 /* ----------------------------------------DAnO----------------------------------------*/
-const DanoGlobal = {
-    // nocomer: function (nombre, vida) {
-    //   dano = vida;
-    //   vida = 1;
-    //   texto(`${nombre} se quedo sin comida`);
-    //   vidaDefault(vida);
-    //   danoInsta(dano);
-    //   return vida;
-    // },
+const DanoGlobal = { 
+    nocomer: function (jug) {
+      dano = jug.vida;
+      jug.vida = 1;
+      danoInsta(dano);
+      texto(`${jug.nombre} se quedo sin comida`, jug);
+    },
     conexion: function (jug) {
       dano = jug.vida;
       jug.vida = 0;
@@ -68,15 +66,17 @@ const DanoGlobal = {
         adicional = `Un creeper casi sorprende a ${jug.nombre} por la espalda, pero su gato lo salva`;
         dano = 0;
       } else if (jug.escudo) {
-        dano = getRandomIntInclusive(8, 6);
-        jug.vida -= dano;
-        dano += jug.vida;
-        adicional = `${jug.nombre} logra minimizar el daño del creeper que lo sorprende por la espalda con su escudo`;
+        dano = 0;
+        adicional = `${jug.nombre} se protege con su escudo de un creeper que cae delante suyo`;
       } else {
-        dano = getRandomIntInclusive(20, 19);
+        dano = getRandomIntInclusive(64, 1);
         jug.vida -= dano;
         dano += jug.vida;
-        adicional = `Un creeper sorpende a ${jug.nombre} por la espalda`;
+        if (jug.vida > 0){
+          if (dano === 1) adicional= `Antes de que el creeper explote, ${jug.nombre} pone un bloque en el medio`
+          else adicional=`Un creeper explota enfrente de ${jug.nombre}`;
+        }
+        else adicional = `Un creeper sorpende a ${jug.nombre} por la espalda`;
       }
       danoInsta(dano);
       texto(adicional, jug);
@@ -89,7 +89,7 @@ const DanoGlobal = {
       texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
     },
     speedrun: function (jug) {
-      dano = getRandomIntInclusive(20, 1);
+      dano = getRandomIntInclusive(20, 5);
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);
@@ -135,7 +135,7 @@ export const Dano = {
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      dano = getRandomIntInclusive(20);
+      dano = getRandomIntInclusive(10, 1);
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);
@@ -158,12 +158,12 @@ export const Dano = {
   },
   Noche: {
     phantoms: function (jug) {
-      dano = getRandomIntInclusive(20);
+      dano = getRandomIntInclusive(10);
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);
       texto(
-        `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre dano de los phantoms`,
+        `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre de los phantoms`,
         jug
       );
     },
@@ -215,7 +215,7 @@ export const Dano = {
         texto(`El perro de ${jug.nombre} muere defendiendolo de un mob`, jug);
         jug.perro--;
       } else {
-        dano = getRandomIntInclusive(10, 5);
+        dano = getRandomIntInclusive(10, 3);
         jug.vida -= dano;
         dano += jug.vida;
         danoInsta(dano);
@@ -231,8 +231,8 @@ export const Dano = {
       danoInsta(dano);
       texto(`${jug.nombre} intenta hacer un waterdrop`, jug);
     },
-    waterdrop: function (jug) {
-      dano = getRandomIntInclusive(20, 19);
+    cama: function (jug) {
+      dano = getRandomIntInclusive(20, 15);
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);
@@ -312,7 +312,7 @@ export const Dano = {
         }
         dragon.crystalAct = dragon.crystalAct - 1;
       } else {
-        dano = getRandomIntInclusive(20, 5);
+        dano = getRandomIntInclusive(20, 3);
         jug.vida -= dano;
         dano += jug.vida;
         adicional = `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`;
@@ -1326,7 +1326,7 @@ export const Decid = {
         nrand = getRandomIntInclusive(4);
         switch (nrand) {
           case 0:
-            if (jug.espadaD) {
+            if (jug.espada) {
               texto(
                 `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo gran cantidad de objetos de los 4 cofres ocultos`,
                 jug
@@ -1336,7 +1336,7 @@ export const Decid = {
                 `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo diamantes suficientes para craftear una nueva espada`,
                 jug
               );
-              jug.espadaD = true;
+              jug.espada = "diamante";
             }
             break;
           case 1:

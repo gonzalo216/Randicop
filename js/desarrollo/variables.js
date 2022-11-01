@@ -23,8 +23,7 @@ class Jugador {
     this.strider = false;
     this.lagrima = false;
     this.escudo = false;
-    this.espadaD = false;
-    this.espadaN = false;
+    this.espada = false; 
     this.netheritecrafteo = false;
     this.oro = false;
     this.huesos = false;

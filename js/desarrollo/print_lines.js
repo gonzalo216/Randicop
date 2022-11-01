@@ -78,7 +78,7 @@ export function vidaExtra(extra) {
   imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida-extra");
 }
 export function danoInsta(dano, bol = false) {
-  imprimir(printIcons(dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
+  imprimir(printIcons(dano > 20 ? 20 : dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
 }
 export function curar(cura, bol = false) {
   imprimir(
