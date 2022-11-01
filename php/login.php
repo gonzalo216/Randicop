@@ -2,7 +2,7 @@
 
 $servidor = "localhost";
 $usuario = "id19792673_datos";
-$clave = "";
+$clave = "-OjG5qjWg*c+]eF+";
 $bdd = "id19792673_prueba";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $bdd);
@@ -36,10 +36,12 @@ if(isset($_POST['registrarse'])){
 
 </head>
 <body>
-    <script type="module">
+    <script>
         import alertar from "/index.html";
         alertar();
-        window.location.href = "/index.html";
+        setTimeout(function () {
+          window.location.href = "/index.html";
+        }, 1000);
     </script>
 </body>
 </html>
