@@ -1,4 +1,5 @@
 import { $transcurso, copySize } from "./print_blocks.js";
+import { dragon } from "./variables.js";
 
 const d = document;
 export function titulo(text, clas = null) {
@@ -54,8 +55,7 @@ const printIcons = (corazones, img, midImg = null) => {
   const text = [];
   for (let i = 0; i < corazones - 1; i += 2)
     text.push(`<img src="/assets/bar/${img}.png">​`);
-  if (corazones % 2 === 1)
-    text.push(`<img src="/assets/bar/${midImg}.png">​`);
+  if (corazones % 2 === 1) text.push(`<img src="/assets/bar/${midImg}.png">​`);
   return text.join("");
 };
 function vidaTotal() {
@@ -78,7 +78,11 @@ export function vidaExtra(extra) {
   imprimir(printIcons(extra, "goldOne", "goldHalf"), ".vida-extra");
 }
 export function danoInsta(dano, bol = false) {
-  imprimir(printIcons(dano > 20 ? 20 : dano, "damagOne", "damagHalf"), ".vida-anterior", bol);
+  imprimir(
+    printIcons(dano > 20 ? 20 : dano, "damagOne", "damagHalf"),
+    ".vida-anterior",
+    bol
+  );
 }
 export function curar(cura, bol = false) {
   imprimir(
@@ -109,7 +113,8 @@ export function crearProgreso(valor) {
   $progress.querySelector("meter").value = valor;
   $transcurso.at(-1).lastElementChild.appendChild($progress);
 }
-export function updateProgreso(valor) {
+export function updateProgreso() {
   const $meter = $transcurso.at(-1).querySelector("meter");
-  $meter.value = valor > 200 ? 200 : valor;
+  if (dragon.vida > 200) dragon.vida = 200;
+  $meter.value = dragon.vida;
 }

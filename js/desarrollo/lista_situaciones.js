@@ -9,7 +9,14 @@ import {
 import { getRandomIntInclusive, repetir } from "./funciones.js";
 import { dragon } from "./variables.js";
 import { armadura, materiales, partes } from "./armadura.js";
-import { banneado, danoDragon, danoEspadas, nJugRand, pocionIns } from "./func_lista.js";
+import {
+  banneado,
+  danoAtajo,
+  danoDragon,
+  danoEspadas,
+  nJugRand,
+  pocionIns,
+} from "./func_lista.js";
 
 let nrand, dano, cura, adicional;
 /* ----------------------------------------DAnO----------------------------------------*/
@@ -113,30 +120,19 @@ const DanoGlobal = {
 export const Dano = {
   Dia: {
     sol: function (jug) {
-      dano = getRandomIntInclusive(3, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 3, 1);
       texto(`${jug.nombre} se quema por el Sol`, jug);
     },
     charco: function (jug) {
-      dano = getRandomIntInclusive(15, 3);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 15, 3);
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      dano = getRandomIntInclusive(10, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 10, 1);
       texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
     },
     llamas: function (jug) {
-      dano = getRandomIntInclusive(15, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
+      danoAtajo(jug, 15, 1);
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
         adicional = "Las llamas lo abligan a escapar de alli";
@@ -144,33 +140,23 @@ export const Dano = {
         adicional = "Las llamas le dan unos poderosos escupitajos";
       else if (dano > 1) adicional = "Le escupen unas llamas";
       else adicional = "Una llama le escupe";
-      danoInsta(dano);
       texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`, jug);
     },
   },
   Noche: {
     phantoms: function (jug) {
-      dano = getRandomIntInclusive(10);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 10);
       texto(
         `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre de los phantoms`,
         jug
       );
     },
     seducir: function (jug) {
-      dano = getRandomIntInclusive(12, 2);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 12, 2);
       texto(`${jug.nombre} intenta seducir a un enderman`, jug);
     },
     danopeleaes: function (jug) {
-      dano = getRandomIntInclusive(5, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 5, 1);
       texto(
         `${jug.nombre} queda atrapado en una pelea entre dos esqueletos`,
         jug
@@ -207,27 +193,18 @@ export const Dano = {
         texto(`El perro de ${jug.nombre} muere defendiendolo de un mob`, jug);
         jug.perro--;
       } else {
-        dano = getRandomIntInclusive(10, 3);
-        jug.vida -= dano;
-        dano += jug.vida;
-        danoInsta(dano);
+        danoAtajo(jug, 10, 3);
         texto(`${jug.nombre} es herido por un zombie`, jug);
       }
     },
   },
   Nether: {
     waterdrop: function (jug) {
-      dano = getRandomIntInclusive(8, 2);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 8, 2);
       texto(`${jug.nombre} intenta hacer un waterdrop`, jug);
     },
     cama: function (jug) {
-      dano = getRandomIntInclusive(20, 15);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 20, 15);
       texto(`${jug.nombre} pone una cama e intenta dormir`, jug);
     },
     piglin: function (jug) {
@@ -237,10 +214,7 @@ export const Dano = {
           jug
         );
       } else {
-        dano = getRandomIntInclusive(14, 5);
-        jug.vida -= dano;
-        dano += jug.vida;
-        danoInsta(dano);
+        danoAtajo(jug, 14, 5);
         texto(
           `${jug.nombre} olvida llevar algo de oro y es atacado por un grupo de piglins`,
           jug
@@ -263,13 +237,10 @@ export const Dano = {
       switch (nrand) {
         case 0:
           dano = getRandomIntInclusive(20, 7);
-          jug.vida -= dano;
-          dano += jug.vida;
           adicional = "";
           break;
         case 1:
-          dano = 5 + jug.vida;
-          jug.vida -= 5;
+          dano = 5;
           adicional = " y lanza una perla de ender para salvarse";
           break;
         case 2:
@@ -277,6 +248,8 @@ export const Dano = {
           adicional = ", pero logra hacer un waterdrop";
           break;
       }
+      jug.vida -= dano;
+      dano += jug.vida;
       danoInsta(dano);
       texto(
         `${jug.nombre} sale volando tras ser golpeado por un aletazo del ender dragon${adicional}`,
@@ -290,16 +263,13 @@ export const Dano = {
         switch (nrand) {
           case 0:
             dano = getRandomIntInclusive(20, 7);
-            jug.vida -= dano;
-            dano += jug.vida;
             if (jug.vida === 0)
               adicional =
                 "lo alto de un pico al destruir un end crystal, muriendo al instante";
             else adicional = "un pico bajo al destruir un end crystal";
             break;
           case 1:
-            dano = 5 + jug.vida;
-            jug.vida -= 5;
+            dano = 5;
             adicional =
               "un pico al destruir un end crystal y lanza una perla de ender para salvarse";
             break;
@@ -312,10 +282,10 @@ export const Dano = {
         dragon.crystalAct = dragon.crystalAct - 1;
       } else {
         dano = getRandomIntInclusive(20, 3);
-        jug.vida -= dano;
-        dano += jug.vida;
         adicional = `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`;
       }
+      jug.vida -= dano;
+      dano += jug.vida;
       danoInsta(dano);
       texto(`${jug.nombre} ${adicional2} ${adicional}`, jug);
     },
@@ -328,7 +298,7 @@ export const Dano = {
     },
     camaDragon: function (jug) {
       dragon.vida -= getRandomIntInclusive(25, 15);
-      updateProgreso(dragon.vida);
+      updateProgreso();
       texto(`${jug.nombre} hiere al dragon explotando una cama a su lado`, jug);
     },
     arcoCrystal: function (jug) {
@@ -354,9 +324,9 @@ export const Dano = {
     },
   },
   tntDragon: function (jug) {
-    nrand = getRandomIntInclusive(100, 33);
-    dragon.vida = dragon.vida - nrand;
-    updateProgreso(dragon.vida);
+    dano = getRandomIntInclusive(100, 33);
+    dragon.vida -= dano;
+    updateProgreso();
     texto(`${jug.nombre} hiere al dragon explotando TNT a su lado`, jug);
   },
   danarDragon: function (jug) {
@@ -396,17 +366,20 @@ const VidaGlobal = {
       jug.vida = cura;
     },
     Notch: function (jug) {
-      if(jug.vida > 15) {
+      if (jug.vida > 15) {
         banneado(jug, 5);
-        adicional = "dorada"
+        adicional = "dorada";
         vidaExtra(4);
       } else {
-        banneado(jug, 1)
-        adicional = "de Notch"
+        banneado(jug, 1);
+        adicional = "de Notch";
         vidaExtra(16);
       }
       curar(20);
-      texto(`${jug.nombre} toma una manzana ${adicional} desde el creativo`, jug);
+      texto(
+        `${jug.nombre} toma una manzana ${adicional} desde el creativo`,
+        jug
+      );
       jug.vida = 20;
     },
   },
@@ -465,7 +438,7 @@ export const Vida = {
       if (dragon.crystalAct) {
         cura = getRandomIntInclusive(30, 10) + dragon.vida;
         dragon.vida = cura;
-        updateProgreso(dragon.vida);
+        updateProgreso();
         texto(
           `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
           jug
@@ -499,34 +472,25 @@ const RandomGlobal = {
     //   vidaDefault(vida, true);
     // },
     cat: function (jug) {
-      if (jug.netheritecrafteo) {
-        let parte = partes()[0],
-          material = "netherite",
-          articulo = parte === "botas" ? "unas" : "un";
-        jug.armadura[parte] = armadura[parte][material];
-        jug.armourName[parte] = material;
-        texto(
-          `Con parte de la netherite que habia conseguido en el bastion del nether, ${jug.nombre} craftea ${articulo} ${parte} de ${material}`,
-          jug
-        );
-        jug.netheritecrafteo = false;
+      if (jug.netherite) {
+        const nPartes = ["Se pregunta que hacer con el netherite que tiene"];
+        let i = 0;
+        for (const parte in jug.armadura) {
+          if (jug.armadura[parte] === "diamante" && jug.netherite) {
+            if (!i)
+              nPartes[0] =
+                "Logro mejorar las siguientes partes de su armadura:";
+            jug.armadura[parte] = "netherite";
+            i++;
+            nPartes[i] = parte;
+          }
+        }
       } else {
-        let parte = partes()[1],
-          material = "hierro",
-          articulo = parte === "botas" ? "unas" : "un";
-        jug.armadura[parte] = armadura[parte][material];
-        jug.armourName[parte] = material;
-        texto(
-          `${jug.nombre} desea craftear armadura de netherite, pero en su lugar crea ${articulo} ${parte} de ${material}`,
-          jug
-        );
+        texto(`${jug.nombre} esta pensando en netherite`, jug);
       }
     },
   },
   RandomDiaNoche = {
-    // armadura: function (jug) { // un if si tiene armadura de cuero
-    //   texto(`${jug.nombre} encanta su armadura de cuero`, jug, true);
-    // },
     bedrock: function (jug) {
       texto(`${jug.nombre} pierde el dia intentando romper bedrock`, jug);
     },
@@ -544,10 +508,8 @@ const RandomGlobal = {
       jug.gato++;
     },
     recuento: function (jug) {
-      texto(
-        `${jug.nombre} recuenta sus diamantes pensando en hacerse una armadura`,
-        jug
-      );
+      texto(`${jug.nombre} se la paso minando diamantes`, jug);
+      jug.diamante += 15;
     },
     diamanteLava: function (jug) {
       texto(
@@ -556,18 +518,25 @@ const RandomGlobal = {
       );
     },
     aldea: function (jug) {
-      texto(`${jug.nombre} encuentra una aldea`, jug);
-    },
-    diamanteLava: function (jug) {
+      let parte = partes()[0],
+        material = materiales(),
+        articulo = parte === "botas" ? "unas" : "un";
+      jug.armadura[parte] = armadura[parte][material];
+      jug.armourName[parte] = material;
       texto(
-        `${jug.nombre} tira por error en la lava el unico diamante que logra encontrar`,
+        `${jug.nombre} encuentra una aldea en la cual se encuentra ${articulo} ${parte} de ${material}`,
         jug
       );
     },
     fabricaDiamante: function (jug) {
-      if (jug.espada === "diamante")
-        texto(`${jug.nombre} piensa en mejorar su espada de diamante`, jug);
-      else if (jug.espada === "hierro") {
+      if (jug.espada === "diamante") {
+        if (jug.netherite) {
+          texto(`${jug.nombre} mejora su espada, ahora es de netherite`, jug);
+          jug.netherite--;
+          jug.espada = "netherite";
+        } else
+          texto(`${jug.nombre} piensa en mejorar su espada de diamante`, jug);
+      } else if (jug.espada === "hierro") {
         texto(`${jug.nombre} fabrica una espada de diamante`, jug);
         jug.espada = "diamante";
       } else texto(`${jug.nombre} afila su espada de netherite`, jug);
@@ -720,7 +689,7 @@ export const Random = {
       texto(`${jug.nombre} observa su reloj, pero parece estar roto...`, jug);
     },
     explorarStrider: function (jug) {
-      if (jug.strider) {
+      if (jug.hongo) {
         texto(
           `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montando a un strider`,
           jug
@@ -748,17 +717,6 @@ export const Random = {
       jug.armourName[parte] = material;
       texto(
         `${jug.nombre} logra fabricar ${articulo} ${parte} de ${material}`,
-        jug
-      );
-    },
-    todaArmaNetherite: function (jug) {
-      let material = "netherite";
-      Object.keys(armadura).forEach((el) => {
-        jug.armadura[el] = armadura[el][material];
-        jug.armourName[el] = material;
-      });
-      texto(
-        `${jug.nombre} logra fabricar toda una armadura de ${material}`,
         jug
       );
     },
@@ -813,7 +771,7 @@ export const Random = {
         dragon.crystalAct = dragon.crystalAct - 1;
       } else {
         dragon.vida = dragon.vida - 8;
-        updateProgreso(dragon.vida);
+        updateProgreso();
         texto(
           `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
           jug
@@ -839,7 +797,7 @@ export const Random = {
         dragon.crystalAct -= 1;
       } else {
         dragon.vida = dragon.vida - 8;
-        updateProgreso(dragon.vida);
+        updateProgreso();
         texto(
           `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
           jug
@@ -855,7 +813,7 @@ export const Random = {
         dragon.crystalAct = dragon.crystalAct - 1;
       } else {
         dragon.vida = dragon.vida - 8;
-        updateProgreso(dragon.vida);
+        updateProgreso();
         texto(
           `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
           jug
@@ -1484,7 +1442,7 @@ export const Decid = {
               `En lugar de enderpearls, ${jug.nombre} se aleja de los enderman cargado de hongos distorsionados. ¿Que podria hacer con eso?`,
               jug
             );
-            jug.strider = true;
+            jug.hongo = true;
             break;
           case 8:
             texto(
@@ -1520,8 +1478,8 @@ export const Decid = {
         nrand = getRandomIntInclusive(6);
         switch (nrand) {
           case 0:
-            let parte = partes[1],
-              material = "oro",
+            let parte = partes()[1],
+              material = materiales(),
               articulo = parte === "botas" ? "unas" : "un";
             jug.armadura[parte] = armadura[parte][material];
             jug.armourName[parte] = material;
@@ -1542,15 +1500,11 @@ export const Decid = {
             break;
           case 2:
             texto(
-              `${jug.nombre} descubre que ${jug2.nombre} estaba detras suyo y ambos se turnan para defender y tomar los objetos de los cofres`,
+              `${jug.nombre} descubre que ${jug2.nombre} estaba detras suyo y ambos se turnan para defender y tomar los objetos de los cofres<br/>
+              Ambos consiguen netherite suficiente para intentar craftear algo`,
               jug
             );
-            texto(
-              //explicame
-              `Ambos consiguen netherite suficiente para intentar craftear algo`,
-              jug
-            );
-            jug.netheritecrafteo = true;
+            jug.netherite++;
             break;
           case 3:
             dano = getRandomIntInclusive(20, 15);
@@ -1609,7 +1563,7 @@ export const Decid = {
             dano = jug.vida;
             jug.vida = 0;
             dragon.vida = dragon.vida - 20;
-            updateProgreso(dragon.vida);
+            updateProgreso();
             danoInsta(dano);
             texto(
               `Confiado, ${jug.nombre} pone una cama junto al dragon cuando este se encuentra cerca, pero ambos reciben el impacto`,
@@ -1628,7 +1582,7 @@ export const Decid = {
             jug.vida -= dano;
             dano += jug.vida;
             dragon.vida = dragon.vida - 8;
-            updateProgreso(dragon.vida);
+            updateProgreso();
             danoInsta(dano);
             texto(
               `El ender dragon se dirige en picada hacia ${jug.nombre}. Aunque logra golpearlo, ambos pierden vida`,
@@ -1648,7 +1602,7 @@ export const Decid = {
             break;
           case 1:
             dragon.vida = dragon.vida - 9;
-            updateProgreso(dragon.vida);
+            updateProgreso();
             danoInsta(dano);
             texto(
               `${jug.nombre} utiliza un arco a punto de romperse que llevaba en su inventario para herir al dragon, aunque este se parte al instante`,

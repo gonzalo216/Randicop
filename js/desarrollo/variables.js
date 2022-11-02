@@ -5,6 +5,7 @@ class Jugador {
     this.protag = bol;
     this.cantF = 0;
     this.funcion = [];
+    /* equipaje */
     this.armadura = {
       casco: 0,
       peto: 0,
@@ -17,19 +18,24 @@ class Jugador {
       pantalon: "-",
       botas: "-",
     };
+    this.espada = "hierro";
+    this.escudo = false;
+    /* mascotas */
     this.perro = 0;
     this.gato = 0;
+    this.hongo = false;
+    /* compañeros */
     this.conv = false;
-    this.strider = false;
+    this.trofeo = false;
+    /* materiales */
+    this.netherite = 0;
+    this.diamante = 0;
+
     this.lagrima = false;
-    this.escudo = false;
-    this.espada = "hierro";
-    this.netheritecrafteo = false;
     this.oro = false;
     this.huesos = false;
     this.peces = false;
     this.noEnderman = false;
-    this.trofeo = false;
     this.comida = false;
   }
 }
