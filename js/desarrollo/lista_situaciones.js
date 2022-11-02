@@ -7,35 +7,15 @@ import {
   vidaExtra,
 } from "./print_lines.js";
 import { getRandomIntInclusive, repetir } from "./funciones.js";
-import { lista, jugs, dragon } from "./variables.js";
+import { dragon } from "./variables.js";
 import { armadura, materiales, partes } from "./armadura.js";
+import { banneado, danoDragon, danoEspadas, nJugRand, pocionIns } from "./func_lista.js";
 
-const nJugRand = (jug) => {
-  let num;
-  do {
-    num = getRandomIntInclusive(Object.keys(lista).length - 1);
-  } while (
-    lista[jugs[num]].vida <= 0 ||
-    lista[jugs[num]].nombre === jug.nombre
-  );
-  return lista[jugs[num]];
-};
 let nrand, dano, cura, adicional;
-const danoEspadas = (espada) => {
-    if (espada === "netherite") dano = 9;
-    if (espada === "diamante") dano = 8;
-    if (espada === "hierro") dano = 7;
-  },
-  danoDragon = (espada) => {
-    nrand = getRandomIntInclusive(5, 2);
-    danoEspadas(espada);
-    dragon.vida -= dano * nrand;
-    updateProgreso(dragon.vida);
-  };
 /* ----------------------------------------DAnO----------------------------------------*/
 const DanoGlobal = {
     nocomer: function (jug) {
-      if (comida)
+      if (jug.comida)
         texto(`${jug.nombre} come ${jug.comida} para saciar su hambre`);
       else {
         dano = jug.vida;
@@ -81,7 +61,7 @@ const DanoGlobal = {
       } else if (jug.escudo) {
         adicional = `${jug.nombre} se protege con su escudo de un creeper que cae delante suyo`;
       } else {
-        dano = getRandomIntInclusive(64, 1);
+        dano = getRandomIntInclusive(25, 1);
         jug.vida -= dano;
         dano += jug.vida;
         if (jug.vida > 0) {
@@ -340,7 +320,7 @@ export const Dano = {
       texto(`${jug.nombre} ${adicional2} ${adicional}`, jug);
     },
     espadaDragon: function (jug) {
-      danoDragon(jug.espada);
+      nrand = danoDragon(jug.espada);
       texto(
         `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de ${jug.espada} ${nrand} veces`,
         jug
@@ -380,7 +360,7 @@ export const Dano = {
     texto(`${jug.nombre} hiere al dragon explotando TNT a su lado`, jug);
   },
   danarDragon: function (jug) {
-    danoDragon(jug.espada);
+    nrand = danoDragon(jug.espada);
     texto(
       `${jug.nombre} logra golpear al dragon ${nrand} veces con su espada de ${jug.espada}`,
       jug
@@ -399,20 +379,9 @@ Object.assign(Dano.Nether, DanoGlobal);
 Object.assign(Dano.End, DanoGlobal);
 
 /* ----------------------------------------VIDA----------------------------------------*/
-const pocionIns = (vida) => {
-  nrand = getRandomIntInclusive(1);
-  if (nrand === 0) {
-    adicional = "I";
-    cura = vida + 4;
-  } else {
-    adicional = "II";
-    cura = vida + 8;
-  }
-};
 const VidaGlobal = {
     pocionCura: function (jug) {
-      pocionIns(jug.vida);
-      curar(cura);
+      adicional = pocionIns(jug.vida);
       texto(
         `${jug.nombre} usa una pocion de <i>curacion instantanea ${adicional}</i>`,
         jug
@@ -427,31 +396,23 @@ const VidaGlobal = {
       jug.vida = cura;
     },
     Notch: function (jug) {
-      vidaExtra(16);
+      if(jug.vida > 15) {
+        banneado(jug, 5);
+        adicional = "dorada"
+        vidaExtra(4);
+      } else {
+        banneado(jug, 1)
+        adicional = "de Notch"
+        vidaExtra(16);
+      }
       curar(20);
-      texto(`${jug.nombre} toma una manzana de Notch desde el creativo`, jug);
+      texto(`${jug.nombre} toma una manzana ${adicional} desde el creativo`, jug);
       jug.vida = 20;
-      jug.funcion.push(() => {
-        nrand = getRandomIntInclusive(1);
-        if (nrand) {
-          dano = jug.vida;
-          jug.vida = 0;
-          danoInsta(dano);
-          texto(
-            `Los moderadores descubren a ${jug.nombre} por lo que habia hecho`,
-            jug
-          );
-          return false;
-        } else {
-          return true;
-        }
-      });
     },
   },
   VidaDiaNoche = {
     bruja: function (jug) {
-      pocionIns(jug.vida);
-      curar(cura);
+      adicional = pocionIns(jug.vida);
       texto(
         `Una bruja se confunde y le tira una pocion splash de <i>curacion instantanea ${adicional}</i> a ${jug.nombre}`,
         jug
@@ -617,7 +578,6 @@ const RandomGlobal = {
         jug.armadura[el] = armadura[el][material];
         jug.armourName[el] = material;
       });
-      if ((material = "oro")) jug.oro = true;
       texto(
         `${jug.nombre} logra fabricar toda una armadura de ${material}`,
         jug
@@ -1156,7 +1116,7 @@ export const Rel = {
       danoDragon(jug.espada);
       danoDragon(jug2.espada);
       texto(
-        `${jug.nombre} y ${jug2.nombre} golpean con espadas reiteradas veces al ender dragon en cuanto se posa a descansar sobre el portal inactivo, hiriendolo`,
+        `${jug.nombre} y ${jug2.nombre} golpean con espadas reiteradas veces al ender dragon en cuanto se posa sobre el portal`,
         jug
       );
     },
