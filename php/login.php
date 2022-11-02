@@ -1,9 +1,9 @@
 <?php
 
 $servidor = "localhost";
-$usuario = "id19792673_datos";
-$clave = "-OjG5qjWg*c+]eF+";
-$bdd = "id19792673_prueba";
+$usuario = "id19797305_randicopuser";
+$clave = "}e2qV_IPUu%[>)8l";
+$bdd = "id19797305_mysqlrandicop";
 
 $enlace = mysqli_connect($servidor, $usuario, $clave, $bdd);
 
