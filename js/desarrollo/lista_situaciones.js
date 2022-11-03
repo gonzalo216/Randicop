@@ -356,7 +356,7 @@ const VidaGlobal = {
         `${jug.nombre} usa una pocion de <i>curacion instantanea ${adicional}</i>`,
         jug
       );
-      jug.vida = cura;
+      jug.vida += adicional === "I" ? 4 : 8;
     },
     manzana: function (jug) {
       cura = 4 + jug.vida;
@@ -390,7 +390,7 @@ const VidaGlobal = {
         `Una bruja se confunde y le tira una pocion splash de <i>curacion instantanea ${adicional}</i> a ${jug.nombre}`,
         jug
       );
-      jug.vida = cura;
+      jug.vida += adicional === "I" ? 4 : 8;
     },
   };
 export const Vida = {
