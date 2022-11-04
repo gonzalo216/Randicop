@@ -113,7 +113,7 @@ export const Dano = {
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      danoAtajo(jug, 10, 1);
+      danoAtajo(jug, 15, 10);
       texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
     },
     llamas: function (jug) {
