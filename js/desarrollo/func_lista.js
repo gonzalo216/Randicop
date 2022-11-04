@@ -16,7 +16,9 @@ export function nJugRand(jug) {
 export function danoAtajo(jug, max, min = 0) {
   let dano = getRandomIntInclusive(max, min);
   jug.vida -= dano;
-  danoInsta(dano + jug.vida);
+  dano += jug.vida;
+  danoInsta(dano);
+  return (dano)
 }
 export function danoEspadas(espada) {
   if (espada === "netherite") return 9;

@@ -41,22 +41,16 @@ const DanoGlobal = {
       );
     },
     tropezon: function (jug) {
-      dano = getRandomIntInclusive(20);
+      dano = danoAtajo(jug, 20);
       if (dano > 11) adicional = "y cae de un precipicio";
       else if (dano > 4) adicional = "y cae desde muy alto";
       else adicional = "";
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
       texto(`${jug.nombre} tropieza ${adicional}`, jug);
     },
   },
   DanoDiaNoche = {
     lobo: function (jug) {
-      dano = getRandomIntInclusive(10);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoDragon(10);
       texto(
         `${jug.nombre} golpea a un lobo, logrando que una manada se abalanzase sobre el`,
         jug
@@ -68,30 +62,21 @@ const DanoGlobal = {
       } else if (jug.escudo) {
         adicional = `${jug.nombre} se protege con su escudo de un creeper que cae delante suyo`;
       } else {
-        dano = getRandomIntInclusive(25, 1);
-        jug.vida -= dano;
-        dano += jug.vida;
+        dano = danoAtajo(jug, 20, 1)
         if (jug.vida > 0) {
           if (dano === 1)
             adicional = `Antes de que el creeper explote, ${jug.nombre} pone un bloque en el medio`;
-          else adicional = `Un creeper explota enfrente de ${jug.nombre}`;
+          else adicional = `Un creeper explota en frente de ${jug.nombre}`;
         } else adicional = `Un creeper sorpende a ${jug.nombre} por la espalda`;
-        danoInsta(dano);
       }
       texto(adicional, jug);
     },
     grava: function (jug) {
-      dano = getRandomIntInclusive(3, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 3, 1)
       texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
     },
     speedrun: function (jug) {
-      dano = getRandomIntInclusive(20, 5);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
+      danoAtajo(jug, 20, 1)
       texto(
         `${jug.nombre} cae en lava al cavar en linea recta hacia abajo`,
         jug
@@ -112,8 +97,8 @@ const DanoGlobal = {
       nrand <= 5 ? (dano = 4) : (dano = 0); //hay un 60% de propabilidades de perder 2 corazones
       jug.vida -= dano;
       dano += jug.vida;
-      if (jug.vida <= 0) jug.vida = 1;
       danoInsta(dano);
+      if (jug.vida <= 0) jug.vida = 1;
       texto(`${jug.nombre} se ve forzado a comer una papa envenenada`, jug);
     },
   };
@@ -128,11 +113,11 @@ export const Dano = {
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      danoAtajo(jug, 10, 1);
+      danoAtajo(jug, 15, 10);
       texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
     },
     llamas: function (jug) {
-      danoAtajo(jug, 15, 1);
+      dano = danoAtajo(jug, 15, 1);
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
         adicional = "Las llamas lo abligan a escapar de alli";
@@ -164,10 +149,10 @@ export const Dano = {
     },
     zombiebpato: function (jug) {
       if (jug.perro) {
-        dano = getRandomIntInclusive(5);
+        danoAtajo(jug, 5)
         adicional = `Un zombie bebe montado en un pollo se acerca a ${jug.nombre}, pero su perro lo defiende`;
       } else {
-        dano = getRandomIntInclusive(20, 4);
+        danoAtajo(jug, 20, 4)
         adicional = `Un zombie bebe montado en un pollo ataca a ${jug.nombre}`;
       }
       jug.vida -= dano;

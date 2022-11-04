@@ -50,15 +50,16 @@ async function eventos(evento, i, cant, muertos) {
     if (jug.cantF === 0) repetir = true;
     else {
       nrand = getRandomIntInclusive(jug.cantF - 1);
-
       jug.cantF--;
     }
     if (jug.funcion.length) {
       let seguir = jug.funcion[0]();
       jug.funcion.shift();
       if (!seguir) {
-        if (jug.vida <= 0) muertos.push(jugs[i]);
-        continue;
+        if (jug.vida <= 0) muertos.push(jugs[i]);{
+          i++;
+          continue;
+        }
       }
     }
     jugs.forEach((n) => {
