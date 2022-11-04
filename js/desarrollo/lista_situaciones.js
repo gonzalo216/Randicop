@@ -1190,7 +1190,7 @@ export const Decid = {
             );
             break;
           case 3:
-            pocionIns(jug.vida);
+            adicional = pocionIns(jug.vida);
             curar(cura);
             texto(
               `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiendola al instante`,
@@ -1216,7 +1216,7 @@ export const Decid = {
             break;
           case 6:
             texto(
-              `Antes de que ${jug2.nombre} regrese, ${jug.nombre} llena su casa de TNT, activando el mechero y alejandose`,
+              `Antes de que ${jug2.nombre} regrese, ${jug.nombre} llena su casa de TNT, activandola y alejandose`,
               jug
             );
             break;

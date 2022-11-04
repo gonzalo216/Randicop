@@ -135,17 +135,21 @@ aside > nav {
   display: grid;
   align-items: center;
   justify-items: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
 }
 .menu a {
   color: var(--color-menulinks);
   margin-top: 40px;
   font-size: 50pxx;
+  width: 100%;
   transition: all o.3s ease;
 }
 .menu a:hover {
   font-weight: bold;
   color: var(--color-menulinks-hover);
-  /* background-color: rgb(223, 223, 105); */
+  background-color: rgb(223, 223, 105); 
 }
 
 /* FOOTER */
