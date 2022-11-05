@@ -14,6 +14,7 @@ import {
   danoAtajo,
   danoDragon,
   danoEspadas,
+  getArmadura,
   nJugRand,
   pocionIns,
 } from "./func_lista.js";
@@ -41,16 +42,24 @@ const DanoGlobal = {
       );
     },
     tropezon: function (jug) {
-      dano = danoAtajo(jug, 20);
+      dano = getRandomIntInclusive(20);
       if (dano > 11) adicional = "y cae de un precipicio";
       else if (dano > 4) adicional = "y cae desde muy alto";
       else adicional = "";
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`${jug.nombre} tropieza ${adicional}`, jug);
     },
   },
   DanoDiaNoche = {
     lobo: function (jug) {
-      danoDragon(10);
+      dano = getRandomIntInclusive(20);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(
         `${jug.nombre} golpea a un lobo, logrando que una manada se abalanzase sobre el`,
         jug
@@ -62,7 +71,11 @@ const DanoGlobal = {
       } else if (jug.escudo) {
         adicional = `${jug.nombre} se protege con su escudo de un creeper que cae delante suyo`;
       } else {
-        dano = danoAtajo(jug, 20, 1)
+        dano = getRandomIntInclusive(20, 1);
+        dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+        jug.vida -= dano;
+        dano += jug.vida;
+        danoInsta(dano);
         if (jug.vida > 0) {
           if (dano === 1)
             adicional = `Antes de que el creeper explote, ${jug.nombre} pone un bloque en el medio`;
@@ -72,11 +85,17 @@ const DanoGlobal = {
       texto(adicional, jug);
     },
     grava: function (jug) {
-      danoAtajo(jug, 3, 1)
+      dano = getRandomIntInclusive(3, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`Mientras pica, a ${jug.nombre} le cae grava encima`, jug);
     },
     speedrun: function (jug) {
-      danoAtajo(jug, 20, 1)
+      dano = getRandomIntInclusive(20, 7);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(
         `${jug.nombre} cae en lava al cavar en linea recta hacia abajo`,
         jug
@@ -105,43 +124,70 @@ const DanoGlobal = {
 export const Dano = {
   Dia: {
     sol: function (jug) {
-      danoAtajo(jug, 3, 1);
+      dano = getRandomIntInclusive(3, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`${jug.nombre} se quema por el Sol`, jug);
     },
     charco: function (jug) {
-      danoAtajo(jug, 15, 3);
+      dano = getRandomIntInclusive(3, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      danoAtajo(jug, 15, 10);
+      dano = getRandomIntInclusive(20, 10);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
     },
     llamas: function (jug) {
-      dano = danoAtajo(jug, 15, 1);
+      dano = getRandomIntInclusive(15);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
       else if (dano > 12 && dano < 19)
         adicional = "Las llamas lo abligan a escapar de alli";
       else if (dano > 4 && dano < 12)
         adicional = "Las llamas le dan unos poderosos escupitajos";
       else if (dano > 1) adicional = "Le escupen unas llamas";
-      else adicional = "Una llama le escupe";
+      else if (dano) adicional = "Una llama le escupe";
+      else adicional = "";
       texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`, jug);
     },
   },
   Noche: {
     phantoms: function (jug) {
-      danoAtajo(jug, 10);
+      dano = getRandomIntInclusive(20, 5);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(
         `Tras no dormir por tres noches seguidas, ${jug.nombre} sufre de los phantoms`,
         jug
       );
     },
     seducir: function (jug) {
-      danoAtajo(jug, 12, 2);
+      dano = getRandomIntInclusive(20, 5);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(`${jug.nombre} intenta seducir a un enderman`, jug);
     },
     danopeleaes: function (jug) {
-      danoAtajo(jug, 5, 1);
+      dano = getRandomIntInclusive(5, 1);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
       texto(
         `${jug.nombre} queda atrapado en una pelea entre dos esqueletos`,
         jug
@@ -149,12 +195,13 @@ export const Dano = {
     },
     zombiebpato: function (jug) {
       if (jug.perro) {
-        danoAtajo(jug, 5)
-        adicional = `Un zombie bebe montado en un pollo se acerca a ${jug.nombre}, pero su perro lo defiende`;
+        dano = getRandomIntInclusive(5);
+        adicional = `Un zombie bebe sobre un pollo se acerca a ${jug.nombre}, pero su perro lo defiende`;
       } else {
-        danoAtajo(jug, 20, 4)
-        adicional = `Un zombie bebe montado en un pollo ataca a ${jug.nombre}`;
+        dano = getRandomIntInclusive(20, 5);
+        adicional = `Un zombie bebe sobre un pollo ataca a ${jug.nombre}`;
       }
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);
@@ -166,8 +213,9 @@ export const Dano = {
         adicional = `${jug.nombre} mata a un bebe zombie con ayuda de su perro`;
       } else {
         dano = getRandomIntInclusive(9, 4);
-        adicional = `Sintiendo demasiado miedo, ${jug.nombre} escapa de un bebe zombie`;
+        adicional = `${jug.nombre} corre por su vida de un bebe zombie`;
       }
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
       jug.vida -= dano;
       dano += jug.vida;
       danoInsta(dano);

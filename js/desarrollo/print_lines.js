@@ -1,3 +1,4 @@
+import { getArmadura } from "./func_lista.js";
 import { $transcurso, copySize } from "./print_blocks.js";
 import { dragon } from "./variables.js";
 
@@ -65,11 +66,10 @@ function armarTotal() {
   imprimir(printIcons(20, "armorNo"), ".arm-total");
 }
 function armar(armadura) {
-  let escudo = Object.values(armadura).reduce(
-    (total, actual) => total + actual,
-    0
+  imprimir(
+    printIcons(getArmadura(armadura), "armorOne", "armorHalf"),
+    ".armadura"
   );
-  imprimir(printIcons(escudo, "armorOne", "armorHalf"), ".armadura");
 }
 function vidaDefault(vida) {
   imprimir(printIcons(vida, "heartOne", "heartHalf"), ".vida-jugador");
