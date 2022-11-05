@@ -17,14 +17,6 @@ export function getArmadura(armadura) {
   return Object.values(armadura).reduce((total, actual) => total + actual, 0);
 }
 /* DANO */
-export function danoAtajo(jug, max, min = 0) {
-  let dano = getRandomIntInclusive(max, min);
-  dano -= dano * ((4 * getArmadura(jug.armadura)) / 100);
-  jug.vida -= dano;
-  dano += jug.vida;
-  danoInsta(dano);
-  return dano;
-}
 export function danoEspadas(espada) {
   if (espada === "netherite") return 9;
   if (espada === "diamante") return 8;
