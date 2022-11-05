@@ -53,6 +53,17 @@ const DanoGlobal = {
     },
   },
   DanoDiaNoche = {
+    /* instantaneo */
+    bedrock: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
+      danoInsta(dano);
+      texto(
+        `${jug.nombre} intenta romper bedrock, lo consigue y cae al vacio`,
+        jug
+      );
+    },
+    /* mobs */
     lobo: function (jug) {
       dano = getRandomIntInclusive(20);
       dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
@@ -83,6 +94,7 @@ const DanoGlobal = {
       }
       texto(adicional, jug);
     },
+    /* grava y lava */
     grava: function (jug) {
       dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
@@ -100,16 +112,7 @@ const DanoGlobal = {
         jug
       );
     },
-    bedrock: function (jug) {
-      dano = jug.vida;
-      jug.vida = 0;
-      danoInsta(dano);
-      texto(
-        `${jug.nombre} intenta romper bedrock, lo consigue y cae al vacio`,
-        jug
-      );
-    },
-
+    /* random */
     papaenvenenada: function (jug) {
       nrand = getRandomIntInclusive(9);
       nrand <= 5 ? (dano = 4) : (dano = 0); //hay un 60% de propabilidades de perder 2 corazones
@@ -122,13 +125,6 @@ const DanoGlobal = {
   };
 export const Dano = {
   Dia: {
-    sol: function (jug) {
-      dano = getRandomIntInclusive(3, 1);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
-      texto(`${jug.nombre} se quema por el Sol`, jug);
-    },
     charco: function (jug) {
       dano = getRandomIntInclusive(3, 1);
       jug.vida -= dano;
@@ -137,28 +133,44 @@ export const Dano = {
       texto(`${jug.nombre} vio el charco de lava cuando ya era muy tarde`, jug);
     },
     golem: function (jug) {
-      dano = getRandomIntInclusive(20, 10);
-      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
-      texto(`El golem de la aldea defiende a un aldeano de ${jug.nombre}`, jug);
+      nrand = getRandomIntInclusive(1);
+      if (nrand) {
+        dano = getRandomIntInclusive(20, 10);
+        dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+        jug.vida -= dano;
+        dano += jug.vida;
+        danoInsta(dano);
+        texto(
+          `El golem de la aldea defiende a un aldeano de ${jug.nombre}`,
+          jug
+        );
+      } else
+        texto(
+          `${jug.nombre} golpea a un aldeano por accidente y huye del golem que le persigue`,
+          jug
+        );
     },
     llamas: function (jug) {
       dano = getRandomIntInclusive(15);
-      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
-      if (jug.vida <= 0) adicional = "las llamas le escupen hasta morir";
-      else if (dano > 12 && dano < 19)
-        adicional = "Las llamas lo abligan a escapar de alli";
-      else if (dano > 4 && dano < 12)
+      if (dano > 12) adicional = "Las llamas lo abligan a escapar de alli";
+      else if (dano > 4)
         adicional = "Las llamas le dan unos poderosos escupitajos";
       else if (dano > 1) adicional = "Le escupen unas llamas";
       else if (dano) adicional = "Una llama le escupe";
       else adicional = "";
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
+      if (jug.vida <= 0) adicional = "Las llamas le escupen hasta morir";
       texto(`${jug.nombre} mata a un vendedor ambulante. ${adicional}`, jug);
+    },
+    sol: function (jug) {
+      dano = getRandomIntInclusive(3, 1);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
+      texto(`${jug.nombre} se quema por el Sol`, jug);
     },
   },
   Noche: {
@@ -235,21 +247,7 @@ export const Dano = {
     },
   },
   Nether: {
-    waterdrop: function (jug) {
-      dano = getRandomIntInclusive(10, 5);
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
-      texto(`${jug.nombre} intenta hacer un waterdrop`, jug);
-    },
-    cama: function (jug) {
-      dano = getRandomIntInclusive(20, 15);
-      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
-      jug.vida -= dano;
-      dano += jug.vida;
-      danoInsta(dano);
-      texto(`${jug.nombre} pone una cama e intenta dormir`, jug);
-    },
+    /* mobs */
     piglin: function (jug) {
       if (Object.values(jug.armadura).includes("oro")) {
         texto(
@@ -267,6 +265,21 @@ export const Dano = {
           jug
         );
       }
+    },
+    waterdrop: function (jug) {
+      dano = getRandomIntInclusive(10, 5);
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
+      texto(`${jug.nombre} intenta hacer un waterdrop`, jug);
+    },
+    cama: function (jug) {
+      dano = getRandomIntInclusive(20, 15);
+      dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+      jug.vida -= dano;
+      dano += jug.vida;
+      danoInsta(dano);
+      texto(`${jug.nombre} pone una cama e intenta dormir`, jug);
     },
   },
   End: {
@@ -336,52 +349,6 @@ export const Dano = {
       danoInsta(dano);
       texto(`${jug.nombre} ${adicional2} ${adicional}`, jug);
     },
-    espadaDragon: function (jug) {
-      nrand = danoDragon(jug.espada);
-      texto(
-        `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de ${jug.espada} ${nrand} veces`,
-        jug
-      );
-    },
-    camaDragon: function (jug) {
-      dragon.vida -= getRandomIntInclusive(25, 15);
-      updateProgreso();
-      texto(`${jug.nombre} hiere al dragon explotando una cama a su lado`, jug);
-    },
-    arcoCrystal: function (jug) {
-      if (jug.arco && dragon.crystalAct) {
-        texto(
-          `${jug.nombre} utiliza su arco para destruir un end crystal`,
-          jug
-        );
-        dragon.crystalAct -= 1;
-      } else {
-        texto(
-          `${jug.nombre} intenta herir al dragon con un stack de bolas de nieve...`,
-          jug
-        );
-      }
-    },
-    aguaCrystal: function (jug) {
-      texto(
-        `${jug.nombre} escala a lo alto de un pico usando agua y destruye un end crystal sin salir herido`,
-        jug
-      );
-      dragon.crystalAct -= 1;
-    },
-  },
-  tntDragon: function (jug) {
-    dano = getRandomIntInclusive(100, 33);
-    dragon.vida -= dano;
-    updateProgreso();
-    texto(`${jug.nombre} hiere al dragon explotando TNT a su lado`, jug);
-  },
-  danarDragon: function (jug) {
-    nrand = danoDragon(jug.espada);
-    texto(
-      `${jug.nombre} logra golpear al dragon ${nrand} veces con su espada de ${jug.espada}`,
-      jug
-    );
   },
 };
 repetir(Dano.Nether, 2);
@@ -481,24 +448,7 @@ export const Vida = {
       jug.vida = cura;
     },
   },
-  End: {
-    CrystalCurar: function (jug) {
-      if (dragon.crystalAct) {
-        cura = getRandomIntInclusive(30, 10) + dragon.vida;
-        dragon.vida = cura;
-        updateProgreso();
-        texto(
-          `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
-          jug
-        );
-      } else {
-        texto(
-          `${jug.nombre} observa los picos, ahora sin uso para el ender dragon`,
-          jug
-        );
-      }
-    },
-  },
+  End: {},
 };
 repetir(Vida.Nether, 4);
 repetir(Vida.End, 4);
@@ -513,13 +463,33 @@ Object.assign(Vida.End, VidaGlobal);
 
 /* ----------------------------------------RANDOM----------------------------------------*/
 const RandomGlobal = {
-    // locura: function (nombre, vida) {
-    //   texto(
-    //     `${nombre} entra en la locura pensando por que el cubo no tiene forma de cubo`
-    //   );
-    //   vidaDefault(vida, true);
-    // },
+    locura: function (jug) {
+      texto(
+        `${nombre} entra en la locura pensando por que el cubo no tiene forma de cubo`,
+        jug
+      );
+    },
+  },
+  RandomDiaNoche = {
+    /* Sin Cambios */
+    bedrock: function (jug) {
+      texto(`${jug.nombre} pierde el dia intentando romper bedrock`, jug);
+    },
     cat: function (jug) {
+      texto(
+        `${jug.nombre} se siente mas optimista tras obtener el disco de musica 'Cat'`,
+        jug
+      );
+    },
+    diamanteLava: function (jug) {
+      texto(
+        `${jug.nombre} tira por error en la lava el unico diamante que logra encontrar`,
+        jug
+      );
+    },
+    /* Armadura */
+    //completa
+    upgrade: function (jug) {
       if (jug.netherite) {
         console.log("mejora");
         const nPartes = [];
@@ -540,34 +510,18 @@ const RandomGlobal = {
         texto(`${jug.nombre} esta pensando en netherite`, jug);
       }
     },
-  },
-  RandomDiaNoche = {
-    bedrock: function (jug) {
-      texto(`${jug.nombre} pierde el dia intentando romper bedrock`, jug);
-    },
-    cat: function (jug) {
+    todaArmad: function (jug) {
+      let material = materiales();
+      Object.keys(armadura).forEach((el) => {
+        jug.armadura[el] = armadura[el][material];
+        jug.armourName[el] = material;
+      });
       texto(
-        `${jug.nombre} se siente mas optimista tras obtener el disco de musica 'Cat'`,
+        `${jug.nombre} logra fabricar toda una armadura de ${material}`,
         jug
       );
     },
-    gatete: function (jug) {
-      texto(
-        `Paseando cerca de una aldea, ${jug.nombre} descubre a un gato y lo adiestra`,
-        jug
-      );
-      jug.gato++;
-    },
-    recuento: function (jug) {
-      texto(`${jug.nombre} se la paso minando diamantes`, jug);
-      jug.diamante += 15;
-    },
-    diamanteLava: function (jug) {
-      texto(
-        `${jug.nombre} tira por error en la lava el unico diamante que logra encontrar`,
-        jug
-      );
-    },
+    //parte
     aldea: function (jug) {
       let parte = partes()[0],
         material = materiales(),
@@ -579,32 +533,53 @@ const RandomGlobal = {
         jug
       );
     },
-    fabricaDiamante: function (jug) {
+    armado: function (jug) {
+      let parte = partes()[0],
+        material = materiales(),
+        articulo = parte === "botas" ? "unas" : "un";
+      jug.armadura[parte] = armadura[parte][material];
+      jug.armourName[parte] = material;
+      texto(
+        `${jug.nombre} se construye ${articulo} ${parte} de ${material}`,
+        jug
+      );
+    },
+    //espada
+    upEspada: function (jug) {
       if (jug.espada === "diamante") {
         if (jug.netherite) {
           texto(`${jug.nombre} mejora su espada, ahora es de netherite`, jug);
           jug.netherite--;
           jug.espada = "netherite";
-        } else
+        } else if (getRandomIntInclusive(1))
           texto(
             `${jug.nombre} quiere mejorar su espada de diamante, pero no tiene netherite`,
             jug
           );
+        else
+          texto(
+            `${jug.nombre} esta conforme con su espada de ${jug.espada}`,
+            jug
+          );
       } else if (jug.espada === "hierro") {
-        texto(`${jug.nombre} fabrica una espada de diamante`, jug);
-        jug.espada = "diamante";
+        if (jug.diamante > 1) {
+          texto(`${jug.nombre} fabrica una espada de diamante`, jug);
+          jug.espada = "diamante";
+          jug.diamante -= 2;
+        } else texto(`${jug.nombre} ansia tener una espada mejor`, jug);
       } else texto(`${jug.nombre} afila su espada de netherite`, jug);
     },
-    todaArmaRandom: function (jug) {
-      let material = materiales();
-      Object.keys(armadura).forEach((el) => {
-        jug.armadura[el] = armadura[el][material];
-        jug.armourName[el] = material;
-      });
+    /* Booleanos */
+    gatete: function (jug) {
       texto(
-        `${jug.nombre} logra fabricar toda una armadura de ${material}`,
+        `Paseando cerca de una aldea, ${jug.nombre} descubre a un gato y lo adiestra`,
         jug
       );
+      jug.gato++;
+    },
+    recuento: function (jug) {
+      texto(`${jug.nombre} se la paso minando diamantes`, jug);
+      jug.diamante += 15;
     },
     perroHuesos: function (jug) {
       if (jug.huesos) {
@@ -621,13 +596,17 @@ const RandomGlobal = {
         );
       }
     },
+    domesticarGG: function (jug) {
+      texto(`${jug.nombre} fue a pescar y consigue muchos pescados`, jug);
+      jug.peces = true;
+    },
     gatoPeces: function (jug) {
       if (jug.peces) {
         texto(
           `Con los pescados que habia conseguido, ${jug.nombre} domestica a un gato`,
           jug
         );
-        jug.gato = false;
+        jug.peces = false;
         jug.gato++;
       } else {
         texto(
@@ -645,12 +624,6 @@ export const Random = {
         jug
       );
     },
-    golem: function (jug) {
-      texto(
-        `${jug.nombre} golpea a un aldeano por accidente y huye del golem que le persigue`,
-        jug
-      );
-    },
     semillas: function (jug) {
       texto(`${jug.nombre} cada vez tiene mas semillas`, jug);
     },
@@ -664,17 +637,6 @@ export const Random = {
       texto(
         `${jug.nombre} intenta pescar con su nueva cana, pero se rinde y entra al agua, golpeando a los peces con los punos
       `,
-        jug
-      );
-    },
-    armado: function (jug) {
-      let parte = partes()[0],
-        material = materiales(),
-        articulo = parte === "botas" ? "unas" : "un";
-      jug.armadura[parte] = armadura[parte][material];
-      jug.armourName[parte] = material;
-      texto(
-        `${jug.nombre} se construye ${articulo} ${parte} de ${material}`,
         jug
       );
     },
@@ -704,26 +666,20 @@ export const Random = {
     pensandoDiam: function (jug) {
       texto(`${jug.nombre} no puede dormir pensando en diamantes`, jug);
     },
-    domesticarPP: function (jug) {
-      texto(
-        `${jug.nombre} busca esqueletos para conseguir huesos y domesticar a una manada de lobos `,
-        jug
-      );
-      jug.huesos = true;
-    },
     pensandoSitios: function (jug) {
       texto(`${jug.nombre} piensa en irse y explorar nuevos sitios`, jug);
     },
+    /* booleano */
     arco: function (jug) {
       texto(`${jug.nombre} se hace con el arco de un esqueleto`, jug);
       jug.arco = true;
     },
-    domesticarGG: function (jug) {
+    domesticarPP: function (jug) {
       texto(
-        `${jug.nombre} consigue suficientes pescados para domesticar a un nuevo gato`,
+        `${jug.nombre} busca esqueletos y consigue huesos para en un futuro domesticar a una manada de lobos `,
         jug
       );
-      jug.peces = true;
+      jug.huesos = true;
     },
   },
   Nether: {
@@ -742,6 +698,22 @@ export const Random = {
     relojRoto: function (jug) {
       texto(`${jug.nombre} observa su reloj, pero parece estar roto...`, jug);
     },
+    mascotaStrider: function (jug) {
+      texto(`${jug.nombre} se encarina con un strider solitario`, jug);
+    },
+    piensaStrider: function (jug) {
+      texto(`${jug.nombre} piensa en adoptar a un strider como mascota`, jug);
+    },
+    fortaleza: function (jug) {
+      texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug);
+    },
+    fortaleza: function (jug) {
+      texto(
+        `${jug.nombre} piensa en recolectar calaveras de esqueletos para invocar al wither`,
+        jug
+      );
+    },
+    /* booleano */
     explorarStrider: function (jug) {
       if (jug.hongo) {
         texto(
@@ -754,40 +726,9 @@ export const Random = {
           jug
         );
     },
-    mascotaStrider: function (jug) {
-      texto(`${jug.nombre} se encarina con un strider solitario`, jug);
-    },
-    piensaStrider: function (jug) {
-      texto(`${jug.nombre} piensa en adoptar a un strider como mascota`, jug);
-    },
-    fortaleza: function (jug) {
-      texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug);
-    },
-    crearEspada: function (jug) {
-      if (jug.espada === "diamante" && jug.netherite) {
-        texto(`${jug.nombre} mejora su espada a una de netherite`, jug);
-        jug.espada = "netherite";
-        jug.netherite--;
-      } else
-        texto(
-          `${jug.nombre} esta conforme con su espada de ${jug.espada}`,
-          jug
-        );
-    },
-    fortaleza: function (jug) {
-      texto(
-        `${jug.nombre} piensa en recolectar calaveras de esqueletos para invocar al wither`,
-        jug
-      );
-    },
   },
   End: {
-    calabaza: function (jug) {
-      jug.armadura.casco = 0;
-      jug.armourName.casco = "calabaza tallada";
-      jug.noEnderman = true;
-      texto(`${jug.nombre} se equipa una calabaza tallada"`, jug);
-    },
+    /* sin cambios */
     montar: function (jug) {
       texto(`${jug.nombre} piensa en montar al ender dragon`, jug);
     },
@@ -806,6 +747,15 @@ export const Random = {
     observar: function (jug) {
       texto(`${jug.nombre} no puede quitar la vista del ender dragon`, jug);
     },
+    /* booleano */
+    calabaza: function (jug) {
+      jug.armadura.casco = 0;
+      jug.armourName.casco = "calabaza tallada";
+      jug.noEnderman = true;
+      texto(`${jug.nombre} se equipa una calabaza tallada"`, jug);
+    },
+    /* Dragon */
+    //cristales || cristales && danoDragon
     aguaCrystal: function (jug) {
       if (dragon.crystalAct) {
         texto(
@@ -860,6 +810,70 @@ export const Random = {
         updateProgreso();
         texto(
           `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
+          jug
+        );
+      }
+    },
+    arcoCrystal: function (jug) {
+      if (jug.arco && dragon.crystalAct) {
+        texto(
+          `${jug.nombre} utiliza su arco para destruir un end crystal`,
+          jug
+        );
+        dragon.crystalAct -= 1;
+      } else {
+        texto(
+          `${jug.nombre} intenta herir al dragon con un stack de bolas de nieve...`,
+          jug
+        );
+      }
+    },
+    aguaCrystal: function (jug) {
+      texto(
+        `${jug.nombre} escala a lo alto de un pico usando agua y destruye un end crystal sin salir herido`,
+        jug
+      );
+      dragon.crystalAct -= 1;
+    },
+    //danoDragon
+    tntDragon: function (jug) {
+      dano = getRandomIntInclusive(100, 33);
+      dragon.vida -= dano;
+      updateProgreso();
+      texto(`${jug.nombre} hiere al dragon explotando TNT a su lado`, jug);
+    },
+    danarDragon: function (jug) {
+      nrand = danoDragon(jug.espada);
+      texto(
+        `${jug.nombre} logra golpear al dragon ${nrand} veces con su espada de ${jug.espada}`,
+        jug
+      );
+    },
+    espadaDragon: function (jug) {
+      nrand = danoDragon(jug.espada);
+      texto(
+        `En cuanto el ender dragon se posa sobre el portal inactivo, ${jug.nombre} lo golpea con una espada de ${jug.espada} ${nrand} veces`,
+        jug
+      );
+    },
+    camaDragon: function (jug) {
+      dragon.vida -= getRandomIntInclusive(25, 15);
+      updateProgreso();
+      texto(`${jug.nombre} hiere al dragon explotando una cama a su lado`, jug);
+    },
+    //curaDragon
+    CrystalCurar: function (jug) {
+      if (dragon.crystalAct) {
+        cura = getRandomIntInclusive(30, 10) + dragon.vida;
+        dragon.vida = cura;
+        updateProgreso();
+        texto(
+          `${jug.nombre} no puede evitar que el ender dragon recupere vida`,
+          jug
+        );
+      } else {
+        texto(
+          `${jug.nombre} observa los picos, ahora sin uso para el ender dragon`,
           jug
         );
       }
