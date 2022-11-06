@@ -2,13 +2,14 @@ import { getRandomIntInclusive } from "./funciones.js";
 import { curar, danoInsta, texto, updateProgreso } from "./print_lines.js";
 import { dragon, jugs, lista } from "./variables.js";
 
-export function nJugRand(jug) {
+export function nJugRand(jug, jug2 = null) {
   let num;
   do {
     num = getRandomIntInclusive(Object.keys(lista).length - 1);
   } while (
     lista[jugs[num]].vida <= 0 ||
-    lista[jugs[num]].nombre === jug.nombre
+    lista[jugs[num]].nombre === jug.nombre ||
+    lista[jugs[num]].nombre === (jug2 ? jug2.nombre : null)
   );
   return lista[jugs[num]];
 }

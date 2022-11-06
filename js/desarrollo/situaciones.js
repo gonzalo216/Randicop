@@ -47,16 +47,12 @@ async function eventos(evento, i, cant, muertos) {
       i++;
       continue;
     }
-    if (jug.cantF === 0) repetir = true;
-    else {
-      nrand = getRandomIntInclusive(jug.cantF - 1);
-      jug.cantF--;
-    }
     if (jug.funcion.length) {
       let seguir = jug.funcion[0]();
       jug.funcion.shift();
       if (!seguir) {
-        if (jug.vida <= 0) muertos.push(jugs[i]);{
+        if (jug.vida <= 0) muertos.push(jugs[i]);
+        {
           i++;
           continue;
         }
@@ -65,15 +61,16 @@ async function eventos(evento, i, cant, muertos) {
     jugs.forEach((n) => {
       if (lista[n].vida > 0) vivos++;
     });
+    console.log(jug.nombre);
     do {
       repetir = false;
       if (jug.vida === 20)
         vivos > 1
-          ? (nrand = getRandomIntInclusive(5, 1)) //saltea curar
+          ? (nrand = getRandomIntInclusive(4, 1)) //saltea curar
           : (nrand = getRandomIntInclusive(2, 1));
       else
         vivos > 1
-          ? (nrand = getRandomIntInclusive(5))
+          ? (nrand = getRandomIntInclusive(4))
           : (nrand = getRandomIntInclusive(2)); //saltea relaciones
       switch (nrand) {
         case 0: {
@@ -81,6 +78,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Vida[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Vida[evento][accion[nrand]](jug);
+          console.log(accion[nrand]);
           break;
         }
         case 1: {
@@ -88,6 +86,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Dano[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Dano[evento][accion[nrand]](jug);
+          console.log(accion[nrand]);
           break;
         }
         case 2: {
@@ -95,24 +94,25 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Random[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Random[evento][accion[nrand]](jug);
+          console.log(accion[nrand]);
           break;
         }
-        case 3:
-        //console.log("descubrimiento");
-        //break;
-        case 4: {
+        case 3: {
+          //decisiones
           if (jug.protag) {
             const accion = Object.keys(Decid[evento]);
             nrand = getRandomIntInclusive(accion.length - 1);
             await Decid[evento][accion[nrand]](jug);
+            console.log(accion[nrand]);
           } else repetir = true;
           break;
         }
-        case 5: {
+        case 4: {
           //relaciones
           const accion = Object.keys(Rel[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Rel[evento][accion[nrand]](jug);
+          console.log(accion[nrand]);
           break;
         }
       }

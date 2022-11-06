@@ -905,6 +905,7 @@ export const RelGlobal = {
 };
 
 const RelDiaNoche = {
+  /* Sin cambio */
   robarhierro: function (jug) {
     const jug2 = nJugRand(jug);
     texto(`${jug.nombre} roba hierro del horno de ${jug2.nombre}`, jug);
@@ -913,6 +914,7 @@ const RelDiaNoche = {
     const jug2 = nJugRand(jug);
     texto(`${jug.nombre} amenaza a ${jug2.nombre} con incendiar su casa`, jug);
   },
+  /* armadura */
   armado: function (jug) {
     const jug2 = nJugRand(jug);
     let parte = partes()[0],
@@ -925,6 +927,7 @@ const RelDiaNoche = {
       jug
     );
   },
+  /* daño */
   creeperCargado: function (jug) {
     dano = jug.vida;
     jug.vida = 0;
@@ -949,6 +952,7 @@ const RelDiaNoche = {
 
 export const Rel = {
   Dia: {
+    /* sin cambio */
     construircasa: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
@@ -956,6 +960,21 @@ export const Rel = {
         jug
       );
     },
+    florescasa: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`,
+        jug
+      );
+    },
+    cazarjuntos: function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(
+        `${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`,
+        jug
+      );
+    },
+    /* daño */
     vivirjuntos: function (jug) {
       if (jug.conv) {
         if (jug.conv.vida <= 0) {
@@ -1008,22 +1027,9 @@ export const Rel = {
         jug2.conv = jug;
       }
     },
-    florescasa: function (jug) {
-      const jug2 = nJugRand(jug);
-      texto(
-        `${jug.nombre} planta flores en el camino principal a la casa de ${jug2.nombre}`,
-        jug
-      );
-    },
-    cazarjuntos: function (jug) {
-      const jug2 = nJugRand(jug);
-      texto(
-        `${jug.nombre} convence a ${jug2.nombre} para ir de caza juntos`,
-        jug
-      );
-    },
   },
   Noche: {
+    /* sin cambio */
     juntarCamas: function (jug) {
       const jug2 = nJugRand(jug);
       texto(`${jug.nombre} y ${jug2.nombre} juntan sus camas para dormir`, jug);
@@ -1044,16 +1050,7 @@ export const Rel = {
     },
   },
   Nether: {
-    waterdrop: function (jug) {
-      const jug2 = nJugRand(jug);
-      dano = jug.vida;
-      jug.vida = 0;
-      danoInsta(dano);
-      texto(
-        `${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`,
-        jug
-      );
-    },
+    /* sin cambio */
     camas: function (jug) {
       const jug2 = nJugRand(jug);
       texto(
@@ -1068,6 +1065,7 @@ export const Rel = {
         jug
       );
     },
+    /* armadura */
     buscarNetherite(jug) {
       const jug2 = nJugRand(jug);
       if (jug.espada === "netherite") {
@@ -1083,8 +1081,20 @@ export const Rel = {
         jug2.espada = "netherite";
       }
     },
+    /* daño */
+    waterdrop: function (jug) {
+      const jug2 = nJugRand(jug);
+      dano = jug.vida;
+      jug.vida = 0;
+      danoInsta(dano);
+      texto(
+        `${jug2.nombre} observa a ${jug.nombre} muy cerca de un precipicio y le da un empujon, tirandolo a un mar de lava`,
+        jug
+      );
+    },
   },
   End: {
+    /* armadura */
     calabazaPrestar: function (jug) {
       const jug2 = nJugRand(jug);
       jug2.armadura.casco = 0;
@@ -1092,6 +1102,7 @@ export const Rel = {
       jug2.noEnderman = true;
       texto(`${jug.nombre} le da a ${jug2.nombre} una calabaza tallada`, jug);
     },
+    /* daño */
     ayudarEnd: function (jug) {
       const jug2 = nJugRand(jug);
       dano = getRandomIntInclusive(20, 10);
@@ -1132,6 +1143,7 @@ export const Rel = {
           jug
         );
     },
+    /* dragon */
     dobleDano: function (jug) {
       const jug2 = nJugRand(jug);
       danoDragon(jug.espada);
@@ -1160,47 +1172,55 @@ const DecidGlobal = {};
 
 const DecidDiaNoche = {
   encontrarLobo: async function (jug) {
-    const jug2 = nJugRand(jug);
-    texto(
-      `${jug.nombre} encuentra a un lobo solitario, pero solo tiene unos pocos huesos en su inventario.`,
-      jug
-    );
-    texto(`¿Deberia intentar domesticarlo?`, false);
-    let decision = await decidir("Intentar domesticarlo", "Ignorar al lobo");
-    if (decision) {
-      nrand = getRandomIntInclusive(2);
-      switch (nrand) {
-        case 0:
-          texto(
-            `${jug.nombre} gasta todos sus huesos pero no logra domesticarlo`,
-            jug
-          );
-          break;
-        case 1:
-          texto(`¡Ahora ${jug.nombre} tiene un nuevo perro!`, jug);
-          jug.perro++;
-          break;
-        case 2:
-          dano = getRandomIntInclusive(10);
-          adicional = dano ? "" : ", matandolo de un golpe";
-          jug.vida -= dano;
-          dano += jug.vida;
-          danoInsta(dano);
-          texto(
-            `${jug.nombre} confunde las teclas y golpea al lobo${adicional}`,
-            jug
-          );
-          break;
-      }
+    if (jug.huesos) {
+      texto(
+        `Con los huesos que habia conseguido, ${jug.nombre} domestica a un lobo`,
+        jug
+      );
+      jug.perro++;
+      jug.huesos = false;
     } else {
-      nrand = getRandomIntInclusive(1);
-      switch (nrand) {
-        case 0:
-          texto(`${jug.nombre} decide primero conseguir mas huesos`, jug);
-          break;
-        case 1:
-          texto(`${jug.nombre} es mas bien un fanatico de los gatos`, jug);
-          break;
+      texto(
+        `${jug.nombre} encuentra a un lobo solitario, pero solo tiene unos pocos huesos en su inventario.`,
+        jug
+      );
+      texto(`¿Deberia intentar domesticarlo?`, false);
+      let decision = await decidir("Intentar domesticarlo", "Ignorar al lobo");
+      if (decision) {
+        nrand = getRandomIntInclusive(2);
+        switch (nrand) {
+          case 0:
+            texto(
+              `${jug.nombre} gasta todos sus huesos pero no logra domesticarlo`,
+              jug
+            );
+            break;
+          case 1:
+            texto(`¡Ahora ${jug.nombre} tiene un nuevo perro!`, jug);
+            jug.perro++;
+            break;
+          case 2:
+            dano = getRandomIntInclusive(10);
+            adicional = dano ? "" : ", matandolo de un golpe";
+            jug.vida -= dano;
+            dano += jug.vida;
+            danoInsta(dano);
+            texto(
+              `${jug.nombre} confunde las teclas y golpea al lobo${adicional}`,
+              jug
+            );
+            break;
+        }
+      } else {
+        nrand = getRandomIntInclusive(1);
+        switch (nrand) {
+          case 0:
+            texto(`${jug.nombre} decide primero conseguir mas huesos`, jug);
+            break;
+          case 1:
+            texto(`${jug.nombre} es mas bien un fanatico de los gatos`, jug);
+            break;
+        }
       }
     }
   },
@@ -1210,10 +1230,7 @@ export const Decid = {
   Dia: {
     entrarCasa: async function (jug) {
       const jug2 = nJugRand(jug);
-      let jug3;
-      do {
-        jug3 = nJugRand(jug);
-      } while (jug3 === jug2);
+
       texto(
         `${jug.nombre} observa a ${jug2.nombre} alejarse de su casa, y no cree que vuelva pronto.`,
         jug
@@ -1221,7 +1238,7 @@ export const Decid = {
       texto(`¿Deberia aprovecharse y entrar a su casa?`, false);
       let decision = await decidir("Entrar", "No entrar");
       if (decision) {
-        nrand = getRandomIntInclusive(7);
+        nrand = getRandomIntInclusive(8);
         switch (nrand) {
           case 0:
             let parte = partes()[0],
@@ -1235,39 +1252,41 @@ export const Decid = {
             );
             break;
           case 1:
-            dano = getRandomIntInclusive(4, 1);
-            dano -= dano * ((4 * getArmadura(jug.armadura)) / 100);
-            jug.vida -= dano;
-            dano += jug.vida;
-            danoInsta(dano);
+            nrand = getRandomIntInclusive(64, 2);
             texto(
-              `${jug2.nombre} regresa mucho antes de lo esperado y golpea a ${jug.nombre} con los punos`,
-              jug
+              `Al entrar, encuentra una sala escondida tras un cuadro llena de cofres. Rapido, toma los ${nrand} diamantes que habia y escapa.`,
+              jug,
+              true
             );
+            jug.diamante += nrand;
             break;
-          case 2:
-            //   // hay que revisarlo
-            // texto(
-            //   `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los objetos que toman.`,
-            //   jug,
-            //   true
-            // ); //Deberia haber algun booleano o deberia conseguir armadura en vez de diamantes
+          case 2: {
+            const jug3 = nJugRand(jug, jug2);
+            nrand = getRandomIntInclusive(64, 2);
             texto(
-              `${jug.nombre} se interna en la casa sin inconvenientes, pero descubre que los cofres de ${jug2.nombre} se encontraban vacios`,
-              jug
+              `${jug.nombre} descubre que ${jug3.nombre} ha tenido la misma idea y se encuentra buscando entre los cofres. Deciden dividir los ${nrand} diamantes que encuentran.`,
+              jug,
+              true
             );
+            jug.diamante += Math.ceil(nrand / 2);
+            jug3.diamante += Math.floor(nrand / 2);
             break;
+          }
           case 3:
+            texto(
+              `${jug.nombre} se interna en la casa sin inconvenientes, pero descubre que los cofres se encontraban vacios`,
+              jug
+            );
+            break;
+          case 4:
             adicional = pocionIns(jug.vida);
-            curar(cura);
             texto(
               `${jug.nombre} encuentra un soporte de pociones en la casa y crea una pocion de <i>curacion instantanea ${adicional}</i>, bebiendola al instante`,
               jug
             );
-
             jug.vida = cura;
             break;
-          case 4:
+          case 5:
             dano = jug.vida;
             jug.vida = 0;
             danoInsta(dano);
@@ -1276,21 +1295,32 @@ export const Decid = {
               jug
             );
             break;
-          case 5:
+          case 6:
             texto(
               `${jug.nombre} piensa en tomar todo lo que encuentre, pero se siente culpable y decide no traicionar a ${jug2.nombre}`,
               jug
             );
             break;
-          case 6:
+          case 7:
             texto(
               `Antes de que ${jug2.nombre} regrese, ${jug.nombre} llena su casa de TNT, activandola y alejandose`,
               jug
             );
             break;
-          case 7:
+          case 8:
             texto(
               `Cuando ${jug2.nombre} regresa se sorprende al encontrar su casa llena de ovejas`,
+              jug
+            );
+            break;
+          case 9:
+            dano = getRandomIntInclusive(4, 1);
+            dano -= dano * ((4 * getArmadura(jug.armadura)) / 100);
+            jug.vida -= dano;
+            dano += jug.vida;
+            danoInsta(dano);
+            texto(
+              `${jug2.nombre} regresa mucho antes de lo esperado y golpea a ${jug.nombre} con los punos`,
               jug
             );
             break;
@@ -1311,18 +1341,16 @@ export const Decid = {
         nrand = getRandomIntInclusive(4);
         switch (nrand) {
           case 0:
-            if (jug.espada !== "hierro") {
-              texto(
-                `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo gran cantidad de objetos de los 4 cofres ocultos`,
-                jug
-              );
-            } else {
-              texto(
-                `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo diamantes suficientes para craftear una nueva espada`,
-                jug
-              );
-              jug.espada = "diamante";
-            }
+            console.log("templo");
+            nrand = getRandomIntInclusive(5);
+            adicional = nrand ? `Entre estos, ${nrand} diamantes` : "";
+            texto(
+              `${jug.nombre} baja picando en forma de escalera en torno al gran agujero en el centro del templo, consiguiendo gran cantidad de objetos de los 4 cofres ocultos.` +
+                adicional,
+              jug
+            );
+            jug.diamante += nrand;
+            jug.funcion.push(() => RandomDiaNoche.upEspada());
             break;
           case 1:
             texto(
