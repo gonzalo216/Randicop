@@ -10,13 +10,7 @@ function loseArticle() {
     "finalista"
   );
   datos(finalista);
-  titulo("", "volver");
-  crearBotones(
-    `Volver a Jugar`,
-    `<a href="./preinicio.html">Inicio</a>`,
-    "btn-final"
-  );
-  titulo("", "espacio");
+  volver();
 }
 function winArticle() {
   console.log(finalista);
@@ -36,13 +30,7 @@ function winArticle() {
     if (nombres.length !== 1) titulo(`<h3>${el.nombre}</h3>`, "nombre-winner");
     datos(el);
   }
-  titulo("", "volver");
-  crearBotones(
-    `Volver a Jugar`,
-    `<a href="./preinicio.html">Inicio</a>`,
-    "btn-final"
-  );
-  titulo("", "espacio");
+  volver();
 }
 function datos(el) {
   const petsArray = [];
@@ -70,4 +58,13 @@ function datos(el) {
   `,
     "datos"
   );
+}
+function volver(){
+  titulo("", "volver");
+  crearBotones(
+    `Volver a Jugar`,
+    `Volver a inicio`,
+    "btn-final"
+  );
+  titulo("", "espacio");
 }

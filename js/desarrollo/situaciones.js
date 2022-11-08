@@ -67,12 +67,12 @@ async function eventos(evento, i, cant, muertos) {
     jugs.forEach((n) => {
       if (lista[n].vida > 0) vivos++;
     });
-    console.log(jug.nombre);
+    //console.log(jug.nombre);
     do {
       repetir = false;
       if (jug.vida === 20)
-        vivos > 1
-          ? (nrand = getRandomIntInclusive(4, 1)) //saltea curar
+        vivos > 1 //saltea curar
+          ? (nrand = getRandomIntInclusive(4, 1)) 
           : (nrand = getRandomIntInclusive(2, 1));
       else
         vivos > 1
@@ -84,7 +84,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Vida[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Vida[evento][accion[nrand]](jug);
-          console.log(accion[nrand]);
+          //console.log(accion[nrand]);
           break;
         }
         case 1: {
@@ -92,7 +92,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Dano[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Dano[evento][accion[nrand]](jug);
-          console.log(accion[nrand]);
+          //console.log(accion[nrand]);
           break;
         }
         case 2: {
@@ -100,7 +100,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Random[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Random[evento][accion[nrand]](jug);
-          console.log(accion[nrand]);
+          //console.log(accion[nrand]);
           break;
         }
         case 3: {
@@ -109,7 +109,7 @@ async function eventos(evento, i, cant, muertos) {
             const accion = Object.keys(Decid[evento]);
             nrand = getRandomIntInclusive(accion.length - 1);
             await Decid[evento][accion[nrand]](jug);
-            console.log(accion[nrand]);
+            //console.log(accion[nrand]);
           } else repetir = true;
           break;
         }
@@ -118,7 +118,7 @@ async function eventos(evento, i, cant, muertos) {
           const accion = Object.keys(Rel[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
           Rel[evento][accion[nrand]](jug);
-          console.log(accion[nrand]);
+          //console.log(accion[nrand]);
           break;
         }
       }

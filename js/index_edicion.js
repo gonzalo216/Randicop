@@ -15,14 +15,13 @@ d.addEventListener("click", async (e) => {
     $desarrolloJs.setAttribute("src", "/js/index_desarrollo.js");
     resetear();
   }
-  if (
-    e.target.matches(".btn-final:last-child") ||
-    e.target.matches(".btn-final:last-child *")
-  ) {
-    console.log("ok");
+  if (e.target.matches(".btn-final > button:first-child")) {
     resetJugs();
     await insertar("./desarrollo.html");
     resetear();
+  }
+  if (e.target.matches(".btn-final > button:last-child")) {
+    location.reload()
   }
   if (e.target.matches("#mas") || e.target.matches("#mas *")) {
     crearFormulario(1);
