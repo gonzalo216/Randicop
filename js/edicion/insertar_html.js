@@ -7,6 +7,6 @@ export default async function insertar(url) {
     .then((html) => {
       $main.innerHTML = html;
     })
-    .catch((err) => ($main.innerHTML = `<h1>${err}</h1>`));
+    .catch((err) => console.log(err));
   return;
 }

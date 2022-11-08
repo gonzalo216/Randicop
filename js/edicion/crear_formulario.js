@@ -1,8 +1,7 @@
-const d = document,
-  $template = d.querySelector("template").content,
-  $fragment = d.createDocumentFragment();
-
+const d = document;
 export default function crearFormulario(num, eliminar = false) {
+  const $template = d.querySelector("template").content,
+  $fragment = d.createDocumentFragment();
   fetch("/json/nombres.json")
     .then((res) => (res.ok ? res.json() : Promise.reject(res)))
     .then((json) => {

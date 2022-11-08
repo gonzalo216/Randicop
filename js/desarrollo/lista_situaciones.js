@@ -488,7 +488,7 @@ Object.assign(Vida.End, VidaGlobal);
 const RandomGlobal = {
     locura: function (jug) {
       texto(
-        `${nombre} entra en la locura pensando por que el cubo no tiene forma de cubo`,
+        `${jug.nombre} entra en la locura pensando por que el cubo no tiene forma de cubo`,
         jug
       );
     },
