@@ -17,6 +17,7 @@ import {
   nJugRand,
   pocionIns,
 } from "./func_lista.js";
+import { verifEvent } from "./situaciones.js";
 
 let nrand, dano, cura, adicional;
 /* ----------------------------------------DAnO----------------------------------------*/
@@ -93,6 +94,28 @@ const DanoGlobal = {
         } else adicional = `Un creeper sorpende a ${jug.nombre} por la espalda`;
       }
       texto(adicional, jug);
+    },
+    creeperCargado: function (jug) {
+      dano = jug.vida;
+      jug.vida = 0;
+      danoInsta(dano);
+      texto(
+        `${jug.nombre} se encuentra con un creeper electrico e intenta sacarse una foto con el`,
+        jug
+      );
+      const jug2 = nJugRand(jug);
+      if (jug2) {
+        jug2.funcion.push(() => {
+          nrand = getRandomIntInclusive(4);
+          if (nrand) {
+            texto(`${jug2.nombre} encuentra la cabeza de ${jug.nombre}`, jug2);
+            jug2.trofeo = jug.nombre;
+            return false;
+          } else {
+            return true;
+          }
+        });
+      }
     },
     /* grava y lava */
     grava: function (jug) {
@@ -339,7 +362,7 @@ export const Dano = {
               "un pico al destruir un end crystal, pero logra hacer un waterdrop";
             break;
         }
-        dragon.crystalAct = dragon.crystalAct - 1;
+        dragon.crystalAct -= 1;
       } else {
         dano = getRandomIntInclusive(20, 3);
         adicional = `${jug.nombre} cae intentando subir a un pico del end para luchar contra el dragon`;
@@ -579,7 +602,7 @@ const RandomGlobal = {
     },
     recuento: function (jug) {
       texto(`${jug.nombre} se la paso minando diamantes`, jug);
-      jug.diamante += 15;
+      jug.diamante += getRandomIntInclusive(64, 2);
     },
     perroHuesos: function (jug) {
       if (jug.huesos) {
@@ -688,6 +711,16 @@ export const Random = {
         `${jug.nombre} pierde la cuenta del tiempo pasado desde que vio por ultima vez un portal`,
         jug
       );
+      jug.funcion.push(() => {
+        console.log("sigueSinPortal");
+        if (!verifEvent("secondWorld")) {
+          if (getRandomIntInclusive(1)) {
+            texto(`${jug.nombre} sigue sin encontrar un portal`);
+            return false;
+          } else return true;
+        }
+        return true;
+      });
     },
     esponjas: function (jug) {
       texto(
@@ -697,12 +730,6 @@ export const Random = {
     },
     relojRoto: function (jug) {
       texto(`${jug.nombre} observa su reloj, pero parece estar roto...`, jug);
-    },
-    mascotaStrider: function (jug) {
-      texto(`${jug.nombre} se encarina con un strider solitario`, jug);
-    },
-    piensaStrider: function (jug) {
-      texto(`${jug.nombre} piensa en adoptar a un strider como mascota`, jug);
     },
     fortaleza: function (jug) {
       texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug);
@@ -720,11 +747,20 @@ export const Random = {
           `Con el hongo distorsionado y una montura, ${jug.nombre} recorre los alrededores montando a un strider`,
           jug
         );
-      } else
-        texto(
-          `${jug.nombre} desea tener un hongo distorsionado para pasear sobre un strider`,
-          jug
-        );
+      } else {
+        switch (getRandomIntInclusive(2)) {
+          case 0:
+            adicional = `${jug.nombre} desea tener un hongo distorsionado para pasear sobre un strider`;
+            break;
+          case 1:
+            adicional = `${jug.nombre} se encarina con un strider solitario`;
+            break;
+          case 2:
+            adicional = `${jug.nombre} piensa en adoptar a un strider como mascota`;
+            break;
+        }
+        texto(adicional, jug);
+      }
     },
   },
   End: {
@@ -756,22 +792,6 @@ export const Random = {
     },
     /* Dragon */
     //cristales || cristales && danoDragon
-    aguaCrystal: function (jug) {
-      if (dragon.crystalAct) {
-        texto(
-          `${jug.nombre} logra destruir un end crystal solo con bolas de nieve`,
-          jug
-        );
-        dragon.crystalAct = dragon.crystalAct - 1;
-      } else {
-        dragon.vida = dragon.vida - 8;
-        updateProgreso();
-        texto(
-          `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
-          jug
-        );
-      }
-    },
     nieveCrystal: function (jug) {
       if (dragon.crystalAct) {
         texto(
@@ -780,6 +800,11 @@ export const Random = {
         );
         dragon.crystalAct -= 1;
       } else {
+        nrand = danoDragon(jug.espada);
+        texto(
+          `${jug.nombre} hiere al ender dragon con ${nrand} golpes de su espada de ${jug.espada}`,
+          jug
+        );
       }
     },
     huevosCrystal: function (jug) {
@@ -790,10 +815,9 @@ export const Random = {
         );
         dragon.crystalAct -= 1;
       } else {
-        dragon.vida = dragon.vida - 8;
-        updateProgreso();
+        nrand = danoDragon(jug.espada);
         texto(
-          `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
+          `${jug.nombre} hiere al ender dragon con ${nrand} golpes de su espada de ${jug.espada}`,
           jug
         );
       }
@@ -804,23 +828,29 @@ export const Random = {
           `${jug.nombre} trepa a la cima de un pico y destruye un end crystal`,
           jug
         );
-        dragon.crystalAct = dragon.crystalAct - 1;
+        dragon.crystalAct -= 1;
       } else {
-        dragon.vida = dragon.vida - 8;
-        updateProgreso();
+        nrand = danoDragon(jug.espada);
         texto(
-          `${jug.nombre} hiere al ender dragon golpeandolo con un hacha`,
+          `${jug.nombre} hiere al ender dragon con ${nrand} golpes de su espada de ${jug.espada}`,
           jug
         );
       }
     },
     arcoCrystal: function (jug) {
-      if (jug.arco && dragon.crystalAct) {
-        texto(
-          `${jug.nombre} utiliza su arco para destruir un end crystal`,
-          jug
-        );
-        dragon.crystalAct -= 1;
+      if (jug.arco) {
+        if (dragon.crystalAct) {
+          texto(
+            `${jug.nombre} utiliza su arco para destruir un end crystal`,
+            jug
+          );
+          dragon.crystalAct -= 1;
+        } else {
+          nrand = getRandomIntInclusive(7, 3); //no se cuanto daño hace un arco
+          dragon.vida -= 5 * nrand;
+          updateProgreso();
+          texto(`${jug.nombre} le acierta al Dragon ${nrand} flechazos`, jug);
+        }
       } else {
         texto(
           `${jug.nombre} intenta herir al dragon con un stack de bolas de nieve...`,
@@ -928,26 +958,6 @@ const RelDiaNoche = {
     );
   },
   /* daño */
-  creeperCargado: function (jug) {
-    dano = jug.vida;
-    jug.vida = 0;
-    danoInsta(dano);
-    texto(
-      `${jug.nombre} se encuentra con un creeper electrico e intenta sacarse una foto con el`,
-      jug
-    );
-    const jug2 = nJugRand(jug);
-    jug2.funcion.push(() => {
-      nrand = getRandomIntInclusive(4);
-      if (nrand) {
-        texto(`${jug2.nombre} encuentra la cabeza de ${jug.nombre}`, jug2);
-        jug2.trofeo = jug.nombre;
-        return false;
-      } else {
-        return true;
-      }
-    });
-  },
 };
 
 export const Rel = {
@@ -1082,7 +1092,7 @@ export const Rel = {
       }
     },
     /* daño */
-    waterdrop: function (jug) {
+    empujon: function (jug) {
       const jug2 = nJugRand(jug);
       dano = jug.vida;
       jug.vida = 0;

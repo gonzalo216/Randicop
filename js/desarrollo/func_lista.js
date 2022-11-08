@@ -3,9 +3,12 @@ import { curar, danoInsta, texto, updateProgreso } from "./print_lines.js";
 import { dragon, jugs, lista } from "./variables.js";
 
 export function nJugRand(jug, jug2 = null) {
-  let num;
+  let num,
+    i = 0;
   do {
     num = getRandomIntInclusive(Object.keys(lista).length - 1);
+    if (i >= 50) return false;
+    i++;
   } while (
     lista[jugs[num]].vida <= 0 ||
     lista[jugs[num]].nombre === jug.nombre ||

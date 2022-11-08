@@ -13,6 +13,12 @@ let nrand,
   primNether,
   secondWorld,
   primEnd;
+export function verifEvent(variable) {
+  if (variable === "primWorld") return primWorld;
+  if (variable === "primNether") return primNether;
+  if (variable === "secondWorld") return secondWorld;
+  if (variable === "primEnd") return primEnd;
+}
 export function resetEventos() {
   cont = 0;
   contNether = 0;
