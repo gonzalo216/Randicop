@@ -56,7 +56,7 @@ export function updateJson() {
   const $celdas = d.querySelectorAll(".celda");
   $celdas.forEach(
     ($celda) =>
-      (json[$celda.querySelector(`button[name="id"]`)].name =
+      (json[$celda.querySelector(`button[name="id"]`).dataset.id].name =
         $celda.querySelector(`input[name="nombre"]`).value)
   );
 }

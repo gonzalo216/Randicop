@@ -6,9 +6,10 @@ export function iniciarpre() {
   getJson(5);
 }
 d.addEventListener("click", (e) => {
-  if (e.target.matches("#mas") || e.target.matches("#mas *")) putJson();
-  if (e.target.matches("#menos") || e.target.matches("#menos *"))
-    deleteJson(false);
+  if (e.target.matches(".protag-div"))
+    e.target.firstElementChild.checked = !e.target.firstElementChild.checked;
+  if (e.target.matches("#mas")) putJson();
+  if (e.target.matches("#menos")) deleteJson(false);
   if (e.target.matches(`button[name="id"]`)) deleteJson(e.target);
   if (e.target.matches("summary") || e.target.matches("summary *")) {
     toggleDescription();

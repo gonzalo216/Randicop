@@ -189,6 +189,7 @@ input[type="checkbox"] {
   transform: translateY(-0.075em);
   display: grid;
   place-content: center;
+  cursor: pointer;
 }
 input[type="checkbox"]::before {
   content: "";
@@ -205,9 +206,8 @@ input[type="checkbox"]:checked::before {
 }
 .label-protag {
   position: absolute;
-  top: -0.83rem;
+  top: -1px;
   left: 1.75rem;
-  padding: 10px 0;
   pointer-events: none;
   color: lightgray;
   transition: 0.5s;
@@ -245,6 +245,7 @@ input[type="text"]:valid ~ .label-name {
 }
 button[name="id"] {
   position: absolute;
+  z-index: 1;
   width: 0.5rem;
   height: 1rem;
   top: 5px;
@@ -258,10 +259,15 @@ button[name="id"] {
 
 /* BOTONES */
 .buttons {
-  margin: 0 3rem 0 1rem;
   display: grid;
-  grid-template-columns: 20% 60% 20%;
   justify-items: center;
+}
+.buttons > div {
+  margin-block: 1rem;
+  display: inline-flex;
+  width: 90%;
+  margin-inline: auto;
+  justify-content: space-evenly;
   align-items: center;
   column-gap: 1rem;
 }
@@ -295,25 +301,24 @@ button[name="id"] {
   width: min(4rem, 90%);
   height: 4rem;
   border: thick solid black;
-  border-radius: 45%;
+  border-radius: 30%;
   cursor: pointer;
   box-shadow: 0 0 1rem 0.1rem black;
   transition: box-shadow 1s ease;
-}
-.mas > img,
-.menos > img {
-  width: 100%;
-  height: 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 .mas {
   background-color: limegreen;
+  background-image: url(/assets/svg/add.svg);
 }
 .mas:hover {
-  box-shadow: 0 0 1rem 0.75rem greenyellow;
+  box-shadow: 0 0 1rem 0.5rem forestgreen;
 }
 .menos {
-  background-color: firebrick;
+  background-color: darkred;
+  background-image: url(/assets/svg/remove.svg);
 }
 .menos:hover {
-  box-shadow: 0 0 1rem 0.75rem red;
+  box-shadow: 0 0 1rem 0.5rem firebrick;
 }
