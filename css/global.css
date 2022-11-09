@@ -95,6 +95,21 @@ h1 {
 h1.sticky {
   transform: scale(1.2);
 }
+.header h2 {
+  width: max-content;
+  justify-self: right;
+  margin-right: 5rem;
+  transform-origin: right;
+
+  width: max-content;
+  font-family: Monoton;
+  font-size: min(7vw, 60px);
+  transition: transform 0.5s ease;
+  transform-origin: left;
+}
+.header h2.sticky{
+  transform: scale(1.2);
+}
 .panel-btn {
   width: max-content;
   justify-self: right;
