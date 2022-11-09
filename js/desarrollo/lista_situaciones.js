@@ -569,6 +569,7 @@ const RandomGlobal = {
     },
     //espada
     upEspada: function (jug) {
+      console.log(jug)
       if (jug.espada === "diamante") {
         if (jug.netherite) {
           texto(`${jug.nombre} mejora su espada, ahora es de netherite`, jug);
