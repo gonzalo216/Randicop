@@ -297,7 +297,8 @@ button[name="id"] {
   font-size: 2rem;
 }
 .mas,
-.menos {
+.menos,
+.reset {
   width: min(4rem, 90%);
   height: 4rem;
   border: thick solid black;
