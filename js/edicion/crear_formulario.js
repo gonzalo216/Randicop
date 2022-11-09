@@ -1,3 +1,4 @@
+import { updateJugIni } from "/js/index_edicion.js";
 import { json } from "/json/nombres.js";
 
 const d = document;
@@ -54,6 +55,7 @@ export function deleteJson(target) {
 }
 export function updateJson() {
   const $celdas = d.querySelectorAll(".celda");
+  updateJugIni($celdas.length);
   $celdas.forEach(
     ($celda) =>
       (json[$celda.querySelector(`button[name="id"]`).dataset.id].name =
