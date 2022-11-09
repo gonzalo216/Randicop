@@ -159,7 +159,8 @@ details > p {
   width: 100%;
 }
 .flex > div {
-  width: 10rem;
+  position: relative;
+  width: 12rem;
   background: var(--color-divs);
   padding: 1.5rem 1rem 0;
   margin: 0px;
@@ -241,6 +242,18 @@ input[type="text"]:valid ~ .label-name {
   font-size: 0.75rem;
   color: greenyellow;
   -webkit-text-stroke: 0;
+}
+button[name="id"] {
+  position: absolute;
+  width: 0.5rem;
+  height: 1rem;
+  top: 5px;
+  right: 5px;
+  border-radius: 30%;
+  background-color: darkred;
+  background-image: url(/assets/svg/remove.svg);
+  background-size: 90% 100%;
+  background-position: center;
 }
 
 /* BOTONES */
