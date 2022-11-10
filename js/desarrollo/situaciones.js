@@ -1,5 +1,5 @@
 import { crearProgreso, haySit, texto, titulo } from "./print_lines.js";
-import { Dano, Decid, Random, Rel, Vida } from "./lista_situaciones.js";
+import { DanoRandom, Decid, Rel, Vida } from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs, dragon } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
@@ -72,12 +72,12 @@ async function eventos(evento, i, cant, muertos) {
       repetir = false;
       if (jug.vida === 20)
         vivos > 1 //saltea curar
-          ? (nrand = getRandomIntInclusive(5, 1)) 
-          : (nrand = getRandomIntInclusive(2, 1));
+          ? (nrand = getRandomIntInclusive(3, 1)) 
+          : (nrand = getRandomIntInclusive(1, 1));
       else
         vivos > 1
-          ? (nrand = getRandomIntInclusive(5))
-          : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+          ? (nrand = getRandomIntInclusive(3))
+          : (nrand = getRandomIntInclusive(1)); //saltea relaciones
       switch (nrand) {
         case 0: {
           // cura
@@ -88,23 +88,14 @@ async function eventos(evento, i, cant, muertos) {
           break;
         }
         case 1: {
-          // daño;
-          const accion = Object.keys(Dano[evento]);
+          // dañoRandom;
+          const accion = Object.keys(DanoRandom[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
-          Dano[evento][accion[nrand]](jug);
+          DanoRandom[evento][accion[nrand]](jug);
           //console.log(accion[nrand]);
           break;
         }
-        case 2:
-        case 3: {
-          // random
-          const accion = Object.keys(Random[evento]);
-          nrand = getRandomIntInclusive(accion.length - 1);
-          Random[evento][accion[nrand]](jug);
-          //console.log(accion[nrand]);
-          break;
-        }
-        case 4: {
+        case 2: {
           //decisiones
           if (jug.protag) {
             const accion = Object.keys(Decid[evento]);
@@ -114,7 +105,7 @@ async function eventos(evento, i, cant, muertos) {
           } else repetir = true;
           break;
         }
-        case 5: {
+        case 3: {
           //relaciones
           const accion = Object.keys(Rel[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
@@ -139,15 +130,13 @@ export default async function juego() {
   titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
   cont++;
   //if (cont > 3 && primNether) caso = 10; //ir al Nether a partir de los 3 dias transcurridos
-  if (cont > 3 && primNether) caso = getRandomIntInclusive(5, 1);
-  // 1/5 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
-  //if (contNether > 3 && secondWorld) caso = 9; //ir al OverWorld a partir de los 3 dias transcurridos en el nether
-  if (contNether > 3 && secondWorld) caso = getRandomIntInclusive(8, 4);
-  // 1/5 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
-  //if (cont > 10 && contNether > 3 && primEnd) caso = 0; //ir al end a partir de los 10 dias transcurridos en total
+  if (cont > 3 && primNether) caso = getRandomIntInclusive(4, 1);
+  // 1/4 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
+  if (contNether > 3 && secondWorld) caso = getRandomIntInclusive(6, 3);
+  // 1/4 de chanses de que puedas ir al OverWorld a partir de los 3 dias transcurridos en el nether
   if (cont > 10 && contNether > 3 && primEnd && !secondWorld)
-    caso = getRandomIntInclusive(4);
-  // 1/5 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
+    caso = getRandomIntInclusive(3);
+  // 1/4 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
   if (caso === 0) {
     // END
     if (primEnd) {
@@ -158,7 +147,7 @@ export default async function juego() {
       crearProgreso(dragon.vida);
       await eventos("End", 0, cant, muertos);
     }
-  } else if (caso < 5) {
+  } else if (caso < 4) {
     // OVERWORLD
     if (primWorld) {
       cont--;

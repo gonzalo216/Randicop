@@ -6,14 +6,12 @@ import { iniciarpre } from "./index_edicion.js";
 const d = document,
   $index = d.getElementById("index"),
   $volver = d.querySelector(".volver-svg");
-console.log($volver);
 d.addEventListener("DOMContentLoaded", async (e) => {
   await insertar("./edicion.html");
   $index.setAttribute("src", "/js/index_edicion.js");
   iniciarpre();
 });
 d.addEventListener("click", async (e) => {
-  console.log("click");
   if (e.target.matches(".mImg") || e.target.matches(".mImg *")) {
     updateJson();
     crearJugs();
