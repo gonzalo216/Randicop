@@ -21,9 +21,6 @@ section {
   margin: 0;
   position: relative;
 }
-.hidden {
-  visibility: hidden;
-}
 /* HEADER */
 h1 {
   color: var(--color-body);
@@ -174,10 +171,11 @@ details > p {
 
 .formulario {
   display: grid;
-  grid-template-rows: max-content auto;
+  grid-template-rows: auto max-content;
 
 }
 .flex {
+  align-self: center;
   display: inline-flex;
   justify-content: center;
   gap: 1em;
