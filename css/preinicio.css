@@ -21,14 +21,13 @@ section {
   margin: 0;
   position: relative;
 }
-
+.hidden {
+  visibility: hidden;
+}
 /* HEADER */
 h1 {
   color: var(--color-body);
   /* animation: glow 2s ease-in-out infinite alternate; */
-}
-.minei {
-  color: var(--color-body);
 }
 @keyframes glow {
   from {
@@ -75,6 +74,26 @@ h1 {
 .panel-btn {
   background-color: var(--color-body);
   box-shadow: 1px 1px 1rem var(--color-shadow-body);
+}
+.volver-svg {
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  background-color: inherit;
+  background-image: url(/assets/svg/volver.svg);
+  justify-self: right;
+  margin-right: 1rem;
+  transition: transform 0.5s ease;
+}
+.volver-svg.sticky {
+  transform: scale(1.2);
+}
+.volver-svg:hover {
+  transform: scale(1.2);
+}
+.volver-svg.sticky:hover {
+  transform: scale(1.4);
 }
 /* DESCRIPCION */
 /* .summery {
