@@ -49,28 +49,28 @@ async function eventos(evento, i, cant, muertos) {
     const jug = lista[jugs[i]];
     let vivos = 0,
       repetir;
-    if (jug.vida <= 0) {
-      i++;
-      continue;
-    }
-    if (jug.funcion.length) {
-      let seguir = jug.funcion[0]();
-      jug.funcion.shift();
-      if (!seguir) {
-        if (jug.vida <= 0) muertos.push(jugs[i]);
-        {
-          i++;
-          continue;
+      if (jug.funcion.length && (jug.vida > 0 || jug.revivir)) {
+        let seguir = jug.funcion[0]();
+        jug.funcion.shift();
+        if (!seguir) {
+          if (jug.vida <= 0) muertos.push(jugs[i]);
+          {
+            i++;
+            continue;
+          }
         }
       }
-    }
+      if (jug.vida <= 0) {
+        i++;
+        continue;
+      }
     jugs.forEach((n) => {
       if (lista[n].vida > 0) vivos++;
     });
     //console.log(jug.nombre);
     do {
       repetir = false;
-      if (jug.vida === 20)
+      if (jug.vida >= 20)
         vivos > 1 //saltea curar
           ? (nrand = getRandomIntInclusive(3, 1)) 
           : (nrand = getRandomIntInclusive(1, 1));

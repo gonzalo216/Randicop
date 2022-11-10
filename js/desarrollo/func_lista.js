@@ -57,3 +57,15 @@ export function banneado(jug, chance) {
     }
   });
 }
+export function revivir(jug) {
+  jug.revivir = true
+  jug.funcion.push(()=>{
+    jug.revivir = false;
+    curar(20);
+    texto(
+      `Los moderadores le dieron una segunda oportunidad a ${jug.nombre}`,
+      jug
+    );
+    jug.vida = 20;
+  })
+}

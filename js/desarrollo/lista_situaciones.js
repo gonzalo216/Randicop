@@ -724,7 +724,7 @@ const Random = {
         );
       }
     },
-    dañoCrystal: function (jug) {
+    danoCrystal: function (jug) {
       if (dragon.crystalAct) {
         texto(
           `${jug.nombre} trepa a la cima de un pico y destruye un end crystal`,
@@ -748,7 +748,7 @@ const Random = {
           );
           dragon.crystalAct -= 1;
         } else {
-          nrand = getRandomIntInclusive(7, 3); //no se cuanto daño hace un arco
+          nrand = getRandomIntInclusive(7, 3); //no se cuanto dano hace un arco
           dragon.vida -= 5 * nrand;
           updateProgreso();
           texto(`${jug.nombre} le acierta al Dragon ${nrand} flechazos`, jug);
@@ -971,7 +971,7 @@ const RelDiaNoche = {
       jug
     );
   },
-  /* daño */
+  /* dano */
 };
 
 export const Rel = {
@@ -998,7 +998,7 @@ export const Rel = {
         jug
       );
     },
-    /* daño */
+    /* dano */
     vivirjuntos: function (jug) {
       if (jug.conv) {
         if (jug.conv.vida <= 0) {
@@ -1094,7 +1094,7 @@ export const Rel = {
       const jug2 = nJugRand(jug);
       if (jug.espada === "netherite") {
         texto(
-          `${jug2.nombre} acompaña a ${jug.nombre} en busca de netherite`,
+          `${jug2.nombre} acompana a ${jug.nombre} en busca de netherite`,
           jug
         );
       } else {
@@ -1105,7 +1105,7 @@ export const Rel = {
         jug2.espada = "netherite";
       }
     },
-    /* daño */
+    /* dano */
     empujon: function (jug) {
       const jug2 = nJugRand(jug);
       dano = jug.vida;
@@ -1126,7 +1126,7 @@ export const Rel = {
       jug2.noEnderman = true;
       texto(`${jug.nombre} le da a ${jug2.nombre} una calabaza tallada`, jug);
     },
-    /* daño */
+    /* dano */
     ayudarEnd: function (jug) {
       const jug2 = nJugRand(jug);
       dano = getRandomIntInclusive(20, 10);

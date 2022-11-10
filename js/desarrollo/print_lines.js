@@ -1,4 +1,5 @@
-import { getArmadura } from "./func_lista.js";
+import { getRandomIntInclusive } from "./funciones.js";
+import { getArmadura, revivir } from "./func_lista.js";
 import { $transcurso, copySize } from "./print_blocks.js";
 import { dragon } from "./variables.js";
 
@@ -98,6 +99,8 @@ export function texto(text, jug, bol = true) {
     armar(jug.armadura);
     if (jug.vida > 20) jug.vida = 20;
     vidaDefault(jug.vida);
+    if(jug.vida <= 0)
+      if(getRandomIntInclusive(1000) === 10) revivir(jug);
   }
   imprimir(text, ".texto", bol);
 }
