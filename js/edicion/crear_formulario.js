@@ -42,7 +42,7 @@ export function putJson() {
 export function deleteJson(target) {
   updateJson();
   const $celdas = d.querySelectorAll(".celda");
-  if ($celdas.length !== 0) {
+  if ($celdas.length !== 1) {
     if (!target) {
       $celdas[$celdas.length - 1].remove();
       return;
