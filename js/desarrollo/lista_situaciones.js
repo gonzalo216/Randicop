@@ -146,7 +146,7 @@ const DanoGlobal = {
       texto(`${jug.nombre} se ve forzado a comer una papa envenenada`, jug);
     },
   };
-export const Dano = {
+const Dano = {
   Dia: {
     charco: function (jug) {
       dano = getRandomIntInclusive(3, 1);
@@ -343,7 +343,7 @@ export const Dano = {
       let adicional2 = "";
       if (dragon.crystalAct) {
         adicional2 = "sale volando de";
-        switch (nrand) {
+        switch (getRandomIntInclusive(2)) {
           case 0:
             dano = getRandomIntInclusive(20, 7);
             if (jug.vida === 0)
@@ -541,7 +541,7 @@ const RandomGlobal = {
       }
     },
   };
-export const Random = {
+const Random = {
   Dia: {
     oveja: function (jug) {
       texto(
@@ -822,6 +822,18 @@ Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
 Object.assign(Random.Nether, RandomGlobal);
 Object.assign(Random.End, RandomGlobal);
+
+/* ----------------------------------------DanoRandom----------------------------------------*/
+export const DanoRandom = {
+  Dia:{},
+  Noche:{},
+  Nether: {},
+  End: {},
+}
+Object.assign(DanoRandom.Dia, Random.Dia, Dano.Dia);
+Object.assign(DanoRandom.Noche, Random.Noche, Dano.Noche);
+Object.assign(DanoRandom.Nether, Random.Nether, Dano.Nether);
+Object.assign(DanoRandom.End, Random.End, Dano.End);
 
 /* ----------------------------------------VIDA----------------------------------------*/
 const VidaGlobal = {
