@@ -385,105 +385,6 @@ Object.assign(Dano.Noche, DanoDiaNoche);
 Object.assign(Dano.Nether, DanoGlobal);
 Object.assign(Dano.End, DanoGlobal);
 
-/* ----------------------------------------VIDA----------------------------------------*/
-const VidaGlobal = {
-    pocionCura: function (jug) {
-      adicional = pocionIns(jug.vida);
-      texto(
-        `${jug.nombre} usa una pocion de <i>curacion instantanea ${adicional}</i>`,
-        jug
-      );
-      jug.vida += adicional === "I" ? 4 : 8;
-    },
-    manzana: function (jug) {
-      cura = 4 + jug.vida;
-      vidaExtra(4);
-      curar(cura);
-      texto(`${jug.nombre} come una manzana dorada`, jug);
-      jug.vida = cura;
-    },
-    Notch: function (jug) {
-      console.log("Notch");
-      if (jug.vida > 15) {
-        banneado(jug, 5);
-        adicional = "dorada";
-        vidaExtra(4);
-      } else {
-        banneado(jug, 1);
-        adicional = "de Notch";
-        vidaExtra(16);
-      }
-      curar(20);
-      texto(
-        `${jug.nombre} toma una manzana ${adicional} desde el creativo`,
-        jug
-      );
-      jug.vida = 20;
-    },
-  },
-  VidaDiaNoche = {
-    bruja: function (jug) {
-      adicional = pocionIns(jug.vida);
-      texto(
-        `Una bruja se confunde y le tira una pocion splash de <i>curacion instantanea ${adicional}</i> a ${jug.nombre}`,
-        jug
-      );
-      jug.vida += adicional === "I" ? 4 : 8;
-    },
-  };
-export const Vida = {
-  Dia: {
-    angel: function (jug) {
-      cura = getRandomIntInclusive(19, 1) + jug.vida;
-      curar(cura);
-      texto(`Un angel baja del cielo y cura a ${jug.nombre}`, jug);
-      jug.vida = cura;
-    },
-  },
-  Noche: {
-    // angel: function (jug) { // dsp hago con cada sopa
-    //   cura = 3 + jug.vida;
-    //   texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
-    //   vidaDefault(jug);
-    //   curar(cura);
-    //   jug.vida = cura;
-    // },
-  },
-  Nether: {
-    cofreManzana: function (jug) {
-      cura = 4 + jug.vida;
-      vidaExtra(4);
-      curar(cura);
-      texto(
-        `${jug.nombre} consigue una manzana dorada en el cofre de una fortaleza`,
-        jug
-      );
-      jug.vida = cura;
-    },
-    cofreManzana: function (jug) {
-      cura = 4 + jug.vida;
-      vidaExtra(4);
-      curar(cura);
-      texto(
-        `${jug.nombre} consigue una manzana dorada en el cofre de un bastion`,
-        jug
-      );
-      jug.vida = cura;
-    },
-  },
-  End: {},
-};
-repetir(Vida.Nether, 4);
-repetir(Vida.End, 4);
-repetir(Vida.Dia, 2);
-repetir(Vida.Noche, 2);
-repetir(VidaDiaNoche, 1);
-Object.assign(VidaDiaNoche, VidaGlobal);
-Object.assign(Vida.Dia, VidaDiaNoche);
-Object.assign(Vida.Noche, VidaDiaNoche);
-Object.assign(Vida.Nether, VidaGlobal);
-Object.assign(Vida.End, VidaGlobal);
-
 /* ----------------------------------------RANDOM----------------------------------------*/
 const RandomGlobal = {
     locura: function (jug) {
@@ -921,6 +822,106 @@ Object.assign(Random.Dia, RandomDiaNoche);
 Object.assign(Random.Noche, RandomDiaNoche);
 Object.assign(Random.Nether, RandomGlobal);
 Object.assign(Random.End, RandomGlobal);
+
+/* ----------------------------------------VIDA----------------------------------------*/
+const VidaGlobal = {
+    pocionCura: function (jug) {
+      adicional = pocionIns(jug.vida);
+      texto(
+        `${jug.nombre} usa una pocion de <i>curacion instantanea ${adicional}</i>`,
+        jug
+      );
+      jug.vida += adicional === "I" ? 4 : 8;
+    },
+    manzana: function (jug) {
+      cura = 4 + jug.vida;
+      vidaExtra(4);
+      curar(cura);
+      texto(`${jug.nombre} come una manzana dorada`, jug);
+      jug.vida = cura;
+    },
+    Notch: function (jug) {
+      console.log("Notch");
+      if (jug.vida > 15) {
+        banneado(jug, 5);
+        adicional = "dorada";
+        vidaExtra(4);
+      } else {
+        banneado(jug, 1);
+        adicional = "de Notch";
+        vidaExtra(16);
+      }
+      curar(20);
+      texto(
+        `${jug.nombre} toma una manzana ${adicional} desde el creativo`,
+        jug
+      );
+      jug.vida = 20;
+    },
+  },
+  VidaDiaNoche = {
+    bruja: function (jug) {
+      adicional = pocionIns(jug.vida);
+      texto(
+        `Una bruja se confunde y le tira una pocion splash de <i>curacion instantanea ${adicional}</i> a ${jug.nombre}`,
+        jug
+      );
+      jug.vida += adicional === "I" ? 4 : 8;
+    },
+  };
+export const Vida = {
+  Dia: {
+    angel: function (jug) {
+      cura = getRandomIntInclusive(19, 1) + jug.vida;
+      curar(cura);
+      texto(`Un angel baja del cielo y cura a ${jug.nombre}`, jug);
+      jug.vida = cura;
+    },
+  },
+  Noche: {
+    // angel: function (jug) { // dsp hago con cada sopa
+    //   cura = 3 + jug.vida;
+    //   texto(`una sopa misteriosa hace que ${jug.nombre} se sienta mucho mejor`);
+    //   vidaDefault(jug);
+    //   curar(cura);
+    //   jug.vida = cura;
+    // },
+  },
+  Nether: {
+    cofreManzana: function (jug) {
+      cura = 4 + jug.vida;
+      vidaExtra(4);
+      curar(cura);
+      texto(
+        `${jug.nombre} consigue una manzana dorada en el cofre de una fortaleza`,
+        jug
+      );
+      jug.vida = cura;
+    },
+    cofreManzana: function (jug) {
+      cura = 4 + jug.vida;
+      vidaExtra(4);
+      curar(cura);
+      texto(
+        `${jug.nombre} consigue una manzana dorada en el cofre de un bastion`,
+        jug
+      );
+      jug.vida = cura;
+    },
+  },
+  End: {},
+};
+repetir(Vida.Nether, 4);
+repetir(Vida.End, 4);
+repetir(Vida.Dia, 2);
+repetir(Vida.Noche, 2);
+repetir(VidaDiaNoche, 1);
+Object.assign(VidaDiaNoche, VidaGlobal);
+Object.assign(Vida.Dia, VidaDiaNoche);
+Object.assign(Vida.Noche, VidaDiaNoche);
+Object.assign(Vida.Nether, VidaGlobal);
+Object.assign(Vida.End, VidaGlobal);
+
 
 /* ----------------------------------------RELACION----------------------------------------*/
 export const RelGlobal = {
