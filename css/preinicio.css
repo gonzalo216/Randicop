@@ -172,6 +172,11 @@ details > p {
   font-size: 2rem;
 }
 
+.formulario {
+  display: grid;
+  grid-template-rows: max-content auto;
+
+}
 .flex {
   display: inline-flex;
   justify-content: center;
@@ -280,6 +285,7 @@ button[name="id"] {
 
 /* BOTONES */
 .buttons {
+  align-self: flex-end;
   display: grid;
   grid-template-columns: 30% 40% 30%;
   justify-items: center;
