@@ -61,14 +61,14 @@ a {
 .header.sticky {
   height: 18vh;
 }
-header > section > a {
+.logo > a {
   width: 80px;
   height: 70px;
   margin-left: 1rem;
 }
-.header > section {
+.logo {
   display: grid;
-  grid-template-columns: max-content auto;
+  grid-template-columns: max-content max-content;
   align-items: center;
 }
 .logo-img {
@@ -98,16 +98,17 @@ h1.sticky {
 .header h2 {
   width: max-content;
   justify-self: right;
-  margin-right: 5rem;
+  margin-right: 1rem;
   transform-origin: right;
-
+  margin-block: 0;
+  align-self: flex-end;
   width: max-content;
   font-family: Monoton;
-  font-size: min(7vw, 60px);
+  font-size: min(6vw, 50px);
   transition: transform 0.5s ease;
-  transform-origin: left;
+  transform-origin: right;
 }
-.header h2.sticky{
+.header h2.sticky {
   transform: scale(1.2);
 }
 .panel-btn {
@@ -164,7 +165,7 @@ aside > nav {
 .menu a:hover {
   font-weight: bold;
   color: var(--color-menulinks-hover);
-  background-color: rgb(223, 223, 105); 
+  background-color: rgb(223, 223, 105);
 }
 
 /* FOOTER */

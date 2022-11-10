@@ -2,7 +2,7 @@ import { updateJugIni } from "/js/index_edicion.js";
 import { json } from "/json/nombres.js";
 
 const d = document,
-array = [0, 1, 2, 3, 4];
+  array = [0, 1, 2, 3, 4];
 
 export function getJson(num) {
   const $template = d.querySelector("template").content,
@@ -57,24 +57,20 @@ export function deleteJson(target) {
 }
 export function updateJson() {
   const $celdas = d.querySelectorAll(".celda");
-  while(array.length > 0) array.pop(); 
+  while (array.length > 0) array.pop();
   updateJugIni($celdas.length);
-  $celdas.forEach(
-    ($celda) =>{
-      let id = $celda.querySelector(`button[name="id"]`).dataset.id;
-      json[id].name =
-        $celda.querySelector(`input[name="nombre"]`).value;
-      array.push(id);
-    }
-  );
+  $celdas.forEach(($celda) => {
+    let id = $celda.querySelector(`button[name="id"]`).dataset.id;
+    json[id].name = $celda.querySelector(`input[name="nombre"]`).value;
+    array.push(id);
+  });
 }
 export function resetJson() {
   const $celdas = d.querySelectorAll(".celda");
-  $celdas.forEach(
-    ($celda, i) =>{
-      let id = $celda.querySelector(`button[name="id"]`).dataset.id;
-      json[id].name = `Steve ${i + 1}`
-        $celda.querySelector(`input[name="nombre"]`).value = `Steve ${i + 1}`;
-    }
-  );
+  while (array.length > 0) array.pop();
+  $celdas.forEach(($celda, i) => {
+    $celda.querySelector(`button[name="id"]`).dataset.id = i;
+    $celda.querySelector(`input[name="nombre"]`).value = `Steve ${i + 1}`;
+  });
+  json.forEach((el, i) => (el.name = `Steve ${i + 1}`));
 }

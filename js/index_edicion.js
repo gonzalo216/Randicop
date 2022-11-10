@@ -1,9 +1,14 @@
-import { deleteJson, getJson, putJson, resetJson, updateJson } from "./edicion/crear_formulario.js";
+import {
+  deleteJson,
+  getJson,
+  putJson,
+  resetJson,
+} from "./edicion/crear_formulario.js";
 import { toggleDescription } from "./edicion/toggle_description.js";
 
 const d = document;
 let jugIni = 5;
-export const updateJugIni = (n) => jugIni = n;
+export const updateJugIni = (n) => (jugIni = n);
 export function iniciarpre() {
   getJson(jugIni);
 }
