@@ -24,6 +24,9 @@
     visibility: visible;
   }
 }
+::-webkit-scrollbar {
+  display: none;
+}
 html {
   scroll-behavior: smooth;
   scrollbar-width: 0;

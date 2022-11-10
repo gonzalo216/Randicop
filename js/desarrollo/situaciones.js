@@ -1,5 +1,11 @@
 import { crearProgreso, haySit, texto, titulo } from "./print_lines.js";
-import { DanoRandom, Decid, Rel, Vida } from "./lista_situaciones.js";
+import {
+  AsignarDanoRandom,
+  DanoRandom,
+  Decid,
+  Rel,
+  Vida,
+} from "./lista_situaciones.js";
 import { desordenar, esperar, getRandomIntInclusive } from "./funciones.js";
 import { lista, jugs, dragon } from "./variables.js";
 import { completo, crearDiv } from "./print_blocks.js";
@@ -28,6 +34,7 @@ export function resetEventos() {
   primNether = true;
   secondWorld = false;
   primEnd = true;
+  AsignarDanoRandom();
 }
 export function apurar() {
   t = 0;
@@ -49,21 +56,21 @@ async function eventos(evento, i, cant, muertos) {
     const jug = lista[jugs[i]];
     let vivos = 0,
       repetir;
-      if (jug.funcion.length && (jug.vida > 0 || jug.revivir)) {
-        let seguir = jug.funcion[0]();
-        jug.funcion.shift();
-        if (!seguir) {
-          if (jug.vida <= 0) muertos.push(jugs[i]);
-          {
-            i++;
-            continue;
-          }
+    if (jug.funcion.length && (jug.vida > 0 || jug.revivir)) {
+      let seguir = jug.funcion[0]();
+      jug.funcion.shift();
+      if (!seguir) {
+        if (jug.vida <= 0) muertos.push(jugs[i]);
+        {
+          i++;
+          continue;
         }
       }
-      if (jug.vida <= 0) {
-        i++;
-        continue;
-      }
+    }
+    if (jug.vida <= 0) {
+      i++;
+      continue;
+    }
     jugs.forEach((n) => {
       if (lista[n].vida > 0) vivos++;
     });
@@ -72,12 +79,12 @@ async function eventos(evento, i, cant, muertos) {
       repetir = false;
       if (jug.vida >= 20)
         vivos > 1 //saltea curar
-          ? (nrand = getRandomIntInclusive(3, 1)) 
-          : (nrand = getRandomIntInclusive(1, 1));
+          ? (nrand = getRandomIntInclusive(3, 1))
+          : (nrand = getRandomIntInclusive(2, 1));
       else
         vivos > 1
           ? (nrand = getRandomIntInclusive(3))
-          : (nrand = getRandomIntInclusive(1)); //saltea relaciones
+          : (nrand = getRandomIntInclusive(2)); //saltea relaciones
       switch (nrand) {
         case 0: {
           // cura
@@ -100,6 +107,7 @@ async function eventos(evento, i, cant, muertos) {
           if (jug.protag) {
             const accion = Object.keys(Decid[evento]);
             nrand = getRandomIntInclusive(accion.length - 1);
+            console.log(accion[nrand]);
             await Decid[evento][accion[nrand]](jug);
             //console.log(accion[nrand]);
           } else repetir = true;
@@ -128,7 +136,6 @@ export default async function juego() {
     mitad = Math.floor(cant / 2);
   crearDiv();
   titulo(`<h3>Transcurrieron ${cont} dias</h3>`, "dias");
-  cont++;
   //if (cont > 3 && primNether) caso = 10; //ir al Nether a partir de los 3 dias transcurridos
   if (cont > 3 && primNether) caso = getRandomIntInclusive(4, 1);
   // 1/4 de chanses de que puedas ir al Nether a partir de los 3 dias transcurridos
@@ -137,10 +144,10 @@ export default async function juego() {
   if (cont > 10 && contNether > 3 && primEnd && !secondWorld)
     caso = getRandomIntInclusive(3);
   // 1/4 de chanses de que puedas ir al end a partir de los 10 dias transcurridos en total
+
   if (caso === 0) {
     // END
     if (primEnd) {
-      cont--;
       primEnd = false;
       await transicion("End");
     } else {
@@ -150,27 +157,26 @@ export default async function juego() {
   } else if (caso < 4) {
     // OVERWORLD
     if (primWorld) {
-      cont--;
       primWorld = false;
       await esperar(t);
       titulo(`<h3>Los jugadores spawnearon</h3>`, `transicion Inicio`);
       await esperar(t);
     } else if (secondWorld) {
-      cont--;
       secondWorld = false;
       await transicion("OverWorld");
     } else {
+      cont++;
       await eventos("Dia", 0, mitad, muertos);
       await eventos("Noche", mitad, cant, muertos);
     }
   } else {
     // NETHER
     if (primNether) {
-      cont--;
       primNether = false;
       secondWorld = true;
       await transicion("Nether");
     } else {
+      cont++;
       contNether++;
       await eventos("Nether", 0, cant, muertos);
     }

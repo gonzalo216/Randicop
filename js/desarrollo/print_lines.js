@@ -99,8 +99,7 @@ export function texto(text, jug, bol = true) {
     armar(jug.armadura);
     if (jug.vida > 20) jug.vida = 20;
     vidaDefault(jug.vida);
-    if(jug.vida <= 0)
-      if(getRandomIntInclusive(1000) === 10) revivir(jug);
+    if (jug.vida <= 0) if (getRandomIntInclusive(1000) === 10) revivir(jug);
   }
   imprimir(text, ".texto", bol);
 }
@@ -113,6 +112,7 @@ export function crearProgreso(valor) {
   const $template = d.getElementById("tem-progreso").content,
     $progress = d.importNode($template, true);
   $progress.querySelector("h4").innerHTML = "DRAGON";
+  $progress.querySelector("span").innerHTML = dragon.crystalAct;
   $progress.querySelector("meter").value = valor;
   $transcurso.at(-1).lastElementChild.appendChild($progress);
 }
@@ -120,4 +120,9 @@ export function updateProgreso() {
   const $meter = $transcurso.at(-1).querySelector("meter");
   if (dragon.vida > 200) dragon.vida = 200;
   $meter.value = dragon.vida;
+}
+export function reduceCrystal(num) {
+  dragon.crystalAct -= num;
+  const $crystal = $transcurso.at(-1).querySelector("small > span");
+  $crystal.innerHTML = dragon.crystalAct;
 }
