@@ -813,7 +813,7 @@ export const Random = {
   },
 };
 repetir(Random.Nether, 10);
-repetir(Vida.End, 4);
+repetir(Random.End, 4);
 repetir(Random.Dia, 2);
 repetir(Random.Noche, 2);
 repetir(RandomDiaNoche, 1);
