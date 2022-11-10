@@ -31,6 +31,8 @@ class Jugador {
     this.netherite = 0;
     this.diamante = 0;
 
+    this.vara = 0;
+    this.montura = 0;
     this.lagrima = false;
     this.oro = false;
     this.huesos = false;

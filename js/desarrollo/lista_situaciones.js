@@ -636,7 +636,7 @@ export const Random = {
     fortaleza: function (jug) {
       texto(`${jug.nombre} comienza a construir su propia fortaleza`, jug);
     },
-    fortaleza: function (jug) {
+    wither: function (jug) {
       texto(
         `${jug.nombre} piensa en recolectar calaveras de esqueletos para invocar al wither`,
         jug
@@ -1158,8 +1158,8 @@ export const Rel = {
     /* dragon */
     dobleDano: function (jug) {
       const jug2 = nJugRand(jug);
-      danoDragon(jug.espada);
-      danoDragon(jug2.espada);
+      // danoDragon(jug.espada);
+      // danoDragon(jug2.espada);
       texto(
         `${jug.nombre} y ${jug2.nombre} golpean con espadas reiteradas veces al ender dragon en cuanto se posa sobre el portal`,
         jug
@@ -1660,6 +1660,88 @@ export const Decid = {
         }
       }
     },
+    fortaleza: async function (jug) {
+      const jug2 = nJugRand(jug);
+      texto(`${jug.nombre} encuentra una fortaleza del nether`, jug);
+      texto(`¿Deberia explorarla?`, false);
+      let decision = await decidir("Entrar", "Ignorar");
+      if (decision) {
+        nrand = getRandomIntInclusive(6);
+        switch (nrand) {
+          case 0:
+            dano = getRandomIntInclusive(20, 12);
+            dano -= Math.ceil(dano * ((4 * getArmadura(jug.armadura)) / 100));
+            jug.vida -= dano;
+            dano += jug.vida;
+            danoInsta(dano);
+            texto(
+              `${jug.nombre} es atacado por un esqueleto de wither apenas entra en la fortaleza`,
+              jug
+            );
+            break;
+          case 1:
+            texto(
+              `${jug.nombre} se sorprende perdido dentro de la fortaleza y no encuentra ningun spawner de blazes. ¿Acaso es que ya estuvo antes en esta sala?`,
+              jug
+            );
+            break;
+          case 2:
+            nrand = getRandomIntInclusive(10, 6);
+            jug.vara+= nrand;
+            texto(
+              `${jug.nombre} logra llegar a un spawner de blazes, retirandose triunfal y con ${nrand} varas`,
+              jug
+            );
+            break
+          case 3:
+            texto(
+              `${jug.nombre} encuentra algunos cofres antse de alejarse`,
+              jug
+            );
+            break;
+          case 4:
+            dano = getRandomIntInclusive(20, 5);
+            dano -= dano * ((4 * getArmadura(jug.armadura)) / 100);
+            jug.vida -= dano;
+            dano += jug.vida;
+            danoInsta(dano);
+            texto(
+              `${jug.nombre} es atacado desde lejos por un grupo de blazes al acercarse demasiado a su spawner`,
+              jug
+            );
+            break;
+          case 5:
+            montura++;
+            texto(
+              `${jug.nombre} toma solo una montura de la fortaleza antes de huir`,
+              jug
+            );
+            break;
+          case 6:
+            texto(
+              `${jug.nombre} logra asesinar a un esqueleto de wither, tomando su cabeza antes de alejarse`,
+              jug
+            );
+            break;
+        }
+      } else {
+        nrand = getRandomIntInclusive(1);
+        switch (nrand) {
+          case 0:
+            texto(
+              `${jug.nombre} decide que es mejor prepararse antes, pero procura recordar las coordenadas`,
+              jug
+            );
+            break;
+          case 1:
+            texto(
+              `${jug.nombre} piensa que seria mas divertido hacer otras cosas`,
+              jug
+            );
+            break;
+        }
+      }
+    },
   },
   End: {
     // falta terminar
@@ -1705,7 +1787,7 @@ export const Decid = {
             break;
         }
       } else {
-        nrand = getRandomIntInclusive(1);
+        nrand = getRandomIntInclusive(2);
         switch (nrand) {
           case 0:
             dano = getRandomIntInclusive(18, 3);
@@ -1724,6 +1806,12 @@ export const Decid = {
               jug
             );
             break;
+            case 2:
+              texto(
+                `${jug.nombre} utiliza un arco a punto de romperse que para herir al dragon, aunque falla y este se parte al instante`,
+                jug
+              );
+              break;
         }
       }
     },
