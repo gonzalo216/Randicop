@@ -3,7 +3,6 @@ class Jugador {
     this.nombre = nombre;
     this.vida = 20;
     this.protag = bol;
-    this.cantF = 0;
     this.funcion = [];
     /* equipaje */
     this.armadura = {
@@ -19,6 +18,7 @@ class Jugador {
       botas: "-",
     };
     this.espada = "hierro";
+    this.arco = false;
     this.escudo = false;
     /* mascotas */
     this.perro = 0;
@@ -37,7 +37,6 @@ class Jugador {
     this.oro = false;
     this.huesos = false;
     this.peces = false;
-    this.noEnderman = false;
     this.comida = false;
   }
 }

@@ -79,14 +79,15 @@ async function eventos(evento, i, cant, muertos) {
       repetir = false;
       if (jug.vida >= 20)
         vivos > 1 //saltea curar
-          ? (nrand = getRandomIntInclusive(3, 1))
-          : (nrand = getRandomIntInclusive(2, 1));
+          ? (nrand = getRandomIntInclusive(5, 2))
+          : (nrand = getRandomIntInclusive(4, 2));
       else
         vivos > 1
-          ? (nrand = getRandomIntInclusive(3))
-          : (nrand = getRandomIntInclusive(2)); //saltea relaciones
+          ? (nrand = getRandomIntInclusive(5))
+          : (nrand = getRandomIntInclusive(4)); //saltea relaciones
       switch (nrand) {
-        case 0: {
+        case 0:
+        case 1: {
           // cura
           const accion = Object.keys(Vida[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
@@ -94,7 +95,8 @@ async function eventos(evento, i, cant, muertos) {
           //console.log(accion[nrand]);
           break;
         }
-        case 1: {
+        case 2:
+        case 3: {
           // dañoRandom;
           const accion = Object.keys(DanoRandom[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
@@ -102,7 +104,7 @@ async function eventos(evento, i, cant, muertos) {
           //console.log(accion[nrand]);
           break;
         }
-        case 2: {
+        case 4: {
           //decisiones
           if (jug.protag) {
             const accion = Object.keys(Decid[evento]);
@@ -113,7 +115,7 @@ async function eventos(evento, i, cant, muertos) {
           } else repetir = true;
           break;
         }
-        case 3: {
+        case 5: {
           //relaciones
           const accion = Object.keys(Rel[evento]);
           nrand = getRandomIntInclusive(accion.length - 1);
